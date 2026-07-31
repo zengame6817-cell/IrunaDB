@@ -11,7 +11,7 @@ window.IrunaModal = (() => {
   function buildBasicRows(item, attributeName) {
     const rows = [
       ["アイテムID", item["アイテムID"]],
-      ["サブ分類", item["サブ分類"]],
+      ["表示分類", item["表示分類"] || item["サブ分類"] || item["分類"]],
       ["武器種", item["武器種"]],
       ["属性", attributeName],
       ["基礎ATK", item["基礎ATK"]],

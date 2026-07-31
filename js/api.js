@@ -44,13 +44,15 @@ window.IrunaApi = (() => {
       effects,
       conditions,
       stats,
-      attributes
+      attributes,
+      jobs
     ] = await Promise.all([
       get("items"),
       get("effects"),
       get("conditions"),
       get("stats"),
-      get("attributes")
+      get("attributes"),
+      get("jobs")
     ]);
 
     return {
@@ -58,7 +60,8 @@ window.IrunaApi = (() => {
       effects,
       conditions,
       stats,
-      attributes
+      attributes,
+      jobs
     };
   }
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v0.3.0</title>
+  <title>IrunaDB v0.4.0</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <header class="site-header">
       <div>
         <p class="eyebrow">Iruna Online Database</p>
-        <h1>IrunaDB <span>v0.3.0</span></h1>
+        <h1>IrunaDB <span>v0.4.0</span></h1>
       </div>
       <div class="connection-status" aria-live="polite">
         <span id="statusDot" class="status-dot"></span>
@@ -48,7 +48,7 @@
             </div>
             <span id="selectedCount" class="count-badge">0 / 5</span>
           </div>
-          <p class="summary-note">v0.3.0では条件のない能力だけを合計します。</p>
+          <p class="summary-note">常時能力と、現在の装備・ステータスで発動している条件付き能力を合計します。</p>
           <div id="totalEffects" class="total-effects"></div>
         </section>
 
@@ -84,11 +84,55 @@
       </section>
 
       <section id="view-status" class="app-view">
-        <div class="placeholder-panel">
-          <p class="section-kicker">STATUS</p>
-          <h2>ステータス入力</h2>
-          <p>Lv・STR・INT・VIT・AGI・DEX・CRTと職業はv0.4.0で追加します。</p>
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">STATUS</p>
+            <h2>ステータス入力</h2>
+          </div>
+          <button id="resetStatusButton" class="button button-secondary" type="button">初期化</button>
         </div>
+
+        <section class="status-panel">
+          <label class="status-field status-field-wide">
+            <span>職業</span>
+            <select id="jobSelect">
+              <option value="">未選択</option>
+            </select>
+          </label>
+
+          <div class="status-grid">
+            <label class="status-field">
+              <span>Lv</span>
+              <input id="statusLv" data-status-key="lv" type="number" min="1" max="999" value="1">
+            </label>
+            <label class="status-field">
+              <span>STR</span>
+              <input id="statusStr" data-status-key="str" type="number" min="0" max="9999" value="0">
+            </label>
+            <label class="status-field">
+              <span>INT</span>
+              <input id="statusInt" data-status-key="int" type="number" min="0" max="9999" value="0">
+            </label>
+            <label class="status-field">
+              <span>VIT</span>
+              <input id="statusVit" data-status-key="vit" type="number" min="0" max="9999" value="0">
+            </label>
+            <label class="status-field">
+              <span>AGI</span>
+              <input id="statusAgi" data-status-key="agi" type="number" min="0" max="9999" value="0">
+            </label>
+            <label class="status-field">
+              <span>DEX</span>
+              <input id="statusDex" data-status-key="dex" type="number" min="0" max="9999" value="0">
+            </label>
+            <label class="status-field">
+              <span>CRT</span>
+              <input id="statusCrt" data-status-key="crt" type="number" min="0" max="9999" value="0">
+            </label>
+          </div>
+
+          <p class="status-help">入力内容は共有URLにも含まれます。変更すると装備画面の条件判定へすぐ反映されます。</p>
+        </section>
       </section>
 
       <section id="view-settings" class="app-view">

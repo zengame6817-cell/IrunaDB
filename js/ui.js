@@ -24,7 +24,7 @@ window.IrunaUi = (() => {
   function renderItems(items, context, onOpen) {
     elements.resultCount.textContent = `${items.length}件`;
     if (!items.length) { elements.itemGrid.innerHTML = `<div class="state-card">条件に一致するデータがありません。</div>`; return; }
-    elements.itemGrid.innerHTML = items.map((item, index) => `<article class="item-card" data-item-index="${index}" tabindex="0"><div class="item-card-header"><div class="item-name">${escapeHtml(item["名前"] || "名称未設定")}</div><span class="badge">${escapeHtml(item["分類"] || "未分類")}</span></div><div class="item-meta">${buildMeta(item, context.attributeMap)}</div><div class="item-description">${escapeHtml(item["説明文"] || item["特殊性能"] || item["タグ概要"] || "説明はまだ登録されていません。")}</div></article>`).join("");
+    elements.itemGrid.innerHTML = items.map((item, index) => `<article class="item-card" data-item-index="${index}" tabindex="0"><div class="item-card-header"><div class="item-name">${escapeHtml(item["名前"] || "名称未設定")}</div><span class="badge">${escapeHtml(item["表示分類"] || item["サブ分類"] || item["分類"] || "未分類")}</span></div><div class="item-meta">${buildMeta(item, context.attributeMap)}</div><div class="item-description">${escapeHtml(item["説明文"] || item["特殊性能"] || item["タグ概要"] || "説明はまだ登録されていません。")}</div></article>`).join("");
     elements.itemGrid.querySelectorAll(".item-card").forEach(card => {
       const open = () => onOpen(items[Number(card.dataset.itemIndex)]);
       card.addEventListener("click", open); card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });
