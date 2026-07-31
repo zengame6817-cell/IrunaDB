@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Iruna Online Database & Build Simulator">
+  <title>IrunaDB v0.1.0</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">Iruna Online Database</p>
+        <h1>IrunaDB <span>v0.1.0</span></h1>
+      </div>
+
+      <div class="connection-status" aria-live="polite">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">接続中</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="search-panel" aria-label="検索">
+        <div class="search-row">
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="名前・タグ・説明から検索"
+            autocomplete="off"
+          >
+          <button id="clearButton" class="button button-primary" type="button">
+            クリア
+          </button>
+        </div>
+
+        <div id="categoryTabs" class="category-tabs" aria-label="分類"></div>
+      </section>
+
+      <section class="result-toolbar">
+        <p id="resultCount">読み込み中…</p>
+        <button id="reloadButton" class="button button-secondary" type="button">
+          再読込
+        </button>
+      </section>
+
+      <section id="itemGrid" class="item-grid" aria-live="polite">
+        <div class="state-card">データを取得しています…</div>
+      </section>
+    </main>
+
+    <footer>
+      Google Spreadsheet + Apps Script API
+    </footer>
+  </div>
+
+  <div id="detailModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <section class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-handle"></div>
+
+      <header class="modal-header">
+        <div>
+          <p id="modalCategory" class="modal-category"></p>
+          <h2 id="modalTitle"></h2>
+        </div>
+
+        <button
+          id="modalCloseButton"
+          class="modal-close"
+          type="button"
+          aria-label="閉じる"
+        >
+          ×
+        </button>
+      </header>
+
+      <dl id="modalDetails" class="detail-list"></dl>
+    </section>
+  </div>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/modal.js"></script>
+  <script src="./js/ui.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
