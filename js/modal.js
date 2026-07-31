@@ -8,29 +8,124 @@ window.IrunaModal = (() => {
   const closeButton = document.getElementById("modalCloseButton");
   const { escapeHtml, isBlank } = window.IrunaUtils;
 
-  const hiddenFields = new Set(["有効"]);
+  function buildBasicRows(item, attributeName) {
+    const rows = [
+      ["アイテムID", item["アイテムID"]],
+      ["サブ分類", item["サブ分類"]],
+      ["武器種", item["武器種"]],
+      ["属性", attributeName],
+      ["基礎ATK", item["基礎ATK"]],
+      ["基礎DEF", item["基礎DEF"]],
+      ["スロット数", item["スロット数"]],
+      ["装着可能箇所", item["装着可能箇所"]],
+      ["タグ", item["タグ概要"]],
+      ["説明", item["説明文"]],
+      ["特殊性能", item["特殊性能"]],
+      ["入手区分", item["入手区分"]],
+      ["入手先", item["入手先"]],
+      ["マップ", item["マップ"]],
+      ["実装日", item["実装日"]]
+    ].filter(([, value]) => !isBlank(value));
 
-  function open(item) {
+    return rows.map(([label, value]) => `
+      <dt>${escapeHtml(label)}</dt>
+      <dd>${escapeHtml(value)}</dd>
+    `).join("");
+  }
+
+  function buildEffectText(effect, statName) {
+    if (effect["表示文"]) {
+      return effect["表示文"];
+    }
+
+    const value = effect["値"];
+    const prefix = Number(value) > 0 ? "+" : "";
+    return `${statName} ${prefix}${value}${effect["単位"] || ""}`;
+  }
+
+  function buildEffectsSection(effects, statMap, conditionMap) {
+    if (!effects.length) {
+      return `
+        <section class="effect-section">
+          <h3>能力</h3>
+          <p class="effect-empty">能力データはまだ登録されていません。</p>
+        </section>
+      `;
+    }
+
+    const alwaysEffects = effects.filter(effect => !effect["条件グループID"]);
+    const conditionalEffects = effects.filter(effect => effect["条件グループID"]);
+
+    const alwaysHtml = alwaysEffects.length
+      ? alwaysEffects.map(effect => {
+          const stat = statMap.get(effect["能力ID"]);
+          const statName = stat?.["表示名"] || effect["能力ID"];
+          return `
+            <li class="effect-item">
+              <span>${escapeHtml(buildEffectText(effect, statName))}</span>
+            </li>
+          `;
+        }).join("")
+      : `<li class="effect-item effect-muted">常時効果なし</li>`;
+
+    const grouped = new Map();
+    conditionalEffects.forEach(effect => {
+      const groupId = effect["条件グループID"];
+      if (!grouped.has(groupId)) {
+        grouped.set(groupId, []);
+      }
+      grouped.get(groupId).push(effect);
+    });
+
+    const conditionHtml = grouped.size
+      ? [...grouped.entries()].map(([groupId, groupEffects]) => {
+          const conditions = conditionMap.get(groupId) || [];
+          const conditionLabel = conditions
+            .map(condition => condition["表示文"] || `${condition["条件項目"]}${condition["演算子"]}${condition["比較値"]}`)
+            .filter(Boolean)
+            .join(" ＆ ") || groupId;
+
+          const effectItems = groupEffects.map(effect => {
+            const stat = statMap.get(effect["能力ID"]);
+            const statName = stat?.["表示名"] || effect["能力ID"];
+            return `<li>${escapeHtml(buildEffectText(effect, statName))}</li>`;
+          }).join("");
+
+          return `
+            <div class="condition-card">
+              <div class="condition-label">${escapeHtml(conditionLabel)}</div>
+              <ul>${effectItems}</ul>
+            </div>
+          `;
+        }).join("")
+      : `<p class="effect-empty">条件付き能力なし</p>`;
+
+    return `
+      <section class="effect-section">
+        <h3>常時能力</h3>
+        <ul class="effect-list">${alwaysHtml}</ul>
+      </section>
+
+      <section class="effect-section">
+        <h3>条件付き能力</h3>
+        <div class="condition-list">${conditionHtml}</div>
+      </section>
+    `;
+  }
+
+  function open(item, context) {
     title.textContent = item["名前"] || "名称未設定";
     category.textContent = item["分類"] || "未分類";
 
-    const rows = Object.entries(item)
-      .filter(([key, value]) => {
-        return !hiddenFields.has(key) &&
-          key !== "名前" &&
-          key !== "分類" &&
-          !isBlank(value);
-      })
-      .map(([key, value]) => `
-        <dt>${escapeHtml(key)}</dt>
-        <dd>${escapeHtml(value)}</dd>
-      `)
-      .join("");
+    const attributeName = context.attributeMap.get(item["属性ID"])?.["属性名"] || "";
+    const itemEffects = context.effectsByItem.get(item["アイテムID"]) || [];
 
-    details.innerHTML = rows || `
-      <dt>情報</dt>
-      <dd>詳細情報はまだ登録されていません。</dd>
-    `;
+    details.innerHTML = buildBasicRows(item, attributeName);
+    document.getElementById("modalEffectArea").innerHTML = buildEffectsSection(
+      itemEffects,
+      context.statMap,
+      context.conditionMap
+    );
 
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");

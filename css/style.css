@@ -413,3 +413,70 @@ footer {
     border-radius: 20px;
   }
 }
+
+
+.effect-section {
+  margin-top: 18px;
+}
+
+.effect-section h3 {
+  margin: 0 0 9px;
+  font-size: 15px;
+}
+
+.effect-list {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.effect-item {
+  padding: 10px 12px;
+  border: 1px solid #334563;
+  border-radius: 10px;
+  background: #111827;
+  font-size: 13px;
+}
+
+.effect-muted,
+.effect-empty {
+  color: var(--muted);
+}
+
+.effect-empty {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.condition-list {
+  display: grid;
+  gap: 9px;
+}
+
+.condition-card {
+  overflow: hidden;
+  border: 1px solid #3a4d70;
+  border-radius: 11px;
+  background: #111827;
+}
+
+.condition-label {
+  padding: 9px 11px;
+  color: #bfdbfe;
+  background: #1e3154;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.condition-card ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 10px 12px 11px 29px;
+  font-size: 13px;
+}

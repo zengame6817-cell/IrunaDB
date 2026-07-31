@@ -4,67 +4,42 @@ Iruna Online Database & Build Simulator
 
 ## Version
 
-`v0.1.0`
+`v0.2.0`
 
-## 実装済み
+## v0.2.0 実装内容
 
-- Google Apps Script API接続
-- `ITEM_MASTER`の取得
-- アイテム一覧表示
-- 分類タブ
-- 名前・タグ・説明検索
-- アイテム詳細モーダル
-- スマートフォン対応
-- API通信タイムアウト処理
-- 再読込機能
+- `ITEM_MASTER`連携
+- `EFFECT_MASTER`連携
+- `CONDITION_MASTER`連携
+- `STAT_MASTER`連携
+- `ATTRIBUTE_MASTER`連携
+- 常時能力の表示
+- 条件付き能力のグループ表示
+- 属性IDを属性名へ変換
+- 能力名・条件文を含む検索
+- 複数APIの並列取得
 
-## API
+## 公開URL
 
 ```text
-https://script.google.com/macros/s/AKfycbzZ3XbV1kS3zm8KYx4Ou3CeUzbVrVVUnixewJ2ZqU5zdyzxDIAev5rPTCKBoje2YkiL3g/exec?action=items
+https://zengame6817-cell.github.io/IrunaDB/
 ```
 
-API URLは次のファイルで管理しています。
+## 更新方法
+
+ZIPを解凍し、リポジトリへ次の内容を上書きアップロードします。
 
 ```text
-js/config.js
-```
-
-## GitHub Pages
-
-GitHubのリポジトリで以下を設定します。
-
-1. `Settings`
-2. `Pages`
-3. `Deploy from a branch`
-4. Branchを`main`
-5. Folderを`/ (root)`
-6. `Save`
-
-## ファイル構成
-
-```text
-IrunaDB/
-├ index.html
-├ css/
-│  └ style.css
-├ js/
-│  ├ config.js
-│  ├ utils.js
-│  ├ api.js
-│  ├ modal.js
-│  ├ ui.js
-│  └ app.js
-├ docs/
-│  ├ API.md
-│  └ DEVELOPMENT.md
-└ README.md
+index.html
+css/
+js/
+docs/
+README.md
 ```
 
 ## 次の予定
 
-- EFFECT_MASTER連携
-- CONDITION_MASTER連携
-- 属性名のID表示から名称表示への変更
-- 能力検索
-- シミュレーター画面
+- 条件が現在適用中かどうかの判定
+- 職業・Lv・各ステータス入力
+- 装備選択画面
+- 属性相性計算

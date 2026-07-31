@@ -60,10 +60,12 @@ window.IrunaUi = (() => {
       });
   }
 
-  function buildMeta(item) {
+  function buildMeta(item, attributeMap) {
+    const attributeName = attributeMap.get(item["属性ID"])?.["属性名"] || "";
+
     const values = [
       item["武器種"],
-      item["属性ID"],
+      attributeName,
       !isBlank(item["基礎ATK"]) ? `ATK ${item["基礎ATK"]}` : "",
       !isBlank(item["基礎DEF"]) ? `DEF ${item["基礎DEF"]}` : "",
       Number(item["スロット数"]) > 0 ? `Slot ${item["スロット数"]}` : ""
@@ -74,7 +76,7 @@ window.IrunaUi = (() => {
       .join("");
   }
 
-  function renderItems(items, onOpen) {
+  function renderItems(items, context, onOpen) {
     elements.resultCount.textContent = `${items.length}件`;
 
     if (items.length === 0) {
@@ -94,7 +96,7 @@ window.IrunaUi = (() => {
             <span class="badge">${escapeHtml(item["分類"] || "未分類")}</span>
           </div>
 
-          <div class="item-meta">${buildMeta(item)}</div>
+          <div class="item-meta">${buildMeta(item, context.attributeMap)}</div>
 
           <div class="item-description">
             ${escapeHtml(
@@ -130,7 +132,7 @@ window.IrunaUi = (() => {
     elements.resultCount.textContent = "読み込み中…";
     elements.itemGrid.innerHTML = `
       <div class="state-card">
-        スプレッドシートからデータを取得しています…
+        アイテム・能力・条件データを取得しています…
       </div>
     `;
   }
@@ -144,7 +146,7 @@ window.IrunaUi = (() => {
     `;
   }
 
-  function filterItems(items, category, query) {
+  function filterItems(items, category, query, searchIndex) {
     const normalizedQuery = normalizeSearchText(query);
 
     return items.filter(item => {
@@ -160,22 +162,8 @@ window.IrunaUi = (() => {
         return true;
       }
 
-      const searchableText = [
-        item["名前"],
-        item["分類"],
-        item["サブ分類"],
-        item["武器種"],
-        item["タグ概要"],
-        item["説明文"],
-        item["特殊性能"],
-        item["入手区分"],
-        item["入手先"],
-        item["マップ"]
-      ]
-        .map(normalizeSearchText)
-        .join(" ");
-
-      return searchableText.includes(normalizedQuery);
+      return (searchIndex.get(item["アイテムID"]) || "")
+        .includes(normalizedQuery);
     });
   }
 

@@ -38,12 +38,32 @@ window.IrunaApi = (() => {
     }
   }
 
-  function getItems() {
-    return get("items");
+  async function getInitialData() {
+    const [
+      items,
+      effects,
+      conditions,
+      stats,
+      attributes
+    ] = await Promise.all([
+      get("items"),
+      get("effects"),
+      get("conditions"),
+      get("stats"),
+      get("attributes")
+    ]);
+
+    return {
+      items,
+      effects,
+      conditions,
+      stats,
+      attributes
+    };
   }
 
   return {
     get,
-    getItems
+    getInitialData
   };
 })();
