@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v0.5.0</title>
+  <title>IrunaDB v0.6.0</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <header class="site-header">
       <div>
         <p class="eyebrow">Iruna Online Database</p>
-        <h1>IrunaDB <span>v0.5.0</span></h1>
+        <h1>IrunaDB <span>v0.6.0</span></h1>
       </div>
       <div class="connection-status" aria-live="polite">
         <span id="statusDot" class="status-dot"></span>
@@ -62,15 +62,32 @@
           <div id="alSlots" class="compact-slots"></div>
         </section>
 
-        <section class="build-extra-panel">
+        <section class="build-extra-panel relic-editor-panel">
           <div class="build-extra-heading">
             <div>
               <p class="section-kicker">RELIC GLASS</p>
-              <h2>レリック</h2>
+              <h2>レリック配置</h2>
             </div>
-            <span id="relicCount" class="count-badge">0 / 15</span>
+            <span id="relicCount" class="count-badge">0 / 15マス</span>
           </div>
-          <div id="relicSlots" class="compact-slots relic-slots"></div>
+
+          <div class="relic-toolbar">
+            <button id="addRelicButton" class="button button-primary" type="button">レリックを追加</button>
+            <button id="rotateRelicButton" class="button button-secondary" type="button" disabled>90°回転</button>
+            <button id="removeRelicButton" class="button button-secondary" type="button" disabled>選択を削除</button>
+          </div>
+
+          <p id="relicMessage" class="relic-message" aria-live="polite">
+            レリックを追加すると、空いている場所へ自動配置します。配置後は盤面を選択して回転できます。
+          </p>
+
+          <div class="relic-workspace">
+            <div id="relicBoard" class="relic-board" aria-label="5列3行のレリック盤面"></div>
+            <div>
+              <p class="relic-list-title">配置中のレリック</p>
+              <div id="relicPlacementList" class="relic-placement-list"></div>
+            </div>
+          </div>
         </section>
 
         <section class="summary-panel">
@@ -79,7 +96,7 @@
               <p class="section-kicker">TOTAL EFFECTS</p>
               <h2>合計能力</h2>
             </div>
-            <span id="selectedCount" class="count-badge">0 / 40</span>
+            <span id="selectedCount" class="count-badge">0件</span>
           </div>
           <p class="summary-note">常時能力と、現在の装備・ステータスで発動している条件付き能力を合計します。</p>
           <div id="totalEffects" class="total-effects"></div>
@@ -89,7 +106,7 @@
           <div>
             <p class="section-kicker">SHARE BUILD</p>
             <h2>ビルド共有URL</h2>
-            <p>装備・クリスタ・☆能力・アルクリスタ・レリック・ステータスをURLに保存できます。</p>
+            <p>装備・クリスタ・☆能力・アルクリスタ・レリック配置・ステータスをURLに保存できます。</p>
           </div>
           <div class="share-actions">
             <button id="copyUrlButton" class="button button-primary" type="button">URLをコピー</button>

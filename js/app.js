@@ -17,23 +17,32 @@
     crystals: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, [null, null]])),
     stars: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, null])),
     alCrystas: Array(5).fill(null),
-    relics: Array(15).fill(null)
+    relicPlacements: []
   });
   const state = {
-    items: [], effects: [], conditions: [], stats: [], attributes: [], jobs: [],
+    items: [], effects: [], conditions: [], stats: [], attributes: [], jobs: [], relicPatterns: [],
     activeCategory: "すべて", searchQuery: "", activeView: "build",
     build: createEmptyBuild(),
-    pickerSlot: null, pickerQuery: "",
+    pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
     status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 }
   };
-  const context = { itemsById: new Map(), effectsByItem: new Map(), conditionMap: new Map(), statMap: new Map(), attributeMap: new Map(), jobMap: new Map(), searchIndex: new Map() };
+  const context = {
+    itemsById: new Map(), effectsByItem: new Map(), conditionMap: new Map(),
+    statMap: new Map(), attributeMap: new Map(), jobMap: new Map(), searchIndex: new Map(),
+    relicPatternByItemId: new Map(), relicPatternByName: new Map()
+  };
   const ui = window.IrunaUi, api = window.IrunaApi, modal = window.IrunaModal;
   const { normalizeSearchText, escapeHtml, encodeBuild, decodeBuild, isBlank } = window.IrunaUtils;
 
   const equipmentSlots = document.getElementById("equipmentSlots");
   const equipmentOptions = document.getElementById("equipmentOptions");
   const alSlots = document.getElementById("alSlots");
-  const relicSlots = document.getElementById("relicSlots");
+  const relicBoard = document.getElementById("relicBoard");
+  const relicPlacementList = document.getElementById("relicPlacementList");
+  const relicMessage = document.getElementById("relicMessage");
+  const addRelicButton = document.getElementById("addRelicButton");
+  const rotateRelicButton = document.getElementById("rotateRelicButton");
+  const removeRelicButton = document.getElementById("removeRelicButton");
   const alCount = document.getElementById("alCount");
   const relicCount = document.getElementById("relicCount");
   const totalEffects = document.getElementById("totalEffects");
@@ -48,6 +57,14 @@
     state.stats.forEach(stat => context.statMap.set(String(stat["能力ID"]), stat));
     state.attributes.forEach(attribute => context.attributeMap.set(String(attribute["属性ID"]), attribute));
     state.jobs.forEach(job => context.jobMap.set(String(job["職業ID"]), job));
+    state.relicPatterns.forEach(row => {
+      const itemId = String(row["アイテムID"] ?? row["レリックID"] ?? row["ID"] ?? "").trim();
+      const name = String(row["名前"] ?? row["レリック名"] ?? "").trim();
+      const pattern = parseRelicPattern(row);
+      if (!pattern.length) return;
+      if (itemId) context.relicPatternByItemId.set(itemId, pattern);
+      if (name) context.relicPatternByName.set(normalizeSearchText(name), pattern);
+    });
     state.items.forEach(item => {
       const effectTexts = (context.effectsByItem.get(String(item["アイテムID"])) || []).map(effect => [context.statMap.get(String(effect["能力ID"]))?.["表示名"], effect["表示文"]].join(" ")).join(" ");
       const attributeName = context.attributeMap.get(String(item["属性ID"]))?.["属性名"] || "";
@@ -124,16 +141,14 @@
       };
     }
 
-    match = /^relic_(\d+)$/.exec(token);
-    if (match) {
-      const index = Number(match[1]);
+    if (token === "relic_new") {
       return {
         token,
-        label: `レリック ${index + 1}`,
+        label: "レリックを追加",
         category: "レリック",
         icon: "R",
-        get: () => state.build.relics[index],
-        set: value => { state.build.relics[index] = value; }
+        get: () => null,
+        set: value => { if (value) addRelicByItemId(value); }
       };
     }
     return null;
@@ -144,7 +159,7 @@
     EQUIPMENT_KEYS.forEach(key => {
       ids.push(...state.build.crystals[key], state.build.stars[key]);
     });
-    ids.push(...state.build.alCrystas, ...state.build.relics);
+    ids.push(...state.build.alCrystas, ...state.build.relicPlacements.map(entry => entry.itemId));
     return ids.filter(Boolean).map(String);
   }
 
@@ -174,15 +189,190 @@
       .map((_, index) => renderMiniSlot(`al_${index}`, `${index + 1}`))
       .join("");
 
-    relicSlots.innerHTML = state.build.relics
-      .map((_, index) => renderMiniSlot(`relic_${index}`, `${index + 1}`))
-      .join("");
-
     alCount.textContent = `${state.build.alCrystas.filter(Boolean).length} / 5`;
-    relicCount.textContent = `${state.build.relics.filter(Boolean).length} / 15`;
 
-    document.querySelectorAll("#equipmentOptions [data-slot-pick], #alSlots [data-slot-pick], #relicSlots [data-slot-pick]")
+    document.querySelectorAll("#equipmentOptions [data-slot-pick], #alSlots [data-slot-pick]")
       .forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
+
+    renderRelicBoard();
+  }
+
+
+  const RELIC_BOARD_WIDTH = 5;
+  const RELIC_BOARD_HEIGHT = 3;
+
+  function parseRelicPattern(row) {
+    const raw = row["配置"] ?? row["形状"] ?? row["座標"] ?? row["パターン"] ??
+      row["cells"] ?? row["pattern"] ?? row["座標データ"] ?? "";
+    if (Array.isArray(raw)) return normalizeRelicCells(raw);
+    if (!String(raw).trim()) return [];
+    try {
+      return normalizeRelicCells(JSON.parse(String(raw)));
+    } catch (_) {
+      const matches = [...String(raw).matchAll(/(-?\d+)\s*,\s*(-?\d+)/g)];
+      return normalizeRelicCells(matches.map(match => [Number(match[1]), Number(match[2])]));
+    }
+  }
+
+  function normalizeRelicCells(cells) {
+    const valid = (cells || [])
+      .map(cell => Array.isArray(cell) ? [Number(cell[0]), Number(cell[1])] : [Number(cell.x), Number(cell.y)])
+      .filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y));
+    if (!valid.length) return [];
+    const minX = Math.min(...valid.map(([x]) => x));
+    const minY = Math.min(...valid.map(([, y]) => y));
+    return valid.map(([x, y]) => [x - minX, y - minY]);
+  }
+
+  function relicPatternForItem(itemId) {
+    const direct = context.relicPatternByItemId.get(String(itemId));
+    if (direct) return direct;
+    const item = context.itemsById.get(String(itemId));
+    return context.relicPatternByName.get(normalizeSearchText(item?.["名前"] || "")) || [];
+  }
+
+  function rotateCells(cells, rotation) {
+    let result = normalizeRelicCells(cells);
+    const turns = ((Number(rotation) || 0) % 4 + 4) % 4;
+    for (let i = 0; i < turns; i += 1) {
+      result = normalizeRelicCells(result.map(([x, y]) => [-y, x]));
+    }
+    return result;
+  }
+
+  function absoluteRelicCells(placement, overrideRotation = placement.rotation) {
+    return rotateCells(relicPatternForItem(placement.itemId), overrideRotation)
+      .map(([x, y]) => [x + placement.x, y + placement.y]);
+  }
+
+  function canPlaceRelic(candidate, ignoreUid = null) {
+    const cells = absoluteRelicCells(candidate);
+    if (!cells.length) return false;
+    if (cells.some(([x, y]) => x < 0 || x >= RELIC_BOARD_WIDTH || y < 0 || y >= RELIC_BOARD_HEIGHT)) {
+      return false;
+    }
+    const occupied = new Set();
+    state.build.relicPlacements.forEach(entry => {
+      if (entry.uid === ignoreUid) return;
+      absoluteRelicCells(entry).forEach(([x, y]) => occupied.add(`${x},${y}`));
+    });
+    return cells.every(([x, y]) => !occupied.has(`${x},${y}`));
+  }
+
+  function findRelicPosition(itemId) {
+    for (let rotation = 0; rotation < 4; rotation += 1) {
+      for (let y = 0; y < RELIC_BOARD_HEIGHT; y += 1) {
+        for (let x = 0; x < RELIC_BOARD_WIDTH; x += 1) {
+          const candidate = { itemId: String(itemId), x, y, rotation };
+          if (canPlaceRelic(candidate)) return candidate;
+        }
+      }
+    }
+    return null;
+  }
+
+  function addRelicByItemId(itemId) {
+    const pattern = relicPatternForItem(itemId);
+    const item = context.itemsById.get(String(itemId));
+    if (!pattern.length) {
+      relicMessage.textContent = `${item?.["名前"] || "選択したレリック"}の形状データが見つかりません。`;
+      return;
+    }
+    const position = findRelicPosition(itemId);
+    if (!position) {
+      relicMessage.textContent = "空いている場所へ配置できません。既存レリックを削除または回転してください。";
+      return;
+    }
+    const placement = {
+      uid: `r${Date.now()}${Math.random().toString(36).slice(2, 7)}`,
+      ...position
+    };
+    state.build.relicPlacements.push(placement);
+    state.selectedRelicUid = placement.uid;
+    relicMessage.textContent = `${item?.["名前"] || "レリック"}を配置しました。`;
+    syncUrl(false);
+    renderBuild();
+  }
+
+  function rotateSelectedRelic() {
+    const placement = state.build.relicPlacements.find(entry => entry.uid === state.selectedRelicUid);
+    if (!placement) return;
+    const nextRotation = (placement.rotation + 1) % 4;
+    const candidate = { ...placement, rotation: nextRotation };
+    if (!canPlaceRelic(candidate, placement.uid)) {
+      relicMessage.textContent = "その位置では回転できません。盤面外または別のレリックと重なります。";
+      return;
+    }
+    placement.rotation = nextRotation;
+    relicMessage.textContent = "90°回転しました。反転は行いません。";
+    syncUrl(false);
+    renderBuild();
+  }
+
+  function removeSelectedRelic() {
+    const index = state.build.relicPlacements.findIndex(entry => entry.uid === state.selectedRelicUid);
+    if (index < 0) return;
+    const [removed] = state.build.relicPlacements.splice(index, 1);
+    const item = context.itemsById.get(String(removed.itemId));
+    state.selectedRelicUid = null;
+    relicMessage.textContent = `${item?.["名前"] || "レリック"}を削除しました。`;
+    syncUrl(false);
+    renderBuild();
+  }
+
+  function renderRelicBoard() {
+    const cellOwners = new Map();
+    state.build.relicPlacements.forEach(placement => {
+      absoluteRelicCells(placement).forEach(([x, y]) => {
+        cellOwners.set(`${x},${y}`, placement);
+      });
+    });
+
+    relicBoard.innerHTML = Array.from({ length: RELIC_BOARD_WIDTH * RELIC_BOARD_HEIGHT }, (_, index) => {
+      const x = index % RELIC_BOARD_WIDTH;
+      const y = Math.floor(index / RELIC_BOARD_WIDTH);
+      const owner = cellOwners.get(`${x},${y}`);
+      const item = owner ? context.itemsById.get(String(owner.itemId)) : null;
+      const selected = owner?.uid === state.selectedRelicUid;
+      return `<button class="relic-cell ${owner ? "is-filled" : ""} ${selected ? "is-selected" : ""}"
+        type="button" data-relic-uid="${owner?.uid || ""}" aria-label="${escapeHtml(item?.["名前"] || `空きマス ${x + 1},${y + 1}`)}">
+        ${owner ? `<span>${escapeHtml((item?.["名前"] || "R").slice(0, 1))}</span>` : ""}
+      </button>`;
+    }).join("");
+
+    relicBoard.querySelectorAll("[data-relic-uid]").forEach(button => {
+      button.addEventListener("click", () => {
+        if (!button.dataset.relicUid) return;
+        state.selectedRelicUid = button.dataset.relicUid;
+        renderRelicBoard();
+      });
+    });
+
+    relicPlacementList.innerHTML = state.build.relicPlacements.length
+      ? state.build.relicPlacements.map((placement, index) => {
+          const item = context.itemsById.get(String(placement.itemId));
+          const selected = placement.uid === state.selectedRelicUid;
+          return `<button class="relic-list-item ${selected ? "is-selected" : ""}" type="button"
+            data-placement-uid="${placement.uid}">
+            <span>${index + 1}</span>
+            <strong>${escapeHtml(item?.["名前"] || "不明なレリック")}</strong>
+            <small>${placement.rotation * 90}°</small>
+          </button>`;
+        }).join("")
+      : '<p class="empty-relic-list">まだ配置されていません。</p>';
+
+    relicPlacementList.querySelectorAll("[data-placement-uid]").forEach(button => {
+      button.addEventListener("click", () => {
+        state.selectedRelicUid = button.dataset.placementUid;
+        renderRelicBoard();
+      });
+    });
+
+    const occupied = cellOwners.size;
+    relicCount.textContent = `${occupied} / 15マス`;
+    const selectedExists = state.build.relicPlacements.some(entry => entry.uid === state.selectedRelicUid);
+    rotateRelicButton.disabled = !selectedExists;
+    removeRelicButton.disabled = !selectedExists;
   }
 
   function renderBuild() {
@@ -286,7 +476,7 @@
     }
 
     if (["アルクリスタ数"].includes(key)) return state.build.alCrystas.filter(Boolean).length;
-    if (["レリック数"].includes(key)) return state.build.relics.filter(Boolean).length;
+    if (["レリック数"].includes(key)) return state.build.relicPlacements.length;
 
     return undefined;
   }
@@ -386,7 +576,7 @@
 
   function renderTotals() {
     const selectedIds = allSelectedIds();
-    selectedCount.textContent = `${selectedIds.length} / 40`;
+    selectedCount.textContent = `${selectedIds.length}件`;
     const totals = new Map(), textOnly = [];
     const activeConditional = [];
     const inactiveConditional = [];
@@ -498,7 +688,12 @@
       state.build.stars[key] ? String(state.build.stars[key]) : null
     ]));
     build.alCrystas = state.build.alCrystas.map(value => value ? String(value) : null);
-    build.relics = state.build.relics.map(value => value ? String(value) : null);
+    build.relicPlacements = state.build.relicPlacements.map(entry => ({
+      itemId: String(entry.itemId),
+      x: Number(entry.x),
+      y: Number(entry.y),
+      rotation: Number(entry.rotation) || 0
+    }));
     return { build, status: { ...state.status } };
   }
   function syncUrl(push) {
@@ -532,10 +727,32 @@
         const id = decodedBuild?.alCrystas?.[index];
         return id && context.itemsById.has(String(id)) ? String(id) : null;
       });
-      state.build.relics = Array.from({ length: 15 }, (_, index) => {
-        const id = decodedBuild?.relics?.[index];
-        return id && context.itemsById.has(String(id)) ? String(id) : null;
+      state.build.relicPlacements = [];
+      const savedPlacements = Array.isArray(decodedBuild?.relicPlacements)
+        ? decodedBuild.relicPlacements
+        : [];
+      savedPlacements.forEach((entry, index) => {
+        const itemId = String(entry?.itemId || "");
+        const candidate = {
+          uid: `saved${index}`,
+          itemId,
+          x: Number(entry?.x) || 0,
+          y: Number(entry?.y) || 0,
+          rotation: Number(entry?.rotation) || 0
+        };
+        if (context.itemsById.has(itemId) && canPlaceRelic(candidate)) {
+          state.build.relicPlacements.push(candidate);
+        }
       });
+
+      // v0.5.0の旧URL（15個のレリック枠）も可能な範囲で自動配置する
+      if (!savedPlacements.length && Array.isArray(decodedBuild?.relics)) {
+        decodedBuild.relics.filter(Boolean).forEach((id, index) => {
+          const itemId = String(id);
+          const position = context.itemsById.has(itemId) ? findRelicPosition(itemId) : null;
+          if (position) state.build.relicPlacements.push({ uid: `legacy${index}`, ...position });
+        });
+      }
       state.status = {
         jobId: String(decodedStatus.jobId || ""),
         lv: Number(decodedStatus.lv ?? 1),
@@ -570,8 +787,13 @@
   ui.elements.searchInput.addEventListener("input", event => { state.searchQuery = event.target.value; renderDatabase(); });
   document.getElementById("clearButton").addEventListener("click", () => { state.searchQuery = ""; ui.elements.searchInput.value = ""; renderDatabase(); ui.elements.searchInput.focus(); });
   document.getElementById("reloadButton").addEventListener("click", loadData);
+  addRelicButton.addEventListener("click", () => openPicker("relic_new"));
+  rotateRelicButton.addEventListener("click", rotateSelectedRelic);
+  removeRelicButton.addEventListener("click", removeSelectedRelic);
+
   document.getElementById("resetBuildButton").addEventListener("click", () => {
     state.build = createEmptyBuild();
+    state.selectedRelicUid = null;
     syncUrl(false);
     renderBuild();
   });
@@ -582,7 +804,13 @@
   document.getElementById("pickerCloseButton").addEventListener("click", closePicker);
   pickerModal.querySelectorAll("[data-close-picker]").forEach(element => element.addEventListener("click", closePicker));
   document.addEventListener("keydown", event => { if (event.key === "Escape" && pickerModal.classList.contains("is-open")) closePicker(); });
-  window.addEventListener("popstate", () => { SLOT_DEFS.forEach(slot => state.build[slot.key] = null); restoreBuildFromUrl(); renderStatus(); renderBuild(); });
+  window.addEventListener("popstate", () => {
+    state.build = createEmptyBuild();
+    state.selectedRelicUid = null;
+    restoreBuildFromUrl();
+    renderStatus();
+    renderBuild();
+  });
 
   document.getElementById("jobSelect").addEventListener("change", event => {
     state.status.jobId = event.target.value;

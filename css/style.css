@@ -202,3 +202,130 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
+
+
+.relic-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.relic-toolbar .button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.relic-message {
+  min-height: 2.7em;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.relic-workspace {
+  display: grid;
+  gap: 14px;
+}
+
+.relic-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(42px, 1fr));
+  gap: 6px;
+  width: 100%;
+  max-width: 520px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #070d19;
+}
+
+.relic-cell {
+  aspect-ratio: 1;
+  border: 1px solid #2b3b57;
+  border-radius: 8px;
+  background: #101a2e;
+  color: #dbeafe;
+  cursor: default;
+}
+
+.relic-cell.is-filled {
+  border-color: #2563eb;
+  background: #17376c;
+  cursor: pointer;
+}
+
+.relic-cell.is-selected {
+  outline: 3px solid #60a5fa;
+  outline-offset: 1px;
+}
+
+.relic-cell span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(14px, 4vw, 24px);
+  font-weight: 800;
+}
+
+.relic-list-title {
+  margin: 0 0 8px;
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.relic-placement-list {
+  display: grid;
+  gap: 7px;
+}
+
+.relic-list-item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #101a2e;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.relic-list-item.is-selected {
+  border-color: #60a5fa;
+  background: #12264b;
+}
+
+.relic-list-item span,
+.relic-list-item small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.relic-list-item strong {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty-relic-list {
+  margin: 0;
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (min-width: 720px) {
+  .relic-workspace {
+    grid-template-columns: minmax(360px, 1.4fr) minmax(220px, .8fr);
+    align-items: start;
+  }
+}
