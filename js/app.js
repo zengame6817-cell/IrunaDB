@@ -16,6 +16,10 @@
     decoration: null,
     crystals: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, [null, null]])),
     stars: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, null])),
+    equipmentSettings: Object.fromEntries(EQUIPMENT_KEYS.map(key => [
+      key, { refinement: 0, slots: 0 }
+    ])),
+    weaponAttributeId: "",
     alCrystas: Array(5).fill(null),
     relicPlacements: []
   });
@@ -157,33 +161,59 @@
   function allSelectedIds() {
     const ids = EQUIPMENT_KEYS.map(key => state.build[key]);
     EQUIPMENT_KEYS.forEach(key => {
-      ids.push(...state.build.crystals[key], state.build.stars[key]);
+      const slotCount = Number(state.build.equipmentSettings[key]?.slots || 0);
+      ids.push(...state.build.crystals[key].slice(0, slotCount), state.build.stars[key]);
     });
     ids.push(...state.build.alCrystas, ...state.build.relicPlacements.map(entry => entry.itemId));
     return ids.filter(Boolean).map(String);
   }
 
-  function renderMiniSlot(token, label) {
+  function renderMiniSlot(token, label, disabled = false) {
     const descriptor = getSlotDescriptor(token);
     const id = descriptor?.get();
     const item = id ? context.itemsById.get(String(id)) : null;
-    return `<button class="mini-slot ${item ? "is-selected" : ""}" type="button" data-slot-pick="${token}">
+    return `<button class="mini-slot ${item ? "is-selected" : ""} ${disabled ? "is-disabled" : ""}"
+      type="button" data-slot-pick="${token}" ${disabled ? "disabled" : ""}>
       <span>${escapeHtml(label)}</span>
-      <strong>${escapeHtml(item?.["名前"] || "未選択")}</strong>
+      <strong>${escapeHtml(disabled ? "スロットなし" : (item?.["名前"] || "未選択"))}</strong>
     </button>`;
   }
 
   function renderEquipmentOptions() {
-    equipmentOptions.innerHTML = SLOT_DEFS.map(slot => `
-      <section class="equipment-option-group">
-        <h3>${escapeHtml(slot.label)}</h3>
-        <div class="equipment-option-slots">
-          ${renderMiniSlot(`crystal_${slot.key}_0`, "クリスタ1")}
-          ${renderMiniSlot(`crystal_${slot.key}_1`, "クリスタ2")}
-          ${renderMiniSlot(`star_${slot.key}`, "☆能力")}
-        </div>
-      </section>
-    `).join("");
+    equipmentOptions.innerHTML = SLOT_DEFS.map(slot => {
+      const setting = state.build.equipmentSettings[slot.key];
+      const slotCount = Number(setting?.slots || 0);
+      return `
+        <section class="equipment-option-group">
+          <h3>${escapeHtml(slot.label)}</h3>
+          <div class="equipment-option-content">
+            <div class="equipment-tuning-row">
+              <label>
+                <span>精錬</span>
+                <select data-refinement-key="${slot.key}">
+                  ${Array.from({ length: 11 }, (_, value) =>
+                    `<option value="${value}" ${Number(setting.refinement) === value ? "selected" : ""}>+${value}</option>`
+                  ).join("")}
+                </select>
+              </label>
+              <label>
+                <span>スロット</span>
+                <select data-slot-count-key="${slot.key}">
+                  ${[0, 1, 2].map(value =>
+                    `<option value="${value}" ${slotCount === value ? "selected" : ""}>${value}</option>`
+                  ).join("")}
+                </select>
+              </label>
+            </div>
+            <div class="equipment-option-slots">
+              ${renderMiniSlot(`crystal_${slot.key}_0`, "クリスタ1", slotCount < 1)}
+              ${renderMiniSlot(`crystal_${slot.key}_1`, "クリスタ2", slotCount < 2)}
+              ${renderMiniSlot(`star_${slot.key}`, "☆能力")}
+            </div>
+          </div>
+        </section>
+      `;
+    }).join("");
 
     alSlots.innerHTML = state.build.alCrystas
       .map((_, index) => renderMiniSlot(`al_${index}`, `${index + 1}`))
@@ -191,10 +221,66 @@
 
     alCount.textContent = `${state.build.alCrystas.filter(Boolean).length} / 5`;
 
-    document.querySelectorAll("#equipmentOptions [data-slot-pick], #alSlots [data-slot-pick]")
+    document.querySelectorAll("#equipmentOptions [data-slot-pick]:not(:disabled), #alSlots [data-slot-pick]")
       .forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
 
+    equipmentOptions.querySelectorAll("[data-refinement-key]").forEach(select => {
+      select.addEventListener("change", event => {
+        const key = event.target.dataset.refinementKey;
+        state.build.equipmentSettings[key].refinement = Number(event.target.value);
+        syncUrl(false);
+        renderBuild();
+      });
+    });
+
+    equipmentOptions.querySelectorAll("[data-slot-count-key]").forEach(select => {
+      select.addEventListener("change", event => {
+        const key = event.target.dataset.slotCountKey;
+        const count = Number(event.target.value);
+        state.build.equipmentSettings[key].slots = count;
+        for (let index = count; index < 2; index += 1) {
+          state.build.crystals[key][index] = null;
+        }
+        syncUrl(false);
+        renderBuild();
+      });
+    });
+
+    renderWeaponAttributeControl();
     renderRelicBoard();
+  }
+
+  function renderWeaponAttributeControl() {
+    const host = document.getElementById("weaponAttributeControl");
+    if (!host) return;
+    const weapon = state.build.weapon
+      ? context.itemsById.get(String(state.build.weapon))
+      : null;
+    const baseAttributeId = String(weapon?.["属性ID"] || "");
+    const selected = String(state.build.weaponAttributeId || baseAttributeId);
+    const sorted = [...state.attributes].sort(
+      (a, b) => Number(a["表示順"] || 9999) - Number(b["表示順"] || 9999)
+    );
+    host.innerHTML = `
+      <label class="weapon-attribute-field">
+        <span>武器属性</span>
+        <select id="weaponAttributeSelect" ${weapon ? "" : "disabled"}>
+          <option value="">属性なし</option>
+          ${sorted.map(attribute => {
+            const id = String(attribute["属性ID"] || "");
+            const name = attribute["属性名"] || id;
+            return `<option value="${escapeHtml(id)}" ${selected === id ? "selected" : ""}>${escapeHtml(name)}</option>`;
+          }).join("")}
+        </select>
+      </label>
+      <small>${weapon ? "装備固有の属性から変更できます" : "武器を選択してください"}</small>
+    `;
+    const select = document.getElementById("weaponAttributeSelect");
+    select?.addEventListener("change", event => {
+      state.build.weaponAttributeId = event.target.value;
+      syncUrl(false);
+      renderBuild();
+    });
   }
 
 
@@ -381,7 +467,12 @@
       return `<article class="equipment-slot ${item ? "is-selected" : ""}">
         <button class="slot-main" type="button" data-slot-pick="${slot.key}">
           <span class="slot-icon">${slot.icon}</span>
-          <span class="slot-content"><span class="slot-label">${slot.label}</span><strong>${escapeHtml(item?.["名前"] || "未選択")}</strong><small>${item ? escapeHtml(item["表示分類"] || item["サブ分類"] || item["武器種"] || item["分類"] || "タップして変更") : "タップして選択"}</small></span>
+          <span class="slot-content"><span class="slot-label">${slot.label}</span>
+          <span class="slot-item-info">
+            <strong>${escapeHtml(item?.["名前"] || "未選択")}</strong>
+            <small>${item ? `精錬+${Number(state.build.equipmentSettings[slot.key]?.refinement || 0)}・${Number(state.build.equipmentSettings[slot.key]?.slots || 0)}スロット` : "タップして選択"}</small>
+          </span>
+        </span>
           <span class="slot-arrow">›</span>
         </button>
         ${item ? `<button class="slot-remove" type="button" data-slot-remove="${slot.key}" aria-label="${slot.label}を解除">×</button>` : ""}
@@ -392,6 +483,7 @@
       event.stopPropagation();
       const descriptor = getSlotDescriptor(button.dataset.slotRemove);
       descriptor?.set(null);
+      if (button.dataset.slotRemove === "weapon") state.build.weaponAttributeId = "";
       syncUrl(false);
       renderBuild();
     }));
@@ -449,7 +541,7 @@
     }
 
     if (["武器属性", "属性", "WEAPON_ATTRIBUTE"].includes(key)) {
-      const attributeId = weapon?.["属性ID"] || "";
+      const attributeId = state.build.weaponAttributeId || weapon?.["属性ID"] || "";
       return {
         id: attributeId,
         name: context.attributeMap.get(String(attributeId))?.["属性名"] || ""
@@ -473,6 +565,36 @@
         id: String(item["アイテムID"] || ""),
         name: String(item["名前"] || "")
       }));
+    }
+
+    if (["精錬値", "REFINEMENT", "REFINE"].includes(key)) {
+      return EQUIPMENT_KEYS.map(equipmentKey =>
+        Number(state.build.equipmentSettings[equipmentKey]?.refinement || 0)
+      );
+    }
+
+    const refinementMatch = /^(武器|体|追加|特殊|装飾)(精錬|精錬値)$/.exec(itemName);
+    if (refinementMatch) {
+      const slot = SLOT_DEFS.find(entry => entry.label === refinementMatch[1]);
+      return Number(state.build.equipmentSettings[slot?.key]?.refinement || 0);
+    }
+
+    if (["スロット数", "SLOT_COUNT"].includes(key)) {
+      return EQUIPMENT_KEYS.map(equipmentKey =>
+        Number(state.build.equipmentSettings[equipmentKey]?.slots || 0)
+      );
+    }
+
+    if (["ダブルスロット", "DOUBLE_SLOT"].includes(key)) {
+      return EQUIPMENT_KEYS.some(equipmentKey =>
+        Number(state.build.equipmentSettings[equipmentKey]?.slots || 0) >= 2
+      ) ? 1 : 0;
+    }
+
+    const slotMatch = /^(武器|体|追加|特殊|装飾)(スロット|スロット数)$/.exec(itemName);
+    if (slotMatch) {
+      const slot = SLOT_DEFS.find(entry => entry.label === slotMatch[1]);
+      return Number(state.build.equipmentSettings[slot?.key]?.slots || 0);
     }
 
     if (["アルクリスタ数"].includes(key)) return state.build.alCrystas.filter(Boolean).length;
@@ -666,7 +788,12 @@
 
     pickerList.querySelectorAll("[data-picker-id]").forEach(button =>
       button.addEventListener("click", () => {
-        descriptor.set(button.dataset.pickerId || null);
+        const selectedId = button.dataset.pickerId || null;
+        descriptor.set(selectedId);
+        if (state.pickerSlot === "weapon") {
+          const weapon = selectedId ? context.itemsById.get(String(selectedId)) : null;
+          state.build.weaponAttributeId = String(weapon?.["属性ID"] || "");
+        }
         closePicker();
         syncUrl(false);
         renderBuild();
@@ -687,6 +814,14 @@
       key,
       state.build.stars[key] ? String(state.build.stars[key]) : null
     ]));
+    build.equipmentSettings = Object.fromEntries(EQUIPMENT_KEYS.map(key => [
+      key,
+      {
+        refinement: Number(state.build.equipmentSettings[key]?.refinement || 0),
+        slots: Number(state.build.equipmentSettings[key]?.slots || 0)
+      }
+    ]));
+    build.weaponAttributeId = String(state.build.weaponAttributeId || "");
     build.alCrystas = state.build.alCrystas.map(value => value ? String(value) : null);
     build.relicPlacements = state.build.relicPlacements.map(entry => ({
       itemId: String(entry.itemId),
@@ -698,7 +833,12 @@
   }
   function syncUrl(push) {
     const url = new URL(location.href); const payload = compactBuild();
-    const hasBuild = allSelectedIds().length > 0;
+    const hasBuild = allSelectedIds().length > 0 ||
+      Boolean(state.build.weaponAttributeId) ||
+      EQUIPMENT_KEYS.some(key => {
+        const setting = state.build.equipmentSettings[key];
+        return Number(setting?.refinement || 0) !== 0 || Number(setting?.slots || 0) !== 0;
+      });
     const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
       ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
     if (hasBuild || hasStatus) url.searchParams.set("build", encodeBuild(payload)); else url.searchParams.delete("build");
@@ -715,14 +855,21 @@
         state.build[slot.key] = id && context.itemsById.has(String(id)) ? String(id) : null;
       });
       EQUIPMENT_KEYS.forEach(key => {
+        const savedSetting = decodedBuild?.equipmentSettings?.[key] || {};
+        state.build.equipmentSettings[key] = {
+          refinement: Math.min(10, Math.max(0, Number(savedSetting.refinement) || 0)),
+          slots: Math.min(2, Math.max(0, Number(savedSetting.slots) || 0))
+        };
         const values = decodedBuild?.crystals?.[key] || [];
         state.build.crystals[key] = [0, 1].map(index => {
           const id = values[index];
-          return id && context.itemsById.has(String(id)) ? String(id) : null;
+          const enabled = index < state.build.equipmentSettings[key].slots;
+          return enabled && id && context.itemsById.has(String(id)) ? String(id) : null;
         });
         const starId = decodedBuild?.stars?.[key];
         state.build.stars[key] = starId && context.itemsById.has(String(starId)) ? String(starId) : null;
       });
+      state.build.weaponAttributeId = String(decodedBuild?.weaponAttributeId || "");
       state.build.alCrystas = Array.from({ length: 5 }, (_, index) => {
         const id = decodedBuild?.alCrystas?.[index];
         return id && context.itemsById.has(String(id)) ? String(id) : null;

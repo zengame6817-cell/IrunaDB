@@ -1891,3 +1891,140 @@ main {
     display: none;
   }
 }
+
+
+/* =========================================================
+   v0.9.0 — equipment tuning controls
+   ========================================================= */
+
+.slot-item-info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 7px;
+  padding: 6px 9px;
+  border: 1px solid #544229;
+  background: #0c1016;
+}
+
+.slot-item-info strong {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #73e3e5 !important;
+  background: transparent !important;
+  font-size: 12px !important;
+}
+
+.slot-item-info small {
+  display: block !important;
+  margin-top: 2px;
+  color: #a99f8d;
+  font-size: 8px;
+}
+
+.equipment-option-content {
+  min-width: 0;
+}
+
+.equipment-tuning-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 120px));
+  gap: 5px;
+  padding: 6px 6px 0;
+}
+
+.equipment-tuning-row label {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  min-height: 30px;
+  border: 1px solid #51452f;
+  background: #0d1117;
+}
+
+.equipment-tuning-row label span {
+  padding-left: 6px;
+  color: #bfa35e;
+  font-size: 8px;
+}
+
+.equipment-tuning-row select {
+  height: 28px;
+  border: 0;
+  border-left: 1px solid #51452f;
+  color: #ffe45e;
+  background: #151a21;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.mini-slot.is-disabled {
+  border-style: dashed !important;
+  opacity: .42;
+  cursor: not-allowed;
+}
+
+.mini-slot.is-disabled strong {
+  color: #777 !important;
+}
+
+.weapon-attribute-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px;
+  border-top: 1px solid #3a3022;
+  background: #10141a;
+}
+
+.weapon-attribute-field {
+  display: grid;
+  grid-template-columns: 72px minmax(130px, 220px);
+  align-items: center;
+  border: 1px solid #51452f;
+  background: #0d1117;
+}
+
+.weapon-attribute-field span {
+  padding: 7px;
+  color: #dcbf74;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.weapon-attribute-field select {
+  min-height: 31px;
+  border: 0;
+  border-left: 1px solid #51452f;
+  color: #73e3e5;
+  background: #151a21;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.weapon-attribute-field select:disabled {
+  color: #777;
+}
+
+.weapon-attribute-control small {
+  color: #8f877a;
+  font-size: 8px;
+}
+
+@media (max-width: 620px) {
+  .equipment-tuning-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .weapon-attribute-control {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .weapon-attribute-field {
+    grid-template-columns: 68px minmax(0, 1fr);
+  }
+}
