@@ -17,9 +17,8 @@
     crystals: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, [null, null]])),
     stars: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, null])),
     equipmentSettings: Object.fromEntries(EQUIPMENT_KEYS.map(key => [
-      key, { refinement: 0, slots: 0 }
+      key, { refinement: 9, slots: 0 }
     ])),
-    weaponAttributeId: "",
     alCrystas: Array(5).fill(null),
     relicPlacements: []
   });
@@ -41,7 +40,6 @@
   const equipmentSlots = document.getElementById("equipmentSlots");
   const equipmentOptions = document.getElementById("equipmentOptions");
   const alSlots = document.getElementById("alSlots");
-  const relicBoard = document.getElementById("relicBoard");
   const relicPlacementList = document.getElementById("relicPlacementList");
   const relicMessage = document.getElementById("relicMessage");
   const addRelicButton = document.getElementById("addRelicButton");
@@ -187,15 +185,7 @@
         <section class="equipment-option-group">
           <h3>${escapeHtml(slot.label)}</h3>
           <div class="equipment-option-content">
-            <div class="equipment-tuning-row">
-              <label>
-                <span>精錬</span>
-                <select data-refinement-key="${slot.key}">
-                  ${Array.from({ length: 11 }, (_, value) =>
-                    `<option value="${value}" ${Number(setting.refinement) === value ? "selected" : ""}>+${value}</option>`
-                  ).join("")}
-                </select>
-              </label>
+            <div class="equipment-tuning-row equipment-tuning-row-slots-only">
               <label>
                 <span>スロット</span>
                 <select data-slot-count-key="${slot.key}">
@@ -204,6 +194,7 @@
                   ).join("")}
                 </select>
               </label>
+              <span class="fixed-refinement-note">精錬 +9 固定</span>
             </div>
             <div class="equipment-option-slots">
               ${renderMiniSlot(`crystal_${slot.key}_0`, "クリスタ1", slotCount < 1)}
@@ -224,20 +215,12 @@
     document.querySelectorAll("#equipmentOptions [data-slot-pick]:not(:disabled), #alSlots [data-slot-pick]")
       .forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
 
-    equipmentOptions.querySelectorAll("[data-refinement-key]").forEach(select => {
-      select.addEventListener("change", event => {
-        const key = event.target.dataset.refinementKey;
-        state.build.equipmentSettings[key].refinement = Number(event.target.value);
-        syncUrl(false);
-        renderBuild();
-      });
-    });
-
     equipmentOptions.querySelectorAll("[data-slot-count-key]").forEach(select => {
       select.addEventListener("change", event => {
         const key = event.target.dataset.slotCountKey;
         const count = Number(event.target.value);
         state.build.equipmentSettings[key].slots = count;
+        state.build.equipmentSettings[key].refinement = 9;
         for (let index = count; index < 2; index += 1) {
           state.build.crystals[key][index] = null;
         }
@@ -246,43 +229,46 @@
       });
     });
 
-    renderWeaponAttributeControl();
     renderRelicBoard();
   }
 
-  function renderWeaponAttributeControl() {
-    const host = document.getElementById("weaponAttributeControl");
-    if (!host) return;
-    const weapon = state.build.weapon
-      ? context.itemsById.get(String(state.build.weapon))
-      : null;
-    const baseAttributeId = String(weapon?.["属性ID"] || "");
-    const selected = String(state.build.weaponAttributeId || baseAttributeId);
-    const sorted = [...state.attributes].sort(
-      (a, b) => Number(a["表示順"] || 9999) - Number(b["表示順"] || 9999)
-    );
-    host.innerHTML = `
-      <label class="weapon-attribute-field">
-        <span>武器属性</span>
-        <select id="weaponAttributeSelect" ${weapon ? "" : "disabled"}>
-          <option value="">属性なし</option>
-          ${sorted.map(attribute => {
-            const id = String(attribute["属性ID"] || "");
-            const name = attribute["属性名"] || id;
-            return `<option value="${escapeHtml(id)}" ${selected === id ? "selected" : ""}>${escapeHtml(name)}</option>`;
-          }).join("")}
-        </select>
-      </label>
-      <small>${weapon ? "装備固有の属性から変更できます" : "武器を選択してください"}</small>
-    `;
-    const select = document.getElementById("weaponAttributeSelect");
-    select?.addEventListener("change", event => {
-      state.build.weaponAttributeId = event.target.value;
-      syncUrl(false);
-      renderBuild();
-    });
+
+
+  function effectDisplayText(effect) {
+    const stat = context.statMap.get(String(effect["能力ID"]));
+    const statName = stat?.["表示名"] || effect["能力ID"] || "効果";
+    const value = effect["値"];
+    const unit = effect["単位"] || "";
+    const display = String(effect["表示文"] || "").trim();
+    const hasNumericDisplay = /[-+]?\d/.test(display);
+    if (display && (hasNumericDisplay || isBlank(value))) return display;
+    if (!isBlank(value)) {
+      const number = Number(value);
+      const prefix = Number.isFinite(number) && number > 0 ? "+" : "";
+      return `${statName}${prefix}${value}${unit}`;
+    }
+    if (effect["数式"]) return `${display || statName}（${effect["数式"]}）`;
+    return display || statName;
   }
 
+  function conditionDisplayText(groupId) {
+    if (isBlank(groupId)) return "";
+    return (context.conditionMap.get(String(groupId)) || [])
+      .map(condition => condition["表示文"] || `${condition["条件項目"]}${condition["演算子"]}${condition["比較値"]}`)
+      .filter(Boolean).join(" ＆ ");
+  }
+
+  function fullEffectSummary(item, options = {}) {
+    if (!item) return "";
+    const { includeConditions = true, separator = " / " } = options;
+    return (context.effectsByItem.get(String(item["アイテムID"])) || [])
+      .map(effect => {
+        const text = effectDisplayText(effect);
+        const condition = includeConditions ? conditionDisplayText(effect["条件グループID"]) : "";
+        return condition ? `${condition}：${text}` : text;
+      })
+      .filter(Boolean).join(separator);
+  }
 
   const RELIC_BOARD_WIDTH = 5;
   const RELIC_BOARD_HEIGHT = 3;
@@ -407,55 +393,42 @@
   }
 
   function renderRelicBoard() {
-    const cellOwners = new Map();
-    state.build.relicPlacements.forEach(placement => {
-      absoluteRelicCells(placement).forEach(([x, y]) => {
-        cellOwners.set(`${x},${y}`, placement);
-      });
-    });
-
-    relicBoard.innerHTML = Array.from({ length: RELIC_BOARD_WIDTH * RELIC_BOARD_HEIGHT }, (_, index) => {
-      const x = index % RELIC_BOARD_WIDTH;
-      const y = Math.floor(index / RELIC_BOARD_WIDTH);
-      const owner = cellOwners.get(`${x},${y}`);
-      const item = owner ? context.itemsById.get(String(owner.itemId)) : null;
-      const selected = owner?.uid === state.selectedRelicUid;
-      return `<button class="relic-cell ${owner ? "is-filled" : ""} ${selected ? "is-selected" : ""}"
-        type="button" data-relic-uid="${owner?.uid || ""}" aria-label="${escapeHtml(item?.["名前"] || `空きマス ${x + 1},${y + 1}`)}">
-        ${owner ? `<span>${escapeHtml((item?.["名前"] || "R").slice(0, 1))}</span>` : ""}
-      </button>`;
-    }).join("");
-
-    relicBoard.querySelectorAll("[data-relic-uid]").forEach(button => {
-      button.addEventListener("click", () => {
-        if (!button.dataset.relicUid) return;
-        state.selectedRelicUid = button.dataset.relicUid;
-        renderRelicBoard();
-      });
-    });
-
     relicPlacementList.innerHTML = state.build.relicPlacements.length
       ? state.build.relicPlacements.map((placement, index) => {
           const item = context.itemsById.get(String(placement.itemId));
           const selected = placement.uid === state.selectedRelicUid;
-          return `<button class="relic-list-item ${selected ? "is-selected" : ""}" type="button"
-            data-placement-uid="${placement.uid}">
-            <span>${index + 1}</span>
-            <strong>${escapeHtml(item?.["名前"] || "不明なレリック")}</strong>
-            <small>${placement.rotation * 90}°</small>
-          </button>`;
+          const effectSummary = fullEffectSummary(item, { includeConditions: true, separator: " / " });
+          return `<article class="relic-row ${selected ? "is-selected" : ""}" data-placement-uid="${placement.uid}">
+            <button class="relic-row-main" type="button" data-relic-select="${placement.uid}">
+              <span class="relic-row-number">${index + 1}</span>
+              <span class="relic-row-content">
+                <strong>${escapeHtml(item?.["名前"] || "不明なレリック")}</strong>
+                <small>${escapeHtml(effectSummary || item?.["説明文"] || "能力情報なし")}</small>
+              </span>
+              <span class="relic-row-rotation">${placement.rotation * 90}°</span>
+            </button>
+            <button class="relic-row-detail" type="button" data-relic-detail="${placement.uid}">詳細</button>
+          </article>`;
         }).join("")
-      : '<p class="empty-relic-list">まだ配置されていません。</p>';
+      : '<p class="empty-relic-list">まだレリックは追加されていません。</p>';
 
-    relicPlacementList.querySelectorAll("[data-placement-uid]").forEach(button => {
+    relicPlacementList.querySelectorAll("[data-relic-select]").forEach(button => {
       button.addEventListener("click", () => {
-        state.selectedRelicUid = button.dataset.placementUid;
+        state.selectedRelicUid = button.dataset.relicSelect;
         renderRelicBoard();
       });
     });
+    relicPlacementList.querySelectorAll("[data-relic-detail]").forEach(button => {
+      button.addEventListener("click", event => {
+        event.stopPropagation();
+        const placement = state.build.relicPlacements.find(entry => entry.uid === button.dataset.relicDetail);
+        const item = placement ? context.itemsById.get(String(placement.itemId)) : null;
+        if (item) modal.open(item, context);
+      });
+    });
 
-    const occupied = cellOwners.size;
-    relicCount.textContent = `${occupied} / 15マス`;
+    const occupied = state.build.relicPlacements.reduce((sum, placement) => sum + absoluteRelicCells(placement).length, 0);
+    relicCount.textContent = `${state.build.relicPlacements.length}件 / ${occupied}マス`;
     const selectedExists = state.build.relicPlacements.some(entry => entry.uid === state.selectedRelicUid);
     rotateRelicButton.disabled = !selectedExists;
     removeRelicButton.disabled = !selectedExists;
@@ -464,41 +437,44 @@
   function renderBuild() {
     equipmentSlots.innerHTML = SLOT_DEFS.map(slot => {
       const item = state.build[slot.key] ? context.itemsById.get(String(state.build[slot.key])) : null;
+      const slotCount = Number(state.build.equipmentSettings[slot.key]?.slots || 0);
       return `<article class="equipment-slot ${item ? "is-selected" : ""}">
-        <button class="slot-main" type="button" data-slot-pick="${slot.key}">
-          <span class="slot-icon">${slot.icon}</span>
-          <span class="slot-content"><span class="slot-label">${slot.label}</span>
-          <span class="slot-item-info">
-            <strong>${escapeHtml(item?.["名前"] || "未選択")}</strong>
-            <small>${item ? `精錬+${Number(state.build.equipmentSettings[slot.key]?.refinement || 0)}・${Number(state.build.equipmentSettings[slot.key]?.slots || 0)}スロット` : "タップして選択"}</small>
+        <div class="slot-main">
+          <span class="slot-content">
+            <span class="slot-label">${slot.label}</span>
+            ${item ? `<button class="slot-item-info slot-detail-button" type="button" data-slot-detail="${slot.key}">
+              <strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
+              <small>精錬+9・${slotCount}スロット　タップで詳細</small>
+            </button>` : `<button class="slot-item-info slot-detail-button is-empty" type="button" data-slot-pick="${slot.key}">
+              <strong>未選択</strong><small>タップして選択</small>
+            </button>`}
           </span>
-        </span>
-          <span class="slot-arrow">›</span>
-        </button>
+          <button class="slot-change" type="button" data-slot-pick="${slot.key}">${item ? "変更" : "選択"}</button>
+        </div>
         ${item ? `<button class="slot-remove" type="button" data-slot-remove="${slot.key}" aria-label="${slot.label}を解除">×</button>` : ""}
       </article>`;
     }).join("");
-    equipmentSlots.querySelectorAll("[data-slot-pick]").forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
+
+    equipmentSlots.querySelectorAll("[data-slot-pick]").forEach(button =>
+      button.addEventListener("click", () => openPicker(button.dataset.slotPick))
+    );
+    equipmentSlots.querySelectorAll("[data-slot-detail]").forEach(button => {
+      button.addEventListener("click", () => {
+        const itemId = state.build[button.dataset.slotDetail];
+        const item = itemId ? context.itemsById.get(String(itemId)) : null;
+        if (item) modal.open(item, context);
+      });
+    });
     equipmentSlots.querySelectorAll("[data-slot-remove]").forEach(button => button.addEventListener("click", event => {
       event.stopPropagation();
       const descriptor = getSlotDescriptor(button.dataset.slotRemove);
       descriptor?.set(null);
-      if (button.dataset.slotRemove === "weapon") state.build.weaponAttributeId = "";
       syncUrl(false);
       renderBuild();
     }));
     renderEquipmentOptions();
     renderTotals();
   }
-
-  function effectLabel(effect) {
-    if (effect["表示文"]) return String(effect["表示文"]);
-    const stat = context.statMap.get(String(effect["能力ID"]));
-    const name = stat?.["表示名"] || effect["能力ID"] || "能力";
-    const value = Number(effect["値"] || 0), unit = effect["単位"] || "";
-    return `${name} ${value > 0 ? "+" : ""}${value}${unit}`;
-  }
-
 
   function normalizeOperator(value) {
     const op = String(value || "=").trim().toUpperCase();
@@ -541,7 +517,7 @@
     }
 
     if (["武器属性", "属性", "WEAPON_ATTRIBUTE"].includes(key)) {
-      const attributeId = state.build.weaponAttributeId || weapon?.["属性ID"] || "";
+      const attributeId = weapon?.["属性ID"] || "";
       return {
         id: attributeId,
         name: context.attributeMap.get(String(attributeId))?.["属性名"] || ""
@@ -773,30 +749,40 @@
       </button>` +
       items.map(item => {
         const itemId = String(item["アイテムID"]);
-        const effects = (context.effectsByItem.get(itemId) || [])
-          .slice(0, 3).map(effectLabel).join(" / ");
-        const meta = [
-          item["表示分類"] || item["サブ分類"] || item["武器種"],
-          effects
-        ].filter(Boolean).join(" / ") || "詳細情報なし";
-        return `<button class="picker-item ${String(currentId) === itemId ? "is-current" : ""}"
-          type="button" data-picker-id="${escapeHtml(itemId)}">
-          <span><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
-          <small>${escapeHtml(meta)}</small></span><b>›</b>
-        </button>`;
+        const attributeId = String(item["属性ID"] || "");
+        const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
+        const basic = [
+          !isBlank(item["基礎ATK"]) ? `ATK ${item["基礎ATK"]}` : "",
+          !isBlank(item["基礎DEF"]) ? `DEF ${item["基礎DEF"]}` : "",
+          attributeName ? `${attributeName}属性` : "",
+          Number(item["スロット数"]) > 0 ? `Slot ${item["スロット数"]}` : ""
+        ].filter(Boolean).join(" / ");
+        const effects = fullEffectSummary(item, { includeConditions: true, separator: " / " });
+        const description = [item["説明文"], item["特殊性能"]].filter(Boolean).join(" / ");
+        return `<article class="picker-card ${String(currentId) === itemId ? "is-current" : ""}">
+          <button class="picker-card-select" type="button" data-picker-id="${escapeHtml(itemId)}">
+            <span class="picker-card-head"><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong><b>選択</b></span>
+            ${basic ? `<span class="picker-card-basic">${escapeHtml(basic)}</span>` : ""}
+            ${effects ? `<span class="picker-card-effects">${escapeHtml(effects)}</span>` : ""}
+            ${description ? `<span class="picker-card-description">${escapeHtml(description)}</span>` : ""}
+          </button>
+          <button class="picker-card-detail" type="button" data-picker-detail="${escapeHtml(itemId)}">詳細を見る</button>
+        </article>`;
       }).join("");
 
     pickerList.querySelectorAll("[data-picker-id]").forEach(button =>
       button.addEventListener("click", () => {
         const selectedId = button.dataset.pickerId || null;
         descriptor.set(selectedId);
-        if (state.pickerSlot === "weapon") {
-          const weapon = selectedId ? context.itemsById.get(String(selectedId)) : null;
-          state.build.weaponAttributeId = String(weapon?.["属性ID"] || "");
-        }
         closePicker();
         syncUrl(false);
         renderBuild();
+      })
+    );
+    pickerList.querySelectorAll("[data-picker-detail]").forEach(button =>
+      button.addEventListener("click", () => {
+        const item = context.itemsById.get(String(button.dataset.pickerDetail));
+        if (item) modal.open(item, context);
       })
     );
   }
@@ -817,11 +803,10 @@
     build.equipmentSettings = Object.fromEntries(EQUIPMENT_KEYS.map(key => [
       key,
       {
-        refinement: Number(state.build.equipmentSettings[key]?.refinement || 0),
+        refinement: 9,
         slots: Number(state.build.equipmentSettings[key]?.slots || 0)
       }
     ]));
-    build.weaponAttributeId = String(state.build.weaponAttributeId || "");
     build.alCrystas = state.build.alCrystas.map(value => value ? String(value) : null);
     build.relicPlacements = state.build.relicPlacements.map(entry => ({
       itemId: String(entry.itemId),
@@ -834,10 +819,9 @@
   function syncUrl(push) {
     const url = new URL(location.href); const payload = compactBuild();
     const hasBuild = allSelectedIds().length > 0 ||
-      Boolean(state.build.weaponAttributeId) ||
       EQUIPMENT_KEYS.some(key => {
         const setting = state.build.equipmentSettings[key];
-        return Number(setting?.refinement || 0) !== 0 || Number(setting?.slots || 0) !== 0;
+        return Number(setting?.slots || 0) !== 0;
       });
     const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
       ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
@@ -857,7 +841,7 @@
       EQUIPMENT_KEYS.forEach(key => {
         const savedSetting = decodedBuild?.equipmentSettings?.[key] || {};
         state.build.equipmentSettings[key] = {
-          refinement: Math.min(10, Math.max(0, Number(savedSetting.refinement) || 0)),
+          refinement: 9,
           slots: Math.min(2, Math.max(0, Number(savedSetting.slots) || 0))
         };
         const values = decodedBuild?.crystals?.[key] || [];
@@ -869,7 +853,6 @@
         const starId = decodedBuild?.stars?.[key];
         state.build.stars[key] = starId && context.itemsById.has(String(starId)) ? String(starId) : null;
       });
-      state.build.weaponAttributeId = String(decodedBuild?.weaponAttributeId || "");
       state.build.alCrystas = Array.from({ length: 5 }, (_, index) => {
         const id = decodedBuild?.alCrystas?.[index];
         return id && context.itemsById.has(String(id)) ? String(id) : null;

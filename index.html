@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v0.9.0</title>
-  <link rel="stylesheet" href="./css/style.css?v=0.9.0">
+  <title>IrunaDB v1.0.0</title>
+  <link rel="stylesheet" href="./css/style.css?v=1.0.0">
 </head>
 <body>
   <div class="app-shell">
     <header class="site-header">
       <div>
         <p class="eyebrow">IRUNA ONLINE BUILD TOOL</p>
-        <h1>IrunaDB <span>v0.9.0</span></h1>
+        <h1>IrunaDB <span>v1.0.0</span></h1>
       </div>
       <div class="connection-status" aria-live="polite">
         <span id="statusDot" class="status-dot"></span>
@@ -52,7 +52,6 @@
                 <small>タップして選択</small>
               </header>
               <div id="equipmentSlots" class="equipment-slots"></div>
-              <div id="weaponAttributeControl" class="weapon-attribute-control"></div>
             </section>
 
             <section class="sim-panel option-panel">
@@ -96,19 +95,9 @@
                   レリックを追加すると空き位置へ自動配置します。盤面または一覧から選択して回転できます。
                 </p>
               </div>
-
-              <div class="relic-workspace">
-                <div class="relic-board-frame">
-                  <div class="relic-board-caption">
-                    <span>RELIC GLASS</span>
-                    <small>5 × 3</small>
-                  </div>
-                  <div id="relicBoard" class="relic-board" aria-label="5列3行のレリック盤面"></div>
-                </div>
-                <div class="relic-list-frame">
-                  <p class="relic-list-title">配置中</p>
-                  <div id="relicPlacementList" class="relic-placement-list"></div>
-                </div>
+              <div class="relic-list-only">
+                <p class="relic-list-title">配置中のレリック</p>
+                <div id="relicPlacementList" class="relic-placement-list"></div>
               </div>
             </section>
           </div>
@@ -216,7 +205,7 @@
         <div class="placeholder-panel">
           <p class="section-kicker">SETTINGS</p>
           <h2>計算設定</h2>
-          <p>敵属性・精錬値などの設定は今後ここへ追加します。</p>
+          <p>精錬値は全装備+9固定です。その他の計算設定は今後ここへ追加します。</p>
         </div>
       </section>
     </main>
@@ -253,11 +242,11 @@
     </section>
   </div>
 
-  <script src="./js/config.js?v=0.9.0"></script>
-  <script src="./js/utils.js?v=0.9.0"></script>
-  <script src="./js/api.js?v=0.9.0"></script>
-  <script src="./js/modal.js?v=0.9.0"></script>
-  <script src="./js/ui.js?v=0.9.0"></script>
-  <script src="./js/app.js?v=0.9.0"></script>
+  <script src="./js/config.js?v=1.0.0"></script>
+  <script src="./js/utils.js?v=1.0.0"></script>
+  <script src="./js/api.js?v=1.0.0"></script>
+  <script src="./js/modal.js?v=1.0.0"></script>
+  <script src="./js/ui.js?v=1.0.0"></script>
+  <script src="./js/app.js?v=1.0.0"></script>
 </body>
 </html>

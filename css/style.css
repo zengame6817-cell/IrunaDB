@@ -2028,3 +2028,231 @@ main {
     grid-template-columns: 68px minmax(0, 1fr);
   }
 }
+
+/* =========================================================
+   v1.0.0 — final interaction and information display
+   ========================================================= */
+
+.equipment-tuning-row-slots-only {
+  grid-template-columns: minmax(150px, 220px) auto !important;
+  align-items: center;
+}
+
+.fixed-refinement-note {
+  color: #b7aa92;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.slot-main {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  padding-right: 36px !important;
+}
+
+.slot-detail-button {
+  width: auto;
+  border: 1px solid #544229;
+  color: inherit;
+  background: #0c1016;
+  text-align: left;
+  cursor: pointer;
+}
+
+.slot-detail-button:hover,
+.slot-detail-button:focus-visible {
+  border-color: #b88b38;
+  outline: none;
+}
+
+.slot-detail-button.is-empty {
+  opacity: .8;
+}
+
+.slot-change {
+  align-self: stretch;
+  min-width: 54px;
+  border: 0;
+  border-left: 1px solid #3a3022;
+  color: #f0d17d;
+  background: #171b22;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.slot-change:hover,
+.slot-change:focus-visible {
+  background: #2b2416;
+  outline: none;
+}
+
+.relic-list-only {
+  padding: 7px;
+}
+
+.relic-placement-list {
+  display: grid;
+  gap: 5px;
+}
+
+.relic-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  border: 1px solid #3f3425;
+  background: #10141a;
+}
+
+.relic-row.is-selected {
+  border-color: #b88b38;
+  background: #211b11;
+}
+
+.relic-row-main {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  padding: 8px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.relic-row-number,
+.relic-row-rotation {
+  color: #aa9f8d;
+  font-size: 9px;
+}
+
+.relic-row-content {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.relic-row-content strong {
+  color: #70e0e2;
+  font-size: 11px;
+}
+
+.relic-row-content small {
+  overflow: hidden;
+  color: #b8afa0;
+  font-size: 9px;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.relic-row-detail {
+  border: 0;
+  border-left: 1px solid #3f3425;
+  color: #f0d17d;
+  background: #171b22;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.picker-list {
+  display: grid;
+  gap: 7px;
+}
+
+.picker-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  border: 1px solid #4b3a20;
+  background: #10141a;
+}
+
+.picker-card.is-current {
+  border-color: #b88b38;
+  background: #211b11;
+}
+
+.picker-card-select {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 10px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.picker-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.picker-card-head strong {
+  color: #70e0e2;
+  font-size: 13px;
+}
+
+.picker-card-head b {
+  color: #f0d17d;
+  font-size: 9px;
+}
+
+.picker-card-basic {
+  color: #d7b963;
+  font-size: 9px;
+}
+
+.picker-card-effects,
+.picker-card-description {
+  display: block;
+  color: #d9d2c6;
+  font-size: 10px;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+.picker-card-description {
+  color: #aaa194;
+}
+
+.picker-card-detail {
+  min-width: 68px;
+  border: 0;
+  border-left: 1px solid #3f3425;
+  color: #f0d17d;
+  background: #171b22;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.picker-item.is-none {
+  width: 100%;
+}
+
+@media (max-width: 620px) {
+  .equipment-tuning-row-slots-only {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+  }
+
+  .slot-change {
+    min-width: 48px;
+  }
+
+  .picker-card {
+    grid-template-columns: 1fr;
+  }
+
+  .picker-card-detail {
+    min-height: 32px;
+    border-top: 1px solid #3f3425;
+    border-left: 0;
+  }
+
+  .relic-row-content small {
+    white-space: normal;
+  }
+}

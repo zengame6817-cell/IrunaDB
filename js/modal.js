@@ -18,7 +18,6 @@ window.IrunaModal = (() => {
       ["基礎DEF", item["基礎DEF"]],
       ["スロット数", item["スロット数"]],
       ["装着可能箇所", item["装着可能箇所"]],
-      ["タグ", item["タグ概要"]],
       ["説明", item["説明文"]],
       ["特殊性能", item["特殊性能"]],
       ["入手区分", item["入手区分"]],
@@ -34,13 +33,17 @@ window.IrunaModal = (() => {
   }
 
   function buildEffectText(effect, statName) {
-    if (effect["表示文"]) {
-      return effect["表示文"];
-    }
-
+    const display = String(effect["表示文"] || "").trim();
     const value = effect["値"];
-    const prefix = Number(value) > 0 ? "+" : "";
-    return `${statName} ${prefix}${value}${effect["単位"] || ""}`;
+    const unit = effect["単位"] || "";
+    const hasNumericDisplay = /[-+]?\d/.test(display);
+    if (display && (hasNumericDisplay || isBlank(value))) return display;
+    if (!isBlank(value)) {
+      const prefix = Number(value) > 0 ? "+" : "";
+      return `${statName}${prefix}${value}${unit}`;
+    }
+    if (effect["数式"]) return `${display || statName}（${effect["数式"]}）`;
+    return display || statName;
   }
 
   function buildEffectsSection(effects, statMap, conditionMap) {
