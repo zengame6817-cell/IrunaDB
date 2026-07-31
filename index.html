@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v0.4.0</title>
+  <title>IrunaDB v0.5.0</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <header class="site-header">
       <div>
         <p class="eyebrow">Iruna Online Database</p>
-        <h1>IrunaDB <span>v0.4.0</span></h1>
+        <h1>IrunaDB <span>v0.5.0</span></h1>
       </div>
       <div class="connection-status" aria-live="polite">
         <span id="statusDot" class="status-dot"></span>
@@ -40,13 +40,46 @@
 
         <div id="equipmentSlots" class="equipment-slots"></div>
 
+        <section class="build-extra-panel">
+          <div class="build-extra-heading">
+            <div>
+              <p class="section-kicker">SLOT OPTIONS</p>
+              <h2>クリスタ・☆能力</h2>
+            </div>
+            <span class="mini-note">各装備に2枠＋☆能力1枠</span>
+          </div>
+          <div id="equipmentOptions" class="equipment-options"></div>
+        </section>
+
+        <section class="build-extra-panel">
+          <div class="build-extra-heading">
+            <div>
+              <p class="section-kicker">AL CRYSTA</p>
+              <h2>アルクリスタ</h2>
+            </div>
+            <span id="alCount" class="count-badge">0 / 5</span>
+          </div>
+          <div id="alSlots" class="compact-slots"></div>
+        </section>
+
+        <section class="build-extra-panel">
+          <div class="build-extra-heading">
+            <div>
+              <p class="section-kicker">RELIC GLASS</p>
+              <h2>レリック</h2>
+            </div>
+            <span id="relicCount" class="count-badge">0 / 15</span>
+          </div>
+          <div id="relicSlots" class="compact-slots relic-slots"></div>
+        </section>
+
         <section class="summary-panel">
           <div class="summary-header">
             <div>
               <p class="section-kicker">TOTAL EFFECTS</p>
               <h2>合計能力</h2>
             </div>
-            <span id="selectedCount" class="count-badge">0 / 5</span>
+            <span id="selectedCount" class="count-badge">0 / 40</span>
           </div>
           <p class="summary-note">常時能力と、現在の装備・ステータスで発動している条件付き能力を合計します。</p>
           <div id="totalEffects" class="total-effects"></div>
@@ -56,7 +89,7 @@
           <div>
             <p class="section-kicker">SHARE BUILD</p>
             <h2>ビルド共有URL</h2>
-            <p>現在の装備構成をURLに保存して、そのまま共有できます。</p>
+            <p>装備・クリスタ・☆能力・アルクリスタ・レリック・ステータスをURLに保存できます。</p>
           </div>
           <div class="share-actions">
             <button id="copyUrlButton" class="button button-primary" type="button">URLをコピー</button>

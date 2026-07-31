@@ -7,12 +7,37 @@
     { key: "special", label: "特殊", category: "特殊", icon: "◆" },
     { key: "decoration", label: "装飾", category: "装飾", aliases: ["装飾", "装飾品"], icon: "◇" }
   ];
-  const state = { items: [], effects: [], conditions: [], stats: [], attributes: [], jobs: [], activeCategory: "すべて", searchQuery: "", activeView: "build", build: { weapon: null, body: null, additional: null, special: null, decoration: null }, pickerSlot: null, pickerQuery: "", status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 } };
+  const EQUIPMENT_KEYS = SLOT_DEFS.map(slot => slot.key);
+  const createEmptyBuild = () => ({
+    weapon: null,
+    body: null,
+    additional: null,
+    special: null,
+    decoration: null,
+    crystals: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, [null, null]])),
+    stars: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, null])),
+    alCrystas: Array(5).fill(null),
+    relics: Array(15).fill(null)
+  });
+  const state = {
+    items: [], effects: [], conditions: [], stats: [], attributes: [], jobs: [],
+    activeCategory: "すべて", searchQuery: "", activeView: "build",
+    build: createEmptyBuild(),
+    pickerSlot: null, pickerQuery: "",
+    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 }
+  };
   const context = { itemsById: new Map(), effectsByItem: new Map(), conditionMap: new Map(), statMap: new Map(), attributeMap: new Map(), jobMap: new Map(), searchIndex: new Map() };
   const ui = window.IrunaUi, api = window.IrunaApi, modal = window.IrunaModal;
   const { normalizeSearchText, escapeHtml, encodeBuild, decodeBuild, isBlank } = window.IrunaUtils;
 
-  const equipmentSlots = document.getElementById("equipmentSlots"), totalEffects = document.getElementById("totalEffects"), selectedCount = document.getElementById("selectedCount");
+  const equipmentSlots = document.getElementById("equipmentSlots");
+  const equipmentOptions = document.getElementById("equipmentOptions");
+  const alSlots = document.getElementById("alSlots");
+  const relicSlots = document.getElementById("relicSlots");
+  const alCount = document.getElementById("alCount");
+  const relicCount = document.getElementById("relicCount");
+  const totalEffects = document.getElementById("totalEffects");
+  const selectedCount = document.getElementById("selectedCount");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
 
   function buildIndexes() {
@@ -42,6 +67,124 @@
     return category === slot.category;
   }
 
+
+  function getSlotDescriptor(token) {
+    const equipment = SLOT_DEFS.find(slot => slot.key === token);
+    if (equipment) {
+      return {
+        token,
+        label: equipment.label,
+        category: equipment.category,
+        aliases: equipment.aliases,
+        icon: equipment.icon,
+        get: () => state.build[equipment.key],
+        set: value => { state.build[equipment.key] = value; }
+      };
+    }
+
+    let match = /^crystal_(.+)_(0|1)$/.exec(token);
+    if (match) {
+      const [, equipmentKey, indexText] = match;
+      const equipmentDef = SLOT_DEFS.find(slot => slot.key === equipmentKey);
+      const index = Number(indexText);
+      return {
+        token,
+        label: `${equipmentDef?.label || equipmentKey}・クリスタ${index + 1}`,
+        category: "クリスタ",
+        icon: "◇",
+        get: () => state.build.crystals[equipmentKey][index],
+        set: value => { state.build.crystals[equipmentKey][index] = value; }
+      };
+    }
+
+    match = /^star_(.+)$/.exec(token);
+    if (match) {
+      const equipmentKey = match[1];
+      const equipmentDef = SLOT_DEFS.find(slot => slot.key === equipmentKey);
+      return {
+        token,
+        label: `${equipmentDef?.label || equipmentKey}・☆能力`,
+        category: "☆能力",
+        icon: "☆",
+        get: () => state.build.stars[equipmentKey],
+        set: value => { state.build.stars[equipmentKey] = value; }
+      };
+    }
+
+    match = /^al_(\d+)$/.exec(token);
+    if (match) {
+      const index = Number(match[1]);
+      return {
+        token,
+        label: `アルクリスタ ${index + 1}`,
+        category: "アルクリスタ",
+        icon: "A",
+        get: () => state.build.alCrystas[index],
+        set: value => { state.build.alCrystas[index] = value; }
+      };
+    }
+
+    match = /^relic_(\d+)$/.exec(token);
+    if (match) {
+      const index = Number(match[1]);
+      return {
+        token,
+        label: `レリック ${index + 1}`,
+        category: "レリック",
+        icon: "R",
+        get: () => state.build.relics[index],
+        set: value => { state.build.relics[index] = value; }
+      };
+    }
+    return null;
+  }
+
+  function allSelectedIds() {
+    const ids = EQUIPMENT_KEYS.map(key => state.build[key]);
+    EQUIPMENT_KEYS.forEach(key => {
+      ids.push(...state.build.crystals[key], state.build.stars[key]);
+    });
+    ids.push(...state.build.alCrystas, ...state.build.relics);
+    return ids.filter(Boolean).map(String);
+  }
+
+  function renderMiniSlot(token, label) {
+    const descriptor = getSlotDescriptor(token);
+    const id = descriptor?.get();
+    const item = id ? context.itemsById.get(String(id)) : null;
+    return `<button class="mini-slot ${item ? "is-selected" : ""}" type="button" data-slot-pick="${token}">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(item?.["名前"] || "未選択")}</strong>
+    </button>`;
+  }
+
+  function renderEquipmentOptions() {
+    equipmentOptions.innerHTML = SLOT_DEFS.map(slot => `
+      <section class="equipment-option-group">
+        <h3>${escapeHtml(slot.label)}</h3>
+        <div class="equipment-option-slots">
+          ${renderMiniSlot(`crystal_${slot.key}_0`, "クリスタ1")}
+          ${renderMiniSlot(`crystal_${slot.key}_1`, "クリスタ2")}
+          ${renderMiniSlot(`star_${slot.key}`, "☆能力")}
+        </div>
+      </section>
+    `).join("");
+
+    alSlots.innerHTML = state.build.alCrystas
+      .map((_, index) => renderMiniSlot(`al_${index}`, `${index + 1}`))
+      .join("");
+
+    relicSlots.innerHTML = state.build.relics
+      .map((_, index) => renderMiniSlot(`relic_${index}`, `${index + 1}`))
+      .join("");
+
+    alCount.textContent = `${state.build.alCrystas.filter(Boolean).length} / 5`;
+    relicCount.textContent = `${state.build.relics.filter(Boolean).length} / 15`;
+
+    document.querySelectorAll("#equipmentOptions [data-slot-pick], #alSlots [data-slot-pick], #relicSlots [data-slot-pick]")
+      .forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
+  }
+
   function renderBuild() {
     equipmentSlots.innerHTML = SLOT_DEFS.map(slot => {
       const item = state.build[slot.key] ? context.itemsById.get(String(state.build[slot.key])) : null;
@@ -55,7 +198,14 @@
       </article>`;
     }).join("");
     equipmentSlots.querySelectorAll("[data-slot-pick]").forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
-    equipmentSlots.querySelectorAll("[data-slot-remove]").forEach(button => button.addEventListener("click", event => { event.stopPropagation(); state.build[button.dataset.slotRemove] = null; syncUrl(false); renderBuild(); }));
+    equipmentSlots.querySelectorAll("[data-slot-remove]").forEach(button => button.addEventListener("click", event => {
+      event.stopPropagation();
+      const descriptor = getSlotDescriptor(button.dataset.slotRemove);
+      descriptor?.set(null);
+      syncUrl(false);
+      renderBuild();
+    }));
+    renderEquipmentOptions();
     renderTotals();
   }
 
@@ -78,8 +228,7 @@
   }
 
   function selectedItems() {
-    return Object.values(state.build)
-      .filter(Boolean)
+    return allSelectedIds()
       .map(id => context.itemsById.get(String(id)))
       .filter(Boolean);
   }
@@ -136,8 +285,8 @@
       }));
     }
 
-    if (["アルクリスタ数"].includes(key)) return 0;
-    if (["レリック数"].includes(key)) return 0;
+    if (["アルクリスタ数"].includes(key)) return state.build.alCrystas.filter(Boolean).length;
+    if (["レリック数"].includes(key)) return state.build.relics.filter(Boolean).length;
 
     return undefined;
   }
@@ -236,8 +385,8 @@
   }
 
   function renderTotals() {
-    const selectedIds = Object.values(state.build).filter(Boolean).map(String);
-    selectedCount.textContent = `${selectedIds.length} / ${SLOT_DEFS.length}`;
+    const selectedIds = allSelectedIds();
+    selectedCount.textContent = `${selectedIds.length} / 40`;
     const totals = new Map(), textOnly = [];
     const activeConditional = [];
     const inactiveConditional = [];
@@ -278,30 +427,83 @@
     totalEffects.innerHTML = totalsHtml + activeHtml + inactiveHtml;
   }
 
-  function openPicker(slotKey) {
-    state.pickerSlot = slotKey; state.pickerQuery = ""; pickerSearchInput.value = "";
-    const slot = SLOT_DEFS.find(def => def.key === slotKey); pickerTitle.textContent = slot.label; renderPicker();
-    pickerModal.classList.add("is-open"); pickerModal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; setTimeout(() => pickerSearchInput.focus(), 50);
+  function openPicker(slotToken) {
+    state.pickerSlot = slotToken;
+    state.pickerQuery = "";
+    pickerSearchInput.value = "";
+    const descriptor = getSlotDescriptor(slotToken);
+    if (!descriptor) return;
+    pickerTitle.textContent = descriptor.label;
+    renderPicker();
+    pickerModal.classList.add("is-open");
+    pickerModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => pickerSearchInput.focus(), 50);
   }
   function closePicker() { pickerModal.classList.remove("is-open"); pickerModal.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; }
   function renderPicker() {
-    const slot = SLOT_DEFS.find(def => def.key === state.pickerSlot); if (!slot) return;
+    const descriptor = getSlotDescriptor(state.pickerSlot);
+    if (!descriptor) return;
     const query = normalizeSearchText(state.pickerQuery);
-    const items = state.items.filter(item => itemMatchesSlot(item, slot) && (!query || normalizeSearchText(item["名前"]).includes(query)));
-    pickerList.innerHTML = `<button class="picker-item is-none" type="button" data-picker-id=""><span><strong>未選択にする</strong><small>このスロットの装備を解除</small></span><b>×</b></button>` + items.map(item => `<button class="picker-item ${String(state.build[slot.key]) === String(item["アイテムID"]) ? "is-current" : ""}" type="button" data-picker-id="${escapeHtml(item["アイテムID"])}"><span><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong><small>${escapeHtml([item["表示分類"] || item["サブ分類"] || item["武器種"], !isBlank(item["基礎ATK"]) ? `ATK ${item["基礎ATK"]}` : "", !isBlank(item["基礎DEF"]) ? `DEF ${item["基礎DEF"]}` : ""].filter(Boolean).join(" / ") || "詳細情報なし")}</small></span><b>›</b></button>`).join("");
-    pickerList.querySelectorAll("[data-picker-id]").forEach(button => button.addEventListener("click", () => { state.build[slot.key] = button.dataset.pickerId || null; closePicker(); syncUrl(false); renderBuild(); }));
+    const items = state.items.filter(item => {
+      const category = String(item["分類"] || "").trim();
+      const categoryMatched = descriptor.aliases
+        ? descriptor.aliases.includes(category)
+        : category === descriptor.category;
+      return categoryMatched &&
+        (!query || (context.searchIndex.get(item["アイテムID"]) || "").includes(query));
+    });
+
+    const currentId = descriptor.get();
+    pickerList.innerHTML =
+      `<button class="picker-item is-none" type="button" data-picker-id="">
+        <span><strong>未選択にする</strong><small>このスロットを解除</small></span><b>×</b>
+      </button>` +
+      items.map(item => {
+        const itemId = String(item["アイテムID"]);
+        const effects = (context.effectsByItem.get(itemId) || [])
+          .slice(0, 3).map(effectLabel).join(" / ");
+        const meta = [
+          item["表示分類"] || item["サブ分類"] || item["武器種"],
+          effects
+        ].filter(Boolean).join(" / ") || "詳細情報なし";
+        return `<button class="picker-item ${String(currentId) === itemId ? "is-current" : ""}"
+          type="button" data-picker-id="${escapeHtml(itemId)}">
+          <span><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
+          <small>${escapeHtml(meta)}</small></span><b>›</b>
+        </button>`;
+      }).join("");
+
+    pickerList.querySelectorAll("[data-picker-id]").forEach(button =>
+      button.addEventListener("click", () => {
+        descriptor.set(button.dataset.pickerId || null);
+        closePicker();
+        syncUrl(false);
+        renderBuild();
+      })
+    );
   }
 
   function compactBuild() {
     const build = {};
-    SLOT_DEFS.forEach(slot => {
-      if (state.build[slot.key]) build[slot.key] = String(state.build[slot.key]);
+    EQUIPMENT_KEYS.forEach(key => {
+      if (state.build[key]) build[key] = String(state.build[key]);
     });
+    build.crystals = Object.fromEntries(EQUIPMENT_KEYS.map(key => [
+      key,
+      state.build.crystals[key].map(value => value ? String(value) : null)
+    ]));
+    build.stars = Object.fromEntries(EQUIPMENT_KEYS.map(key => [
+      key,
+      state.build.stars[key] ? String(state.build.stars[key]) : null
+    ]));
+    build.alCrystas = state.build.alCrystas.map(value => value ? String(value) : null);
+    build.relics = state.build.relics.map(value => value ? String(value) : null);
     return { build, status: { ...state.status } };
   }
   function syncUrl(push) {
     const url = new URL(location.href); const payload = compactBuild();
-    const hasBuild = Object.keys(payload.build).length > 0;
+    const hasBuild = allSelectedIds().length > 0;
     const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
       ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
     if (hasBuild || hasStatus) url.searchParams.set("build", encodeBuild(payload)); else url.searchParams.delete("build");
@@ -316,6 +518,23 @@
       SLOT_DEFS.forEach(slot => {
         const id = decodedBuild?.[slot.key];
         state.build[slot.key] = id && context.itemsById.has(String(id)) ? String(id) : null;
+      });
+      EQUIPMENT_KEYS.forEach(key => {
+        const values = decodedBuild?.crystals?.[key] || [];
+        state.build.crystals[key] = [0, 1].map(index => {
+          const id = values[index];
+          return id && context.itemsById.has(String(id)) ? String(id) : null;
+        });
+        const starId = decodedBuild?.stars?.[key];
+        state.build.stars[key] = starId && context.itemsById.has(String(starId)) ? String(starId) : null;
+      });
+      state.build.alCrystas = Array.from({ length: 5 }, (_, index) => {
+        const id = decodedBuild?.alCrystas?.[index];
+        return id && context.itemsById.has(String(id)) ? String(id) : null;
+      });
+      state.build.relics = Array.from({ length: 15 }, (_, index) => {
+        const id = decodedBuild?.relics?.[index];
+        return id && context.itemsById.has(String(id)) ? String(id) : null;
       });
       state.status = {
         jobId: String(decodedStatus.jobId || ""),
@@ -351,7 +570,11 @@
   ui.elements.searchInput.addEventListener("input", event => { state.searchQuery = event.target.value; renderDatabase(); });
   document.getElementById("clearButton").addEventListener("click", () => { state.searchQuery = ""; ui.elements.searchInput.value = ""; renderDatabase(); ui.elements.searchInput.focus(); });
   document.getElementById("reloadButton").addEventListener("click", loadData);
-  document.getElementById("resetBuildButton").addEventListener("click", () => { SLOT_DEFS.forEach(slot => state.build[slot.key] = null); syncUrl(false); renderBuild(); });
+  document.getElementById("resetBuildButton").addEventListener("click", () => {
+    state.build = createEmptyBuild();
+    syncUrl(false);
+    renderBuild();
+  });
   document.getElementById("copyUrlButton").addEventListener("click", async () => { syncUrl(false); const message = document.getElementById("shareMessage"); try { await navigator.clipboard.writeText(location.href); message.textContent = "共有URLをコピーしました。"; } catch { window.prompt("このURLをコピーしてください", location.href); message.textContent = "共有URLを表示しました。"; } });
   document.getElementById("clearUrlButton").addEventListener("click", () => { const url = new URL(location.href); url.searchParams.delete("build"); history.replaceState({}, "", url); document.getElementById("shareMessage").textContent = "URLからビルド情報を削除しました。装備はそのままです。"; });
   pickerSearchInput.addEventListener("input", event => { state.pickerQuery = event.target.value; renderPicker(); });
