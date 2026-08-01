@@ -431,14 +431,14 @@
     const unit = effect["単位"] || "";
     const display = String(effect["表示文"] || "").trim();
     const hasNumericDisplay = /[-+]?\d/.test(display);
-    if (display && (hasNumericDisplay || isBlank(value))) return display;
+    if (display && (hasNumericDisplay || isBlank(value))) return formatFormulaText(display);
     if (!isBlank(value)) {
       const number = Number(value);
       const prefix = Number.isFinite(number) && number > 0 ? "+" : "";
       return `${statName}${prefix}${value}${unit}`;
     }
-    if (effect["数式"]) return `${display || statName}（${effect["数式"]}）`;
-    return display || statName;
+    if (effect["数式"]) return `${formatFormulaText(display || statName)}（${formatFormulaText(effect["数式"])}）`;
+    return formatFormulaText(display || statName);
   }
 
   function conditionDisplayText(groupId) {
@@ -1016,7 +1016,7 @@
           Number(item["スロット数"]) > 0 ? `Slot ${item["スロット数"]}` : ""
         ].filter(Boolean).join(" / ");
         const effects = fullEffectSummary(item, { includeConditions: true, separator: " / " });
-        const description = [item["説明文"], item["特殊性能"]].filter(Boolean).join(" / ");
+        const description = [item["説明文"], item["特殊性能"]].filter(Boolean).map(formatFormulaText).join(" / ");
         return `<article class="picker-card ${String(currentId) === itemId ? "is-current" : ""}">
           <button class="picker-card-select" type="button" data-picker-id="${escapeHtml(itemId)}">
             <span class="picker-card-head"><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong><b>選択</b></span>

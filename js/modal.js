@@ -6,7 +6,7 @@ window.IrunaModal = (() => {
   const category = document.getElementById("modalCategory");
   const details = document.getElementById("modalDetails");
   const closeButton = document.getElementById("modalCloseButton");
-  const { escapeHtml, isBlank } = window.IrunaUtils;
+  const { escapeHtml, isBlank, formatFormulaText } = window.IrunaUtils;
 
   function buildBasicRows(item, attributeName) {
     const rows = [
@@ -18,8 +18,8 @@ window.IrunaModal = (() => {
       ["基礎DEF", item["基礎DEF"]],
       ["スロット数", item["スロット数"]],
       ["装着可能箇所", item["装着可能箇所"]],
-      ["説明", item["説明文"]],
-      ["特殊性能", item["特殊性能"]],
+      ["説明", formatFormulaText(item["説明文"])],
+      ["特殊性能", formatFormulaText(item["特殊性能"])],
       ["入手区分", item["入手区分"]],
       ["入手先", item["入手先"]],
       ["マップ", item["マップ"]],
@@ -37,13 +37,13 @@ window.IrunaModal = (() => {
     const value = effect["値"];
     const unit = effect["単位"] || "";
     const hasNumericDisplay = /[-+]?\d/.test(display);
-    if (display && (hasNumericDisplay || isBlank(value))) return display;
+    if (display && (hasNumericDisplay || isBlank(value))) return formatFormulaText(display);
     if (!isBlank(value)) {
       const prefix = Number(value) > 0 ? "+" : "";
       return `${statName}${prefix}${value}${unit}`;
     }
-    if (effect["数式"]) return `${display || statName}（${effect["数式"]}）`;
-    return display || statName;
+    if (effect["数式"]) return `${formatFormulaText(display || statName)}（${formatFormulaText(effect["数式"])}）`;
+    return formatFormulaText(display || statName);
   }
 
   function buildEffectsSection(effects, statMap, conditionMap) {

@@ -1,6 +1,6 @@
 "use strict";
 window.IrunaUi = (() => {
-  const { escapeHtml, normalizeSearchText, isBlank } = window.IrunaUtils;
+  const { escapeHtml, normalizeSearchText, isBlank, formatFormulaText } = window.IrunaUtils;
   const categories = ["すべて", "武器", "体", "追加", "特殊", "クリスタ", "アルクリスタ", "☆能力", "レリック"];
   const elements = {
     itemGrid: document.getElementById("itemGrid"), categoryTabs: document.getElementById("categoryTabs"),
@@ -27,7 +27,7 @@ window.IrunaUi = (() => {
     elements.itemGrid.innerHTML = items.map((item, index) => {
       const id = String(item["アイテムID"] || "");
       const favorite = favorites.has(id);
-      return `<article class="item-card" data-item-index="${index}" tabindex="0"><div class="item-card-header"><div class="item-card-title-area"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(id)}" aria-label="お気に入り${favorite ? "解除" : "登録"}" title="お気に入り${favorite ? "解除" : "登録"}">${favorite ? "★" : "☆"}</button><div class="item-name">${escapeHtml(item["名前"] || "名称未設定")}</div></div><span class="badge">${escapeHtml(item["表示分類"] || item["サブ分類"] || item["分類"] || "未分類")}</span></div><div class="item-meta">${buildMeta(item, context.attributeMap)}</div><div class="item-description">${escapeHtml(item["説明文"] || item["特殊性能"] || "説明はまだ登録されていません。")}</div></article>`;
+      return `<article class="item-card" data-item-index="${index}" tabindex="0"><div class="item-card-header"><div class="item-card-title-area"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(id)}" aria-label="お気に入り${favorite ? "解除" : "登録"}" title="お気に入り${favorite ? "解除" : "登録"}">${favorite ? "★" : "☆"}</button><div class="item-name">${escapeHtml(item["名前"] || "名称未設定")}</div></div><span class="badge">${escapeHtml(item["表示分類"] || item["サブ分類"] || item["分類"] || "未分類")}</span></div><div class="item-meta">${buildMeta(item, context.attributeMap)}</div><div class="item-description">${escapeHtml(formatFormulaText(item["説明文"] || item["特殊性能"] || "説明はまだ登録されていません。"))}</div></article>`;
     }).join("");
     elements.itemGrid.querySelectorAll("[data-favorite-id]").forEach(button => button.addEventListener("click", event => { event.stopPropagation(); onFavorite(button.dataset.favoriteId); }));
     elements.itemGrid.querySelectorAll(".item-card").forEach(card => {
