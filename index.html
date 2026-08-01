@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Iruna Online Database & Build Simulator">
   <title>IrunaDB v1.0.0</title>
-  <link rel="stylesheet" href="./css/style.css?v=1.0.0">
+  <link rel="stylesheet" href="./css/style.css?v=1.1.0">
 </head>
 <body>
   <div class="app-shell">
@@ -24,7 +24,6 @@
     <nav id="mainTabs" class="main-tabs" aria-label="メイン画面">
       <button class="main-tab is-active" data-view="build" type="button">装備</button>
       <button class="main-tab" data-view="database" type="button">データベース</button>
-      <button class="main-tab" data-view="status" type="button">ステータス</button>
       <button class="main-tab" data-view="settings" type="button">設定</button>
     </nav>
 
@@ -43,10 +42,57 @@
 
         <div class="build-layout">
           <div class="build-main-column">
-            <section class="sim-panel equipment-panel">
+            <section class="sim-panel character-panel">
               <header class="sim-panel-header">
                 <div>
                   <span class="panel-number">01</span>
+                  <h3>キャラクター設定</h3>
+                </div>
+                <button id="resetStatusButton" class="button button-secondary compact-button" type="button">初期化</button>
+              </header>
+              <div class="character-settings">
+                <label class="status-field character-job">
+                  <span>職業</span>
+                  <select id="jobSelect">
+                    <option value="">未選択</option>
+                  </select>
+                </label>
+                <label class="status-field">
+                  <span>Lv</span>
+                  <input id="statusLv" data-status-key="lv" type="number" min="1" max="999" value="1">
+                </label>
+                <label class="status-field">
+                  <span>STR</span>
+                  <input id="statusStr" data-status-key="str" type="number" min="0" max="9999" value="0">
+                </label>
+                <label class="status-field">
+                  <span>AGI</span>
+                  <input id="statusAgi" data-status-key="agi" type="number" min="0" max="9999" value="0">
+                </label>
+                <label class="status-field">
+                  <span>VIT</span>
+                  <input id="statusVit" data-status-key="vit" type="number" min="0" max="9999" value="0">
+                </label>
+                <label class="status-field">
+                  <span>INT</span>
+                  <input id="statusInt" data-status-key="int" type="number" min="0" max="9999" value="0">
+                </label>
+                <label class="status-field">
+                  <span>DEX</span>
+                  <input id="statusDex" data-status-key="dex" type="number" min="0" max="9999" value="0">
+                </label>
+                <label class="status-field">
+                  <span>CRT</span>
+                  <input id="statusCrt" data-status-key="crt" type="number" min="0" max="9999" value="0">
+                </label>
+              </div>
+              <p class="status-help character-help">変更すると条件付き能力と数式効果をリアルタイムで再判定します。</p>
+            </section>
+
+            <section class="sim-panel equipment-panel">
+              <header class="sim-panel-header">
+                <div>
+                  <span class="panel-number">02</span>
                   <h3>装備</h3>
                 </div>
                 <small>タップして選択</small>
@@ -57,7 +103,7 @@
             <section class="sim-panel option-panel">
               <header class="sim-panel-header">
                 <div>
-                  <span class="panel-number">02</span>
+                  <span class="panel-number">03</span>
                   <h3>クリスタ・☆能力</h3>
                 </div>
                 <small>各装備2枠＋☆能力</small>
@@ -68,7 +114,7 @@
             <section class="sim-panel">
               <header class="sim-panel-header">
                 <div>
-                  <span class="panel-number">03</span>
+                  <span class="panel-number">04</span>
                   <h3>アルクリスタ</h3>
                 </div>
                 <span id="alCount" class="count-badge">0 / 5</span>
@@ -79,7 +125,7 @@
             <section class="sim-panel relic-editor-panel">
               <header class="sim-panel-header">
                 <div>
-                  <span class="panel-number">04</span>
+                  <span class="panel-number">05</span>
                   <h3>レリックグラス</h3>
                 </div>
                 <span id="relicCount" class="count-badge">0 / 15マス</span>
@@ -106,7 +152,7 @@
             <section class="sim-panel summary-panel">
               <header class="sim-panel-header">
                 <div>
-                  <span class="panel-number">05</span>
+                  <span class="panel-number">06</span>
                   <h3>合計能力</h3>
                 </div>
               </header>
@@ -117,7 +163,7 @@
             <section class="sim-panel share-panel">
               <header class="sim-panel-header">
                 <div>
-                  <span class="panel-number">06</span>
+                  <span class="panel-number">07</span>
                   <h3>ビルド共有</h3>
                 </div>
               </header>
@@ -146,58 +192,6 @@
         </section>
         <section id="itemGrid" class="item-grid" aria-live="polite">
           <div class="state-card">データを取得しています…</div>
-        </section>
-      </section>
-
-      <section id="view-status" class="app-view">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">STATUS</p>
-            <h2>ステータス入力</h2>
-          </div>
-          <button id="resetStatusButton" class="button button-secondary" type="button">初期化</button>
-        </div>
-
-        <section class="status-panel">
-          <label class="status-field status-field-wide">
-            <span>職業</span>
-            <select id="jobSelect">
-              <option value="">未選択</option>
-            </select>
-          </label>
-
-          <div class="status-grid">
-            <label class="status-field">
-              <span>Lv</span>
-              <input id="statusLv" data-status-key="lv" type="number" min="1" max="999" value="1">
-            </label>
-            <label class="status-field">
-              <span>STR</span>
-              <input id="statusStr" data-status-key="str" type="number" min="0" max="9999" value="0">
-            </label>
-            <label class="status-field">
-              <span>INT</span>
-              <input id="statusInt" data-status-key="int" type="number" min="0" max="9999" value="0">
-            </label>
-            <label class="status-field">
-              <span>VIT</span>
-              <input id="statusVit" data-status-key="vit" type="number" min="0" max="9999" value="0">
-            </label>
-            <label class="status-field">
-              <span>AGI</span>
-              <input id="statusAgi" data-status-key="agi" type="number" min="0" max="9999" value="0">
-            </label>
-            <label class="status-field">
-              <span>DEX</span>
-              <input id="statusDex" data-status-key="dex" type="number" min="0" max="9999" value="0">
-            </label>
-            <label class="status-field">
-              <span>CRT</span>
-              <input id="statusCrt" data-status-key="crt" type="number" min="0" max="9999" value="0">
-            </label>
-          </div>
-
-          <p class="status-help">入力内容は共有URLにも含まれます。変更すると装備画面の条件判定へすぐ反映されます。</p>
         </section>
       </section>
 
@@ -242,11 +236,11 @@
     </section>
   </div>
 
-  <script src="./js/config.js?v=1.0.0"></script>
-  <script src="./js/utils.js?v=1.0.0"></script>
-  <script src="./js/api.js?v=1.0.0"></script>
-  <script src="./js/modal.js?v=1.0.0"></script>
-  <script src="./js/ui.js?v=1.0.0"></script>
-  <script src="./js/app.js?v=1.0.0"></script>
+  <script src="./js/config.js?v=1.1.0"></script>
+  <script src="./js/utils.js?v=1.1.0"></script>
+  <script src="./js/api.js?v=1.1.0"></script>
+  <script src="./js/modal.js?v=1.1.0"></script>
+  <script src="./js/ui.js?v=1.1.0"></script>
+  <script src="./js/app.js?v=1.1.0"></script>
 </body>
 </html>
