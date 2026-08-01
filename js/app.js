@@ -27,6 +27,7 @@
     activeCategory: "すべて", searchQuery: "", activeView: "build",
     build: createEmptyBuild(),
     pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
+    pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
     status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 }
   };
   const context = {
@@ -50,6 +51,148 @@
   const totalEffects = document.getElementById("totalEffects");
   const selectedCount = document.getElementById("selectedCount");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
+
+  const V12_QUICK_TAGS = [
+    { label: "物理", query: "ATK 物理 クリティカル" },
+    { label: "魔法", query: "MATK 魔法 魔法剣" },
+    { label: "耐久", query: "MaxHP 耐性 軽減" },
+    { label: "貫通", query: "貫通" },
+    { label: "クリティカル", query: "クリティカル" },
+    { label: "ディレイ", query: "ディレイ" },
+    { label: "属性", query: "属性に物理 魔法威力 耐性" }
+  ];
+
+  function injectV12Styles() {
+    if (document.getElementById("iruna-v12-style")) return;
+    const style = document.createElement("style");
+    style.id = "iruna-v12-style";
+    style.textContent = `
+      .v12-picker-filter{display:grid;gap:8px;margin:10px 0;padding:10px;border:1px solid rgba(210,174,91,.38);border-radius:10px;background:rgba(20,16,13,.78)}
+      .v12-filter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+      .v12-filter-grid label{display:grid;gap:4px;font-size:11px;color:#d8bd7a}
+      .v12-filter-grid select{width:100%;min-width:0;height:36px;padding:5px 7px;border-radius:7px}
+      .v12-tag-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+      .v12-tag-button{flex:0 0 auto;padding:6px 10px;border-radius:999px;border:1px solid rgba(210,174,91,.38);font-size:12px}
+      .v12-tag-button.is-active{outline:2px solid rgba(72,206,220,.65);color:#8ff3ff}
+      .v12-filter-meta{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:#aaa}
+      .v12-collapse-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;margin:4px 0;border:1px solid rgba(210,174,91,.38);border-radius:9px;background:rgba(33,24,18,.9);color:#f1d684;font-weight:700;text-align:left}
+      .v12-collapse-toggle .v12-arrow{transition:transform .18s ease}
+      .v12-collapsible.is-collapsed .v12-collapse-content{display:none!important}
+      .v12-collapsible.is-collapsed .v12-arrow{transform:rotate(-90deg)}
+      .v12-collapse-content{min-width:0}
+      @media(max-width:680px){.v12-filter-grid{grid-template-columns:1fr 1fr}.v12-filter-grid label:last-child{grid-column:1/-1}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  function updateVersionLabel() {
+    document.querySelectorAll("body *").forEach(element => {
+      if (element.children.length) return;
+      const value = String(element.textContent || "");
+      if (/v1\.[01](?:\.\d+)?/i.test(value)) {
+        element.textContent = value.replace(/v1\.[01](?:\.\d+)?/ig, "v1.2.0");
+      }
+    });
+  }
+
+  function createPickerFilterUi() {
+    if (document.getElementById("v12PickerFilter")) return;
+    const panel = document.createElement("div");
+    panel.id = "v12PickerFilter";
+    panel.className = "v12-picker-filter";
+    panel.innerHTML = `
+      <div class="v12-filter-grid">
+        <label>武器種<select id="v12WeaponType"><option value="">すべて</option></select></label>
+        <label>属性<select id="v12Attribute"><option value="">すべて</option></select></label>
+        <label>並び順<select id="v12PickerSort"><option value="name">名前順</option><option value="atkDesc">ATK 高い順</option><option value="atkAsc">ATK 低い順</option></select></label>
+      </div>
+      <div class="v12-tag-row" id="v12QuickTags">
+        ${V12_QUICK_TAGS.map(tag => `<button type="button" class="v12-tag-button" data-v12-tag="${escapeHtml(tag.query)}">${escapeHtml(tag.label)}</button>`).join("")}
+      </div>
+      <div class="v12-filter-meta"><span>検索欄は名前・タグ・説明文・能力を横断検索</span><strong id="v12PickerCount">0件</strong></div>
+    `;
+    pickerList.parentElement.insertBefore(panel, pickerList);
+
+    panel.querySelector("#v12WeaponType").addEventListener("change", event => {
+      state.pickerFilters.weaponType = event.target.value;
+      renderPicker();
+    });
+    panel.querySelector("#v12Attribute").addEventListener("change", event => {
+      state.pickerFilters.attribute = event.target.value;
+      renderPicker();
+    });
+    panel.querySelector("#v12PickerSort").addEventListener("change", event => {
+      state.pickerFilters.sort = event.target.value;
+      renderPicker();
+    });
+    panel.querySelectorAll("[data-v12-tag]").forEach(button => button.addEventListener("click", () => {
+      const query = button.dataset.v12Tag || "";
+      state.pickerFilters.quickTag = state.pickerFilters.quickTag === query ? "" : query;
+      renderPicker();
+    }));
+  }
+
+  function populatePickerFilterOptions(baseItems) {
+    const weaponSelect = document.getElementById("v12WeaponType");
+    const attributeSelect = document.getElementById("v12Attribute");
+    if (!weaponSelect || !attributeSelect) return;
+
+    const weaponTypes = [...new Set(baseItems.map(item => String(item["武器種"] || item["サブ分類"] || "").trim()).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, "ja"));
+    const attributes = [...new Set(baseItems.map(item => {
+      const id = String(item["属性ID"] || "").trim();
+      return context.attributeMap.get(id)?.["属性名"] || id;
+    }).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
+
+    const currentWeapon = state.pickerFilters.weaponType;
+    const currentAttribute = state.pickerFilters.attribute;
+    weaponSelect.innerHTML = `<option value="">すべて</option>${weaponTypes.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("")}`;
+    attributeSelect.innerHTML = `<option value="">すべて</option>${attributes.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("")}`;
+    weaponSelect.value = weaponTypes.includes(currentWeapon) ? currentWeapon : "";
+    attributeSelect.value = attributes.includes(currentAttribute) ? currentAttribute : "";
+    if (weaponSelect.value !== currentWeapon) state.pickerFilters.weaponType = weaponSelect.value;
+    if (attributeSelect.value !== currentAttribute) state.pickerFilters.attribute = attributeSelect.value;
+  }
+
+  function makeCollapsible(targets, key, label, initiallyOpen = true) {
+    const nodes = (Array.isArray(targets) ? targets : [targets]).filter(Boolean);
+    const target = nodes[0];
+    if (!target || target.closest(`[data-v12-collapse="${key}"]`)) return;
+    const storageKey = `irunadb.v12.collapse.${key}`;
+    const wrapper = document.createElement("div");
+    wrapper.className = "v12-collapsible";
+    wrapper.dataset.v12Collapse = key;
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "v12-collapse-toggle";
+    toggle.innerHTML = `<span>${escapeHtml(label)}</span><span class="v12-arrow">▼</span>`;
+    const content = document.createElement("div");
+    content.className = "v12-collapse-content";
+    target.parentElement.insertBefore(wrapper, target);
+    wrapper.append(toggle, content);
+    nodes.forEach(node => content.appendChild(node));
+
+    const saved = localStorage.getItem(storageKey);
+    const open = saved === null ? initiallyOpen : saved === "open";
+    wrapper.classList.toggle("is-collapsed", !open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.addEventListener("click", () => {
+      const collapsed = wrapper.classList.toggle("is-collapsed");
+      toggle.setAttribute("aria-expanded", String(!collapsed));
+      localStorage.setItem(storageKey, collapsed ? "closed" : "open");
+    });
+  }
+
+  function setupV12Ui() {
+    injectV12Styles();
+    createPickerFilterUi();
+    updateVersionLabel();
+    makeCollapsible(document.getElementById("jobSelect")?.closest(".status-panel, .profile, .panel, .card, section") || document.getElementById("jobSelect")?.parentElement, "status", "キャラクター設定", false);
+    makeCollapsible([equipmentSlots, equipmentOptions], "equipment", "装備", true);
+    makeCollapsible(alSlots, "alcrysta", "アルクリスタ", false);
+    makeCollapsible([relicPlacementList, relicMessage], "relic", "レリック", false);
+    makeCollapsible(totalEffects, "totals", "合計能力", true);
+  }
 
   function buildIndexes() {
     Object.values(context).forEach(value => value instanceof Map && value.clear());
@@ -761,6 +904,7 @@
   function openPicker(slotToken) {
     state.pickerSlot = slotToken;
     state.pickerQuery = "";
+    state.pickerFilters = { weaponType: "", attribute: "", quickTag: "", sort: "name" };
     pickerSearchInput.value = "";
     const descriptor = getSlotDescriptor(slotToken);
     if (!descriptor) return;
@@ -776,27 +920,51 @@
     const descriptor = getSlotDescriptor(state.pickerSlot);
     if (!descriptor) return;
     const query = normalizeSearchText(state.pickerQuery);
-    const items = state.items.filter(item => {
+    const quickTokens = String(state.pickerFilters.quickTag || "")
+      .split(/\s+/).map(normalizeSearchText).filter(Boolean);
+
+    const baseItems = state.items.filter(item => {
       const category = String(item["分類"] || "").trim();
-      const categoryMatched = descriptor.aliases
-        ? descriptor.aliases.includes(category)
-        : category === descriptor.category;
-      return categoryMatched &&
-        (!query || (context.searchIndex.get(item["アイテムID"]) || "").includes(query));
+      return descriptor.aliases ? descriptor.aliases.includes(category) : category === descriptor.category;
     });
+    populatePickerFilterOptions(baseItems);
+
+    const items = baseItems.filter(item => {
+      const itemId = String(item["アイテムID"] || "");
+      const searchText = context.searchIndex.get(itemId) || "";
+      const weaponType = String(item["武器種"] || item["サブ分類"] || "").trim();
+      const attributeId = String(item["属性ID"] || "").trim();
+      const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
+      const weaponMatched = !state.pickerFilters.weaponType || weaponType === state.pickerFilters.weaponType;
+      const attributeMatched = !state.pickerFilters.attribute || attributeName === state.pickerFilters.attribute || attributeId === state.pickerFilters.attribute;
+      const queryMatched = !query || searchText.includes(query);
+      const tagMatched = !quickTokens.length || quickTokens.some(token => searchText.includes(token));
+      return weaponMatched && attributeMatched && queryMatched && tagMatched;
+    }).sort((a, b) => {
+      if (state.pickerFilters.sort === "atkDesc") return Number(b["基礎ATK"] || 0) - Number(a["基礎ATK"] || 0);
+      if (state.pickerFilters.sort === "atkAsc") return Number(a["基礎ATK"] || 0) - Number(b["基礎ATK"] || 0);
+      return String(a["名前"] || "").localeCompare(String(b["名前"] || ""), "ja");
+    });
+
+    document.querySelectorAll("[data-v12-tag]").forEach(button =>
+      button.classList.toggle("is-active", button.dataset.v12Tag === state.pickerFilters.quickTag)
+    );
+    const count = document.getElementById("v12PickerCount");
+    if (count) count.textContent = `${items.length}件`;
 
     const currentId = descriptor.get();
     pickerList.innerHTML =
       `<button class="picker-item is-none" type="button" data-picker-id="">
         <span><strong>未選択にする</strong><small>このスロットを解除</small></span><b>×</b>
       </button>` +
-      items.map(item => {
+      (items.length ? items.map(item => {
         const itemId = String(item["アイテムID"]);
         const attributeId = String(item["属性ID"] || "");
         const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
         const basic = [
           !isBlank(item["基礎ATK"]) ? `ATK ${item["基礎ATK"]}` : "",
           !isBlank(item["基礎DEF"]) ? `DEF ${item["基礎DEF"]}` : "",
+          item["武器種"] ? String(item["武器種"]) : "",
           attributeName ? `${attributeName}属性` : "",
           Number(item["スロット数"]) > 0 ? `Slot ${item["スロット数"]}` : ""
         ].filter(Boolean).join(" / ");
@@ -811,7 +979,7 @@
           </button>
           <button class="picker-card-detail" type="button" data-picker-detail="${escapeHtml(itemId)}">詳細を見る</button>
         </article>`;
-      }).join("");
+      }).join("") : `<div class="state-card">条件に一致する装備がありません。フィルターを解除してください。</div>`);
 
     pickerList.querySelectorAll("[data-picker-id]").forEach(button =>
       button.addEventListener("click", () => {
@@ -1008,5 +1176,6 @@
     renderBuild();
   });
 
+  setupV12Ui();
   loadData();
 })();
