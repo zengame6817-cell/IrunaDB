@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.2");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.3");
       }
     });
   }
@@ -482,6 +482,12 @@
     return replaced.replace(/\s+/g, " ").trim();
   }
 
+  function isFormulaEffect(effect) {
+    const effectType = String(effect?.["効果種類"] || "").trim();
+    const formula = String(effect?.["数式"] || "").trim();
+    return effectType === "数式" || formula !== "";
+  }
+
   function effectDisplayText(effect) {
     const stat = context.statMap.get(String(effect["能力ID"]));
     const statName = stat?.["表示名"] || effect["能力ID"] || "効果";
@@ -510,6 +516,7 @@
     if (!item) return "";
     const { includeConditions = true, separator = " / " } = options;
     return (context.effectsByItem.get(String(item["アイテムID"])) || [])
+      .filter(effect => !isFormulaEffect(effect))
       .map(effect => {
         const text = effectDisplayText(effect);
         const condition = includeConditions ? conditionDisplayText(effect["条件グループID"]) : "";
@@ -927,6 +934,7 @@
     const activeConditional = [];
     const inactiveConditional = [];
     selectedIds.forEach(id => (context.effectsByItem.get(id) || []).filter(effect => {
+      if (isFormulaEffect(effect)) return false;
       const groupId = effect["条件グループID"];
       if (isBlank(groupId)) return true;
       const active = evaluateConditionGroup(groupId);

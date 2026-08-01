@@ -32,6 +32,12 @@ window.IrunaModal = (() => {
     `).join("");
   }
 
+  function isFormulaEffect(effect) {
+    const effectType = String(effect?.["効果種類"] || "").trim();
+    const formula = String(effect?.["数式"] || "").trim();
+    return effectType === "数式" || formula !== "";
+  }
+
   function buildEffectText(effect, statName) {
     const display = String(effect["表示文"] || "").trim();
     const value = effect["値"];
@@ -47,7 +53,8 @@ window.IrunaModal = (() => {
   }
 
   function buildEffectsSection(effects, statMap, conditionMap) {
-    if (!effects.length) {
+    const visibleEffects = effects.filter(effect => !isFormulaEffect(effect));
+    if (!visibleEffects.length) {
       return `
         <section class="effect-section">
           <h3>能力</h3>
@@ -56,8 +63,8 @@ window.IrunaModal = (() => {
       `;
     }
 
-    const alwaysEffects = effects.filter(effect => !effect["条件グループID"]);
-    const conditionalEffects = effects.filter(effect => effect["条件グループID"]);
+    const alwaysEffects = visibleEffects.filter(effect => !effect["条件グループID"]);
+    const conditionalEffects = visibleEffects.filter(effect => effect["条件グループID"]);
 
     const alwaysHtml = alwaysEffects.length
       ? alwaysEffects.map(effect => {
