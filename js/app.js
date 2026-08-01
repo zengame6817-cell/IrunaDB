@@ -692,29 +692,72 @@
         const current = totals.get(key) || { statId, unit, value: 0 }; current.value += numeric; totals.set(key, current);
       } else if (effect["表示文"]) textOnly.push(String(effect["表示文"]));
     }));
-    const rows = [...totals.values()].sort((a,b) => (context.statMap.get(a.statId)?.["表示順"] || 9999) - (context.statMap.get(b.statId)?.["表示順"] || 9999));
-    if (!rows.length && !textOnly.length) { totalEffects.innerHTML = `<div class="empty-total">装備を選ぶと、ここに能力の合計が表示されます。</div>`; return; }
-    const totalsHtml = rows.map(row => {
-      const name = context.statMap.get(row.statId)?.["表示名"] || row.statId;
-      return `<div class="total-row"><span>${escapeHtml(name)}</span><strong>${row.value > 0 ? "+" : ""}${escapeHtml(row.value)}${escapeHtml(row.unit)}</strong></div>`;
-    }).join("") + textOnly.map(text => `<div class="total-row passive-row"><span>${escapeHtml(text)}</span><strong>適用</strong></div>`).join("");
+    const rows = [...totals.values()].sort((a,b) =>
+      (context.statMap.get(a.statId)?.["表示順"] || 9999) -
+      (context.statMap.get(b.statId)?.["表示順"] || 9999)
+    );
+
+    const totalsHtml =
+      rows.map(row => {
+        const name = context.statMap.get(row.statId)?.["表示名"] || row.statId;
+        return `<div class="total-row">
+          <span>${escapeHtml(name)}</span>
+          <strong>${row.value > 0 ? "+" : ""}${escapeHtml(row.value)}${escapeHtml(row.unit)}</strong>
+        </div>`;
+      }).join("")
+      +
+      textOnly.map(text =>
+        `<div class="total-row passive-row">
+          <span>${escapeHtml(text)}</span>
+          <strong>適用</strong>
+        </div>`
+      ).join("");
 
     const conditionLabel = effect => {
       const group = context.conditionMap.get(String(effect["条件グループID"])) || [];
-      return group.map(condition => condition["表示文"]).filter(Boolean).join(" ＆ ") || effect["条件グループID"];
+      return group
+        .map(condition => condition["表示文"])
+        .filter(Boolean)
+        .join(" ＆ ") || effect["条件グループID"];
     };
 
     const activeHtml = activeConditional.length
-      ? `<div class="condition-summary"><h3>発動中の条件付き能力</h3>${activeConditional.map(effect => `<div class="condition-result is-active"><span>${escapeHtml(conditionLabel(effect))}</span><strong>${escapeHtml(effectLabel(effect))}</strong></div>`).join("")}</div>`
+      ? `<div class="condition-summary">
+          <h3>発動中の条件付き能力</h3>
+          ${activeConditional.map(effect => `
+            <div class="condition-result is-active">
+              <span>${escapeHtml(conditionLabel(effect))}</span>
+              <strong>${escapeHtml(effectDisplayText(effect))}</strong>
+            </div>
+          `).join("")}
+        </div>`
       : "";
 
     const inactiveHtml = inactiveConditional.length
-      ? `<div class="condition-summary"><h3>未発動の条件付き能力</h3>${inactiveConditional.map(effect => `<div class="condition-result is-inactive"><span>${escapeHtml(conditionLabel(effect))}</span><strong>${escapeHtml(effectLabel(effect))}</strong></div>`).join("")}</div>`
+      ? `<div class="condition-summary">
+          <h3>未発動の条件付き能力</h3>
+          ${inactiveConditional.map(effect => `
+            <div class="condition-result is-inactive">
+              <span>${escapeHtml(conditionLabel(effect))}</span>
+              <strong>${escapeHtml(effectDisplayText(effect))}</strong>
+            </div>
+          `).join("")}
+        </div>`
       : "";
+
+    if (
+      !rows.length &&
+      !textOnly.length &&
+      !activeConditional.length &&
+      !inactiveConditional.length
+    ) {
+      totalEffects.innerHTML =
+        `<div class="empty-total">装備を選ぶと、ここに能力の合計が表示されます。</div>`;
+      return;
+    }
 
     totalEffects.innerHTML = totalsHtml + activeHtml + inactiveHtml;
   }
-
   function openPicker(slotToken) {
     state.pickerSlot = slotToken;
     state.pickerQuery = "";
