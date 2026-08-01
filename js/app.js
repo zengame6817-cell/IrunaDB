@@ -25,6 +25,8 @@
   const state = {
     items: [], effects: [], conditions: [], stats: [], attributes: [], jobs: [], relicPatterns: [],
     activeCategory: "すべて", searchQuery: "", activeView: "build",
+    databaseFilters: { weaponType: "", attribute: "", sort: "name", favoriteOnly: false },
+    favorites: new Set(JSON.parse(localStorage.getItem("irunadb.favorites") || "[]")),
     build: createEmptyBuild(),
     pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
     pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
@@ -51,6 +53,15 @@
   const totalEffects = document.getElementById("totalEffects");
   const selectedCount = document.getElementById("selectedCount");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
+
+  const JOB_MASTER_V12 = [
+    "冒険者", "戦士見習い", "ウォリアー", "騎士見習い", "ナイト", "聖騎士見習い", "パラディン",
+    "剣闘士見習い", "グラディエータ", "ビーストナイト", "弓士見習い", "ハンター", "狙撃手見習い",
+    "スナイパー", "暗殺者見習い", "アサシン", "サマナー", "魔法使い見習い", "メイジ",
+    "魔導師見習い", "ウィザード", "賢者見習い", "ハイウィザード", "付術師見習い",
+    "エンチャンター", "ネクロマンサー", "司祭見習い", "クレリック", "司教見習い", "ビショップ",
+    "拳法家見習い", "モンク", "サーヴァント", "サムライ", "ニンジャ", "ミンストレル", "アルケミスト"
+  ];
 
   const V12_QUICK_TAGS = [
     { label: "物理", query: "ATK 物理 クリティカル" },
@@ -215,6 +226,31 @@
       const attributeName = context.attributeMap.get(String(item["属性ID"]))?.["属性名"] || "";
       context.searchIndex.set(item["アイテムID"], [item["名前"], item["分類"], item["表示分類"], item["サブ分類"], item["武器種"], attributeName, item["タグ概要"], item["説明文"], item["特殊性能"], effectTexts].map(normalizeSearchText).join(" "));
     });
+  }
+
+  function mergeJobMaster() {
+    const names = new Set(state.jobs.map(job => String(job["職業名"] || "").trim()).filter(Boolean));
+    JOB_MASTER_V12.forEach((name, index) => {
+      if (!names.has(name)) state.jobs.push({ "職業ID": `V12_${String(index + 1).padStart(2, "0")}`, "職業名": name, "表示順": 9000 + index });
+    });
+  }
+
+  function populateDatabaseFilters() {
+    const weapon = document.getElementById("databaseWeaponType");
+    const attribute = document.getElementById("databaseAttribute");
+    const weaponTypes = [...new Set(state.items.map(item => String(item["武器種"] || item["サブ分類"] || "").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));
+    const attributes = [...new Set(state.items.map(item => { const id=String(item["属性ID"]||""); return context.attributeMap.get(id)?.["属性名"] || id; }).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));
+    weapon.innerHTML = `<option value="">すべて</option>${weaponTypes.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("")}`;
+    attribute.innerHTML = `<option value="">すべて</option>${attributes.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("")}`;
+    weapon.value = state.databaseFilters.weaponType; attribute.value = state.databaseFilters.attribute;
+  }
+
+  function toggleFavorite(itemId) {
+    const id = String(itemId || "");
+    if (!id) return;
+    if (state.favorites.has(id)) state.favorites.delete(id); else state.favorites.add(id);
+    localStorage.setItem("irunadb.favorites", JSON.stringify([...state.favorites]));
+    renderDatabase();
   }
 
   function setView(view) {
@@ -1111,8 +1147,24 @@
 
   function renderDatabase() {
     ui.renderTabs(state.activeCategory, category => { state.activeCategory = category; renderDatabase(); });
-    const filtered = ui.filterItems(state.items, state.activeCategory, state.searchQuery, context.searchIndex);
-    ui.renderItems(filtered, context, item => modal.open(item, context));
+    let filtered = ui.filterItems(state.items, state.activeCategory, state.searchQuery, context.searchIndex);
+    filtered = filtered.filter(item => {
+      const weaponType = String(item["武器種"] || item["サブ分類"] || "").trim();
+      const attributeId = String(item["属性ID"] || "");
+      const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
+      return (!state.databaseFilters.weaponType || weaponType === state.databaseFilters.weaponType)
+        && (!state.databaseFilters.attribute || attributeName === state.databaseFilters.attribute || attributeId === state.databaseFilters.attribute)
+        && (!state.databaseFilters.favoriteOnly || state.favorites.has(String(item["アイテムID"] || "")));
+    });
+    filtered.sort((a,b) => {
+      const sort = state.databaseFilters.sort;
+      if (sort === "atkDesc") return Number(b["基礎ATK"]||0)-Number(a["基礎ATK"]||0);
+      if (sort === "atkAsc") return Number(a["基礎ATK"]||0)-Number(b["基礎ATK"]||0);
+      if (sort === "defDesc") return Number(b["基礎DEF"]||0)-Number(a["基礎DEF"]||0);
+      if (sort === "defAsc") return Number(a["基礎DEF"]||0)-Number(b["基礎DEF"]||0);
+      return String(a["名前"]||"").localeCompare(String(b["名前"]||""), "ja");
+    });
+    ui.renderItems(filtered, context, item => modal.open(item, context), state.favorites, toggleFavorite);
   }
 
   async function loadData() {
@@ -1120,13 +1172,17 @@
     try {
       const data = await api.getInitialData();
       for (const [key, value] of Object.entries(data)) if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
-      Object.assign(state, data); buildIndexes(); restoreBuildFromUrl(); ui.setConnectionStatus("online", "接続済み"); renderDatabase(); renderStatus(); renderBuild();
+      Object.assign(state, data); mergeJobMaster(); buildIndexes(); populateDatabaseFilters(); restoreBuildFromUrl(); ui.setConnectionStatus("online", "接続済み"); renderDatabase(); renderStatus(); renderBuild();
     } catch (error) { console.error(error); ui.setConnectionStatus("error", "接続エラー"); ui.renderError(`${error.message}。GASのデプロイ最新版と公開設定を確認してください。`); equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`; }
   }
 
   document.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => setView(tab.dataset.view)));
   ui.elements.searchInput.addEventListener("input", event => { state.searchQuery = event.target.value; renderDatabase(); });
   document.getElementById("clearButton").addEventListener("click", () => { state.searchQuery = ""; ui.elements.searchInput.value = ""; renderDatabase(); ui.elements.searchInput.focus(); });
+  document.getElementById("databaseWeaponType").addEventListener("change", event => { state.databaseFilters.weaponType = event.target.value; renderDatabase(); });
+  document.getElementById("databaseAttribute").addEventListener("change", event => { state.databaseFilters.attribute = event.target.value; renderDatabase(); });
+  document.getElementById("databaseSort").addEventListener("change", event => { state.databaseFilters.sort = event.target.value; renderDatabase(); });
+  document.getElementById("favoriteOnly").addEventListener("change", event => { state.databaseFilters.favoriteOnly = event.target.checked; renderDatabase(); });
   document.getElementById("reloadButton").addEventListener("click", loadData);
   addRelicButton.addEventListener("click", () => openPicker("relic_new"));
   rotateRelicButton.addEventListener("click", rotateSelectedRelic);

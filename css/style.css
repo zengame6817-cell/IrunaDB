@@ -2257,3 +2257,14 @@ main {
   }
 }
 \n\n/* =========================================================\n   v1.1.0 — character settings integrated into build screen\n   ========================================================= */\n.main-tabs {\n  grid-template-columns: repeat(3, 1fr) !important;\n}\n.character-settings {\n  display: grid;\n  grid-template-columns: minmax(180px, 1.5fr) repeat(3, minmax(86px, .65fr));\n  gap: 6px;\n  padding: 8px;\n}\n.character-settings .status-field {\n  display: grid;\n  grid-template-columns: 42px minmax(0, 1fr);\n  align-items: center;\n  min-height: 34px;\n  border: 1px solid #51452f;\n  background: #0d1117;\n}\n.character-settings .status-field span {\n  padding-left: 7px;\n  color: #dcbf74;\n  font-size: 9px;\n  font-weight: 800;\n}\n.character-settings .status-field input,\n.character-settings .status-field select {\n  width: 100%;\n  min-width: 0;\n  height: 32px;\n  padding: 0 7px;\n  border: 0;\n  border-left: 1px solid #51452f;\n  color: #73e3e5;\n  background: #151a21;\n  font-size: 11px;\n  font-weight: 700;\n}\n.character-job {\n  grid-column: span 2;\n}\n.character-help {\n  margin: 0 !important;\n  padding: 0 8px 8px !important;\n  color: #948b7c !important;\n  font-size: 9px !important;\n}\n.compact-button {\n  min-height: 26px !important;\n  padding: 4px 8px !important;\n}\n.condition-result.is-inactive {\n  opacity: .58;\n  border-style: dashed !important;\n}\n.condition-result.is-inactive strong {\n  color: #aaa !important;\n}\n@media (max-width: 760px) {\n  .character-settings {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n  .character-job {\n    grid-column: 1 / -1;\n  }\n}\n@media (max-width: 390px) {\n  .character-settings {\n    grid-template-columns: 1fr;\n  }\n  .character-job {\n    grid-column: auto;\n  }\n}\n
+/* v1.2.0 */
+.database-filter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.database-filter-grid label{display:grid;gap:5px;font-size:12px;color:var(--muted,#aaa)}
+.database-filter-grid select{width:100%;min-width:0;padding:10px;border-radius:10px}
+.favorite-only-toggle{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px}
+.item-card-header{gap:8px}.item-card-title-area{display:flex;align-items:center;gap:8px;min-width:0}
+.favorite-button{flex:0 0 auto;border:0;background:transparent;color:#e6c86e;font-size:24px;line-height:1;cursor:pointer;padding:2px 4px}
+.favorite-button:hover{transform:scale(1.08)}
+.changelog-card{margin-top:20px;padding:16px;border:1px solid rgba(210,174,91,.35);border-radius:12px;background:rgba(255,255,255,.025)}
+.changelog-card h3{margin-top:0}.changelog-card ul{margin-bottom:0;padding-left:1.4em;line-height:1.8}
+@media(max-width:680px){.database-filter-grid{grid-template-columns:1fr 1fr}.database-filter-grid label:last-child{grid-column:1/-1}}
