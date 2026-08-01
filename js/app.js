@@ -22,11 +22,22 @@
     alCrystas: Array(5).fill(null),
     relicPlacements: []
   });
+  function loadStoredFavorites() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("irunadb.favorites") || "[]");
+      return new Set(Array.isArray(saved) ? saved.map(String) : []);
+    } catch (error) {
+      console.warn("お気に入り保存データを初期化しました", error);
+      localStorage.removeItem("irunadb.favorites");
+      return new Set();
+    }
+  }
+
   const state = {
     items: [], effects: [], conditions: [], stats: [], attributes: [], jobs: [], relicPatterns: [],
     activeCategory: "すべて", searchQuery: "", activeView: "build",
     databaseFilters: { weaponType: "", attribute: "", sort: "name", favoriteOnly: false },
-    favorites: new Set(JSON.parse(localStorage.getItem("irunadb.favorites") || "[]")),
+    favorites: loadStoredFavorites(),
     build: createEmptyBuild(),
     pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
     pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
@@ -224,7 +235,7 @@
     state.items.forEach(item => {
       const effectTexts = (context.effectsByItem.get(String(item["アイテムID"])) || []).map(effect => [context.statMap.get(String(effect["能力ID"]))?.["表示名"], effect["表示文"]].join(" ")).join(" ");
       const attributeName = context.attributeMap.get(String(item["属性ID"]))?.["属性名"] || "";
-      context.searchIndex.set(item["アイテムID"], [item["名前"], item["分類"], item["表示分類"], item["サブ分類"], item["武器種"], attributeName, item["タグ概要"], item["説明文"], item["特殊性能"], effectTexts].map(normalizeSearchText).join(" "));
+      context.searchIndex.set(String(item["アイテムID"]), [item["名前"], item["分類"], item["表示分類"], item["サブ分類"], item["武器種"], attributeName, item["タグ概要"], item["説明文"], item["特殊性能"], effectTexts].map(normalizeSearchText).join(" "));
     });
   }
 
@@ -1168,12 +1179,38 @@
   }
 
   async function loadData() {
-    ui.renderLoading(); ui.setConnectionStatus("loading", "接続中");
+    ui.renderLoading();
+    ui.setConnectionStatus("loading", "接続中");
+    let data;
     try {
-      const data = await api.getInitialData();
-      for (const [key, value] of Object.entries(data)) if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
-      Object.assign(state, data); mergeJobMaster(); buildIndexes(); populateDatabaseFilters(); restoreBuildFromUrl(); ui.setConnectionStatus("online", "接続済み"); renderDatabase(); renderStatus(); renderBuild();
-    } catch (error) { console.error(error); ui.setConnectionStatus("error", "接続エラー"); ui.renderError(`${error.message}。GASのデプロイ最新版と公開設定を確認してください。`); equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`; }
+      data = await api.getInitialData();
+    } catch (error) {
+      console.error("GAS API connection failed", error);
+      ui.setConnectionStatus("error", "接続エラー");
+      ui.renderError(`${error.message}。GASの公開設定または通信状態を確認して、再読込してください。`);
+      equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`;
+      return;
+    }
+
+    try {
+      for (const [key, value] of Object.entries(data)) {
+        if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
+      }
+      Object.assign(state, data);
+      mergeJobMaster();
+      buildIndexes();
+      populateDatabaseFilters();
+      restoreBuildFromUrl();
+      renderDatabase();
+      renderStatus();
+      renderBuild();
+      ui.setConnectionStatus("online", "接続済み");
+    } catch (error) {
+      console.error("IrunaDB initialization failed", error);
+      ui.setConnectionStatus("error", "初期化エラー");
+      ui.renderError(`データ取得後の初期化に失敗しました: ${error.message}`);
+      equipmentSlots.innerHTML = `<div class="state-card is-error">画面の初期化に失敗しました。</div>`;
+    }
   }
 
   document.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => setView(tab.dataset.view)));

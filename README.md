@@ -4,9 +4,9 @@ Iruna Online Database & Build Simulator
 
 ## Version
 
-`v1.2.0`
+`v1.2.1`
 
-## v1.2.0
+## v1.2.1
 
 - 名前・タグ・能力名・特殊性能・表示文・条件付き能力を対象にリアルタイム検索
 - 武器種・属性フィルターを追加
@@ -15,7 +15,7 @@ Iruna Online Database & Build Simulator
 - 装備データのお気に入り登録と「お気に入りのみ表示」
 - 検索結果件数表示
 - 全職業をJOB選択肢へ補完
-- Version 1.2.0と更新履歴を表示
+- Version 1.2.1と更新履歴を表示
 
 ## 公開方法
 
