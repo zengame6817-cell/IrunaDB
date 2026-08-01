@@ -111,8 +111,8 @@
     document.querySelectorAll("body *").forEach(element => {
       if (element.children.length) return;
       const value = String(element.textContent || "");
-      if (/v1\.[01](?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[01](?:\.\d+)?/ig, "v1.2.0");
+      if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.0");
       }
     });
   }
@@ -1178,49 +1178,60 @@
     ui.renderItems(filtered, context, item => modal.open(item, context), state.favorites, toggleFavorite);
   }
 
-  async function loadData() {
-    ui.renderLoading();
-    ui.setConnectionStatus("loading", "接続中");
-    let data;
-    try {
-      data = await api.getInitialData();
-    } catch (error) {
-      console.error("GAS API connection failed", error);
-      ui.setConnectionStatus("error", "接続エラー");
-      ui.renderError(`${error.message}。GASの公開設定または通信状態を確認して、再読込してください。`);
-      equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`;
-      return;
+  function applyData(data, connectionText) {
+    for (const [key, value] of Object.entries(data)) {
+      if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
+    }
+    Object.assign(state, data);
+    mergeJobMaster();
+    buildIndexes();
+    populateDatabaseFilters();
+    restoreBuildFromUrl();
+    renderDatabase();
+    renderStatus();
+    renderBuild();
+    ui.setConnectionStatus("online", connectionText);
+  }
+
+  async function loadData(options = {}) {
+    const force = options === true || options?.force === true;
+    const cached = !force ? api.readCache() : null;
+    let cacheShown = false;
+
+    if (cached) {
+      try {
+        applyData(cached.data, "保存データ表示中");
+        cacheShown = true;
+      } catch (error) {
+        console.warn("保存データの初期化に失敗したため破棄します", error);
+        api.clearCache();
+      }
+    }
+
+    if (!cacheShown) {
+      ui.renderLoading();
+      ui.setConnectionStatus("loading", "接続中");
+    } else {
+      ui.setConnectionStatus("loading", "最新データ確認中");
     }
 
     try {
-      for (const [key, value] of Object.entries(data)) {
-        if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
-      }
-      Object.assign(state, data);
-      mergeJobMaster();
-      buildIndexes();
-      populateDatabaseFilters();
-      restoreBuildFromUrl();
-      renderDatabase();
-      renderStatus();
-      renderBuild();
-      ui.setConnectionStatus("online", "接続済み");
+      const result = await api.getInitialData();
+      applyData(result.data, result.meta.source === "all" ? "最新・一括取得" : "最新・互換取得");
+      api.writeCache(result.data, result.meta);
     } catch (error) {
-      console.error("IrunaDB initialization failed", error);
-      ui.setConnectionStatus("error", "初期化エラー");
-      ui.renderError(`データ取得後の初期化に失敗しました: ${error.message}`);
-      equipmentSlots.innerHTML = `<div class="state-card is-error">画面の初期化に失敗しました。</div>`;
+      console.error("GAS API connection failed", error);
+      if (cacheShown) {
+        ui.setConnectionStatus("online", "オフライン・保存データ");
+        return;
+      }
+      ui.setConnectionStatus("error", "接続エラー");
+      ui.renderError(`${error.message}。保存データもないため表示できません。GASの公開設定または通信状態を確認してください。`);
+      equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`;
     }
   }
 
-  document.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => setView(tab.dataset.view)));
-  ui.elements.searchInput.addEventListener("input", event => { state.searchQuery = event.target.value; renderDatabase(); });
-  document.getElementById("clearButton").addEventListener("click", () => { state.searchQuery = ""; ui.elements.searchInput.value = ""; renderDatabase(); ui.elements.searchInput.focus(); });
-  document.getElementById("databaseWeaponType").addEventListener("change", event => { state.databaseFilters.weaponType = event.target.value; renderDatabase(); });
-  document.getElementById("databaseAttribute").addEventListener("change", event => { state.databaseFilters.attribute = event.target.value; renderDatabase(); });
-  document.getElementById("databaseSort").addEventListener("change", event => { state.databaseFilters.sort = event.target.value; renderDatabase(); });
-  document.getElementById("favoriteOnly").addEventListener("change", event => { state.databaseFilters.favoriteOnly = event.target.checked; renderDatabase(); });
-  document.getElementById("reloadButton").addEventListener("click", loadData);
+  document.getElementById("reloadButton").addEventListener("click", () => loadData({ force: true }));
   addRelicButton.addEventListener("click", () => openPicker("relic_new"));
   rotateRelicButton.addEventListener("click", rotateSelectedRelic);
   removeRelicButton.addEventListener("click", removeSelectedRelic);
@@ -1270,5 +1281,9 @@
   });
 
   setupV12Ui();
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("./service-worker.js").catch(error => console.warn("Service Worker registration failed", error));
+  }
+
   loadData();
 })();
