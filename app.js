@@ -727,7 +727,7 @@
           ${activeConditional.map(effect => `
             <div class="condition-result is-active">
               <span>${escapeHtml(conditionLabel(effect))}</span>
-              <strong>${escapeHtml(effectLabel(effect))}</strong>
+              <strong>${escapeHtml(effectDisplayText(effect))}</strong>
             </div>
           `).join("")}
         </div>`
@@ -739,7 +739,7 @@
           ${inactiveConditional.map(effect => `
             <div class="condition-result is-inactive">
               <span>${escapeHtml(conditionLabel(effect))}</span>
-              <strong>${escapeHtml(effectLabel(effect))}</strong>
+              <strong>${escapeHtml(effectDisplayText(effect))}</strong>
             </div>
           `).join("")}
         </div>`
