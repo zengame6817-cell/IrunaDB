@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.0");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.2");
       }
     });
   }
@@ -423,6 +423,64 @@
   }
 
 
+
+  function formatFormulaText(value) {
+    const source = String(value ?? "").trim();
+    if (!source) return "";
+
+    let text = source
+      .replace(/If \[([A-Za-z]+)\s*>\s*(\d+)\] then\s*/gi, "$1が$2より大きい場合、")
+      .replace(/If \[([A-Za-z]+)\s*<\s*(\d+)\] then\s*/gi, "$1が$2未満の場合、")
+      .replace(/When equip \[([^\]]+)\] then\s*/gi, "「$1」を装備している場合、")
+      .replace(/If \[Mage\] then\s*/gi, "魔法職の場合、")
+      .replace(/If \[Sniper\] then\s*/gi, "スナイパーの場合、")
+      .replace(/If \[Enchanter\] then\s*/gi, "エンチャンターの場合、")
+      .replace(/\[Mage\]/gi, "魔法職の場合")
+      .replace(/\[Sniper\]/gi, "スナイパーの場合")
+      .replace(/\[Enchanter\]/gi, "エンチャンターの場合")
+      .replace(/\[Unknown\]/gi, "特定条件時");
+
+    const blocks = [...text.matchAll(/\[([^\]]+)\]/g)].map(match => match[1].trim());
+    if (!blocks.length) return text;
+
+    const variables = new Map();
+    const descriptions = [];
+    const normalizeExpression = expression => String(expression)
+      .replace(/\bLv\b/g, "レベル")
+      .replace(/\s*[·*]\s*/g, "×")
+      .replace(/\s*\/\s*/g, "÷")
+      .replace(/\s*\+\s*/g, "＋")
+      .replace(/\s*-\s*/g, "－");
+
+    blocks.forEach(block => {
+      const assignment = block.match(/^([XY])\s*=\s*(.+)$/i);
+      if (assignment) {
+        const variable = assignment[1].toUpperCase();
+        let expression = normalizeExpression(assignment[2]);
+        variables.forEach((saved, key) => {
+          expression = expression.replace(new RegExp(`\\b${key}\\b`, "g"), `（${saved}）`);
+        });
+        variables.set(variable, expression);
+        return;
+      }
+
+      const increase = block.match(/^(.+?)\s+up by\s+(.+)$/i);
+      if (increase) {
+        const target = increase[1].trim() || "能力";
+        let amount = normalizeExpression(increase[2]);
+        variables.forEach((saved, key) => {
+          amount = amount.replace(new RegExp(`\\b${key}\\b`, "g"), `（${saved}）`);
+        });
+        descriptions.push(`${target}が${amount}に応じて増加`);
+        return;
+      }
+
+      descriptions.push(normalizeExpression(block));
+    });
+
+    let replaced = text.replace(/(?:\[[^\]]+\]\s*)+/g, () => descriptions.length ? descriptions.join("、") : "");
+    return replaced.replace(/\s+/g, " ").trim();
+  }
 
   function effectDisplayText(effect) {
     const stat = context.statMap.get(String(effect["能力ID"]));
