@@ -1,11 +1,11 @@
 "use strict";
 (() => {
   const SLOT_DEFS = [
-    { key: "weapon", label: "武器", category: "武器", icon: "⚔" },
-    { key: "body", label: "体", category: "体", icon: "🛡" },
-    { key: "additional", label: "追加", category: "追加", icon: "✦" },
-    { key: "special", label: "特殊", category: "特殊", icon: "◆" },
-    { key: "decoration", label: "装飾", category: "装飾", aliases: ["装飾", "装飾品"], icon: "◇" }
+    { key: "weapon", label: "武器", category: "武器", aliases: ["武器"], icon: "⚔" },
+    { key: "body", label: "体", category: "体", aliases: ["体", "体装備"], icon: "🛡" },
+    { key: "additional", label: "追加", category: "追加", aliases: ["追加", "追加装備"], icon: "✦" },
+    { key: "special", label: "特殊", category: "特殊", aliases: ["特殊", "特殊装備"], icon: "◆" },
+    { key: "decoration", label: "装飾", category: "装飾", aliases: ["装飾", "装飾品", "装飾装備"], icon: "◇" }
   ];
   const EQUIPMENT_KEYS = SLOT_DEFS.map(slot => slot.key);
   const createEmptyBuild = () => ({
@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.3");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.4");
       }
     });
   }
@@ -271,9 +271,11 @@
   }
 
   function itemMatchesSlot(item, slot) {
-    const category = String(item["分類"] || "").trim();
-    if (slot.aliases) return slot.aliases.includes(category);
-    return category === slot.category;
+    const candidates = [item["分類"], item["表示分類"], item["サブ分類"]]
+      .map(value => String(value || "").trim())
+      .filter(Boolean);
+    const aliases = slot.aliases?.length ? slot.aliases : [slot.category];
+    return candidates.some(value => aliases.includes(value));
   }
 
 
@@ -1036,10 +1038,16 @@
     const quickTokens = String(state.pickerFilters.quickTag || "")
       .split(/\s+/).map(normalizeSearchText).filter(Boolean);
 
-    const baseItems = state.items.filter(item => {
-      const category = String(item["分類"] || "").trim();
-      return descriptor.aliases ? descriptor.aliases.includes(category) : category === descriptor.category;
-    });
+    const baseItems = state.items.filter(item => itemMatchesSlot(item, descriptor));
+    const isWeaponCategory = descriptor.category === "武器";
+    const weaponFilterLabel = document.getElementById("v12WeaponType")?.closest("label");
+    const attributeFilterLabel = document.getElementById("v12Attribute")?.closest("label");
+    if (weaponFilterLabel) weaponFilterLabel.hidden = !isWeaponCategory;
+    if (attributeFilterLabel) attributeFilterLabel.hidden = !isWeaponCategory;
+    if (!isWeaponCategory) {
+      state.pickerFilters.weaponType = "";
+      state.pickerFilters.attribute = "";
+    }
     populatePickerFilterOptions(baseItems);
 
     const items = baseItems.filter(item => {
@@ -1048,8 +1056,8 @@
       const weaponType = String(item["武器種"] || item["サブ分類"] || "").trim();
       const attributeId = String(item["属性ID"] || "").trim();
       const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
-      const weaponMatched = !state.pickerFilters.weaponType || weaponType === state.pickerFilters.weaponType;
-      const attributeMatched = !state.pickerFilters.attribute || attributeName === state.pickerFilters.attribute || attributeId === state.pickerFilters.attribute;
+      const weaponMatched = !isWeaponCategory || !state.pickerFilters.weaponType || weaponType === state.pickerFilters.weaponType;
+      const attributeMatched = !isWeaponCategory || !state.pickerFilters.attribute || attributeName === state.pickerFilters.attribute || attributeId === state.pickerFilters.attribute;
       const queryMatched = !query || searchText.includes(query);
       const tagMatched = !quickTokens.length || quickTokens.some(token => searchText.includes(token));
       return weaponMatched && attributeMatched && queryMatched && tagMatched;
@@ -1311,7 +1319,13 @@
   document.getElementById("copyUrlButton").addEventListener("click", async () => { syncUrl(false); const message = document.getElementById("shareMessage"); try { await navigator.clipboard.writeText(location.href); message.textContent = "共有URLをコピーしました。"; } catch { window.prompt("このURLをコピーしてください", location.href); message.textContent = "共有URLを表示しました。"; } });
   document.getElementById("clearUrlButton").addEventListener("click", () => { const url = new URL(location.href); url.searchParams.delete("build"); history.replaceState({}, "", url); document.getElementById("shareMessage").textContent = "URLからビルド情報を削除しました。装備はそのままです。"; });
   pickerSearchInput.addEventListener("input", event => { state.pickerQuery = event.target.value; renderPicker(); });
-  document.getElementById("pickerClearButton").addEventListener("click", () => { state.pickerQuery = ""; pickerSearchInput.value = ""; renderPicker(); pickerSearchInput.focus(); });
+  document.getElementById("pickerClearButton").addEventListener("click", () => {
+    state.pickerQuery = "";
+    state.pickerFilters = { weaponType: "", attribute: "", quickTag: "", sort: "name" };
+    pickerSearchInput.value = "";
+    renderPicker();
+    pickerSearchInput.focus();
+  });
   document.getElementById("pickerCloseButton").addEventListener("click", closePicker);
   pickerModal.querySelectorAll("[data-close-picker]").forEach(element => element.addEventListener("click", closePicker));
   document.addEventListener("keydown", event => { if (event.key === "Escape" && pickerModal.classList.contains("is-open")) closePicker(); });
