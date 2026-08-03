@@ -2543,3 +2543,180 @@ footer { color:var(--muted); }
   .total-effects { grid-template-columns:1fr 1fr; }
   .item-grid { grid-template-columns:1fr; }
 }
+
+/* =========================================================
+   IrunaDB v2.0.1 — Light theme visibility fix
+   Dark theme is intentionally unchanged.
+   ========================================================= */
+:root[data-theme="light"] body {
+  background: #eef3f8 !important;
+}
+
+:root[data-theme="light"] .site-header,
+:root[data-theme="light"] .build-commandbar,
+:root[data-theme="light"] .sim-panel,
+:root[data-theme="light"] .summary-panel,
+:root[data-theme="light"] .share-panel,
+:root[data-theme="light"] .placeholder-panel,
+:root[data-theme="light"] .build-extra-panel,
+:root[data-theme="light"] .status-panel,
+:root[data-theme="light"] .search-panel {
+  color: #172033 !important;
+  border-color: #cfd9e6 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .build-commandbar {
+  padding: 16px 18px !important;
+  border: 1px solid #cfd9e6 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 3px 12px rgb(31 51 77 / 7%) !important;
+}
+
+:root[data-theme="light"] .build-commandbar h2,
+:root[data-theme="light"] .sim-panel-header h3,
+:root[data-theme="light"] .summary-panel h2,
+:root[data-theme="light"] .share-panel h2,
+:root[data-theme="light"] .equipment-section-title,
+:root[data-theme="light"] .accordion-title,
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3 {
+  color: #172033 !important;
+}
+
+:root[data-theme="light"] .sim-panel-header,
+:root[data-theme="light"] .equipment-section-header,
+:root[data-theme="light"] .accordion-header,
+:root[data-theme="light"] .summary-header {
+  color: #172033 !important;
+  border-color: #d7e0eb !important;
+  background: #f7f9fc !important;
+}
+
+:root[data-theme="light"] .sim-panel-header small,
+:root[data-theme="light"] .summary-note,
+:root[data-theme="light"] .share-panel p,
+:root[data-theme="light"] .mini-note {
+  color: #607086 !important;
+}
+
+:root[data-theme="light"] .equipment-slot,
+:root[data-theme="light"] .equipment-option-group,
+:root[data-theme="light"] .mini-slot,
+:root[data-theme="light"] .condition-result,
+:root[data-theme="light"] .relic-command-area,
+:root[data-theme="light"] .relic-list-only,
+:root[data-theme="light"] .total-row,
+:root[data-theme="light"] .effect-item,
+:root[data-theme="light"] .condition-card,
+:root[data-theme="light"] .picker-item {
+  color: #172033 !important;
+  border-color: #d5dee9 !important;
+  background: #f8fafc !important;
+}
+
+:root[data-theme="light"] .equipment-slot:hover,
+:root[data-theme="light"] .mini-slot:hover,
+:root[data-theme="light"] .picker-item:hover {
+  border-color: #6b9ad7 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .slot-main,
+:root[data-theme="light"] .slot-content,
+:root[data-theme="light"] .slot-content strong,
+:root[data-theme="light"] .mini-slot strong,
+:root[data-theme="light"] .picker-item strong,
+:root[data-theme="light"] .detail-list dd,
+:root[data-theme="light"] .condition-card li {
+  color: #172033 !important;
+}
+
+:root[data-theme="light"] .slot-content small,
+:root[data-theme="light"] .picker-item small,
+:root[data-theme="light"] .detail-list dt,
+:root[data-theme="light"] .effect-muted,
+:root[data-theme="light"] .effect-empty,
+:root[data-theme="light"] .empty-total {
+  color: #68788e !important;
+}
+
+:root[data-theme="light"] .slot-label,
+:root[data-theme="light"] .mini-slot span,
+:root[data-theme="light"] .panel-number,
+:root[data-theme="light"] .section-kicker,
+:root[data-theme="light"] .eyebrow {
+  color: #245fa6 !important;
+}
+
+:root[data-theme="light"] .slot-icon {
+  color: #245fa6 !important;
+  border-color: #cbd8e7 !important;
+  background: #edf4fc !important;
+}
+
+:root[data-theme="light"] .button-secondary,
+:root[data-theme="light"] .theme-toggle,
+:root[data-theme="light"] .connection-status,
+:root[data-theme="light"] .modal-close {
+  color: #172033 !important;
+  border-color: #cbd6e3 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .button-primary {
+  color: #ffffff !important;
+  background: #2463b6 !important;
+}
+
+:root[data-theme="light"] .status-field input,
+:root[data-theme="light"] .status-field select,
+:root[data-theme="light"] .database-filter-grid select,
+:root[data-theme="light"] .picker-filter-grid select,
+:root[data-theme="light"] .search-row input,
+:root[data-theme="light"] .picker-search-row input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] input {
+  color: #172033 !important;
+  border-color: #cbd6e3 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .modal-sheet {
+  color: #172033 !important;
+  border-color: #cbd6e3 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .count-badge,
+:root[data-theme="light"] .badge,
+:root[data-theme="light"] .condition-label {
+  color: #245fa6 !important;
+  background: #e8f1fc !important;
+}
+
+:root[data-theme="light"] .total-row strong,
+:root[data-theme="light"] .condition-label {
+  color: #1f5fa8 !important;
+}
+
+:root[data-theme="light"] .item-card,
+:root[data-theme="light"] .state-card,
+:root[data-theme="light"] .db-info-card,
+:root[data-theme="light"] .changelog-card {
+  color: #172033 !important;
+  border-color: #d5dee9 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .item-description,
+:root[data-theme="light"] .item-meta span,
+:root[data-theme="light"] footer {
+  color: #68788e !important;
+}
+
+:root[data-theme="light"] .item-meta span {
+  border-color: #d8e0ea !important;
+  background: #f6f8fb !important;
+}
