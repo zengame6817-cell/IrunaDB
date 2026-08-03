@@ -1,5 +1,5 @@
 "use strict";
-const CACHE_NAME = "irunadb-app-v1.3.4";
+const CACHE_NAME = "irunadb-app-v1.3.5";
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css", "./js/config.js", "./js/utils.js",
   "./js/api.js", "./js/ui.js", "./js/modal.js", "./js/app.js"
@@ -21,8 +21,10 @@ self.addEventListener("fetch", event => {
   if (url.origin !== self.location.origin) return;
   event.respondWith(
     fetch(event.request).then(response => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+      if (!url.pathname.endsWith("/data/db.json")) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+      }
       return response;
     }).catch(() => caches.match(event.request).then(hit => hit || caches.match("./index.html")))
   );

@@ -1291,16 +1291,21 @@
 
     try {
       const result = await api.getInitialData();
-      applyData(result.data, result.meta.source === "all" ? "最新・一括取得" : "最新・互換取得");
+      const sourceLabels = {
+        static: "最新・静的DB",
+        "gas-all": "最新・GAS一括取得",
+        "gas-sequential": "最新・GAS互換取得"
+      };
+      applyData(result.data, sourceLabels[result.meta.source] || "最新データ");
       api.writeCache(result.data, result.meta);
     } catch (error) {
-      console.error("GAS API connection failed", error);
+      console.error("Database connection failed", error);
       if (cacheShown) {
         ui.setConnectionStatus("online", "オフライン・保存データ");
         return;
       }
       ui.setConnectionStatus("error", "接続エラー");
-      ui.renderError(`${error.message}。保存データもないため表示できません。GASの公開設定または通信状態を確認してください。`);
+      ui.renderError(`${error.message}。保存データもないため表示できません。静的DB、GASの公開設定、または通信状態を確認してください。`);
       equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`;
     }
   }

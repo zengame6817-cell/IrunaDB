@@ -21,3 +21,8 @@ Iruna Online Database & Build Simulator
 3. GASを「新しいデプロイ」または既存デプロイの新バージョンとして公開します。
 4. WebアプリURLが変わった場合のみ `js/config.js` の `API_URL` を変更します。
 5. GitHub PagesをCtrl+F5で強制再読込します。
+
+
+## v1.3.5 静的DB配信
+
+`data/db.json`をGitHub Pagesから直接読み込みます。未生成・取得失敗時は従来GASへ自動フォールバックします。設定は `gas/STATIC_DB_SETUP_GUIDE.md` を参照してください。

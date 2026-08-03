@@ -1,10 +1,10 @@
 "use strict";
 
 window.IrunaApi = (() => {
-  const { API_URL, API_TIMEOUT_MS } = window.IRUNA_CONFIG;
+  const { API_URL, STATIC_DB_URL, API_TIMEOUT_MS, STATIC_DB_TIMEOUT_MS } = window.IRUNA_CONFIG;
   const { createAbortSignal } = window.IrunaUtils;
-  const CACHE_KEY = "irunadb.data-cache.v1";
-  const CACHE_META_KEY = "irunadb.data-cache-meta.v1";
+  const CACHE_KEY = "irunadb.data-cache.v2";
+  const CACHE_META_KEY = "irunadb.data-cache-meta.v2";
   const REQUIRED_KEYS = ["items", "effects", "conditions", "stats", "attributes", "jobs", "relicPatterns"];
 
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -33,13 +33,13 @@ window.IrunaApi = (() => {
       localStorage.setItem(CACHE_KEY, JSON.stringify(data));
       localStorage.setItem(CACHE_META_KEY, JSON.stringify({
         savedAt: new Date().toISOString(),
-        updatedAt: meta.updatedAt || "",
+        updatedAt: meta.updatedAt || meta.generatedAt || "",
         dataVersion: meta.dataVersion || meta.version || "",
+        source: meta.source || "",
         appVersion: window.IRUNA_CONFIG.APP_VERSION
       }));
       return true;
     } catch (error) {
-      // 容量超過時は古いキャッシュを消し、アプリ本体の動作は継続します。
       console.warn("データキャッシュを保存できませんでした", error);
       localStorage.removeItem(CACHE_KEY);
       localStorage.removeItem(CACHE_META_KEY);
@@ -52,6 +52,36 @@ window.IrunaApi = (() => {
     localStorage.removeItem(CACHE_META_KEY);
   }
 
+  async function requestStaticDatabase() {
+    const timeout = createAbortSignal(STATIC_DB_TIMEOUT_MS);
+    try {
+      const separator = STATIC_DB_URL.includes("?") ? "&" : "?";
+      const response = await fetch(`${STATIC_DB_URL}${separator}_=${Date.now()}`, {
+        method: "GET",
+        cache: "no-store",
+        signal: timeout.signal
+      });
+      if (!response.ok) throw new Error(`静的DB HTTPエラー: ${response.status}`);
+      const payload = await response.json();
+      if (payload && payload.success === false) throw new Error(payload.error || "静的DBの生成に失敗しています");
+      const data = payload && payload.data ? payload.data : payload;
+      if (!validateData(data)) throw new Error("静的DBのデータ形式が正しくありません");
+      return {
+        data,
+        meta: {
+          updatedAt: payload.updatedAt || payload.generatedAt || "",
+          dataVersion: payload.dataVersion || payload.version || "",
+          source: "static"
+        }
+      };
+    } catch (error) {
+      if (error.name === "AbortError") throw new Error("静的DBの取得がタイムアウトしました");
+      throw error;
+    } finally {
+      timeout.clear();
+    }
+  }
+
   async function request(action, maxAttempts = 3) {
     let lastError;
     for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
@@ -61,10 +91,7 @@ window.IrunaApi = (() => {
       url.searchParams.set("_", Date.now());
       try {
         const response = await fetch(url, {
-          method: "GET",
-          cache: "no-store",
-          redirect: "follow",
-          signal: timeout.signal
+          method: "GET", cache: "no-store", redirect: "follow", signal: timeout.signal
         });
         if (!response.ok) throw new Error(`HTTPエラー: ${response.status}`);
         const payload = await response.json();
@@ -93,7 +120,12 @@ window.IrunaApi = (() => {
   }
 
   async function getInitialData() {
-    // v1.3 GASでは全データを1回で取得。未更新の旧GASなら個別取得へ自動フォールバックします。
+    try {
+      return await requestStaticDatabase();
+    } catch (staticError) {
+      console.warn("静的DBを利用できないためGASへ切り替えます", staticError);
+    }
+
     try {
       const payload = await request("all", 2);
       if (!validateData(payload.data)) throw new Error("all APIのデータ形式が旧形式です");
@@ -102,13 +134,13 @@ window.IrunaApi = (() => {
         meta: {
           updatedAt: payload.updatedAt || "",
           dataVersion: payload.dataVersion || payload.version || "",
-          source: "all"
+          source: "gas-all"
         }
       };
     } catch (allError) {
       console.warn("一括APIを利用できないため個別取得へ切り替えます", allError);
       const data = await getSequentialData();
-      return { data, meta: { source: "sequential" } };
+      return { data, meta: { source: "gas-sequential" } };
     }
   }
 
