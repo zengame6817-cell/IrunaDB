@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.1");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.2");
       }
     });
   }
@@ -124,7 +124,7 @@
     panel.className = "v12-picker-filter";
     panel.innerHTML = `
       <div class="v12-filter-grid">
-        <label>武器種<select id="v12WeaponType"><option value="">すべて</option></select></label>
+        <label><span id="v12TypeFilterLabel">武器種</span><select id="v12WeaponType"><option value="">すべて</option></select></label>
         <label>属性<select id="v12Attribute"><option value="">すべて</option></select></label>
         <label>並び順<select id="v12PickerSort"><option value="name">名前順</option><option value="atkDesc">ATK 高い順</option><option value="atkAsc">ATK 低い順</option></select></label>
       </div>
@@ -154,12 +154,19 @@
     }));
   }
 
-  function populatePickerFilterOptions(baseItems) {
+  function getPickerTypeValue(item, isWeaponCategory) {
+    if (isWeaponCategory) {
+      return String(item["武器種"] || item["サブ分類"] || item["表示分類"] || item["分類"] || "").trim();
+    }
+    return String(item["サブ分類"] || item["表示分類"] || item["分類"] || "").trim();
+  }
+
+  function populatePickerFilterOptions(baseItems, isWeaponCategory) {
     const weaponSelect = document.getElementById("v12WeaponType");
     const attributeSelect = document.getElementById("v12Attribute");
     if (!weaponSelect || !attributeSelect) return;
 
-    const weaponTypes = [...new Set(baseItems.map(item => String(item["武器種"] || item["サブ分類"] || "").trim()).filter(Boolean))]
+    const weaponTypes = [...new Set(baseItems.map(item => getPickerTypeValue(item, isWeaponCategory)).filter(Boolean))]
       .sort((a, b) => a.localeCompare(b, "ja"));
     const attributes = [...new Set(baseItems.map(item => {
       const id = String(item["属性ID"] || "").trim();
@@ -1150,23 +1157,26 @@
 
     const baseItems = state.items.filter(item => itemMatchesSlot(item, descriptor));
     const isWeaponCategory = descriptor.category === "武器";
-    const weaponFilterLabel = document.getElementById("v12WeaponType")?.closest("label");
+    const typeFilterLabel = document.getElementById("v12TypeFilterLabel");
     const attributeFilterLabel = document.getElementById("v12Attribute")?.closest("label");
-    if (weaponFilterLabel) weaponFilterLabel.hidden = !isWeaponCategory;
-    if (attributeFilterLabel) attributeFilterLabel.hidden = !isWeaponCategory;
-    if (!isWeaponCategory) {
-      state.pickerFilters.weaponType = "";
-      state.pickerFilters.attribute = "";
+    if (typeFilterLabel) {
+      typeFilterLabel.textContent = isWeaponCategory
+        ? "武器種"
+        : descriptor.category === "☆能力"
+          ? "能力種類"
+          : "分類";
     }
-    populatePickerFilterOptions(baseItems);
+    if (attributeFilterLabel) attributeFilterLabel.style.display = isWeaponCategory ? "grid" : "none";
+    if (!isWeaponCategory) state.pickerFilters.attribute = "";
+    populatePickerFilterOptions(baseItems, isWeaponCategory);
 
     const items = baseItems.filter(item => {
       const itemId = String(item["アイテムID"] || "");
       const searchText = context.searchIndex.get(itemId) || "";
-      const weaponType = String(item["武器種"] || item["サブ分類"] || "").trim();
+      const pickerType = getPickerTypeValue(item, isWeaponCategory);
       const attributeId = String(item["属性ID"] || "").trim();
       const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
-      const weaponMatched = !isWeaponCategory || !state.pickerFilters.weaponType || weaponType === state.pickerFilters.weaponType;
+      const weaponMatched = !state.pickerFilters.weaponType || pickerType === state.pickerFilters.weaponType;
       const attributeMatched = !isWeaponCategory || !state.pickerFilters.attribute || attributeName === state.pickerFilters.attribute || attributeId === state.pickerFilters.attribute;
       const queryMatched = !query || searchText.includes(query);
       const tagMatched = !quickTokens.length || quickTokens.some(token => searchText.includes(token));

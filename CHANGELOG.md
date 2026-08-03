@@ -1,6 +1,11 @@
+## v2.2.2
+- 装備選択画面の分類フィルターが再描画で解除される不具合を修正
+- 武器は「武器種」、☆能力は「能力種類」、その他は「分類」として動的表示
+- 属性フィルターは武器選択時のみ表示
+
 # CHANGELOG
 
-## 2.2.1
+## 2.2.2
 - Compact equipment cards
 - Per-card and per-panel collapse controls
 - Decoration changed to star-ability-only slot
