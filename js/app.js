@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v1.3.4");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.1.0");
       }
     });
   }
@@ -209,11 +209,6 @@
     injectV12Styles();
     createPickerFilterUi();
     updateVersionLabel();
-    makeCollapsible(document.getElementById("jobSelect")?.closest(".status-panel, .profile, .panel, .card, section") || document.getElementById("jobSelect")?.parentElement, "status", "キャラクター設定", false);
-    makeCollapsible([equipmentSlots, equipmentOptions], "equipment", "装備", true);
-    makeCollapsible(alSlots, "alcrysta", "アルクリスタ", false);
-    makeCollapsible([relicPlacementList, relicMessage], "relic", "レリック", false);
-    makeCollapsible(totalEffects, "totals", "合計能力", true);
   }
 
   function buildIndexes() {
@@ -266,8 +261,21 @@
 
   function setView(view) {
     state.activeView = view;
-    document.querySelectorAll(".main-tab").forEach(tab => tab.classList.toggle("is-active", tab.dataset.view === view));
+    document.querySelectorAll(".main-tab").forEach(tab => {
+      const active = tab.dataset.view === view;
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", String(active));
+    });
     document.querySelectorAll(".app-view").forEach(section => section.classList.toggle("is-active", section.id === `view-${view}`));
+
+    const relicPanel = document.querySelector(".relic-editor-panel");
+    const relicMount = document.getElementById("relicTabMount");
+    const relicAnchor = document.getElementById("relicHomeAnchor");
+    if (relicPanel && relicMount && relicAnchor) {
+      if (view === "relic") relicMount.appendChild(relicPanel);
+      else if (relicPanel.parentElement === relicMount) relicAnchor.parentElement.insertBefore(relicPanel, relicAnchor.nextSibling);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function itemMatchesSlot(item, slot) {
@@ -1285,6 +1293,72 @@
     updateDatabaseInfo(meta);
   }
 
+  const SAVED_BUILD_KEY = "irunadb.savedBuilds.v21";
+
+  function readSavedBuilds() {
+    try {
+      const value = JSON.parse(localStorage.getItem(SAVED_BUILD_KEY) || "[]");
+      return Array.from({ length: 3 }, (_, index) => value[index] || null);
+    } catch (error) {
+      console.warn("保存ビルドを初期化しました", error);
+      return [null, null, null];
+    }
+  }
+
+  function renderSavedBuildSlots() {
+    const container = document.getElementById("savedBuildSlots");
+    if (!container) return;
+    const saved = readSavedBuilds();
+    container.innerHTML = saved.map((entry, index) => {
+      const title = entry?.name || `保存枠 ${index + 1}`;
+      const meta = entry?.savedAt ? new Date(entry.savedAt).toLocaleString("ja-JP") : "未保存";
+      return `<article class="saved-build-slot ${entry ? "has-data" : ""}">
+        <div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(meta)}</small></div>
+        <div class="saved-build-actions">
+          <button type="button" class="button button-primary compact-button" data-save-build="${index}">保存</button>
+          <button type="button" class="button button-secondary compact-button" data-load-build="${index}" ${entry ? "" : "disabled"}>読込</button>
+          <button type="button" class="icon-button danger-icon" data-delete-build="${index}" ${entry ? "" : "disabled"} aria-label="削除">×</button>
+        </div>
+      </article>`;
+    }).join("");
+
+    container.querySelectorAll("[data-save-build]").forEach(button => button.addEventListener("click", () => {
+      const index = Number(button.dataset.saveBuild);
+      const builds = readSavedBuilds();
+      const input = document.getElementById("buildNameInput");
+      const fallback = `ビルド ${index + 1}`;
+      builds[index] = {
+        name: String(input?.value || fallback).trim() || fallback,
+        savedAt: new Date().toISOString(),
+        build: JSON.parse(JSON.stringify(state.build)),
+        status: JSON.parse(JSON.stringify(state.status))
+      };
+      localStorage.setItem(SAVED_BUILD_KEY, JSON.stringify(builds));
+      renderSavedBuildSlots();
+    }));
+    container.querySelectorAll("[data-load-build]").forEach(button => button.addEventListener("click", () => {
+      const entry = readSavedBuilds()[Number(button.dataset.loadBuild)];
+      if (!entry) return;
+      state.build = { ...createEmptyBuild(), ...entry.build };
+      state.status = { ...state.status, ...entry.status };
+      state.selectedRelicUid = null;
+      const input = document.getElementById("buildNameInput");
+      if (input) input.value = entry.name || "";
+      renderStatus(); renderBuild(); syncUrl(false); setView("build");
+    }));
+    container.querySelectorAll("[data-delete-build]").forEach(button => button.addEventListener("click", () => {
+      const index = Number(button.dataset.deleteBuild);
+      const builds = readSavedBuilds(); builds[index] = null;
+      localStorage.setItem(SAVED_BUILD_KEY, JSON.stringify(builds));
+      renderSavedBuildSlots();
+    }));
+  }
+
+  function setupV21Navigation() {
+    document.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => setView(tab.dataset.view)));
+    renderSavedBuildSlots();
+  }
+
   async function loadData(options = {}) {
     const force = options === true || options?.force === true;
     const cached = !force ? api.readCache() : null;
@@ -1382,6 +1456,7 @@
   });
 
   setupV12Ui();
+  setupV21Navigation();
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     navigator.serviceWorker.register("./service-worker.js").catch(error => console.warn("Service Worker registration failed", error));
   }
