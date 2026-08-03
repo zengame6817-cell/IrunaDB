@@ -2723,7 +2723,7 @@ footer { color:var(--muted); }
 
 
 /* =========================================================
-   IrunaDB v2.1.0 — UI/UX refactor
+   IrunaDB v2.1.1 — UI/UX refactor
    ========================================================= */
 .app-shell{width:min(100%,1280px)}
 .site-header{padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--surface) 94%,transparent);box-shadow:var(--shadow-soft)}
@@ -2782,3 +2782,151 @@ footer { color:var(--muted); }
 @media(min-width:980px){.build-layout{grid-template-columns:minmax(0,1.6fr) minmax(330px,.72fr)}.build-side-column{top:88px}.saved-build-slot{grid-template-columns:minmax(0,1fr);}.equipment-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.site-header{padding:14px}.site-header h1{font-size:24px}.main-tab{flex-direction:column;gap:2px;min-height:52px;font-size:10px}.main-tab span{font-size:15px}.equipment-slots{grid-template-columns:1fr}.equipment-slot:first-child{grid-column:auto}.database-filter-grid{grid-template-columns:1fr}.page-heading{align-items:flex-start;flex-direction:column}.page-heading>p{text-align:left}.total-effects{grid-template-columns:1fr 1fr}}
 @media(max-width:430px){.total-effects{grid-template-columns:1fr}.header-actions{gap:6px}.connection-status{display:none}}
+
+/* =========================================================
+   IrunaDB v2.1.1 — Light equipment visibility fix
+   ========================================================= */
+:root[data-theme="light"] .equipment-slot {
+  border-color: #cbd7e5 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .equipment-slot.is-selected {
+  border-color: #4b86c8 !important;
+  background: #f4f8fd !important;
+  box-shadow: 0 3px 12px rgb(35 95 160 / 10%) !important;
+}
+
+:root[data-theme="light"] .slot-main {
+  background: transparent !important;
+}
+
+:root[data-theme="light"] .slot-content,
+:root[data-theme="light"] .equipment-option-content {
+  color: #172033 !important;
+  background: transparent !important;
+}
+
+:root[data-theme="light"] .slot-item-info,
+:root[data-theme="light"] .slot-detail-button {
+  border-color: #bfcddd !important;
+  color: #172033 !important;
+  background: #ffffff !important;
+  box-shadow: 0 1px 3px rgb(31 51 77 / 7%);
+}
+
+:root[data-theme="light"] .equipment-slot.is-selected .slot-item-info,
+:root[data-theme="light"] .equipment-slot.is-selected .slot-detail-button {
+  border-color: #9eb8d5 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .slot-item-info:hover,
+:root[data-theme="light"] .slot-detail-button:hover,
+:root[data-theme="light"] .slot-detail-button:focus-visible {
+  border-color: #3978bb !important;
+  background: #f5f9fe !important;
+  outline: 3px solid rgb(57 120 187 / 12%) !important;
+}
+
+:root[data-theme="light"] .slot-item-info strong,
+:root[data-theme="light"] .slot-detail-button strong,
+:root[data-theme="light"] .equipment-slot.is-selected .slot-item-info strong {
+  color: #132238 !important;
+  font-weight: 800 !important;
+}
+
+:root[data-theme="light"] .slot-item-info small,
+:root[data-theme="light"] .slot-detail-button small {
+  color: #63748a !important;
+}
+
+:root[data-theme="light"] .slot-detail-button.is-empty {
+  border-style: dashed !important;
+  border-color: #c7d2df !important;
+  background: #f4f6f9 !important;
+  opacity: 1 !important;
+}
+
+:root[data-theme="light"] .slot-detail-button.is-empty strong {
+  color: #7b8798 !important;
+  font-weight: 700 !important;
+}
+
+:root[data-theme="light"] .slot-detail-button.is-empty small {
+  color: #98a4b3 !important;
+}
+
+:root[data-theme="light"] .slot-label {
+  color: #1f5f9f !important;
+  font-weight: 800 !important;
+}
+
+:root[data-theme="light"] .slot-change {
+  border-left-color: #c7d3e1 !important;
+  color: #ffffff !important;
+  background: #2f70b7 !important;
+  font-weight: 800 !important;
+}
+
+:root[data-theme="light"] .slot-change:hover,
+:root[data-theme="light"] .slot-change:focus-visible {
+  color: #ffffff !important;
+  background: #245f9f !important;
+  outline: 3px solid rgb(47 112 183 / 14%) !important;
+}
+
+:root[data-theme="light"] .slot-remove {
+  border-color: #f0c9c9 !important;
+  color: #c33e3e !important;
+  background: #fff7f7 !important;
+}
+
+:root[data-theme="light"] .slot-remove:hover,
+:root[data-theme="light"] .slot-remove:focus-visible {
+  border-color: #dc7777 !important;
+  background: #feecec !important;
+}
+
+:root[data-theme="light"] .equipment-tuning-row label,
+:root[data-theme="light"] .weapon-attribute-field {
+  border-color: #cbd6e3 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .equipment-tuning-row label span,
+:root[data-theme="light"] .weapon-attribute-field span,
+:root[data-theme="light"] .fixed-refinement-note {
+  color: #53667d !important;
+}
+
+:root[data-theme="light"] .equipment-tuning-row select,
+:root[data-theme="light"] .weapon-attribute-field select {
+  border-left-color: #cbd6e3 !important;
+  color: #172033 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .weapon-attribute-control {
+  border-top-color: #d6e0eb !important;
+  background: #f7f9fc !important;
+}
+
+:root[data-theme="light"] .mini-slot {
+  color: #172033 !important;
+  border-color: #cbd6e3 !important;
+  background: #ffffff !important;
+}
+
+:root[data-theme="light"] .mini-slot strong {
+  color: #172033 !important;
+}
+
+:root[data-theme="light"] .mini-slot.is-selected {
+  border-color: #4b86c8 !important;
+  background: #eaf3fd !important;
+}
+
+:root[data-theme="light"] .mini-slot.is-selected strong {
+  color: #174f8b !important;
+}

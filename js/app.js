@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.1.0");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.1.1");
       }
     });
   }
