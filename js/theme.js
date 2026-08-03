@@ -1,24 +1,22 @@
 "use strict";
 (() => {
-  const KEY = "irunadb.theme.v1";
+  const KEY = "irunadb.theme.v2";
   const root = document.documentElement;
   const button = document.getElementById("themeToggle");
   const label = document.getElementById("themeToggleLabel");
 
   function preferredTheme() {
     const saved = localStorage.getItem(KEY);
-    if (saved === "dark" || saved === "light") return saved;
-    return "light";
+    return saved === "dark" ? "dark" : "light";
   }
 
   function apply(theme) {
-    root.dataset.theme = theme;
-    localStorage.setItem(KEY, theme);
-    const dark = theme === "dark";
-    if (button) {
-      button.setAttribute("aria-pressed", String(dark));
-      button.title = dark ? "ライトテーマへ切替" : "ダークテーマへ切替";
-    }
+    const safeTheme = theme === "dark" ? "dark" : "light";
+    root.dataset.theme = safeTheme;
+    localStorage.setItem(KEY, safeTheme);
+    const dark = safeTheme === "dark";
+    button?.setAttribute("aria-pressed", String(dark));
+    if (button) button.title = dark ? "ライトテーマへ切替" : "ダークテーマへ切替";
     if (label) label.textContent = dark ? "☀ ライト" : "☾ ダーク";
   }
 

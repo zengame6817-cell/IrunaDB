@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v1.4.0</title>
+  <title>IrunaDB v2.0.0</title>
   <link rel="stylesheet" href="./css/style.css?v=1.4.0">
 </head>
 <body>
   <div class="app-shell">
     <header class="site-header">
       <div>
-        <p class="eyebrow">IRUNA ONLINE BUILD TOOL</p>
-        <h1>IrunaDB <span>Version 1.4.0</span></h1>
+        <p class="eyebrow">BUILD PLANNER / DATABASE</p>
+        <h1>IrunaDB <span>Version 2.0.0</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -25,7 +25,7 @@
     </header>
 
     <nav id="mainTabs" class="main-tabs" aria-label="メイン画面">
-      <button class="main-tab is-active" data-view="build" type="button">装備</button>
+      <button class="main-tab is-active" data-view="build" type="button">ビルド</button>
       <button class="main-tab" data-view="database" type="button">データベース</button>
       <button class="main-tab" data-view="settings" type="button">設定</button>
     </nav>
@@ -35,7 +35,7 @@
         <div class="build-commandbar">
           <div>
             <p class="section-kicker">BUILD SIMULATOR</p>
-            <h2>装備シミュレーター</h2>
+            <h2>ビルドプランナー</h2>
           </div>
           <div class="build-command-actions">
             <span id="selectedCount" class="count-badge">0件</span>
@@ -184,7 +184,7 @@
       <section id="view-database" class="app-view">
         <section class="search-panel" aria-label="検索">
           <div class="search-row">
-            <input id="searchInput" type="search" placeholder="名前・能力・条件から検索" autocomplete="off">
+            <input id="searchInput" type="search" placeholder="装備名・タグ・能力・条件を検索" autocomplete="off">
             <button id="clearButton" class="button button-primary" type="button">クリア</button>
           </div>
           <div id="categoryTabs" class="category-tabs" aria-label="分類"></div>
@@ -219,8 +219,8 @@
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 1.4.0</h2>
-          <p>精錬値は全装備+9固定です。公開データはGitHub Pagesの静的JSONから高速取得します。</p>
+          <h2>IrunaDB Version 2.0.0</h2>
+          <p>見やすさと操作性を優先したUIです。精錬値は全装備+9固定、公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
             <dl>
@@ -230,8 +230,8 @@
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v1.4.0 更新履歴</h3>
-            <ul><li>GitHub Pagesの data/db.json を最優先で読み込み</li><li>静的DB失敗時のみGASへ自動フォールバック</li><li>明るいライトテーマを標準化</li><li>ライト／ダークテーマ切替を追加</li><li>公開DBの取得元・バージョン・更新日時を表示</li></ul>
+            <h3>v2.0.0 更新履歴</h3>
+            <ul><li>視認性重視のライトUIへ全面刷新</li><li>カード・入力欄・検索画面のコントラストを改善</li><li>PCでは2カラム、スマホでは1カラムへ最適化</li><li>静的DB優先＋GASフォールバックを継続</li><li>テーマ設定をv2用に更新し、初回は必ずライト表示</li></ul>
           </div>
         </div>
       </section>
