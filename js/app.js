@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.0");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.1");
       }
     });
   }
@@ -202,6 +202,32 @@
       const collapsed = wrapper.classList.toggle("is-collapsed");
       toggle.setAttribute("aria-expanded", String(!collapsed));
       localStorage.setItem(storageKey, collapsed ? "closed" : "open");
+    });
+  }
+
+  function setupPanelCollapsibles() {
+    document.querySelectorAll(".sim-panel").forEach((panel, index) => {
+      const header = panel.querySelector(":scope > .sim-panel-header");
+      if (!header || header.querySelector(".panel-collapse-button")) return;
+      const title = header.querySelector("h3")?.textContent?.trim() || `panel-${index}`;
+      const key = title.replace(/\s+/g, "-");
+      const storageKey = `irunadb.panel.${key}.collapsed`;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "panel-collapse-button";
+      button.setAttribute("aria-label", `${title}を折りたたむ`);
+      const collapsed = localStorage.getItem(storageKey) === "true";
+      panel.classList.toggle("is-panel-collapsed", collapsed);
+      button.textContent = collapsed ? "⌄" : "⌃";
+      button.setAttribute("aria-expanded", String(!collapsed));
+      header.appendChild(button);
+      button.addEventListener("click", event => {
+        event.stopPropagation();
+        const nowCollapsed = panel.classList.toggle("is-panel-collapsed");
+        button.textContent = nowCollapsed ? "⌄" : "⌃";
+        button.setAttribute("aria-expanded", String(!nowCollapsed));
+        localStorage.setItem(storageKey, String(nowCollapsed));
+      });
     });
   }
 
@@ -357,8 +383,12 @@
   }
 
   function allSelectedIds() {
-    const ids = EQUIPMENT_KEYS.map(key => state.build[key]);
+    const ids = EQUIPMENT_KEYS.filter(key => key !== "decoration").map(key => state.build[key]);
     EQUIPMENT_KEYS.forEach(key => {
+      if (key === "decoration") {
+        ids.push(state.build.stars[key]);
+        return;
+      }
       const slotCount = Number(state.build.equipmentSettings[key]?.slots || 0);
       ids.push(...state.build.crystals[key].slice(0, slotCount), state.build.stars[key]);
     });
@@ -379,6 +409,19 @@
 
   function renderEquipmentOptions() {
     equipmentOptions.innerHTML = SLOT_DEFS.map(slot => {
+      if (slot.key === "decoration") {
+        return `
+          <section class="equipment-option-group decoration-star-only">
+            <h3>${escapeHtml(slot.label)}</h3>
+            <div class="equipment-option-content">
+              <p class="decoration-note">装飾は装備・クリスタを選択せず、☆能力のみ設定します。</p>
+              <div class="equipment-option-slots star-only-slot">
+                ${renderMiniSlot(`star_${slot.key}`, "☆能力")}
+              </div>
+            </div>
+          </section>
+        `;
+      }
       const setting = state.build.equipmentSettings[slot.key];
       const slotCount = Number(setting?.slots || 0);
       return `
@@ -701,6 +744,27 @@
 
   function renderBuild() {
     equipmentSlots.innerHTML = SLOT_DEFS.map(slot => {
+      if (slot.key === "decoration") {
+        const starId = state.build.stars.decoration;
+        const star = starId ? context.itemsById.get(String(starId)) : null;
+        return `<article class="equipment-slot equipment-card decoration-card ${star ? "is-selected" : "is-empty"}">
+          <div class="equipment-card-header">
+            <div class="equipment-card-type">
+              <span class="slot-icon" aria-hidden="true">${slot.icon}</span>
+              <span><span class="slot-label">${slot.label}</span><small>☆能力専用</small></span>
+            </div>
+            <button class="equipment-card-collapse" type="button" data-card-collapse="${slot.key}" aria-label="${slot.label}を折りたたむ">⌃</button>
+          </div>
+          <div class="equipment-card-collapsible">
+            <div class="equipment-card-body">
+              <button class="slot-item-info slot-detail-button ${star ? "" : "is-empty"}" type="button" data-slot-pick="star_decoration">
+                <strong>${escapeHtml(star?.["名前"] || "＋ ☆能力を選ぶ")}</strong>
+                <small>${star ? "タップして☆能力を変更" : "装飾は☆能力のみ設定します"}</small>
+              </button>
+            </div>
+          </div>
+        </article>`;
+      }
       const item = state.build[slot.key] ? context.itemsById.get(String(state.build[slot.key])) : null;
       const slotCount = Number(state.build.equipmentSettings[slot.key]?.slots || 0);
       const refinement = Number(state.build.equipmentSettings[slot.key]?.refinement ?? 9);
@@ -713,8 +777,12 @@
               <small>${item ? "選択済み" : "未選択"}</small>
             </span>
           </div>
-          ${item ? `<span class="slot-selected-badge">選択中</span>` : `<span class="slot-empty-badge">未設定</span>`}
+          <div class="equipment-card-header-actions">
+            ${item ? `<span class="slot-selected-badge">選択中</span>` : `<span class="slot-empty-badge">未設定</span>`}
+            <button class="equipment-card-collapse" type="button" data-card-collapse="${slot.key}" aria-label="${slot.label}を折りたたむ">⌃</button>
+          </div>
         </div>
+        <div class="equipment-card-collapsible">
         <div class="equipment-card-body">
           ${item ? `<button class="slot-item-info slot-detail-button" type="button" data-slot-detail="${slot.key}">
               <strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
@@ -732,6 +800,7 @@
           <button class="slot-change" type="button" data-slot-pick="${slot.key}"><span aria-hidden="true">⌕</span>${item ? "装備を変更" : "装備を検索"}</button>
           ${item ? `<button class="slot-remove" type="button" data-slot-remove="${slot.key}" aria-label="${slot.label}を解除"><span aria-hidden="true">×</span>解除</button>` : ""}
         </div>
+        </div>
       </article>`;
     }).join("");
 
@@ -745,6 +814,23 @@
         if (item) modal.open(item, context);
       });
     });
+    equipmentSlots.querySelectorAll("[data-card-collapse]").forEach(button => {
+      const key = button.dataset.cardCollapse;
+      const card = button.closest(".equipment-card");
+      const storageKey = `irunadb.equipment-card.${key}.collapsed`;
+      const collapsed = localStorage.getItem(storageKey) === "true";
+      card.classList.toggle("is-collapsed", collapsed);
+      button.textContent = collapsed ? "⌄" : "⌃";
+      button.setAttribute("aria-expanded", String(!collapsed));
+      button.addEventListener("click", event => {
+        event.stopPropagation();
+        const nowCollapsed = card.classList.toggle("is-collapsed");
+        button.textContent = nowCollapsed ? "⌄" : "⌃";
+        button.setAttribute("aria-expanded", String(!nowCollapsed));
+        localStorage.setItem(storageKey, String(nowCollapsed));
+      });
+    });
+
     equipmentSlots.querySelectorAll("[data-slot-remove]").forEach(button => button.addEventListener("click", event => {
       event.stopPropagation();
       const descriptor = getSlotDescriptor(button.dataset.slotRemove);
@@ -1473,6 +1559,7 @@
 
   setupV12Ui();
   setupV21Navigation();
+  setupPanelCollapsibles();
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     navigator.serviceWorker.register("./service-worker.js").catch(error => console.warn("Service Worker registration failed", error));
   }

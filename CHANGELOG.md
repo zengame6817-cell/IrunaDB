@@ -1,3 +1,11 @@
+# CHANGELOG
+
+## 2.2.1
+- Compact equipment cards
+- Per-card and per-panel collapse controls
+- Decoration changed to star-ability-only slot
+- Decoration equipment and crystal selection removed from UI and calculation input
+
 # Changelog
 
 ## 2.2.0

@@ -2933,7 +2933,7 @@ footer { color:var(--muted); }
 
 
 /* =========================================================
-   IrunaDB v2.2.0 — card-first simulator UI
+   IrunaDB v2.2.1 — card-first simulator UI
    ========================================================= */
 .build-commandbar{
   padding:18px 20px;
@@ -3107,3 +3107,30 @@ footer { color:var(--muted); }
   .character-job{grid-column:auto!important}
   .total-effects{grid-template-columns:1fr!important}
 }
+
+
+/* IrunaDB v2.2.1 — compact cards, collapsible panels, decoration star-only */
+.equipment-slots{gap:10px!important}
+.equipment-card{min-height:0!important;border-radius:14px!important}
+.equipment-card-header{padding:10px 12px!important}
+.equipment-card .slot-icon{width:34px!important;height:34px!important;flex-basis:34px!important;border-radius:10px!important;font-size:16px!important}
+.equipment-card-body{padding:10px 12px!important}
+.equipment-card .slot-item-info{min-height:64px!important;padding:10px 12px!important;gap:6px!important}
+.equipment-card .slot-item-info strong{font-size:15px!important}
+.equipment-card-actions{padding:0 12px 11px!important}
+.equipment-card .slot-change,.equipment-card .slot-remove{min-height:34px!important}
+.equipment-card-header-actions{display:flex;align-items:center;gap:7px}
+.equipment-card-collapse,.panel-collapse-button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:1px solid var(--line);border-radius:9px;color:var(--muted);background:var(--surface);font-weight:900;cursor:pointer}
+.equipment-card-collapse:hover,.panel-collapse-button:hover{border-color:var(--accent);color:var(--accent-strong)}
+.equipment-card.is-collapsed .equipment-card-collapsible{display:none!important}
+.equipment-card.is-collapsed{grid-template-rows:auto!important}
+.sim-panel-header{position:relative;padding-right:48px!important}
+.panel-collapse-button{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+.sim-panel.is-panel-collapsed>:not(.sim-panel-header){display:none!important}
+.sim-panel.is-panel-collapsed{overflow:hidden}
+.decoration-card .equipment-card-body{padding-bottom:12px!important}
+.decoration-note{margin:0 0 10px;color:var(--muted);font-size:12px}
+.star-only-slot{grid-template-columns:minmax(0,1fr)!important}
+.decoration-star-only .equipment-option-content{padding-top:10px!important}
+@media(min-width:1080px){.equipment-card:first-child{min-height:0!important}.equipment-card{min-height:0!important}}
+@media(max-width:760px){.equipment-card{min-height:0!important}}
