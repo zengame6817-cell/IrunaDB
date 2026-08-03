@@ -1,5 +1,5 @@
-# 公開用データ
+# IrunaDB Static Database
 
-Apps Scriptの「IrunaDB → 公開用DBをGitHubへ更新」を実行すると、ここに `db.json` が作成・更新されます。
+Apps Scriptの「公開用DBをGitHubへ更新」を実行すると、このフォルダの `db.json` が自動更新されます。
 
-初回公開前は `db.json` が存在しないため、アプリは自動的に従来のGAS APIへフォールバックします。
+アプリは `data/db.json` を最優先で読み込み、取得できない場合だけ従来のGAS APIへ切り替わります。

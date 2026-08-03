@@ -1252,7 +1252,24 @@
     ui.renderItems(filtered, context, item => modal.open(item, context), state.favorites, toggleFavorite);
   }
 
-  function applyData(data, connectionText) {
+  function updateDatabaseInfo(meta = {}) {
+    const sourceNames = { static: "GitHub Pages（静的JSON）", all: "Apps Script（一括）", sequential: "Apps Script（互換）", cache: "ブラウザ保存データ" };
+    const source = document.getElementById("dbSourceInfo");
+    const version = document.getElementById("dbVersionInfo");
+    const updated = document.getElementById("dbUpdatedInfo");
+    if (source) source.textContent = sourceNames[meta.source] || meta.source || "-";
+    if (version) version.textContent = meta.version || meta.dataVersion || "-";
+    const rawDate = meta.generatedAt || meta.updatedAt || "";
+    if (updated) {
+      if (!rawDate) updated.textContent = "-";
+      else {
+        const date = new Date(rawDate);
+        updated.textContent = Number.isNaN(date.getTime()) ? rawDate : date.toLocaleString("ja-JP");
+      }
+    }
+  }
+
+  function applyData(data, connectionText, meta = {}) {
     for (const [key, value] of Object.entries(data)) {
       if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
     }
@@ -1265,6 +1282,7 @@
     renderStatus();
     renderBuild();
     ui.setConnectionStatus("online", connectionText);
+    updateDatabaseInfo(meta);
   }
 
   async function loadData(options = {}) {
@@ -1274,7 +1292,7 @@
 
     if (cached) {
       try {
-        applyData(cached.data, "保存データ表示中");
+        applyData(cached.data, "保存データ表示中", { ...(cached.meta || {}), source: "cache" });
         cacheShown = true;
       } catch (error) {
         console.warn("保存データの初期化に失敗したため破棄します", error);
@@ -1291,21 +1309,19 @@
 
     try {
       const result = await api.getInitialData();
-      const sourceLabels = {
-        static: "最新・静的DB",
-        "gas-all": "最新・GAS一括取得",
-        "gas-sequential": "最新・GAS互換取得"
-      };
-      applyData(result.data, sourceLabels[result.meta.source] || "最新データ");
+      const connectionLabel = result.meta.source === "static"
+        ? "GitHub静的DB"
+        : result.meta.source === "all" ? "GAS一括取得" : "GAS互換取得";
+      applyData(result.data, connectionLabel, result.meta);
       api.writeCache(result.data, result.meta);
     } catch (error) {
-      console.error("Database connection failed", error);
+      console.error("GAS API connection failed", error);
       if (cacheShown) {
         ui.setConnectionStatus("online", "オフライン・保存データ");
         return;
       }
       ui.setConnectionStatus("error", "接続エラー");
-      ui.renderError(`${error.message}。保存データもないため表示できません。静的DB、GASの公開設定、または通信状態を確認してください。`);
+      ui.renderError(`${error.message}。保存データもないため表示できません。GASの公開設定または通信状態を確認してください。`);
       equipmentSlots.innerHTML = `<div class="state-card is-error">装備データを取得できませんでした。</div>`;
     }
   }
