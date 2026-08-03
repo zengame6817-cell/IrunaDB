@@ -112,7 +112,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.1.1");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.0");
       }
     });
   }
@@ -703,20 +703,35 @@
     equipmentSlots.innerHTML = SLOT_DEFS.map(slot => {
       const item = state.build[slot.key] ? context.itemsById.get(String(state.build[slot.key])) : null;
       const slotCount = Number(state.build.equipmentSettings[slot.key]?.slots || 0);
-      return `<article class="equipment-slot ${item ? "is-selected" : ""}">
-        <div class="slot-main">
-          <span class="slot-content">
-            <span class="slot-label">${slot.label}</span>
-            ${item ? `<button class="slot-item-info slot-detail-button" type="button" data-slot-detail="${slot.key}">
-              <strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
-              <small>精錬+9・${slotCount}スロット　タップで詳細</small>
-            </button>` : `<button class="slot-item-info slot-detail-button is-empty" type="button" data-slot-pick="${slot.key}">
-              <strong>未選択</strong><small>タップして選択</small>
-            </button>`}
-          </span>
-          <button class="slot-change" type="button" data-slot-pick="${slot.key}">${item ? "変更" : "選択"}</button>
+      const refinement = Number(state.build.equipmentSettings[slot.key]?.refinement ?? 9);
+      return `<article class="equipment-slot equipment-card ${item ? "is-selected" : "is-empty"}">
+        <div class="equipment-card-header">
+          <div class="equipment-card-type">
+            <span class="slot-icon" aria-hidden="true">${slot.icon}</span>
+            <span>
+              <span class="slot-label">${slot.label}</span>
+              <small>${item ? "選択済み" : "未選択"}</small>
+            </span>
+          </div>
+          ${item ? `<span class="slot-selected-badge">選択中</span>` : `<span class="slot-empty-badge">未設定</span>`}
         </div>
-        ${item ? `<button class="slot-remove" type="button" data-slot-remove="${slot.key}" aria-label="${slot.label}を解除">×</button>` : ""}
+        <div class="equipment-card-body">
+          ${item ? `<button class="slot-item-info slot-detail-button" type="button" data-slot-detail="${slot.key}">
+              <strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
+              <span class="equipment-meta-chips">
+                <small>精錬 +${refinement}</small>
+                <small>${slotCount}スロット</small>
+                <small>詳細を見る</small>
+              </span>
+            </button>` : `<button class="slot-item-info slot-detail-button is-empty" type="button" data-slot-pick="${slot.key}">
+              <strong>＋ ${slot.label}を選ぶ</strong>
+              <small>名前・タグ・能力から検索できます</small>
+            </button>`}
+        </div>
+        <div class="equipment-card-actions">
+          <button class="slot-change" type="button" data-slot-pick="${slot.key}"><span aria-hidden="true">⌕</span>${item ? "装備を変更" : "装備を検索"}</button>
+          ${item ? `<button class="slot-remove" type="button" data-slot-remove="${slot.key}" aria-label="${slot.label}を解除"><span aria-hidden="true">×</span>解除</button>` : ""}
+        </div>
       </article>`;
     }).join("");
 
@@ -966,8 +981,9 @@
     const totalsHtml =
       rows.map(row => {
         const name = context.statMap.get(row.statId)?.["表示名"] || row.statId;
-        return `<div class="total-row">
-          <span>${escapeHtml(name)}</span>
+        const icon = /HP|体力|耐性|軽減|DEF|防御/i.test(name) ? "♥" : /MP|MATK|魔法|詠唱|スペル/i.test(name) ? "✦" : /ATK|物理|クリ|攻撃|貫通/i.test(name) ? "⚔" : "＋";
+        return `<div class="total-row total-stat-card">
+          <span class="total-stat-label"><i aria-hidden="true">${icon}</i>${escapeHtml(name)}</span>
           <strong>${row.value > 0 ? "+" : ""}${escapeHtml(row.value)}${escapeHtml(row.unit)}</strong>
         </div>`;
       }).join("")
