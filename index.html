@@ -1,26 +1,19 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xwi8zmzhuc");
-</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v2.2.2</title>
-  <link rel="stylesheet" href="./css/style.css?v=2.2.2">
+  <title>IrunaDB v2.2.4</title>
+  <link rel="stylesheet" href="./css/style.css?v=2.2.4">
 </head>
 <body>
   <div class="app-shell">
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span>Version 2.2.2</span></h1>
+        <h1>IrunaDB <span>Version 2.2.4</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -138,23 +131,23 @@
               <header class="sim-panel-header">
                 <div>
                   <span class="panel-number">05</span>
-                  <h3>レリックグラス</h3>
+                  <h3>レリック（能力のみ）</h3>
                 </div>
-                <span id="relicCount" class="count-badge">0 / 15マス</span>
+                <span id="relicCount" class="count-badge">0 / 15</span>
               </header>
 
               <div class="relic-command-area">
                 <div class="relic-toolbar">
                   <button id="addRelicButton" class="button button-primary" type="button">＋ レリック追加</button>
-                  <button id="rotateRelicButton" class="button button-secondary" type="button" disabled>↻ 90°回転</button>
+                  <button id="rotateRelicButton" class="button button-secondary" type="button" hidden disabled>↻ 90°回転</button>
                   <button id="removeRelicButton" class="button button-danger" type="button" disabled>× 削除</button>
                 </div>
                 <p id="relicMessage" class="relic-message" aria-live="polite">
-                  レリックを追加すると空き位置へ自動配置します。盤面または一覧から選択して回転できます。
+                  レリックは形状・配置を無視して選択できます。能力のみ合計へ反映します。
                 </p>
               </div>
               <div class="relic-list-only">
-                <p class="relic-list-title">配置中のレリック</p>
+                <p class="relic-list-title">選択中のレリック</p>
                 <div id="relicPlacementList" class="relic-placement-list"></div>
               </div>
             </section>
@@ -200,6 +193,21 @@
             </section>
           </aside>
         </div>
+
+        <section id="screenshotSummaryPanel" class="sim-panel screenshot-summary-panel">
+          <header class="sim-panel-header">
+            <div>
+              <span class="panel-number">09</span>
+              <h3>スクショ用まとめ</h3>
+            </div>
+            <div class="screenshot-summary-actions">
+              <button id="toggleScreenshotSummary" class="button button-secondary compact-button" type="button" aria-expanded="false">表示する</button>
+              <button id="screenshotModeButton" class="button button-primary compact-button" type="button">スクショモード</button>
+            </div>
+          </header>
+          <p class="summary-note">未選択と0の能力を省き、スマホ1画面に収まりやすい形へ圧縮します。</p>
+          <div id="screenshotSummaryBody" class="screenshot-summary-body" hidden></div>
+        </section>
       </section>
 
       <section id="view-database" class="app-view">
@@ -248,7 +256,7 @@
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 2.2.2</h2>
+          <h2>IrunaDB Version 2.2.3</h2>
           <p>シミュレーター・データベース・レリック・設定を分離したUIです。精錬値は全装備+9固定、公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>

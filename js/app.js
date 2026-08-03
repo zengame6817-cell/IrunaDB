@@ -63,6 +63,10 @@
   const relicCount = document.getElementById("relicCount");
   const totalEffects = document.getElementById("totalEffects");
   const selectedCount = document.getElementById("selectedCount");
+  const screenshotSummaryPanel = document.getElementById("screenshotSummaryPanel");
+  const screenshotSummaryBody = document.getElementById("screenshotSummaryBody");
+  const toggleScreenshotSummary = document.getElementById("toggleScreenshotSummary");
+  const screenshotModeButton = document.getElementById("screenshotModeButton");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
 
   const JOB_MASTER_V12 = [
@@ -112,7 +116,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.2");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.3");
       }
     });
   }
@@ -659,24 +663,21 @@
   }
 
   function addRelicByItemId(itemId) {
-    const pattern = relicPatternForItem(itemId);
     const item = context.itemsById.get(String(itemId));
-    if (!pattern.length) {
-      relicMessage.textContent = `${item?.["名前"] || "選択したレリック"}の形状データが見つかりません。`;
-      return;
-    }
-    const position = findRelicPosition(itemId);
-    if (!position) {
-      relicMessage.textContent = "空いている場所へ配置できません。既存レリックを削除または回転してください。";
+    if (state.build.relicPlacements.length >= 15) {
+      relicMessage.textContent = "レリックは最大15個まで選択できます。";
       return;
     }
     const placement = {
       uid: `r${Date.now()}${Math.random().toString(36).slice(2, 7)}`,
-      ...position
+      itemId: String(itemId),
+      x: 0,
+      y: 0,
+      rotation: 0
     };
     state.build.relicPlacements.push(placement);
     state.selectedRelicUid = placement.uid;
-    relicMessage.textContent = `${item?.["名前"] || "レリック"}を配置しました。`;
+    relicMessage.textContent = `${item?.["名前"] || "レリック"}を追加しました。形状・配置は現在計算しません。`;
     syncUrl(false);
     renderBuild();
   }
@@ -720,7 +721,6 @@
                 <strong>${escapeHtml(item?.["名前"] || "不明なレリック")}</strong>
                 <small>${escapeHtml(effectSummary || item?.["説明文"] || "能力情報なし")}</small>
               </span>
-              <span class="relic-row-rotation">${placement.rotation * 90}°</span>
             </button>
             <button class="relic-row-detail" type="button" data-relic-detail="${placement.uid}">詳細</button>
           </article>`;
@@ -742,10 +742,9 @@
       });
     });
 
-    const occupied = state.build.relicPlacements.reduce((sum, placement) => sum + absoluteRelicCells(placement).length, 0);
-    relicCount.textContent = `${state.build.relicPlacements.length}件 / ${occupied}マス`;
+    relicCount.textContent = `${state.build.relicPlacements.length} / 15`;
     const selectedExists = state.build.relicPlacements.some(entry => entry.uid === state.selectedRelicUid);
-    rotateRelicButton.disabled = !selectedExists;
+    rotateRelicButton.disabled = true;
     removeRelicButton.disabled = !selectedExists;
   }
 
@@ -1045,12 +1044,10 @@
     });
   }
 
-  function renderTotals() {
+  function collectTotalData() {
     const selectedIds = allSelectedIds();
-    selectedCount.textContent = `${selectedIds.length}件`;
     const totals = new Map(), textOnly = [];
-    const activeConditional = [];
-    const inactiveConditional = [];
+    const activeConditional = [], inactiveConditional = [];
     selectedIds.forEach(id => (context.effectsByItem.get(id) || []).filter(effect => {
       if (isFormulaEffect(effect)) return false;
       const groupId = effect["条件グループID"];
@@ -1062,14 +1059,87 @@
       const statId = String(effect["能力ID"] || "");
       const numeric = Number(effect["値"]);
       if (statId && Number.isFinite(numeric) && !isBlank(effect["値"])) {
-        const unit = String(effect["単位"] || ""); const key = `${statId}__${unit}`;
-        const current = totals.get(key) || { statId, unit, value: 0 }; current.value += numeric; totals.set(key, current);
+        const unit = String(effect["単位"] || "");
+        const key = `${statId}__${unit}`;
+        const current = totals.get(key) || { statId, unit, value: 0 };
+        current.value += numeric;
+        totals.set(key, current);
       } else if (effect["表示文"]) textOnly.push(String(effect["表示文"]));
     }));
-    const rows = [...totals.values()].sort((a,b) =>
-      (context.statMap.get(a.statId)?.["表示順"] || 9999) -
-      (context.statMap.get(b.statId)?.["表示順"] || 9999)
+    const rows = [...totals.values()].sort((x,y) =>
+      (context.statMap.get(x.statId)?.["表示順"] || 9999) -
+      (context.statMap.get(y.statId)?.["表示順"] || 9999)
     );
+    return { selectedIds, rows, textOnly, activeConditional, inactiveConditional };
+  }
+
+  function selectedItemName(id) {
+    return id ? String(context.itemsById.get(String(id))?.["名前"] || "") : "";
+  }
+
+  function renderScreenshotSummary(totalData = collectTotalData()) {
+    if (!screenshotSummaryBody) return;
+    const jobName = state.status.jobId
+      ? String(context.jobMap.get(String(state.status.jobId))?.["職業名"] || "未選択")
+      : "未選択";
+    const statusText = [
+      `Lv ${state.status.lv}`,
+      `STR ${state.status.str}`, `INT ${state.status.int}`, `VIT ${state.status.vit}`,
+      `AGI ${state.status.agi}`, `DEX ${state.status.dex}`, `CRT ${state.status.crt}`
+    ].join(" / ");
+
+    const equipmentRows = SLOT_DEFS.map(slot => {
+      if (slot.key === "decoration") {
+        const starName = selectedItemName(state.build.stars[slot.key]);
+        return starName ? `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(starName)}</span></li>` : "";
+      }
+      const itemName = selectedItemName(state.build[slot.key]);
+      if (!itemName) return "";
+      const setting = state.build.equipmentSettings[slot.key] || {};
+      const suffix = `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`;
+      return `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span></li>`;
+    }).filter(Boolean).join("");
+
+    const optionNames = [];
+    SLOT_DEFS.forEach(slot => {
+      if (slot.key !== "decoration") {
+        (state.build.crystals[slot.key] || []).filter(Boolean).forEach(id => {
+          const name = selectedItemName(id); if (name) optionNames.push(name);
+        });
+      }
+      const star = selectedItemName(state.build.stars[slot.key]);
+      if (star) optionNames.push(star);
+    });
+    state.build.alCrystas.filter(Boolean).forEach(id => {
+      const name = selectedItemName(id); if (name) optionNames.push(name);
+    });
+    state.build.relicPlacements.forEach(entry => {
+      const name = selectedItemName(entry.itemId); if (name) optionNames.push(name);
+    });
+
+    const totalRows = totalData.rows.filter(row => Number(row.value) !== 0).map(row => {
+      const name = context.statMap.get(row.statId)?.["表示名"] || row.statId;
+      const value = `${row.value > 0 ? "+" : ""}${row.value}${row.unit}`;
+      return `<li><span>${escapeHtml(name)}</span><b>${escapeHtml(value)}</b></li>`;
+    }).join("");
+    const passiveRows = totalData.textOnly.slice(0, 8).map(text => `<li class="is-text"><span>${escapeHtml(text)}</span></li>`).join("");
+
+    screenshotSummaryBody.innerHTML = `
+      <article class="screenshot-card" id="screenshotCard">
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.2.4</small></header>
+        <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
+        <div class="screenshot-columns">
+          <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
+          <section><h4>クリスタ・☆・アルクリ・レリック</h4><p class="screenshot-tags">${optionNames.length ? optionNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
+        </div>
+        <section><h4>合計能力</h4><ul class="screenshot-totals">${totalRows || '<li class="empty-mini">能力なし</li>'}${passiveRows}</ul></section>
+      </article>`;
+  }
+
+  function renderTotals() {
+    const totalData = collectTotalData();
+    const { selectedIds, rows, textOnly, activeConditional, inactiveConditional } = totalData;
+    selectedCount.textContent = `${selectedIds.length}件`;
 
     const totalsHtml =
       rows.map(row => {
@@ -1128,10 +1198,12 @@
     ) {
       totalEffects.innerHTML =
         `<div class="empty-total">装備を選ぶと、ここに能力の合計が表示されます。</div>`;
+      renderScreenshotSummary(totalData);
       return;
     }
 
     totalEffects.innerHTML = totalsHtml + activeHtml + inactiveHtml;
+    renderScreenshotSummary(totalData);
   }
   function openPicker(slotToken) {
     state.pickerSlot = slotToken;
@@ -1566,6 +1638,30 @@
     syncUrl(false);
     renderBuild();
   });
+
+  if (toggleScreenshotSummary && screenshotSummaryBody) {
+    toggleScreenshotSummary.addEventListener("click", () => {
+      const willOpen = screenshotSummaryBody.hidden;
+      screenshotSummaryBody.hidden = !willOpen;
+      toggleScreenshotSummary.textContent = willOpen ? "閉じる" : "表示する";
+      toggleScreenshotSummary.setAttribute("aria-expanded", String(willOpen));
+      if (willOpen) {
+        renderScreenshotSummary();
+        requestAnimationFrame(() => screenshotSummaryPanel?.scrollIntoView({ behavior: "smooth", block: "start" }));
+      }
+    });
+  }
+  if (screenshotModeButton && screenshotSummaryBody) {
+    screenshotModeButton.addEventListener("click", () => {
+      const active = document.body.classList.toggle("screenshot-mode");
+      screenshotSummaryBody.hidden = false;
+      toggleScreenshotSummary.textContent = "閉じる";
+      toggleScreenshotSummary.setAttribute("aria-expanded", "true");
+      screenshotModeButton.textContent = active ? "通常表示へ戻る" : "スクショモード";
+      renderScreenshotSummary();
+      requestAnimationFrame(() => screenshotSummaryPanel?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
+  }
 
   setupV12Ui();
   setupV21Navigation();
