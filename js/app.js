@@ -1044,7 +1044,27 @@
     });
   }
 
-  function collectTotalData() {
+  
+  const STAT_NAME_ALIASES = {
+    "詠唱":"詠唱時間",
+    "ボスに物理":"ボス物理",
+    "ボスに魔法":"ボス魔法",
+    "スペルバースト":"スペルバースト率",
+    "物理貫通率":"物理貫通",
+    "魔法貫通率":"魔法貫通",
+    "魔法威力増加":"魔法威力",
+    "状態異常耐性":"異常耐性",
+    "割合ダメージ軽減":"割合軽減",
+    "範囲ダメージ軽減":"範囲軽減",
+    "最大HP":"MaxHP",
+    "最大MP":"MaxMP"
+  };
+
+  function displayStatName(statId){
+    const n=context.statMap.get(statId)?.["表示名"]||statId;
+    return STAT_NAME_ALIASES[n]||n;
+  }
+function collectTotalData() {
     const selectedIds = allSelectedIds();
     const totals = new Map(), textOnly = [];
     const activeConditional = [], inactiveConditional = [];
@@ -1118,7 +1138,7 @@
     });
 
     const totalRows = totalData.rows.filter(row => Number(row.value) !== 0).map(row => {
-      const name = context.statMap.get(row.statId)?.["表示名"] || row.statId;
+      const name = displayStatName(row.statId);
       const value = `${row.value > 0 ? "+" : ""}${row.value}${row.unit}`;
       return `<li><span>${escapeHtml(name)}</span><b>${escapeHtml(value)}</b></li>`;
     }).join("");
@@ -1143,7 +1163,7 @@
 
     const totalsHtml =
       rows.map(row => {
-        const name = context.statMap.get(row.statId)?.["表示名"] || row.statId;
+        const name = displayStatName(row.statId);
         const icon = /HP|体力|耐性|軽減|DEF|防御/i.test(name) ? "♥" : /MP|MATK|魔法|詠唱|スペル/i.test(name) ? "✦" : /ATK|物理|クリ|攻撃|貫通/i.test(name) ? "⚔" : "＋";
         return `<div class="total-row total-stat-card">
           <span class="total-stat-label"><i aria-hidden="true">${icon}</i>${escapeHtml(name)}</span>
