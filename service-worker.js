@@ -1,5 +1,5 @@
 "use strict";
-const CACHE_NAME = "irunadb-app-v2.2.4";
+const CACHE_NAME = "irunadb-app-v2.2.4-favorite-priority";
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css", "./js/config.js", "./js/utils.js",
   "./js/api.js", "./js/ui.js", "./js/modal.js", "./js/app.js", "./js/theme.js"

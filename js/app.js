@@ -1274,6 +1274,10 @@ function collectTotalData() {
       const tagMatched = !quickTokens.length || quickTokens.some(token => searchText.includes(token));
       return weaponMatched && attributeMatched && queryMatched && tagMatched;
     }).sort((a, b) => {
+      // お気に入りは、検索条件や並び順にかかわらず先頭へ表示する。
+      const aFavorite = state.favorites.has(String(a["アイテムID"] || ""));
+      const bFavorite = state.favorites.has(String(b["アイテムID"] || ""));
+      if (aFavorite !== bFavorite) return aFavorite ? -1 : 1;
       if (state.pickerFilters.sort === "atkDesc") return Number(b["基礎ATK"] || 0) - Number(a["基礎ATK"] || 0);
       if (state.pickerFilters.sort === "atkAsc") return Number(a["基礎ATK"] || 0) - Number(b["基礎ATK"] || 0);
       return String(a["名前"] || "").localeCompare(String(b["名前"] || ""), "ja");
@@ -1303,9 +1307,10 @@ function collectTotalData() {
         ].filter(Boolean).join(" / ");
         const effects = fullEffectSummary(item, { includeConditions: true, separator: " / " });
         const description = [item["説明文"], item["特殊性能"]].filter(Boolean).map(formatFormulaText).join(" / ");
+        const favoriteMark = state.favorites.has(itemId) ? "★ " : "";
         return `<article class="picker-card ${String(currentId) === itemId ? "is-current" : ""}">
           <button class="picker-card-select" type="button" data-picker-id="${escapeHtml(itemId)}">
-            <span class="picker-card-head"><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong><b>選択</b></span>
+            <span class="picker-card-head"><strong>${favoriteMark}${escapeHtml(item["名前"] || "名称未設定")}</strong><b>選択</b></span>
             ${basic ? `<span class="picker-card-basic">${escapeHtml(basic)}</span>` : ""}
             ${effects ? `<span class="picker-card-effects">${escapeHtml(effects)}</span>` : ""}
             ${description ? `<span class="picker-card-description">${escapeHtml(description)}</span>` : ""}
@@ -1454,6 +1459,10 @@ function collectTotalData() {
         && (!state.databaseFilters.favoriteOnly || state.favorites.has(String(item["アイテムID"] || "")));
     });
     filtered.sort((a,b) => {
+      // データベース検索でもお気に入りを常に先頭へ表示する。
+      const aFavorite = state.favorites.has(String(a["アイテムID"] || ""));
+      const bFavorite = state.favorites.has(String(b["アイテムID"] || ""));
+      if (aFavorite !== bFavorite) return aFavorite ? -1 : 1;
       const sort = state.databaseFilters.sort;
       if (sort === "atkDesc") return Number(b["基礎ATK"]||0)-Number(a["基礎ATK"]||0);
       if (sort === "atkAsc") return Number(a["基礎ATK"]||0)-Number(b["基礎ATK"]||0);
