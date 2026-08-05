@@ -313,45 +313,83 @@
       return;
     }
 
-    const groups = new Map();
+    // 同名スキルのLv・状態候補を1枚のカードへまとめる。
+    const categories = new Map();
     list.forEach(skill => {
       const category = String(skill["カテゴリ"] || "その他");
-      if (!groups.has(category)) groups.set(category, []);
-      groups.get(category).push(skill);
+      const skillName = String(skill["スキル名"] || skill["選択肢名"] || skill["スキルID"] || "スキル");
+      if (!categories.has(category)) categories.set(category, new Map());
+      const names = categories.get(category);
+      if (!names.has(skillName)) names.set(skillName, []);
+      names.get(skillName).push(skill);
     });
 
-    const inputFor = skill => {
-      const id = String(skill["スキルID"] || "");
-      const mode = String(skill["選択方式"] || "CHECK");
-      const checked = mode === "AUTO" || state.selectedSkills.has(id);
-      const groupKey = String(skill["スキル名"] || id).replace(/[^\w\u3000-\u9fff]/g, "_");
-      const type = (mode === "LEVEL" || mode === "RADIO") ? "radio" : "checkbox";
-      const name = type === "radio" ? `skill-${jobId}-${groupKey}` : `skill-${id}`;
-      return `<label class="skill-option ${mode === "AUTO" ? "skill-auto" : ""}">
-        <input type="${type}" name="${escapeHtml(name)}" data-skill-id="${escapeHtml(id)}" data-skill-mode="${escapeHtml(mode)}" ${checked ? "checked" : ""} ${mode === "AUTO" ? "disabled" : ""}>
-        <span><b>${escapeHtml(skill["選択肢名"] || skill["スキル名"] || "")}</b><small>${escapeHtml(skill["説明文"] || skill["特殊効果"] || "")}</small></span>
-        ${mode === "AUTO" ? '<em class="skill-badge">自動</em>' : ""}
-      </label>`;
+    const selectedRow = rows => rows.find(row => state.selectedSkills.has(String(row["スキルID"] || "")));
+    const defaultRow = rows => rows.find(row => String(row["初期選択"] || "").toUpperCase() === "TRUE") || rows[rows.length - 1] || rows[0];
+
+    const cardFor = (skillName, rows) => {
+      const active = selectedRow(rows);
+      const chosen = active || defaultRow(rows);
+      const mode = String(chosen?.["選択方式"] || rows[0]?.["選択方式"] || "CHECK");
+      const isAuto = rows.some(row => String(row["選択方式"] || "") === "AUTO");
+      const isOn = isAuto || Boolean(active);
+      const hasChoices = rows.length > 1 || mode === "LEVEL" || mode === "RADIO";
+      const description = String(chosen?.["説明文"] || chosen?.["特殊効果"] || rows[0]?.["説明文"] || rows[0]?.["特殊効果"] || "");
+      const safeName = encodeURIComponent(skillName);
+      const options = rows.map(row => {
+        const id = String(row["スキルID"] || "");
+        const label = String(row["選択肢名"] || row["適用Lv"] || row["最大Lv"] || skillName);
+        return `<option value="${escapeHtml(id)}" ${String(chosen?.["スキルID"] || "") === id ? "selected" : ""}>${escapeHtml(label)}</option>`;
+      }).join("");
+
+      return `<article class="skill-card ${isOn ? "is-active" : ""} ${isAuto ? "skill-auto" : ""}">
+        <div class="skill-card-main">
+          <label class="skill-toggle-row">
+            <input type="checkbox" data-skill-toggle="${escapeHtml(safeName)}" ${isOn ? "checked" : ""} ${isAuto ? "disabled" : ""}>
+            <span class="skill-card-copy"><b>${escapeHtml(skillName)}</b>${description ? `<small>${escapeHtml(description)}</small>` : ""}</span>
+          </label>
+          ${isAuto ? '<em class="skill-badge">自動</em>' : ""}
+        </div>
+        ${hasChoices ? `<label class="skill-level-control"><span>Lv・状態</span><select data-skill-choice="${escapeHtml(safeName)}" ${isOn ? "" : "disabled"}>${options}</select></label>` : ""}
+      </article>`;
     };
 
-    skillSelections.innerHTML = [...groups].map(([category, items]) =>
-      `<section class="skill-group"><h4>${escapeHtml(category)}</h4>${items.map(inputFor).join("")}</section>`
+    skillSelections.innerHTML = [...categories].map(([category, names]) =>
+      `<section class="skill-group"><h4>${escapeHtml(category)}</h4><div class="skill-card-list">${[...names].map(([name, rows]) => cardFor(name, rows)).join("")}</div></section>`
     ).join("");
 
-    skillSelections.querySelectorAll('[data-skill-id]').forEach(input => input.addEventListener('change', () => {
-      const id = String(input.dataset.skillId || "");
-      const mode = String(input.dataset.skillMode || "CHECK");
-      if (mode === "LEVEL" || mode === "RADIO") {
-        const skill = list.find(row => String(row["スキルID"]) === id);
-        const sameName = String(skill?.["スキル名"] || "");
-        list.filter(row => String(row["スキル名"] || "") === sameName)
-          .forEach(row => state.selectedSkills.delete(String(row["スキルID"])));
-      }
-      if (input.checked) state.selectedSkills.add(id); else state.selectedSkills.delete(id);
+    const rowsForName = encoded => {
+      const name = decodeURIComponent(String(encoded || ""));
+      return list.filter(row => String(row["スキル名"] || row["選択肢名"] || row["スキルID"] || "") === name);
+    };
+    const clearRows = rows => rows.forEach(row => state.selectedSkills.delete(String(row["スキルID"] || "")));
+    const finishSkillChange = () => {
       renderSkills();
       renderTotals();
       renderScreenshotSummary();
       syncUrl(false);
+    };
+
+    skillSelections.querySelectorAll('[data-skill-toggle]').forEach(input => input.addEventListener('change', () => {
+      const rows = rowsForName(input.dataset.skillToggle);
+      clearRows(rows);
+      if (input.checked) {
+        const select = skillSelections.querySelector(`[data-skill-choice="${CSS.escape(String(input.dataset.skillToggle || ""))}"]`);
+        const id = String(select?.value || defaultRow(rows)?.["スキルID"] || "");
+        if (id) state.selectedSkills.add(id);
+      }
+      finishSkillChange();
+    }));
+
+    skillSelections.querySelectorAll('[data-skill-choice]').forEach(select => select.addEventListener('change', () => {
+      const rows = rowsForName(select.dataset.skillChoice);
+      clearRows(rows);
+      const toggle = skillSelections.querySelector(`[data-skill-toggle="${CSS.escape(String(select.dataset.skillChoice || ""))}"]`);
+      if (toggle?.checked || rows.some(row => String(row["選択方式"] || "") === "AUTO")) {
+        const id = String(select.value || "");
+        if (id) state.selectedSkills.add(id);
+      }
+      finishSkillChange();
     }));
   }
 
@@ -1282,7 +1320,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.2</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
