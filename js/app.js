@@ -299,13 +299,85 @@
   }
 
   function renderSkills() {
-    if(!skillSelections) return;
-    const list=[...(context.skillsByJob.get(String(state.status.jobId))||[])].sort((x,y)=>Number(x["表示順"]||999)-Number(y["表示順"]||999));
-    if(!state.status.jobId){ skillSelections.innerHTML='<div class="state-card">職業を選択してください。</div>'; return; }
-    if(!list.length){ skillSelections.innerHTML='<div class="state-card">この職業はスキルデータ準備中です。</div>'; return; }
-    const groups=new Map(); list.forEach(s=>{const c=String(s["カテゴリ"]||"その他"); if(!groups.has(c))groups.set(c,[]); groups.get(c).push(s)});
-    skillSelections.innerHTML=[...groups].map(([cat,items])=>`<section class="skill-group"><h4>${escapeHtml(cat)}</h4>${items.map(skill=>{const id=String(skill["スキルID"]); const mode=String(skill["選択方式"]||"CHECK"); const checked=mode==="AUTO"||state.selectedSkills.has(id); return `<label class="skill-option ${mode==="AUTO"?'skill-auto':''}"><input type="checkbox" data-skill-id="${escapeHtml(id)}" ${checked?'checked':''} ${mode==="AUTO"?'disabled':''}><span><b>${escapeHtml(skill["選択肢名"]||skill["スキル名"]||'')}</b><small>${escapeHtml(skill["説明文"]||skill["特殊効果"]||'')}</small></span>${mode==="AUTO"?'<em class="skill-badge">自動</em>':''}</label>`}).join('')}</section>`).join('');
-    skillSelections.querySelectorAll('[data-skill-id]').forEach(input=>input.addEventListener('change',()=>{const id=input.dataset.skillId;if(input.checked)state.selectedSkills.add(id);else state.selectedSkills.delete(id);renderTotals();renderScreenshotSummary();syncUrl(false)}));
+    if (!skillSelections) return;
+    const jobId = String(state.status.jobId || "");
+    const list = [...(context.skillsByJob.get(jobId) || [])]
+      .sort((x, y) => Number(x["表示順"] || 999) - Number(y["表示順"] || 999));
+    if (!jobId) {
+      skillSelections.innerHTML = '<div class="state-card">職業を選択してください。</div>';
+      return;
+    }
+    if (!list.length) {
+      const jobName = context.jobMap.get(jobId)?.["職業名"] || "この職業";
+      skillSelections.innerHTML = `<div class="state-card">${escapeHtml(jobName)}は、現在ビルドへ数値反映できる確定スキルがありません。</div>`;
+      return;
+    }
+
+    const groups = new Map();
+    list.forEach(skill => {
+      const category = String(skill["カテゴリ"] || "その他");
+      if (!groups.has(category)) groups.set(category, []);
+      groups.get(category).push(skill);
+    });
+
+    const inputFor = skill => {
+      const id = String(skill["スキルID"] || "");
+      const mode = String(skill["選択方式"] || "CHECK");
+      const checked = mode === "AUTO" || state.selectedSkills.has(id);
+      const groupKey = String(skill["スキル名"] || id).replace(/[^\w\u3000-\u9fff]/g, "_");
+      const type = (mode === "LEVEL" || mode === "RADIO") ? "radio" : "checkbox";
+      const name = type === "radio" ? `skill-${jobId}-${groupKey}` : `skill-${id}`;
+      return `<label class="skill-option ${mode === "AUTO" ? "skill-auto" : ""}">
+        <input type="${type}" name="${escapeHtml(name)}" data-skill-id="${escapeHtml(id)}" data-skill-mode="${escapeHtml(mode)}" ${checked ? "checked" : ""} ${mode === "AUTO" ? "disabled" : ""}>
+        <span><b>${escapeHtml(skill["選択肢名"] || skill["スキル名"] || "")}</b><small>${escapeHtml(skill["説明文"] || skill["特殊効果"] || "")}</small></span>
+        ${mode === "AUTO" ? '<em class="skill-badge">自動</em>' : ""}
+      </label>`;
+    };
+
+    skillSelections.innerHTML = [...groups].map(([category, items]) =>
+      `<section class="skill-group"><h4>${escapeHtml(category)}</h4>${items.map(inputFor).join("")}</section>`
+    ).join("");
+
+    skillSelections.querySelectorAll('[data-skill-id]').forEach(input => input.addEventListener('change', () => {
+      const id = String(input.dataset.skillId || "");
+      const mode = String(input.dataset.skillMode || "CHECK");
+      if (mode === "LEVEL" || mode === "RADIO") {
+        const skill = list.find(row => String(row["スキルID"]) === id);
+        const sameName = String(skill?.["スキル名"] || "");
+        list.filter(row => String(row["スキル名"] || "") === sameName)
+          .forEach(row => state.selectedSkills.delete(String(row["スキルID"])));
+      }
+      if (input.checked) state.selectedSkills.add(id); else state.selectedSkills.delete(id);
+      renderSkills();
+      renderTotals();
+      renderScreenshotSummary();
+      syncUrl(false);
+    }));
+  }
+
+  function getEquippedWeaponType() {
+    const weapon = state.build.weapon ? context.itemsById.get(String(state.build.weapon)) : null;
+    return String(weapon?.["武器種"] || weapon?.["サブ分類"] || "").trim();
+  }
+
+  function skillEffectConditionsPass(effect) {
+    const groupId = String(effect["条件グループID"] || "").trim();
+    if (!groupId) return true;
+    const rows = context.skillConditionMap.get(groupId) || [];
+    if (!rows.length) return true;
+    return rows.every(condition => {
+      const item = String(condition["条件項目"] || "");
+      const op = String(condition["演算子"] || "EQ").toUpperCase();
+      const expected = String(condition["比較値ID"] || condition["比較値"] || "").trim();
+      if (item === "武器種") {
+        const actual = getEquippedWeaponType();
+        if (op === "IN") return expected.split(",").map(v => v.trim()).includes(actual);
+        return actual === expected;
+      }
+      // 戦闘中だけ確定する条件は、ビルド画面では効果を加算せず説明のみとする。
+      if (["敵ターゲット", "敵状態異常", "騎士の心", "暴撃力", "獣性"].includes(item)) return false;
+      return true;
+    });
   }
 
   function evaluateSkillFormula(formula, skill) {
@@ -323,6 +395,7 @@
     const rows=[]; const text=[];
     selected.forEach(skill=>(context.skillEffectsBySkill.get(String(skill["スキルID"]))||[]).forEach(effect=>{
       if(String(effect["ビルド反映"]??"TRUE").toUpperCase()==="FALSE")return;
+      if(!skillEffectConditionsPass(effect)) { if(effect["表示文"]) text.push(`条件付き：${String(effect["表示文"])}`); return; }
       const statId=String(effect["能力ID"]||""); const unit=String(effect["単位"]||""); let value=Number(effect["値"]);
       if(!Number.isFinite(value)&&effect["数式"]) value=evaluateSkillFormula(effect["数式"],skill);
       if(statId&&Number.isFinite(value)) rows.push({statId,unit,value,source:'skill'}); else if(effect["表示文"]) text.push(String(effect["表示文"]));
@@ -1565,8 +1638,8 @@ function collectTotalData() {
     }
     Object.assign(state, data);
     mergeJobMaster();
-    initializeSkillData();
     buildIndexes();
+    initializeSkillData();
     populateDatabaseFilters();
     restoreBuildFromUrl();
     renderDatabase();
