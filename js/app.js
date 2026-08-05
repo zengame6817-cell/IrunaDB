@@ -41,12 +41,14 @@
     build: createEmptyBuild(),
     pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
     pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
-    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 }
+    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 },
+    selectedSkills: new Set()
   };
   const context = {
     itemsById: new Map(), effectsByItem: new Map(), conditionMap: new Map(),
     statMap: new Map(), attributeMap: new Map(), jobMap: new Map(), searchIndex: new Map(),
-    relicPatternByItemId: new Map(), relicPatternByName: new Map()
+    relicPatternByItemId: new Map(), relicPatternByName: new Map(),
+    skillsByJob: new Map(), skillEffectsBySkill: new Map(), skillConditionMap: new Map()
   };
   const ui = window.IrunaUi, api = window.IrunaApi, modal = window.IrunaModal;
   const { normalizeSearchText, escapeHtml, encodeBuild, decodeBuild, isBlank } = window.IrunaUtils;
@@ -67,15 +69,13 @@
   const screenshotSummaryBody = document.getElementById("screenshotSummaryBody");
   const toggleScreenshotSummary = document.getElementById("toggleScreenshotSummary");
   const screenshotModeButton = document.getElementById("screenshotModeButton");
+  const skillSelections = document.getElementById("skillSelections");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
 
   const JOB_MASTER_V12 = [
-    "冒険者", "戦士見習い", "ウォリアー", "騎士見習い", "ナイト", "聖騎士見習い", "パラディン",
-    "剣闘士見習い", "グラディエータ", "ビーストナイト", "弓士見習い", "ハンター", "狙撃手見習い",
-    "スナイパー", "暗殺者見習い", "アサシン", "サマナー", "魔法使い見習い", "メイジ",
-    "魔導師見習い", "ウィザード", "賢者見習い", "ハイウィザード", "付術師見習い",
-    "エンチャンター", "ネクロマンサー", "司祭見習い", "クレリック", "司教見習い", "ビショップ",
-    "拳法家見習い", "モンク", "サーヴァント", "サムライ", "ニンジャ", "ミンストレル", "アルケミスト"
+    "冒険者", "グラディエーター", "パラディン", "スナイパー", "アサシン", "サマナー",
+    "ハイウィザード", "ビショップ", "エンチャンター", "モンク", "ビーストナイト",
+    "サーヴァント", "ミンストレル", "サムライ", "ニンジャ", "ネクロマンサー", "アルケミスト"
   ];
 
   const V12_QUICK_TAGS = [
@@ -116,7 +116,7 @@
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.2.3");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.25");
       }
     });
   }
@@ -128,7 +128,7 @@
     panel.className = "v12-picker-filter";
     panel.innerHTML = `
       <div class="v12-filter-grid">
-        <label><span id="v12TypeFilterLabel">武器種</span><select id="v12WeaponType"><option value="">すべて</option></select></label>
+        <label><span id="v12TypeFilterLabel">種類</span><select id="v12WeaponType"><option value="">すべて</option></select></label>
         <label>属性<select id="v12Attribute"><option value="">すべて</option></select></label>
         <label>並び順<select id="v12PickerSort"><option value="name">名前順</option><option value="atkDesc">ATK 高い順</option><option value="atkAsc">ATK 低い順</option></select></label>
       </div>
@@ -278,10 +278,63 @@
     });
   }
 
+  function getDatabaseTypeValue(item) {
+    const category = String(item["分類"] || item["表示分類"] || "").trim();
+    if (category === "武器") return String(item["武器種"] || item["サブ分類"] || "武器").trim();
+    const normalized = category || String(item["表示分類"] || item["サブ分類"] || "").trim();
+    const aliases = { "体装備":"体", "追加装備":"追加", "特殊装備":"特殊", "アルクリ":"アルクリスタ", "☆":"☆能力" };
+    return aliases[normalized] || normalized;
+  }
+
+  function initializeSkillData() {
+    const data = window.IRUNA_SKILL_DATA || { jobs:[], skills:[], effects:[], conditions:[] };
+    if (Array.isArray(data.jobs) && data.jobs.length) state.jobs = data.jobs.map(job => ({ ...job }));
+    context.skillsByJob.clear(); context.skillEffectsBySkill.clear(); context.skillConditionMap.clear();
+    data.skills.forEach(skill => {
+      const jid=String(skill["職業ID"]||""); if(!context.skillsByJob.has(jid)) context.skillsByJob.set(jid,[]); context.skillsByJob.get(jid).push(skill);
+      if(String(skill["選択方式"]||"")==="AUTO") state.selectedSkills.add(String(skill["スキルID"]));
+    });
+    data.effects.forEach(effect => { const sid=String(effect["スキルID"]||""); if(!context.skillEffectsBySkill.has(sid)) context.skillEffectsBySkill.set(sid,[]); context.skillEffectsBySkill.get(sid).push(effect); });
+    data.conditions.forEach(cond => { const gid=String(cond["条件グループID"]||""); if(!context.skillConditionMap.has(gid)) context.skillConditionMap.set(gid,[]); context.skillConditionMap.get(gid).push(cond); });
+  }
+
+  function renderSkills() {
+    if(!skillSelections) return;
+    const list=[...(context.skillsByJob.get(String(state.status.jobId))||[])].sort((x,y)=>Number(x["表示順"]||999)-Number(y["表示順"]||999));
+    if(!state.status.jobId){ skillSelections.innerHTML='<div class="state-card">職業を選択してください。</div>'; return; }
+    if(!list.length){ skillSelections.innerHTML='<div class="state-card">この職業はスキルデータ準備中です。</div>'; return; }
+    const groups=new Map(); list.forEach(s=>{const c=String(s["カテゴリ"]||"その他"); if(!groups.has(c))groups.set(c,[]); groups.get(c).push(s)});
+    skillSelections.innerHTML=[...groups].map(([cat,items])=>`<section class="skill-group"><h4>${escapeHtml(cat)}</h4>${items.map(skill=>{const id=String(skill["スキルID"]); const mode=String(skill["選択方式"]||"CHECK"); const checked=mode==="AUTO"||state.selectedSkills.has(id); return `<label class="skill-option ${mode==="AUTO"?'skill-auto':''}"><input type="checkbox" data-skill-id="${escapeHtml(id)}" ${checked?'checked':''} ${mode==="AUTO"?'disabled':''}><span><b>${escapeHtml(skill["選択肢名"]||skill["スキル名"]||'')}</b><small>${escapeHtml(skill["説明文"]||skill["特殊効果"]||'')}</small></span>${mode==="AUTO"?'<em class="skill-badge">自動</em>':''}</label>`}).join('')}</section>`).join('');
+    skillSelections.querySelectorAll('[data-skill-id]').forEach(input=>input.addEventListener('change',()=>{const id=input.dataset.skillId;if(input.checked)state.selectedSkills.add(id);else state.selectedSkills.delete(id);renderTotals();renderScreenshotSummary();syncUrl(false)}));
+  }
+
+  function evaluateSkillFormula(formula, skill) {
+    if(!formula) return NaN;
+    const vars={Lv:Number(state.status.lv||1),STR:Number(state.status.str||0),INT:Number(state.status.int||0),VIT:Number(state.status.vit||0),AGI:Number(state.status.agi||0),DEX:Number(state.status.dex||0),CRT:Number(state.status.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(state.status.dex||0)};
+    let expr=String(formula).replace(/FLOOR/g,'Math.floor').replace(/MIN/g,'Math.min').replace(/MAX/g,'Math.max');
+    Object.entries(vars).sort((x,y)=>y[0].length-x[0].length).forEach(([k,v])=>{expr=expr.replace(new RegExp(k,'g'),String(v))});
+    if(!/^[0-9+\-*/()., Mathminfloorax]+$/.test(expr)) return NaN;
+    try{return Number(Function(`"use strict";return (${expr})`)())}catch{return NaN}
+  }
+
+  function collectSelectedSkillEffects() {
+    const selected=[]; const jobSkills=context.skillsByJob.get(String(state.status.jobId))||[];
+    jobSkills.forEach(skill=>{const sid=String(skill["スキルID"]); const mode=String(skill["選択方式"]||""); if(mode==="AUTO"||state.selectedSkills.has(sid)) selected.push(skill)});
+    const rows=[]; const text=[];
+    selected.forEach(skill=>(context.skillEffectsBySkill.get(String(skill["スキルID"]))||[]).forEach(effect=>{
+      if(String(effect["ビルド反映"]??"TRUE").toUpperCase()==="FALSE")return;
+      const statId=String(effect["能力ID"]||""); const unit=String(effect["単位"]||""); let value=Number(effect["値"]);
+      if(!Number.isFinite(value)&&effect["数式"]) value=evaluateSkillFormula(effect["数式"],skill);
+      if(statId&&Number.isFinite(value)) rows.push({statId,unit,value,source:'skill'}); else if(effect["表示文"]) text.push(String(effect["表示文"]));
+    }));
+    selected.forEach(skill=>{if(skill["特殊効果"])text.push(`${skill["選択肢名"]||skill["スキル名"]}: ${skill["特殊効果"]}`)});
+    return {selected,rows,text};
+  }
+
   function populateDatabaseFilters() {
     const weapon = document.getElementById("databaseWeaponType");
     const attribute = document.getElementById("databaseAttribute");
-    const weaponTypes = [...new Set(state.items.map(item => String(item["武器種"] || item["サブ分類"] || "").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));
+    const weaponTypes = [...new Set(state.items.map(getDatabaseTypeValue).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));
     const attributes = [...new Set(state.items.map(item => { const id=String(item["属性ID"]||""); return context.attributeMap.get(id)?.["属性名"] || id; }).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ja"));
     weapon.innerHTML = `<option value="">すべて</option>${weaponTypes.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("")}`;
     attribute.innerHTML = `<option value="">すべて</option>${attributes.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("")}`;
@@ -749,6 +802,7 @@
   }
 
   function renderBuild() {
+    renderSkills();
     equipmentSlots.innerHTML = SLOT_DEFS.map(slot => {
       if (slot.key === "decoration") {
         const starId = state.build.stars.decoration;
@@ -1086,6 +1140,13 @@ function collectTotalData() {
         totals.set(key, current);
       } else if (effect["表示文"]) textOnly.push(String(effect["表示文"]));
     }));
+    const skillData = collectSelectedSkillEffects();
+    skillData.rows.forEach(row => {
+      const key = `${row.statId}__${row.unit}`;
+      const current = totals.get(key) || { statId: row.statId, unit: row.unit, value: 0 };
+      current.value += row.value; totals.set(key, current);
+    });
+    textOnly.push(...skillData.text);
     const rows = [...totals.values()].sort((x,y) =>
       (context.statMap.get(x.statId)?.["表示順"] || 9999) -
       (context.statMap.get(y.statId)?.["表示順"] || 9999)
@@ -1120,22 +1181,24 @@ function collectTotalData() {
       return `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span></li>`;
     }).filter(Boolean).join("");
 
-    const optionNames = [];
+    const crystalNames = [], alNames = [], relicNames = [];
     SLOT_DEFS.forEach(slot => {
       if (slot.key !== "decoration") {
         (state.build.crystals[slot.key] || []).filter(Boolean).forEach(id => {
-          const name = selectedItemName(id); if (name) optionNames.push(name);
+          const name = selectedItemName(id); if (name) crystalNames.push(name);
         });
       }
       const star = selectedItemName(state.build.stars[slot.key]);
-      if (star) optionNames.push(star);
+      if (star) crystalNames.push(star);
     });
     state.build.alCrystas.filter(Boolean).forEach(id => {
-      const name = selectedItemName(id); if (name) optionNames.push(name);
+      const name = selectedItemName(id); if (name) alNames.push(name);
     });
     state.build.relicPlacements.forEach(entry => {
-      const name = selectedItemName(entry.itemId); if (name) optionNames.push(name);
+      const name = selectedItemName(entry.itemId); if (name) relicNames.push(name);
     });
+
+    const skillNames = collectSelectedSkillEffects().selected.map(skill => String(skill["選択肢名"] || skill["スキル名"] || "")).filter(Boolean);
 
     const totalRows = totalData.rows.filter(row => Number(row.value) !== 0).map(row => {
       const name = displayStatName(row.statId);
@@ -1146,11 +1209,16 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.2.4</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
-          <section><h4>クリスタ・☆・アルクリ・レリック</h4><p class="screenshot-tags">${optionNames.length ? optionNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
+          <section><h4>クリスタ・☆能力</h4><p class="screenshot-tags">${crystalNames.length ? crystalNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
+        </div>
+        <div class="screenshot-section-grid">
+          <section><h4>アルクリスタ</h4><p class="screenshot-tags">${alNames.length ? alNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
+          <section><h4>レリック</h4><p class="screenshot-tags">${relicNames.length ? relicNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
+          <section><h4>スキル</h4><p class="screenshot-tags">${skillNames.length ? skillNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
         </div>
         <section><h4>合計能力</h4><ul class="screenshot-totals">${totalRows || '<li class="empty-mini">能力なし</li>'}${passiveRows}</ul></section>
       </article>`;
@@ -1159,7 +1227,7 @@ function collectTotalData() {
   function renderTotals() {
     const totalData = collectTotalData();
     const { selectedIds, rows, textOnly, activeConditional, inactiveConditional } = totalData;
-    selectedCount.textContent = `${selectedIds.length}件`;
+    selectedCount.textContent = `${selectedIds.length}件＋スキル${collectSelectedSkillEffects().selected.length}件`;
 
     const totalsHtml =
       rows.map(row => {
@@ -1363,7 +1431,7 @@ function collectTotalData() {
       y: Number(entry.y),
       rotation: Number(entry.rotation) || 0
     }));
-    return { build, status: { ...state.status } };
+    return { build, status: { ...state.status }, skills: [...state.selectedSkills] };
   }
   function syncUrl(push) {
     const url = new URL(location.href); const payload = compactBuild();
@@ -1383,6 +1451,7 @@ function collectTotalData() {
       const decoded = decodeBuild(encoded);
       const decodedBuild = decoded?.build || decoded || {};
       const decodedStatus = decoded?.status || {};
+      state.selectedSkills = new Set(Array.isArray(decoded?.skills) ? decoded.skills.map(String) : []);
       SLOT_DEFS.forEach(slot => {
         const id = decodedBuild?.[slot.key];
         state.build[slot.key] = id && context.itemsById.has(String(id)) ? String(id) : null;
@@ -1451,7 +1520,7 @@ function collectTotalData() {
     ui.renderTabs(state.activeCategory, category => { state.activeCategory = category; renderDatabase(); });
     let filtered = ui.filterItems(state.items, state.activeCategory, state.searchQuery, context.searchIndex);
     filtered = filtered.filter(item => {
-      const weaponType = String(item["武器種"] || item["サブ分類"] || "").trim();
+      const weaponType = getDatabaseTypeValue(item);
       const attributeId = String(item["属性ID"] || "");
       const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
       return (!state.databaseFilters.weaponType || weaponType === state.databaseFilters.weaponType)
@@ -1496,6 +1565,7 @@ function collectTotalData() {
     }
     Object.assign(state, data);
     mergeJobMaster();
+    initializeSkillData();
     buildIndexes();
     populateDatabaseFilters();
     restoreBuildFromUrl();
@@ -1544,7 +1614,8 @@ function collectTotalData() {
         name: String(input?.value || fallback).trim() || fallback,
         savedAt: new Date().toISOString(),
         build: JSON.parse(JSON.stringify(state.build)),
-        status: JSON.parse(JSON.stringify(state.status))
+        status: JSON.parse(JSON.stringify(state.status)),
+        skills: [...state.selectedSkills]
       };
       localStorage.setItem(SAVED_BUILD_KEY, JSON.stringify(builds));
       renderSavedBuildSlots();
@@ -1554,6 +1625,7 @@ function collectTotalData() {
       if (!entry) return;
       state.build = { ...createEmptyBuild(), ...entry.build };
       state.status = { ...state.status, ...entry.status };
+      state.selectedSkills = new Set(Array.isArray(entry.skills) ? entry.skills.map(String) : []);
       state.selectedRelicUid = null;
       const input = document.getElementById("buildNameInput");
       if (input) input.value = entry.name || "";
@@ -1647,6 +1719,8 @@ function collectTotalData() {
 
   document.getElementById("jobSelect").addEventListener("change", event => {
     state.status.jobId = event.target.value;
+    state.selectedSkills.clear();
+    (context.skillsByJob.get(String(state.status.jobId)) || []).filter(skill => String(skill["選択方式"]||"")==="AUTO").forEach(skill => state.selectedSkills.add(String(skill["スキルID"])));
     syncUrl(false);
     renderBuild();
   });
@@ -1663,6 +1737,7 @@ function collectTotalData() {
 
   document.getElementById("resetStatusButton").addEventListener("click", () => {
     state.status = { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 };
+    state.selectedSkills.clear();
     renderStatus();
     syncUrl(false);
     renderBuild();

@@ -1,8 +1,9 @@
 "use strict";
-const CACHE_NAME = "irunadb-app-v2.2.4-favorite-priority";
+const CACHE_NAME = "irunadb-app-v2.25-favorite-priority";
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css", "./js/config.js", "./js/utils.js",
-  "./js/api.js", "./js/ui.js", "./js/modal.js", "./js/app.js", "./js/theme.js"
+  "./js/api.js", "./js/ui.js", "./js/modal.js", "./js/app.js", "./js/theme.js",
+  "./data/skills.js"
 ];
 self.addEventListener("install", event => { event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))); self.clients.claim(); });
