@@ -6,6 +6,7 @@ window.IrunaModal = (() => {
   const category = document.getElementById("modalCategory");
   const details = document.getElementById("modalDetails");
   const closeButton = document.getElementById("modalCloseButton");
+  const actions = document.getElementById("modalActions");
   const { escapeHtml, isBlank, formatFormulaText } = window.IrunaUtils;
 
   function buildBasicRows(item, attributeName) {
@@ -123,7 +124,7 @@ window.IrunaModal = (() => {
     `;
   }
 
-  function open(item, context) {
+  function open(item, context, options = {}) {
     title.textContent = item["名前"] || "名称未設定";
     category.textContent = item["分類"] || "未分類";
 
@@ -136,6 +137,20 @@ window.IrunaModal = (() => {
       context.statMap,
       context.conditionMap
     );
+
+    if (actions) {
+      actions.innerHTML = "";
+      actions.hidden = true;
+      if (typeof options.onChange === "function") {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "button button-primary modal-change-button";
+        button.textContent = options.changeLabel || "変更する";
+        button.addEventListener("click", () => { close(); options.onChange(); });
+        actions.appendChild(button);
+        actions.hidden = false;
+      }
+    }
 
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");

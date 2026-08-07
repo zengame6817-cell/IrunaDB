@@ -631,7 +631,17 @@
     alCount.textContent = `${state.build.alCrystas.filter(Boolean).length} / 5`;
 
     document.querySelectorAll("#equipmentOptions [data-slot-pick]:not(:disabled), #alSlots [data-slot-pick]")
-      .forEach(button => button.addEventListener("click", () => openPicker(button.dataset.slotPick)));
+      .forEach(button => button.addEventListener("click", () => {
+        const token = button.dataset.slotPick;
+        const descriptor = getSlotDescriptor(token);
+        const itemId = descriptor?.get();
+        const item = itemId ? context.itemsById.get(String(itemId)) : null;
+        if (item) {
+          modal.open(item, context, { changeLabel: "この枠を変更", onChange: () => openPicker(token) });
+        } else {
+          openPicker(token);
+        }
+      }));
 
     equipmentOptions.querySelectorAll("[data-slot-count-key]").forEach(select => {
       select.addEventListener("change", event => {
@@ -893,8 +903,9 @@
 
     relicPlacementList.querySelectorAll("[data-relic-select]").forEach(button => {
       button.addEventListener("click", () => {
-        state.selectedRelicUid = button.dataset.relicSelect;
-        renderRelicBoard();
+        const placement = state.build.relicPlacements.find(entry => entry.uid === button.dataset.relicSelect);
+        const item = placement ? context.itemsById.get(String(placement.itemId)) : null;
+        if (item) modal.open(item, context);
       });
     });
     relicPlacementList.querySelectorAll("[data-relic-detail]").forEach(button => {
@@ -1320,7 +1331,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.2</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.3</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>

@@ -3179,3 +3179,12 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 /* v2.25.2: skill-by-skill switches */
 .skill-card-list{display:grid;gap:8px}.skill-card{border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px;background:rgba(0,0,0,.16);transition:.18s ease}.skill-card.is-active{border-color:rgba(210,174,91,.65);background:rgba(210,174,91,.08)}.skill-card-main{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.skill-toggle-row{display:flex;align-items:flex-start;gap:9px;flex:1;cursor:pointer}.skill-toggle-row input{margin-top:4px}.skill-card-copy{display:grid;gap:3px}.skill-card-copy b{font-size:14px}.skill-card-copy small{color:#aaa;line-height:1.45}.skill-level-control{margin:9px 0 0 25px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#bbb}.skill-level-control select{min-width:120px;max-width:55%;padding:6px 8px;border-radius:8px}.skill-card:not(.is-active) .skill-level-control{opacity:.55}
 @media(max-width:680px){.skill-card{padding:9px}.skill-level-control{margin-left:0}.skill-level-control select{max-width:65%;min-width:110px}}
+
+/* v2.25.3: unified skill UI + detail-first crystal/al/relic interactions */
+.skill-group{border-color:var(--line)!important;background:var(--surface)!important}
+.skill-group h4{color:var(--accent)!important}
+.skill-card{border-color:var(--line)!important;background:var(--surface-2)!important}
+.skill-card.is-active{border-color:var(--accent)!important;background:color-mix(in srgb,var(--accent) 8%,var(--surface-2))!important}
+.skill-card-copy small,.skill-level-control{color:var(--muted)!important}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.modal-actions[hidden]{display:none}.modal-change-button{min-width:140px}
