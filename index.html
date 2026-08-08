@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
   <title>IrunaDB v2.6.5</title>
-  <link rel="stylesheet" href="./css/style.css?v=2.6.8">
+  <link rel="stylesheet" href="./css/style.css?v=2.7.0">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -274,7 +274,7 @@ body.light-mode .calculation-card {
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span id="appVersionLabel">Version 2.6.8</span></h1>
+        <h1>IrunaDB <span id="appVersionLabel">Version 2.7.0</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -288,6 +288,7 @@ body.light-mode .calculation-card {
     <nav id="mainTabs" class="main-tabs" aria-label="メイン画面">
       <button class="main-tab is-active" data-view="build" type="button"><span>◫</span>シミュレーター</button>
       <button class="main-tab" data-view="database" type="button"><span>⌕</span>データベース</button>
+      <button class="main-tab" data-view="mission" type="button"><span>MS</span>ミッション</button>
       <button class="main-tab" data-view="guide" type="button"><span>?</span>使い方</button>
       <button class="main-tab" data-view="settings" type="button"><span>⚙</span>設定</button>
     </nav>
@@ -516,6 +517,54 @@ body.light-mode .calculation-card {
         </section>
       </section>
 
+
+      <section id="view-mission" class="app-view">
+        <div class="mission-hero">
+          <div>
+            <p class="section-kicker">MISSION STORY GUIDE</p>
+            <h2>MS（ミッション）</h2>
+            <p>ストーリー進行・必要アイテム・報酬をまとめて確認できます。</p>
+          </div>
+          <div class="mission-progress-card">
+            <strong id="missionProgressText">0 / 0</strong>
+            <span>ミッション完了</span>
+            <div class="mission-progress-track"><i id="missionProgressBar"></i></div>
+          </div>
+        </div>
+
+        <section class="mission-toolbar">
+          <div id="missionEpTabs" class="mission-ep-tabs"></div>
+          <label class="mission-search">
+            <span>検索</span>
+            <input id="missionSearchInput" type="search" placeholder="ミッション名・場所・NPC・ボス・アイテム">
+          </label>
+          <label class="mission-toggle"><input id="missionHideCompleted" type="checkbox"> 完了済みを隠す</label>
+        </section>
+
+        <section class="mission-items-panel">
+          <div class="mission-section-head">
+            <div>
+              <p class="section-kicker">PREPARATION</p>
+              <h3 id="missionItemTitle">EP1 必要アイテムまとめ</h3>
+            </div>
+            <label class="mission-toggle"><input id="missionHideOwned" type="checkbox"> 入手済みを隠す</label>
+          </div>
+          <p class="mission-help">そのEPで必要になる物・先に集めておくと楽な物を最初に確認できます。</p>
+          <div id="missionItemList" class="mission-item-list"></div>
+        </section>
+
+        <section class="mission-list-panel">
+          <div class="mission-section-head">
+            <div>
+              <p class="section-kicker">STORY ROUTE</p>
+              <h3>ミッション進行</h3>
+            </div>
+            <span id="missionResultCount" class="mission-result-count"></span>
+          </div>
+          <div id="missionList" class="mission-list"></div>
+        </section>
+      </section>
+
       <section id="view-guide" class="app-view">
         <div class="page-heading">
           <div><p class="section-kicker">QUICK GUIDE</p><h2>IrunaDBの使い方</h2></div>
@@ -538,7 +587,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 2.6.8</h2>
+          <h2>IrunaDB Version 2.7.0</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -589,13 +638,15 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config.js?v=2.6.8"></script>
-  <script src="./js/utils.js?v=2.6.8"></script>
-  <script src="./js/api.js?v=2.6.8"></script>
-  <script src="./js/modal.js?v=2.6.8"></script>
-  <script src="./js/ui.js?v=2.6.8"></script>
-  <script src="./data/skills.js?v=2.6.8"></script>
-  <script src="./js/app.js?v=2.6.8"></script>
-  <script src="./js/theme.js?v=2.6.8"></script>
+  <script src="./js/config.js?v=2.7.0"></script>
+  <script src="./js/utils.js?v=2.7.0"></script>
+  <script src="./js/api.js?v=2.7.0"></script>
+  <script src="./js/modal.js?v=2.7.0"></script>
+  <script src="./js/ui.js?v=2.7.0"></script>
+  <script src="./data/skills.js?v=2.7.0"></script>
+  <script src="./data/missions.js?v=2.7.0"></script>
+  <script src="./js/missions.js?v=2.7.0"></script>
+  <script src="./js/app.js?v=2.7.0"></script>
+  <script src="./js/theme.js?v=2.7.0"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 "use strict";
-const CACHE_NAME = "irunadb-v2-6-8";
+const CACHE_NAME = "irunadb-v2-7-0";
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
   "./js/config.js", "./js/utils.js", "./js/api.js",
   "./js/ui.js", "./js/modal.js", "./js/app.js", "./js/theme.js",
-  "./data/skills.js"
+  "./data/skills.js", "./data/missions.js", "./js/missions.js"
 ];
 
 self.addEventListener("install", event => {
