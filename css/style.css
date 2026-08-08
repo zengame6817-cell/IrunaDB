@@ -3233,3 +3233,114 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 
 /* v2.25.7 guide + dynamic save slots */
 .guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.guide-card,.guide-note{background:var(--panel-bg,#fff);border:1px solid var(--border-color,#dbe5f0);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(31,78,120,.06)}.guide-card{position:relative;padding-left:58px}.guide-step{position:absolute;left:16px;top:16px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#2f6fb3;color:#fff;font-weight:800}.guide-card h3,.guide-note h3{margin:0 0 8px}.guide-card p,.guide-note p{margin:0;line-height:1.75}.add-build-slot-button{width:100%;margin-top:10px}.fixed-refinement-note.is-none{opacity:.72}.theme-dark .guide-card,.theme-dark .guide-note{box-shadow:none}@media(max-width:720px){.guide-grid{grid-template-columns:1fr}.guide-card{padding-left:54px}}
+
+
+/* =========================================================
+   IrunaDB v2.6.1
+   PC 合計能力レイアウト修正（実クラスに直接適用）
+   ========================================================= */
+@media (min-width: 900px) {
+  /* 右カラムを広げ、スキル・合計能力を読みやすくする */
+  .build-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(440px, 1fr) !important;
+  }
+
+  /* 合計能力はPCで2列。1カードに十分な横幅を確保 */
+  .summary-panel .total-effects,
+  #totalEffects.total-effects {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 8px !important;
+    border-top: 1px solid #3b2a18 !important;
+  }
+
+  .summary-panel .total-row,
+  #totalEffects .total-row {
+    min-width: 0 !important;
+    min-height: 58px !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 10px !important;
+  }
+
+  /* detailsカードのヘッダーを [+] 能力名 値 の横一列に固定 */
+  #totalEffects .total-breakdown > summary {
+    display: grid !important;
+    grid-template-columns: 26px minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding: 10px 11px !important;
+  }
+
+  #totalEffects .total-stat-label {
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    writing-mode: horizontal-tb !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1.25 !important;
+  }
+
+  #totalEffects .total-stat-label i {
+    flex: 0 0 auto !important;
+  }
+
+  #totalEffects .total-breakdown > summary > strong {
+    white-space: nowrap !important;
+    writing-mode: horizontal-tb !important;
+    text-align: right !important;
+    font-size: 18px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* 開いた内訳も横書き */
+  #totalEffects .total-source-list {
+    padding: 8px 11px 10px 45px !important;
+  }
+
+  #totalEffects .total-source-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: start !important;
+    gap: 10px !important;
+  }
+
+  #totalEffects .total-source-row span {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+    writing-mode: horizontal-tb !important;
+  }
+
+  #totalEffects .total-source-row b,
+  #totalEffects .total-source-row em,
+  #totalEffects .total-source-row strong,
+  #totalEffects .total-source-condition {
+    writing-mode: horizontal-tb !important;
+    word-break: normal !important;
+  }
+
+  #totalEffects .passive-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+@media (min-width: 1250px) {
+  .build-layout {
+    grid-template-columns: minmax(0, 1.25fr) minmax(500px, .95fr) !important;
+  }
+}
+
+/* タブレット以下は従来レイアウトを維持 */
+@media (max-width: 899px) {
+  .build-layout {
+    grid-template-columns: 1fr !important;
+  }
+}

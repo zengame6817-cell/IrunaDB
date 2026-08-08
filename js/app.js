@@ -1390,7 +1390,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.7</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.6.1</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>

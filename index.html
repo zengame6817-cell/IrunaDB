@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v2.6</title>
+  <title>IrunaDB v2.6.1</title>
   <link rel="stylesheet" href="./css/style.css?v=2.6">
 
 <style id="v26-theme-refactor">
 /* =========================================================
-   IrunaDB v2.6 Theme Refactor
+   IrunaDB v2.6.1 Theme Refactor
    - Guide cards follow light/dark theme
    - Picker/search modal follows light/dark theme
    - Search controls, filters, favorites follow theme
@@ -209,7 +209,7 @@ body.dark-mode .guide-card {
 
 
 <style id="v26-guide-final-card-fix">
-/* v2.6 release fix: guide footer/calculation card theme */
+/* v2.6.1 release fix: guide footer/calculation card theme */
 html[data-theme="dark"] .guide-note,
 html[data-theme="dark"] .guide-info,
 html[data-theme="dark"] .guide-summary,
@@ -268,136 +268,13 @@ body.light-mode .calculation-card {
 </style>
 
 
-<style id="v26-total-pc-responsive">
-/* v2.6 release polish: 合計能力をPC幅では横長・多列表示 */
-@media (min-width: 900px) {
-  /* 合計能力のグリッド候補 */
-  #totalAbilities,
-  #total-abilities,
-  #summaryGrid,
-  #summary-grid,
-  .total-abilities,
-  .total-ability-grid,
-  .summary-grid,
-  .ability-summary-grid,
-  [data-section="total-abilities"] .grid,
-  [data-role="total-abilities"] .grid {
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(220px,1fr)) !important;
-    gap:10px !important;
-  }
-
-  /* 合計能力カード候補 */
-  #totalAbilities > *,
-  #total-abilities > *,
-  #summaryGrid > *,
-  #summary-grid > *,
-  .total-abilities > *,
-  .total-ability-grid > *,
-  .summary-grid > *,
-  .ability-summary-grid > *,
-  [data-section="total-abilities"] .ability-card,
-  [data-role="total-abilities"] .ability-card {
-    min-width:0 !important;
-    min-height:58px !important;
-    height:auto !important;
-  }
-
-  /* カード内部を 横一列: [+] 能力名 数値 */
-  .total-ability-card,
-  .ability-summary-card,
-  .summary-ability-card,
-  .total-abilities .ability-card,
-  .total-ability-grid .ability-card,
-  .summary-grid .ability-card,
-  .ability-summary-grid .ability-card {
-    display:grid !important;
-    grid-template-columns:auto minmax(0,1fr) auto !important;
-    align-items:center !important;
-    column-gap:10px !important;
-    padding:10px 12px !important;
-  }
-
-  .total-ability-card .label,
-  .total-ability-card .name,
-  .ability-summary-card .label,
-  .ability-summary-card .name,
-  .summary-ability-card .label,
-  .summary-ability-card .name,
-  .total-abilities .ability-name,
-  .total-ability-grid .ability-name,
-  .summary-grid .ability-name,
-  .ability-summary-grid .ability-name {
-    white-space:nowrap !important;
-    word-break:keep-all !important;
-    overflow:hidden !important;
-    text-overflow:ellipsis !important;
-    writing-mode:horizontal-tb !important;
-    line-height:1.2 !important;
-  }
-
-  .total-ability-card .value,
-  .ability-summary-card .value,
-  .summary-ability-card .value,
-  .total-abilities .ability-value,
-  .total-ability-grid .ability-value,
-  .summary-grid .ability-value,
-  .ability-summary-grid .ability-value {
-    white-space:nowrap !important;
-    writing-mode:horizontal-tb !important;
-    text-align:right !important;
-    line-height:1.2 !important;
-  }
-
-  /* 内訳展開行はカード全幅 */
-  .total-ability-card .breakdown,
-  .ability-summary-card .breakdown,
-  .summary-ability-card .breakdown,
-  .total-abilities .ability-breakdown,
-  .total-ability-grid .ability-breakdown,
-  .summary-grid .ability-breakdown,
-  .ability-summary-grid .ability-breakdown {
-    grid-column:1 / -1 !important;
-    width:100% !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  #totalAbilities,
-  #total-abilities,
-  #summaryGrid,
-  #summary-grid,
-  .total-abilities,
-  .total-ability-grid,
-  .summary-grid,
-  .ability-summary-grid,
-  [data-section="total-abilities"] .grid,
-  [data-role="total-abilities"] .grid {
-    grid-template-columns:repeat(4,minmax(220px,1fr)) !important;
-  }
-}
-
-/* スマホは既存UIを維持 */
-@media (max-width: 899px) {
-  .total-ability-card .label,
-  .total-ability-card .name,
-  .ability-summary-card .label,
-  .ability-summary-card .name,
-  .summary-ability-card .label,
-  .summary-ability-card .name {
-    writing-mode:horizontal-tb !important;
-    word-break:normal !important;
-  }
-}
-</style>
-
 </head>
 <body>
   <div class="app-shell">
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span>Version 2.6</span></h1>
+        <h1>IrunaDB <span>Version 2.6.1</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -661,7 +538,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 2.6</h2>
+          <h2>IrunaDB Version 2.6.1</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -672,7 +549,7 @@ body.light-mode .calculation-card {
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v2.6 更新履歴</h3>
+            <h3>v2.6.1 更新履歴</h3>
             <ul><li>レリック専用タブを「使い方」へ変更</li><li>ビルド保存枠を初期3枠＋追加無制限へ変更</li><li>特殊装備の精錬+9表示・計算を廃止</li><li>お気に入り優先表示・能力内訳表示を継続</li></ul>
           </div>
         </div>
