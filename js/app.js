@@ -298,7 +298,31 @@
     data.conditions.forEach(cond => { const gid=String(cond["条件グループID"]||""); if(!context.skillConditionMap.has(gid)) context.skillConditionMap.set(gid,[]); context.skillConditionMap.get(gid).push(cond); });
   }
 
-  function renderSkills() {
+  
+  // v2.6.3: 表示値を最大小数点第2位に丸め、浮動小数点誤差を除去
+  function formatDisplayNumber(value, maxDigits = 2) {
+    const num = Number(value);
+    if (!Number.isFinite(num)) return String(value ?? "");
+    const factor = 10 ** maxDigits;
+    const rounded = Math.round((num + Math.sign(num || 1) * Number.EPSILON) * factor) / factor;
+    if (Object.is(rounded, -0)) return "0";
+    return String(rounded);
+  }
+
+
+  function normalizeDisplayedNumbers(root) {
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const text = node.nodeValue;
+      if (!text || !/[0-9]\.[0-9]{3,}/.test(text)) return;
+      node.nodeValue = text.replace(/-?\d+\.\d{3,}/g, raw => formatDisplayNumber(raw, 2));
+    });
+  }
+
+function renderSkills() {
     if (!skillSelections) return;
     const jobId = String(state.status.jobId || "");
     const list = [...(context.skillsByJob.get(jobId) || [])]
@@ -1383,14 +1407,14 @@ function collectTotalData() {
 
     const totalRows = totalData.rows.filter(row => Number(row.value) !== 0).map(row => {
       const name = displayStatName(row.statId);
-      const value = `${row.value > 0 ? "+" : ""}${row.value}${row.unit}`;
+      const value = `${row.value > 0 ? "+" : ""}${formatDisplayNumber(row.value)}${row.unit}`;
       return `<li><span>${escapeHtml(name)}</span><b>${escapeHtml(value)}</b></li>`;
     }).join("");
     const passiveRows = totalData.textOnly.slice(0, 8).map(text => `<li class="is-text"><span>${escapeHtml(text)}</span></li>`).join("");
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.6.2</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.6.3</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
@@ -1416,7 +1440,7 @@ function collectTotalData() {
         const icon = /HP|体力|耐性|軽減|DEF|防御/i.test(name) ? "♥" : /MP|MATK|魔法|詠唱|スペル/i.test(name) ? "✦" : /ATK|物理|クリ|攻撃|貫通/i.test(name) ? "⚔" : "＋";
         const sources = Array.isArray(row.sources) ? row.sources : [];
         const sourceHtml = sources.map(source => {
-          const sourceValue = `${source.value > 0 ? "+" : ""}${source.value}${source.unit || ""}`;
+          const sourceValue = `${source.value > 0 ? "+" : ""}${formatDisplayNumber(source.value)}${source.unit || ""}`;
           const condition = source.conditionText ? `<small class="total-source-condition">条件：${escapeHtml(source.conditionText)}</small>` : "";
           return `<div class="total-source-row">
             <span><b>${escapeHtml(source.label)}</b><em>${escapeHtml(source.name)}</em>${condition}</span>
@@ -1955,7 +1979,7 @@ function collectTotalData() {
         message.textContent = "現在表示中のビルドの共有URLを表示しました。";
       }
     });
-  // v2.6.2: 共有処理修正時に消えていた選択画面の検索イベントを復元
+  // v2.6.3: 共有処理修正時に消えていた選択画面の検索イベントを復元
   document.getElementById("clearUrlButton").addEventListener("click", () => {
     const url = new URL(location.href);
     url.searchParams.delete("build");
