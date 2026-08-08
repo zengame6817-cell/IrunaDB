@@ -3229,3 +3229,7 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .picker-card-favorite.is-active{border-color:#ef6b8c;color:#e54870;background:color-mix(in srgb,#ffdce5 40%,var(--surface));}
 .picker-card.is-favorite{border-color:color-mix(in srgb,#ef6b8c 45%,var(--line));}
 @media(max-width:520px){.picker-card-favorite{width:36px;height:36px;font-size:23px}.picker-card-select{padding-right:50px}}
+
+
+/* v2.25.7 guide + dynamic save slots */
+.guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.guide-card,.guide-note{background:var(--panel-bg,#fff);border:1px solid var(--border-color,#dbe5f0);border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(31,78,120,.06)}.guide-card{position:relative;padding-left:58px}.guide-step{position:absolute;left:16px;top:16px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#2f6fb3;color:#fff;font-weight:800}.guide-card h3,.guide-note h3{margin:0 0 8px}.guide-card p,.guide-note p{margin:0;line-height:1.75}.add-build-slot-button{width:100%;margin-top:10px}.fixed-refinement-note.is-none{opacity:.72}.theme-dark .guide-card,.theme-dark .guide-note{box-shadow:none}@media(max-width:720px){.guide-grid{grid-template-columns:1fr}.guide-card{padding-left:54px}}

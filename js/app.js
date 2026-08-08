@@ -17,7 +17,7 @@
     crystals: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, [null, null]])),
     stars: Object.fromEntries(EQUIPMENT_KEYS.map(key => [key, null])),
     equipmentSettings: Object.fromEntries(EQUIPMENT_KEYS.map(key => [
-      key, { refinement: 9, slots: 0 }
+      key, { refinement: key === "special" ? 0 : 9, slots: 0 }
     ])),
     alCrystas: Array(5).fill(null),
     relicPlacements: []
@@ -474,13 +474,6 @@
     });
     document.querySelectorAll(".app-view").forEach(section => section.classList.toggle("is-active", section.id === `view-${view}`));
 
-    const relicPanel = document.querySelector(".relic-editor-panel");
-    const relicMount = document.getElementById("relicTabMount");
-    const relicAnchor = document.getElementById("relicHomeAnchor");
-    if (relicPanel && relicMount && relicAnchor) {
-      if (view === "relic") relicMount.appendChild(relicPanel);
-      else if (relicPanel.parentElement === relicMount) relicAnchor.parentElement.insertBefore(relicPanel, relicAnchor.nextSibling);
-    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -646,7 +639,7 @@
                   ).join("")}
                 </select>
               </label>
-              <span class="fixed-refinement-note">精錬 +9 固定</span>
+              ${slot.key === "special" ? `<span class="fixed-refinement-note is-none">精錬なし</span>` : `<span class="fixed-refinement-note">精錬 +9 固定</span>`}
             </div>
             <div class="equipment-option-slots">
               ${renderMiniSlot(`crystal_${slot.key}_0`, "クリスタ1", slotCount < 1)}
@@ -682,7 +675,7 @@
         const key = event.target.dataset.slotCountKey;
         const count = Number(event.target.value);
         state.build.equipmentSettings[key].slots = count;
-        state.build.equipmentSettings[key].refinement = 9;
+        state.build.equipmentSettings[key].refinement = key === "special" ? 0 : 9;
         for (let index = count; index < 2; index += 1) {
           state.build.crystals[key][index] = null;
         }
@@ -1003,7 +996,7 @@
           ${item ? `<button class="slot-item-info slot-detail-button" type="button" data-slot-detail="${slot.key}">
               <strong>${escapeHtml(item["名前"] || "名称未設定")}</strong>
               <span class="equipment-meta-chips">
-                <small>精錬 +${refinement}</small>
+                ${slot.key === "special" ? "" : `<small>精錬 +${refinement}</small>`}
                 <small>${slotCount}スロット</small>
                 <small>詳細を見る</small>
               </span>
@@ -1365,7 +1358,7 @@ function collectTotalData() {
       const itemName = selectedItemName(state.build[slot.key]);
       if (!itemName) return "";
       const setting = state.build.equipmentSettings[slot.key] || {};
-      const suffix = `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`;
+      const suffix = slot.key === "special" ? `${Number(setting.slots || 0)}s` : `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`;
       return `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span></li>`;
     }).filter(Boolean).join("");
 
@@ -1397,7 +1390,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.5</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.7</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
@@ -1637,7 +1630,7 @@ function collectTotalData() {
     build.equipmentSettings = Object.fromEntries(EQUIPMENT_KEYS.map(key => [
       key,
       {
-        refinement: 9,
+        refinement: key === "special" ? 0 : 9,
         slots: Number(state.build.equipmentSettings[key]?.slots || 0)
       }
     ]));
@@ -1676,7 +1669,7 @@ function collectTotalData() {
       EQUIPMENT_KEYS.forEach(key => {
         const savedSetting = decodedBuild?.equipmentSettings?.[key] || {};
         state.build.equipmentSettings[key] = {
-          refinement: 9,
+          refinement: key === "special" ? 0 : 9,
           slots: Math.min(2, Math.max(0, Number(savedSetting.slots) || 0))
         };
         const values = decodedBuild?.crystals?.[key] || [];
@@ -1798,11 +1791,17 @@ function collectTotalData() {
   function readSavedBuilds() {
     try {
       const value = JSON.parse(localStorage.getItem(SAVED_BUILD_KEY) || "[]");
-      return Array.from({ length: 3 }, (_, index) => value[index] || null);
+      const builds = Array.isArray(value) ? value : [];
+      while (builds.length < 3) builds.push(null);
+      return builds;
     } catch (error) {
       console.warn("保存ビルドを初期化しました", error);
       return [null, null, null];
     }
+  }
+
+  function writeSavedBuilds(builds) {
+    localStorage.setItem(SAVED_BUILD_KEY, JSON.stringify(builds));
   }
 
   function renderSavedBuildSlots() {
@@ -1817,7 +1816,7 @@ function collectTotalData() {
         <div class="saved-build-actions">
           <button type="button" class="button button-primary compact-button" data-save-build="${index}">保存</button>
           <button type="button" class="button button-secondary compact-button" data-load-build="${index}" ${entry ? "" : "disabled"}>読込</button>
-          <button type="button" class="icon-button danger-icon" data-delete-build="${index}" ${entry ? "" : "disabled"} aria-label="削除">×</button>
+          <button type="button" class="icon-button danger-icon" data-delete-build="${index}" ${entry || index >= 3 ? "" : "disabled"} aria-label="削除">×</button>
         </div>
       </article>`;
     }).join("");
@@ -1834,13 +1833,20 @@ function collectTotalData() {
         status: JSON.parse(JSON.stringify(state.status)),
         skills: [...state.selectedSkills]
       };
-      localStorage.setItem(SAVED_BUILD_KEY, JSON.stringify(builds));
+      writeSavedBuilds(builds);
       renderSavedBuildSlots();
     }));
     container.querySelectorAll("[data-load-build]").forEach(button => button.addEventListener("click", () => {
       const entry = readSavedBuilds()[Number(button.dataset.loadBuild)];
       if (!entry) return;
       state.build = { ...createEmptyBuild(), ...entry.build };
+      EQUIPMENT_KEYS.forEach(key => {
+        state.build.equipmentSettings[key] = {
+          ...(state.build.equipmentSettings[key] || {}),
+          refinement: key === "special" ? 0 : 9,
+          slots: Math.min(2, Math.max(0, Number(state.build.equipmentSettings[key]?.slots) || 0))
+        };
+      });
       state.status = { ...state.status, ...entry.status };
       state.selectedSkills = new Set(Array.isArray(entry.skills) ? entry.skills.map(String) : []);
       state.selectedRelicUid = null;
@@ -1850,14 +1856,24 @@ function collectTotalData() {
     }));
     container.querySelectorAll("[data-delete-build]").forEach(button => button.addEventListener("click", () => {
       const index = Number(button.dataset.deleteBuild);
-      const builds = readSavedBuilds(); builds[index] = null;
-      localStorage.setItem(SAVED_BUILD_KEY, JSON.stringify(builds));
+      const builds = readSavedBuilds();
+      if (index < 3) builds[index] = null;
+      else builds.splice(index, 1);
+      while (builds.length < 3) builds.push(null);
+      writeSavedBuilds(builds);
       renderSavedBuildSlots();
     }));
   }
 
   function setupV21Navigation() {
     document.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => setView(tab.dataset.view)));
+    const addSlotButton = document.getElementById("addSavedBuildSlotButton");
+    addSlotButton?.addEventListener("click", () => {
+      const builds = readSavedBuilds();
+      builds.push(null);
+      writeSavedBuilds(builds);
+      renderSavedBuildSlots();
+    });
     renderSavedBuildSlots();
   }
 
