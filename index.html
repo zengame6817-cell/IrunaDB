@@ -267,6 +267,130 @@ body.light-mode .calculation-card {
 }
 </style>
 
+
+<style id="v26-total-pc-responsive">
+/* v2.6 release polish: 合計能力をPC幅では横長・多列表示 */
+@media (min-width: 900px) {
+  /* 合計能力のグリッド候補 */
+  #totalAbilities,
+  #total-abilities,
+  #summaryGrid,
+  #summary-grid,
+  .total-abilities,
+  .total-ability-grid,
+  .summary-grid,
+  .ability-summary-grid,
+  [data-section="total-abilities"] .grid,
+  [data-role="total-abilities"] .grid {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(220px,1fr)) !important;
+    gap:10px !important;
+  }
+
+  /* 合計能力カード候補 */
+  #totalAbilities > *,
+  #total-abilities > *,
+  #summaryGrid > *,
+  #summary-grid > *,
+  .total-abilities > *,
+  .total-ability-grid > *,
+  .summary-grid > *,
+  .ability-summary-grid > *,
+  [data-section="total-abilities"] .ability-card,
+  [data-role="total-abilities"] .ability-card {
+    min-width:0 !important;
+    min-height:58px !important;
+    height:auto !important;
+  }
+
+  /* カード内部を 横一列: [+] 能力名 数値 */
+  .total-ability-card,
+  .ability-summary-card,
+  .summary-ability-card,
+  .total-abilities .ability-card,
+  .total-ability-grid .ability-card,
+  .summary-grid .ability-card,
+  .ability-summary-grid .ability-card {
+    display:grid !important;
+    grid-template-columns:auto minmax(0,1fr) auto !important;
+    align-items:center !important;
+    column-gap:10px !important;
+    padding:10px 12px !important;
+  }
+
+  .total-ability-card .label,
+  .total-ability-card .name,
+  .ability-summary-card .label,
+  .ability-summary-card .name,
+  .summary-ability-card .label,
+  .summary-ability-card .name,
+  .total-abilities .ability-name,
+  .total-ability-grid .ability-name,
+  .summary-grid .ability-name,
+  .ability-summary-grid .ability-name {
+    white-space:nowrap !important;
+    word-break:keep-all !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    writing-mode:horizontal-tb !important;
+    line-height:1.2 !important;
+  }
+
+  .total-ability-card .value,
+  .ability-summary-card .value,
+  .summary-ability-card .value,
+  .total-abilities .ability-value,
+  .total-ability-grid .ability-value,
+  .summary-grid .ability-value,
+  .ability-summary-grid .ability-value {
+    white-space:nowrap !important;
+    writing-mode:horizontal-tb !important;
+    text-align:right !important;
+    line-height:1.2 !important;
+  }
+
+  /* 内訳展開行はカード全幅 */
+  .total-ability-card .breakdown,
+  .ability-summary-card .breakdown,
+  .summary-ability-card .breakdown,
+  .total-abilities .ability-breakdown,
+  .total-ability-grid .ability-breakdown,
+  .summary-grid .ability-breakdown,
+  .ability-summary-grid .ability-breakdown {
+    grid-column:1 / -1 !important;
+    width:100% !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  #totalAbilities,
+  #total-abilities,
+  #summaryGrid,
+  #summary-grid,
+  .total-abilities,
+  .total-ability-grid,
+  .summary-grid,
+  .ability-summary-grid,
+  [data-section="total-abilities"] .grid,
+  [data-role="total-abilities"] .grid {
+    grid-template-columns:repeat(4,minmax(220px,1fr)) !important;
+  }
+}
+
+/* スマホは既存UIを維持 */
+@media (max-width: 899px) {
+  .total-ability-card .label,
+  .total-ability-card .name,
+  .ability-summary-card .label,
+  .ability-summary-card .name,
+  .summary-ability-card .label,
+  .summary-ability-card .name {
+    writing-mode:horizontal-tb !important;
+    word-break:normal !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <div class="app-shell">
