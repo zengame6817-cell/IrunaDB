@@ -399,23 +399,9 @@
   }
 
   function skillEffectConditionsPass(effect) {
-    const groupId = String(effect["条件グループID"] || "").trim();
-    if (!groupId) return true;
-    const rows = context.skillConditionMap.get(groupId) || [];
-    if (!rows.length) return true;
-    return rows.every(condition => {
-      const item = String(condition["条件項目"] || "");
-      const op = String(condition["演算子"] || "EQ").toUpperCase();
-      const expected = String(condition["比較値ID"] || condition["比較値"] || "").trim();
-      if (item === "武器種") {
-        const actual = getEquippedWeaponType();
-        if (op === "IN") return expected.split(",").map(v => v.trim()).includes(actual);
-        return actual === expected;
-      }
-      // 戦闘中だけ確定する条件は、ビルド画面では効果を加算せず説明のみとする。
-      if (["敵ターゲット", "敵状態異常", "騎士の心", "暴撃力", "獣性"].includes(item)) return false;
-      return true;
-    });
+    // v2.25.4: スキルの条件付き効果もすべて発動扱い。
+    // 条件文はDBに残し、詳細説明として表示する。
+    return true;
   }
 
   function evaluateSkillFormula(formula, skill) {
@@ -1189,20 +1175,9 @@
   }
 
   function evaluateConditionGroup(groupId) {
-    if (isBlank(groupId)) return true;
-    const conditions = (context.conditionMap.get(String(groupId)) || [])
-      .filter(condition => String(condition["有効"] ?? "TRUE").toUpperCase() !== "FALSE")
-      .sort((a, b) => Number(a["条件順"] || 0) - Number(b["条件順"] || 0));
-
-    if (!conditions.length) return false;
-
-    let result = evaluateCondition(conditions[0]);
-    for (let i = 1; i < conditions.length; i += 1) {
-      const join = String(conditions[i - 1]["論理結合"] || "AND").trim().toUpperCase();
-      const next = evaluateCondition(conditions[i]);
-      result = join === "OR" ? result || next : result && next;
-    }
-    return result;
+    // v2.25.4: ビルドシミュレーターでは条件付き能力をすべて発動扱いにする。
+    // CONDITION_MASTER自体は保持し、詳細表示用の条件文として利用する。
+    return true;
   }
 
   function renderStatus() {
@@ -1331,7 +1306,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.3</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.4</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
@@ -1378,7 +1353,7 @@ function collectTotalData() {
 
     const activeHtml = activeConditional.length
       ? `<div class="condition-summary">
-          <h3>発動中の条件付き能力</h3>
+          <h3>条件付き能力（すべて合算）</h3>
           ${activeConditional.map(effect => `
             <div class="condition-result is-active">
               <span>${escapeHtml(conditionLabel(effect))}</span>
@@ -1390,7 +1365,7 @@ function collectTotalData() {
 
     const inactiveHtml = inactiveConditional.length
       ? `<div class="condition-summary">
-          <h3>未発動の条件付き能力</h3>
+          <h3>条件付き能力</h3>
           ${inactiveConditional.map(effect => `
             <div class="condition-result is-inactive">
               <span>${escapeHtml(conditionLabel(effect))}</span>
