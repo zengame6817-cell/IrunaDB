@@ -1579,10 +1579,11 @@ function collectTotalData() {
         ].filter(Boolean).join(" / ");
         const effects = fullEffectSummary(item, { includeConditions: true, separator: " / " });
         const description = [item["説明文"], item["特殊性能"]].filter(Boolean).map(formatFormulaText).join(" / ");
-        const favoriteMark = state.favorites.has(itemId) ? "★ " : "";
-        return `<article class="picker-card ${String(currentId) === itemId ? "is-current" : ""}">
+        const isFavorite = state.favorites.has(itemId);
+        return `<article class="picker-card ${String(currentId) === itemId ? "is-current" : ""} ${isFavorite ? "is-favorite" : ""}">
+          <button class="picker-card-favorite ${isFavorite ? "is-active" : ""}" type="button" data-picker-favorite="${escapeHtml(itemId)}" aria-label="${isFavorite ? "お気に入りから外す" : "お気に入りに追加"}" aria-pressed="${isFavorite ? "true" : "false"}" title="${isFavorite ? "お気に入りから外す" : "お気に入りに追加"}">${isFavorite ? "♥" : "♡"}</button>
           <button class="picker-card-select" type="button" data-picker-id="${escapeHtml(itemId)}">
-            <span class="picker-card-head"><strong>${favoriteMark}${escapeHtml(item["名前"] || "名称未設定")}</strong><b>選択</b></span>
+            <span class="picker-card-head"><strong>${escapeHtml(item["名前"] || "名称未設定")}</strong><b>選択</b></span>
             ${basic ? `<span class="picker-card-basic">${escapeHtml(basic)}</span>` : ""}
             ${effects ? `<span class="picker-card-effects">${escapeHtml(effects)}</span>` : ""}
             ${description ? `<span class="picker-card-description">${escapeHtml(description)}</span>` : ""}
@@ -1598,6 +1599,18 @@ function collectTotalData() {
         closePicker();
         syncUrl(false);
         renderBuild();
+      })
+    );
+    pickerList.querySelectorAll("[data-picker-favorite]").forEach(button =>
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        const itemId = String(button.dataset.pickerFavorite || "");
+        if (!itemId) return;
+        if (state.favorites.has(itemId)) state.favorites.delete(itemId); else state.favorites.add(itemId);
+        localStorage.setItem("irunadb.favorites", JSON.stringify([...state.favorites]));
+        renderPicker();
+        renderDatabase();
       })
     );
     pickerList.querySelectorAll("[data-picker-detail]").forEach(button =>

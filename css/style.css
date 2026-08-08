@@ -3220,3 +3220,12 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   .total-source-list { padding:7px 11px 10px 43px; }
   .total-source-row { gap:8px; }
 }
+
+/* v2.25.6 picker favorite controls */
+.picker-card{position:relative;}
+.picker-card-select{padding-right:54px;}
+.picker-card-favorite{position:absolute;top:9px;right:9px;z-index:4;display:grid;place-items:center;width:38px;height:38px;padding:0;border:1px solid var(--line);border-radius:50%;background:color-mix(in srgb,var(--surface) 92%,transparent);color:var(--muted);font-size:25px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgb(0 0 0/12%);transition:transform .12s ease,border-color .12s ease,color .12s ease,background .12s ease;}
+.picker-card-favorite:hover{transform:scale(1.07);border-color:#ef6b8c;color:#ef6b8c;}
+.picker-card-favorite.is-active{border-color:#ef6b8c;color:#e54870;background:color-mix(in srgb,#ffdce5 40%,var(--surface));}
+.picker-card.is-favorite{border-color:color-mix(in srgb,#ef6b8c 45%,var(--line));}
+@media(max-width:520px){.picker-card-favorite{width:36px;height:36px;font-size:23px}.picker-card-select{padding-right:50px}}
