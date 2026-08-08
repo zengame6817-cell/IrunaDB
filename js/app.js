@@ -1,4 +1,4 @@
-const APP_VERSION = "2.6.5";
+const APP_VERSION = "2.6.6";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -1278,18 +1278,66 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     const n=context.statMap.get(statId)?.["表示名"]||statId;
     return STAT_NAME_ALIASES[n]||n;
   }
+
+  function findStatIdByDisplayName(targetName) {
+    for (const [statId] of context.statMap.entries()) {
+      if (displayStatName(statId) === targetName) return String(statId);
+    }
+    return "";
+  }
+
 function collectTotalData() {
     const selectedEntries = allSelectedSourceEntries();
     const selectedIds = selectedEntries.map(entry => entry.id);
     const totals = new Map(), textOnly = [];
     const activeConditional = [], inactiveConditional = [];
 
-    const addNumeric = (statId, unit, numeric, sourceInfo) => {
+    const addNumericRaw = (statId, unit, numeric, sourceInfo) => {
       const key = `${statId}__${unit}`;
       const current = totals.get(key) || { statId, unit, value: 0, sources: [] };
       current.value += numeric;
       current.sources.push(sourceInfo);
       totals.set(key, current);
+    };
+
+    const addNumeric = (statId, unit, numeric, sourceInfo) => {
+      const displayName = displayStatName(statId);
+
+      // v2.6.6:
+      // 「ディレイ」はスキルディレイ・アイテムディレイの両方を短縮する共通値として扱う。
+      // 合計欄には「ディレイ」単独行を出さず、2項目へ吸収する。
+      if (displayName === "ディレイ") {
+        const skillDelayId = findStatIdByDisplayName("スキルディレイ");
+        const itemDelayId = findStatIdByDisplayName("アイテムディレイ");
+
+        const sharedSource = {
+          ...sourceInfo,
+          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`
+        };
+
+        if (skillDelayId) {
+          addNumericRaw(skillDelayId, unit, numeric, {
+            ...sharedSource,
+            sourceAbility: "ディレイ",
+            appliedAs: "スキルディレイ"
+          });
+        }
+        if (itemDelayId) {
+          addNumericRaw(itemDelayId, unit, numeric, {
+            ...sharedSource,
+            sourceAbility: "ディレイ",
+            appliedAs: "アイテムディレイ"
+          });
+        }
+
+        // STAT_MASTERにどちらも見つからない場合だけ従来どおり残す。
+        if (!skillDelayId && !itemDelayId) {
+          addNumericRaw(statId, unit, numeric, sourceInfo);
+        }
+        return;
+      }
+
+      addNumericRaw(statId, unit, numeric, sourceInfo);
     };
 
     selectedEntries.forEach(sourceEntry => {
@@ -1429,8 +1477,11 @@ function collectTotalData() {
         const sourceHtml = sources.map(source => {
           const sourceValue = `${source.value > 0 ? "+" : ""}${formatDisplayNumber(source.value)}${source.unit || ""}`;
           const condition = source.conditionText ? `<small class="total-source-condition">条件：${escapeHtml(source.conditionText)}</small>` : "";
+          const appliedFrom = source.sourceAbility === "ディレイ"
+            ? `<small class="total-source-condition">共通ディレイとして反映</small>`
+            : "";
           return `<div class="total-source-row">
-            <span><b>${escapeHtml(source.label)}</b><em>${escapeHtml(source.name)}</em>${condition}</span>
+            <span><b>${escapeHtml(source.label)}</b><em>${escapeHtml(source.name)}</em>${condition}${appliedFrom}</span>
             <strong>${escapeHtml(sourceValue)}</strong>
           </div>`;
         }).join("");
