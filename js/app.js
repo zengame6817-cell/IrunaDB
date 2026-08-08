@@ -1929,16 +1929,32 @@ function collectTotalData() {
     syncUrl(false);
     renderBuild();
   });
-  document.getElementById("copyUrlButton").addEventListener("click", async () => { syncUrl(false); const message = document.getElementById("shareMessage"); try { await navigator.clipboard.writeText(location.href); message.textContent = "共有URLをコピーしました。"; } catch { window.prompt("このURLをコピーしてください", location.href); message.textContent = "共有URLを表示しました。"; } });
-  document.getElementById("clearUrlButton").addEventListener("click", () => { const url = new URL(location.href); url.searchParams.delete("build"); history.replaceState({}, "", url); document.getElementById("shareMessage").textContent = "URLからビルド情報を削除しました。装備はそのままです。"; });
-  pickerSearchInput.addEventListener("input", event => { state.pickerQuery = event.target.value; renderPicker(); });
-  document.getElementById("pickerClearButton").addEventListener("click", () => {
-    state.pickerQuery = "";
-    state.pickerFilters = { weaponType: "", attribute: "", quickTag: "", sort: "name" };
-    pickerSearchInput.value = "";
-    renderPicker();
-    pickerSearchInput.focus();
-  });
+  document.getElementById("copyUrlButton").addEventListener("click", async () => {
+      // 共有するのは現在表示中のビルドだけ。
+      // 保存枠・お気に入り・テーマ等のlocalStorage情報は含めない。
+      const shareUrl = new URL(location.href);
+      const payload = compactBuild();
+      const hasBuild = allSelectedIds().length > 0 ||
+        EQUIPMENT_KEYS.some(key => Number(state.build.equipmentSettings[key]?.slots || 0) !== 0);
+      const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
+        ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
+
+      if (hasBuild || hasStatus || payload.skills.length) {
+        shareUrl.searchParams.set("build", encodeBuild(payload));
+      } else {
+        shareUrl.searchParams.delete("build");
+      }
+
+      const shareText = shareUrl.toString();
+      const message = document.getElementById("shareMessage");
+      try {
+        await navigator.clipboard.writeText(shareText);
+        message.textContent = "現在表示中のビルドだけを共有URLにコピーしました。";
+      } catch {
+        window.prompt("このURLをコピーしてください", shareText);
+        message.textContent = "現在表示中のビルドの共有URLを表示しました。";
+      }
+    });
   document.getElementById("pickerCloseButton").addEventListener("click", closePicker);
   pickerModal.querySelectorAll("[data-close-picker]").forEach(element => element.addEventListener("click", closePicker));
   document.addEventListener("keydown", event => { if (event.key === "Escape" && pickerModal.classList.contains("is-open")) closePicker(); });
