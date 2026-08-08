@@ -399,9 +399,23 @@
   }
 
   function skillEffectConditionsPass(effect) {
-    // v2.25.4: スキルの条件付き効果もすべて発動扱い。
-    // 条件文はDBに残し、詳細説明として表示する。
-    return true;
+    const groupId = String(effect["条件グループID"] || "").trim();
+    if (!groupId) return true;
+    const rows = context.skillConditionMap.get(groupId) || [];
+    if (!rows.length) return true;
+    return rows.every(condition => {
+      const item = String(condition["条件項目"] || "");
+      const op = String(condition["演算子"] || "EQ").toUpperCase();
+      const expected = String(condition["比較値ID"] || condition["比較値"] || "").trim();
+      if (item === "武器種") {
+        const actual = getEquippedWeaponType();
+        if (op === "IN") return expected.split(",").map(v => v.trim()).includes(actual);
+        return actual === expected;
+      }
+      // 戦闘中だけ確定する条件は、ビルド画面では効果を加算せず説明のみとする。
+      if (["敵ターゲット", "敵状態異常", "騎士の心", "暴撃力", "獣性"].includes(item)) return false;
+      return true;
+    });
   }
 
   function evaluateSkillFormula(formula, skill) {
@@ -422,7 +436,12 @@
       if(!skillEffectConditionsPass(effect)) { if(effect["表示文"]) text.push(`条件付き：${String(effect["表示文"])}`); return; }
       const statId=String(effect["能力ID"]||""); const unit=String(effect["単位"]||""); let value=Number(effect["値"]);
       if(!Number.isFinite(value)&&effect["数式"]) value=evaluateSkillFormula(effect["数式"],skill);
-      if(statId&&Number.isFinite(value)) rows.push({statId,unit,value,source:'skill'}); else if(effect["表示文"]) text.push(String(effect["表示文"]));
+      if(statId&&Number.isFinite(value)) rows.push({
+        statId, unit, value, source: 'skill',
+        sourceName: String(skill["スキル名"] || skill["選択肢名"] || "スキル"),
+        sourceLabel: `スキル：${String(skill["選択肢名"] || skill["スキル名"] || "スキル")}`,
+        effectText: String(effect["表示文"] || "")
+      }); else if(effect["表示文"]) text.push(String(effect["表示文"]));
     }));
     selected.forEach(skill=>{if(skill["特殊効果"])text.push(`${skill["選択肢名"]||skill["スキル名"]}: ${skill["特殊効果"]}`)});
     return {selected,rows,text};
@@ -543,18 +562,47 @@
     return null;
   }
 
-  function allSelectedIds() {
-    const ids = EQUIPMENT_KEYS.filter(key => key !== "decoration").map(key => state.build[key]);
-    EQUIPMENT_KEYS.forEach(key => {
-      if (key === "decoration") {
-        ids.push(state.build.stars[key]);
+  function allSelectedSourceEntries() {
+    const entries = [];
+    const pushEntry = (id, label, kind) => {
+      if (!id) return;
+      const item = context.itemsById.get(String(id));
+      entries.push({
+        id: String(id),
+        label: String(label || kind || "選択項目"),
+        kind: String(kind || "アイテム"),
+        name: String(item?.["名前"] || id)
+      });
+    };
+
+    SLOT_DEFS.forEach(slot => {
+      if (slot.key === "decoration") return;
+      pushEntry(state.build[slot.key], slot.label, "装備");
+    });
+
+    SLOT_DEFS.forEach(slot => {
+      if (slot.key === "decoration") {
+        pushEntry(state.build.stars[slot.key], `${slot.label}・☆能力`, "☆能力");
         return;
       }
-      const slotCount = Number(state.build.equipmentSettings[key]?.slots || 0);
-      ids.push(...state.build.crystals[key].slice(0, slotCount), state.build.stars[key]);
+      const slotCount = Number(state.build.equipmentSettings[slot.key]?.slots || 0);
+      (state.build.crystals[slot.key] || []).slice(0, slotCount).forEach((id, index) =>
+        pushEntry(id, `${slot.label}・クリスタ${index + 1}`, "クリスタ")
+      );
+      pushEntry(state.build.stars[slot.key], `${slot.label}・☆能力`, "☆能力");
     });
-    ids.push(...state.build.alCrystas, ...state.build.relicPlacements.map(entry => entry.itemId));
-    return ids.filter(Boolean).map(String);
+
+    state.build.alCrystas.forEach((id, index) =>
+      pushEntry(id, `アルクリスタ${index + 1}`, "アルクリスタ")
+    );
+    state.build.relicPlacements.forEach((entry, index) =>
+      pushEntry(entry.itemId, `レリック${index + 1}`, "レリック")
+    );
+    return entries;
+  }
+
+  function allSelectedIds() {
+    return allSelectedSourceEntries().map(entry => entry.id);
   }
 
   function renderMiniSlot(token, label, disabled = false) {
@@ -1175,9 +1223,20 @@
   }
 
   function evaluateConditionGroup(groupId) {
-    // v2.25.4: ビルドシミュレーターでは条件付き能力をすべて発動扱いにする。
-    // CONDITION_MASTER自体は保持し、詳細表示用の条件文として利用する。
-    return true;
+    if (isBlank(groupId)) return true;
+    const conditions = (context.conditionMap.get(String(groupId)) || [])
+      .filter(condition => String(condition["有効"] ?? "TRUE").toUpperCase() !== "FALSE")
+      .sort((a, b) => Number(a["条件順"] || 0) - Number(b["条件順"] || 0));
+
+    if (!conditions.length) return false;
+
+    let result = evaluateCondition(conditions[0]);
+    for (let i = 1; i < conditions.length; i += 1) {
+      const join = String(conditions[i - 1]["論理結合"] || "AND").trim().toUpperCase();
+      const next = evaluateCondition(conditions[i]);
+      result = join === "OR" ? result || next : result && next;
+    }
+    return result;
   }
 
   function renderStatus() {
@@ -1216,39 +1275,71 @@
     return STAT_NAME_ALIASES[n]||n;
   }
 function collectTotalData() {
-    const selectedIds = allSelectedIds();
+    const selectedEntries = allSelectedSourceEntries();
+    const selectedIds = selectedEntries.map(entry => entry.id);
     const totals = new Map(), textOnly = [];
     const activeConditional = [], inactiveConditional = [];
-    selectedIds.forEach(id => (context.effectsByItem.get(id) || []).filter(effect => {
-      if (isFormulaEffect(effect)) return false;
-      const groupId = effect["条件グループID"];
-      if (isBlank(groupId)) return true;
-      const active = evaluateConditionGroup(groupId);
-      (active ? activeConditional : inactiveConditional).push(effect);
-      return active;
-    }).forEach(effect => {
-      const statId = String(effect["能力ID"] || "");
-      const numeric = Number(effect["値"]);
-      if (statId && Number.isFinite(numeric) && !isBlank(effect["値"])) {
-        const unit = String(effect["単位"] || "");
-        const key = `${statId}__${unit}`;
-        const current = totals.get(key) || { statId, unit, value: 0 };
-        current.value += numeric;
-        totals.set(key, current);
-      } else if (effect["表示文"]) textOnly.push(String(effect["表示文"]));
-    }));
+
+    const addNumeric = (statId, unit, numeric, sourceInfo) => {
+      const key = `${statId}__${unit}`;
+      const current = totals.get(key) || { statId, unit, value: 0, sources: [] };
+      current.value += numeric;
+      current.sources.push(sourceInfo);
+      totals.set(key, current);
+    };
+
+    selectedEntries.forEach(sourceEntry => {
+      (context.effectsByItem.get(sourceEntry.id) || []).filter(effect => {
+        if (isFormulaEffect(effect)) return false;
+        const groupId = effect["条件グループID"];
+        // v2.25.5: 条件付き能力はシミュレーターではすべて発動扱い。
+        // 条件文自体は内訳・詳細確認用として保持する。
+        if (!isBlank(groupId)) activeConditional.push(effect);
+        return true;
+      }).forEach(effect => {
+        const statId = String(effect["能力ID"] || "");
+        const numeric = Number(effect["値"]);
+        if (statId && Number.isFinite(numeric) && !isBlank(effect["値"])) {
+          const unit = String(effect["単位"] || "");
+          const groupId = effect["条件グループID"];
+          const group = !isBlank(groupId) ? (context.conditionMap.get(String(groupId)) || []) : [];
+          const conditionText = group.map(condition => condition["表示文"]).filter(Boolean).join(" ＆ ");
+          addNumeric(statId, unit, numeric, {
+            id: sourceEntry.id,
+            name: sourceEntry.name,
+            label: sourceEntry.label,
+            kind: sourceEntry.kind,
+            value: numeric,
+            unit,
+            conditionText,
+            effectText: String(effect["表示文"] || "")
+          });
+        } else if (effect["表示文"]) {
+          textOnly.push(String(effect["表示文"]));
+        }
+      });
+    });
+
     const skillData = collectSelectedSkillEffects();
     skillData.rows.forEach(row => {
-      const key = `${row.statId}__${row.unit}`;
-      const current = totals.get(key) || { statId: row.statId, unit: row.unit, value: 0 };
-      current.value += row.value; totals.set(key, current);
+      addNumeric(row.statId, row.unit, row.value, {
+        id: "skill",
+        name: row.sourceName || "スキル",
+        label: row.sourceLabel || `スキル：${row.sourceName || "スキル"}`,
+        kind: "スキル",
+        value: row.value,
+        unit: row.unit,
+        conditionText: "",
+        effectText: row.effectText || ""
+      });
     });
     textOnly.push(...skillData.text);
+
     const rows = [...totals.values()].sort((x,y) =>
       (context.statMap.get(x.statId)?.["表示順"] || 9999) -
       (context.statMap.get(y.statId)?.["表示順"] || 9999)
     );
-    return { selectedIds, rows, textOnly, activeConditional, inactiveConditional };
+    return { selectedIds, selectedEntries, rows, textOnly, activeConditional, inactiveConditional };
   }
 
   function selectedItemName(id) {
@@ -1306,7 +1397,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.4</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.25.5</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
@@ -1327,13 +1418,29 @@ function collectTotalData() {
     selectedCount.textContent = `${selectedIds.length}件＋スキル${collectSelectedSkillEffects().selected.length}件`;
 
     const totalsHtml =
-      rows.map(row => {
+      rows.map((row, rowIndex) => {
         const name = displayStatName(row.statId);
         const icon = /HP|体力|耐性|軽減|DEF|防御/i.test(name) ? "♥" : /MP|MATK|魔法|詠唱|スペル/i.test(name) ? "✦" : /ATK|物理|クリ|攻撃|貫通/i.test(name) ? "⚔" : "＋";
-        return `<div class="total-row total-stat-card">
-          <span class="total-stat-label"><i aria-hidden="true">${icon}</i>${escapeHtml(name)}</span>
-          <strong>${row.value > 0 ? "+" : ""}${escapeHtml(row.value)}${escapeHtml(row.unit)}</strong>
-        </div>`;
+        const sources = Array.isArray(row.sources) ? row.sources : [];
+        const sourceHtml = sources.map(source => {
+          const sourceValue = `${source.value > 0 ? "+" : ""}${source.value}${source.unit || ""}`;
+          const condition = source.conditionText ? `<small class="total-source-condition">条件：${escapeHtml(source.conditionText)}</small>` : "";
+          return `<div class="total-source-row">
+            <span><b>${escapeHtml(source.label)}</b><em>${escapeHtml(source.name)}</em>${condition}</span>
+            <strong>${escapeHtml(sourceValue)}</strong>
+          </div>`;
+        }).join("");
+        return `<details class="total-row total-stat-card total-breakdown" data-total-row="${rowIndex}">
+          <summary>
+            <span class="total-expand-icon" aria-hidden="true"></span>
+            <span class="total-stat-label"><i aria-hidden="true">${icon}</i>${escapeHtml(name)}</span>
+            <strong>${row.value > 0 ? "+" : ""}${escapeHtml(row.value)}${escapeHtml(row.unit)}</strong>
+          </summary>
+          <div class="total-source-list">
+            <div class="total-source-title">効果の発生元 ${sources.length}件</div>
+            ${sourceHtml || '<div class="total-source-empty">内訳情報なし</div>'}
+          </div>
+        </details>`;
       }).join("")
       +
       textOnly.map(text =>
@@ -1353,7 +1460,7 @@ function collectTotalData() {
 
     const activeHtml = activeConditional.length
       ? `<div class="condition-summary">
-          <h3>条件付き能力（すべて合算）</h3>
+          <h3>発動中の条件付き能力</h3>
           ${activeConditional.map(effect => `
             <div class="condition-result is-active">
               <span>${escapeHtml(conditionLabel(effect))}</span>
@@ -1365,7 +1472,7 @@ function collectTotalData() {
 
     const inactiveHtml = inactiveConditional.length
       ? `<div class="condition-summary">
-          <h3>条件付き能力</h3>
+          <h3>未発動の条件付き能力</h3>
           ${inactiveConditional.map(effect => `
             <div class="condition-result is-inactive">
               <span>${escapeHtml(conditionLabel(effect))}</span>

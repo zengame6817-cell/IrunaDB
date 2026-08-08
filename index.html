@@ -90,7 +90,7 @@
                   <input id="statusCrt" data-status-key="crt" type="number" min="0" max="9999" value="0">
                 </label>
               </div>
-              <p class="status-help character-help">変更すると数式効果をリアルタイムで再計算します。条件付き能力は常に発動扱いです。</p>
+              <p class="status-help character-help">変更すると条件付き能力と数式効果をリアルタイムで再判定します。</p>
             </section>
 
             <section class="sim-panel equipment-panel">
@@ -170,7 +170,7 @@
                   <h3>合計能力</h3>
                 </div>
               </header>
-              <p class="summary-note">常時能力・条件付き能力をすべて合計表示します。条件判定は行いません。</p>
+              <p class="summary-note">発動中の常時能力・条件付き能力を合計表示します。</p>
               <div id="totalEffects" class="total-effects"></div>
             </section>
 
@@ -265,7 +265,7 @@
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 2.25.4</h2>
+          <h2>IrunaDB Version 2.25.2</h2>
           <p>シミュレーター・データベース・レリック・設定を分離したUIです。精錬値は全装備+9固定、公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -276,7 +276,7 @@
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v2.25.4 更新履歴</h3>
+            <h3>v2.25.2 更新履歴</h3>
             <ul><li>シミュレーター・データベース・レリック・設定をタブ分離</li><li>装備カードと合計能力カードを視認性重視で再設計</li><li>3枠のローカルビルド保存・読込・削除を追加</li><li>レリック編集を専用タブから操作可能に変更</li><li>ライト／ダーク双方の余白・コントラストを再調整</li></ul>
           </div>
         </div>
@@ -316,13 +316,13 @@
     </section>
   </div>
 
-  <script src="./js/config.js?v=2.25.4"></script>
-  <script src="./js/utils.js?v=2.25.4"></script>
-  <script src="./js/api.js?v=2.25.4"></script>
-  <script src="./js/modal.js?v=2.25.4"></script>
-  <script src="./js/ui.js?v=2.25.4"></script>
-  <script src="./data/skills.js?v=2.25.4"></script>
-  <script src="./js/app.js?v=2.25.4"></script>
-  <script src="./js/theme.js?v=2.25.4"></script>
+  <script src="./js/config.js?v=2.25.3"></script>
+  <script src="./js/utils.js?v=2.25.3"></script>
+  <script src="./js/api.js?v=2.25.3"></script>
+  <script src="./js/modal.js?v=2.25.3"></script>
+  <script src="./js/ui.js?v=2.25.3"></script>
+  <script src="./data/skills.js?v=2.25.3"></script>
+  <script src="./js/app.js?v=2.25.3"></script>
+  <script src="./js/theme.js?v=2.25.3"></script>
 </body>
 </html>
