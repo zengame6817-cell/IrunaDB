@@ -1,4 +1,4 @@
-const APP_VERSION = "2.6.7";
+const APP_VERSION = "2.6.8";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -1312,7 +1312,9 @@ function collectTotalData() {
     };
 
     const addNumeric = (statId, unit, numeric, sourceInfo) => {
-      const displayName = displayStatName(statId);
+      const displayName = String(displayStatName(statId) || "")
+        .replace(/[\s　]+/g, "")
+        .replace(/－/g, "-");
 
       // v2.6.6:
       // 「ディレイ」はスキルディレイ・アイテムディレイの両方を短縮する共通値として扱う。
@@ -1395,7 +1397,8 @@ function collectTotalData() {
     // 表示名と単位が同じ能力は、元の能力IDが異なっても1行へ統合する。
     const mergedByDisplay = new Map();
     [...totals.values()].forEach(row => {
-      const displayName = displayStatName(String(row.statId));
+      const displayName = String(displayStatName(String(row.statId)) || "")
+        .replace(/[\s　]+/g, "");
       const mergeKey = `${displayName}__${row.unit}`;
       const current = mergedByDisplay.get(mergeKey) || {
         ...row,
