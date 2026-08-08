@@ -207,6 +207,66 @@ body.dark-mode .guide-card {
 }
 </style>
 
+
+<style id="v26-guide-final-card-fix">
+/* v2.6 release fix: guide footer/calculation card theme */
+html[data-theme="dark"] .guide-note,
+html[data-theme="dark"] .guide-info,
+html[data-theme="dark"] .guide-summary,
+html[data-theme="dark"] .calculation-note,
+html[data-theme="dark"] .calculation-card,
+body.dark .guide-note,
+body.dark .guide-info,
+body.dark .guide-summary,
+body.dark .calculation-note,
+body.dark .calculation-card,
+body.dark-mode .guide-note,
+body.dark-mode .guide-info,
+body.dark-mode .guide-summary,
+body.dark-mode .calculation-note,
+body.dark-mode .calculation-card {
+  background:#141f30 !important;
+  color:#f4f7fb !important;
+  border-color:#344863 !important;
+}
+html[data-theme="dark"] .guide-note *,
+html[data-theme="dark"] .guide-info *,
+html[data-theme="dark"] .guide-summary *,
+html[data-theme="dark"] .calculation-note *,
+html[data-theme="dark"] .calculation-card *,
+body.dark .guide-note *,
+body.dark .guide-info *,
+body.dark .guide-summary *,
+body.dark .calculation-note *,
+body.dark .calculation-card *,
+body.dark-mode .guide-note *,
+body.dark-mode .guide-info *,
+body.dark-mode .guide-summary *,
+body.dark-mode .calculation-note *,
+body.dark-mode .calculation-card * {
+  color:inherit !important;
+}
+html[data-theme="light"] .guide-note,
+html[data-theme="light"] .guide-info,
+html[data-theme="light"] .guide-summary,
+html[data-theme="light"] .calculation-note,
+html[data-theme="light"] .calculation-card,
+body.light .guide-note,
+body.light .guide-info,
+body.light .guide-summary,
+body.light .calculation-note,
+body.light .calculation-card,
+body.light-mode .guide-note,
+body.light-mode .guide-info,
+body.light-mode .guide-summary,
+body.light-mode .calculation-note,
+body.light-mode .calculation-card {
+  background:#fff !important;
+  color:#172033 !important;
+  border-color:#d5deea !important;
+}
+</style>
+
 </head>
 <body>
   <div class="app-shell">
@@ -468,7 +528,7 @@ body.dark-mode .guide-card {
           <article class="guide-card"><span class="guide-step">5</span><h3>合計能力の内訳を見る</h3><p>合計能力の＋ボタンを開くと、どの装備・クリスタ・アルクリ・レリック・スキルから効果が発生しているか確認できます。</p></article>
           <article class="guide-card"><span class="guide-step">6</span><h3>ビルドを保存・共有</h3><p>保存枠は最初に3つ用意されています。必要に応じて「＋ 保存枠を追加」で何個でも増やせます。共有URLにも現在のビルドを保存できます。</p></article>
         </div>
-        <section class="guide-note">
+        <section class="guide-note calculation-card">
           <h3>計算について</h3>
           <p>現在は条件付き能力も合計値を確認しやすいよう、発動扱いで計算しています。条件文そのものは詳細・内訳に残します。</p>
         </section>
