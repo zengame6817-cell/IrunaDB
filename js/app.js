@@ -1390,7 +1390,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.6.1</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.6.2</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
@@ -1955,6 +1955,28 @@ function collectTotalData() {
         message.textContent = "現在表示中のビルドの共有URLを表示しました。";
       }
     });
+  // v2.6.2: 共有処理修正時に消えていた選択画面の検索イベントを復元
+  document.getElementById("clearUrlButton").addEventListener("click", () => {
+    const url = new URL(location.href);
+    url.searchParams.delete("build");
+    history.replaceState({}, "", url);
+    document.getElementById("shareMessage").textContent =
+      "URLからビルド情報を削除しました。装備はそのままです。";
+  });
+
+  pickerSearchInput.addEventListener("input", event => {
+    state.pickerQuery = event.target.value;
+    renderPicker();
+  });
+
+  document.getElementById("pickerClearButton").addEventListener("click", () => {
+    state.pickerQuery = "";
+    state.pickerFilters = { weaponType: "", attribute: "", quickTag: "", sort: "name" };
+    pickerSearchInput.value = "";
+    renderPicker();
+    pickerSearchInput.focus();
+  });
+
   document.getElementById("pickerCloseButton").addEventListener("click", closePicker);
   pickerModal.querySelectorAll("[data-close-picker]").forEach(element => element.addEventListener("click", closePicker));
   document.addEventListener("keydown", event => { if (event.key === "Escape" && pickerModal.classList.contains("is-open")) closePicker(); });
