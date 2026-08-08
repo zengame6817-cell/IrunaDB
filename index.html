@@ -5,15 +5,215 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v2.25.7</title>
-  <link rel="stylesheet" href="./css/style.css?v=2.25.7">
+  <title>IrunaDB v2.6</title>
+  <link rel="stylesheet" href="./css/style.css?v=2.6">
+
+<style id="v26-theme-refactor">
+/* =========================================================
+   IrunaDB v2.6 Theme Refactor
+   - Guide cards follow light/dark theme
+   - Picker/search modal follows light/dark theme
+   - Search controls, filters, favorites follow theme
+   ========================================================= */
+
+:root,
+html[data-theme="light"],
+body[data-theme="light"],
+body.light,
+body.light-mode,
+.theme-light {
+  --v26-bg:#eef3f8;
+  --v26-surface:#ffffff;
+  --v26-surface-2:#f7f9fc;
+  --v26-surface-3:#edf3fb;
+  --v26-border:#d5deea;
+  --v26-border-strong:#b9c9dc;
+  --v26-text:#172033;
+  --v26-muted:#65738a;
+  --v26-accent:#2f78c4;
+  --v26-accent-soft:#e8f2ff;
+  --v26-gold:#b37a16;
+  --v26-shadow:0 6px 22px rgba(28,49,77,.10);
+  --v26-picker-card:#ffffff;
+  --v26-picker-card-hover:#f0f6ff;
+  --v26-input:#ffffff;
+  --v26-fav:#315f95;
+}
+
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.dark,
+body.dark-mode,
+.theme-dark {
+  --v26-bg:#0b1320;
+  --v26-surface:#141f30;
+  --v26-surface-2:#19263a;
+  --v26-surface-3:#213149;
+  --v26-border:#344863;
+  --v26-border-strong:#4a6486;
+  --v26-text:#f4f7fb;
+  --v26-muted:#b4c0d1;
+  --v26-accent:#63b7ff;
+  --v26-accent-soft:#1e3551;
+  --v26-gold:#e2b84f;
+  --v26-shadow:0 8px 26px rgba(0,0,0,.28);
+  --v26-picker-card:#0f1723;
+  --v26-picker-card-hover:#18263a;
+  --v26-input:#142033;
+  --v26-fav:#9fc6f7;
+}
+
+/* Guide screen */
+#guideView, #guide-view, #guideTab, #guide-tab,
+.guide-view, .guide-page, .guide-panel, .howto-view, .howto-panel,
+[class*="guide"], [id*="guide"] {
+  color:var(--v26-text)!important;
+}
+
+.guide-card, .guide-step, .howto-card, .usage-card,
+#guideView .card, #guide-view .card, #guideTab .card, #guide-tab .card,
+[class*="guide"] .card, [class*="howto"] .card {
+  background:var(--v26-surface)!important;
+  color:var(--v26-text)!important;
+  border-color:var(--v26-border)!important;
+  box-shadow:var(--v26-shadow)!important;
+}
+
+.guide-card h1,.guide-card h2,.guide-card h3,.guide-card h4,
+.guide-step h1,.guide-step h2,.guide-step h3,.guide-step h4,
+.howto-card h1,.howto-card h2,.howto-card h3,.howto-card h4,
+.usage-card h1,.usage-card h2,.usage-card h3,.usage-card h4,
+#guideView h1,#guideView h2,#guideView h3,#guideView h4,
+#guide-view h1,#guide-view h2,#guide-view h3,#guide-view h4 {
+  color:var(--v26-text)!important;
+}
+
+.guide-card p,.guide-card li,
+.guide-step p,.guide-step li,
+.howto-card p,.howto-card li,
+.usage-card p,.usage-card li,
+#guideView p,#guideView li,#guide-view p,#guide-view li {
+  color:var(--v26-muted)!important;
+}
+
+/* Step number badges */
+.guide-step .step-no, .guide-card .step-no,
+[class*="guide"] .step-no, [class*="howto"] .step-no {
+  background:var(--v26-accent)!important;
+  color:#fff!important;
+}
+
+/* Generic modal/picker */
+.modal, .modal-backdrop, .dialog-backdrop { color:var(--v26-text)!important; }
+
+.modal-content, .modal-panel, .picker-modal, .picker-panel, .select-modal,
+.item-picker, .selection-modal, [role="dialog"],
+[class*="picker"][class*="panel"], [class*="modal"][class*="content"] {
+  background:var(--v26-surface)!important;
+  color:var(--v26-text)!important;
+  border-color:var(--v26-border)!important;
+}
+
+/* Search / sort / filter controls */
+.modal-content input,.modal-content select,.modal-content textarea,
+.modal-panel input,.modal-panel select,.modal-panel textarea,
+.picker-modal input,.picker-modal select,.picker-panel input,.picker-panel select,
+.item-picker input,.item-picker select,[role="dialog"] input,[role="dialog"] select,
+.search-box input,.picker-search input,.search-control input,
+.sort-select, .picker-sort select {
+  background:var(--v26-input)!important;
+  color:var(--v26-text)!important;
+  border-color:var(--v26-border-strong)!important;
+}
+
+.modal-content input::placeholder,.modal-panel input::placeholder,
+.picker-modal input::placeholder,.picker-panel input::placeholder,
+.item-picker input::placeholder,[role="dialog"] input::placeholder,
+.search-box input::placeholder,.picker-search input::placeholder {
+  color:var(--v26-muted)!important;
+  opacity:.95!important;
+}
+
+/* Chips / quick filters */
+.filter-chip,.tag-chip,.quick-filter,.picker-filter button,
+.modal-content .chip,.picker-panel .chip {
+  background:var(--v26-surface-2)!important;
+  color:var(--v26-text)!important;
+  border-color:var(--v26-border)!important;
+}
+.filter-chip.active,.tag-chip.active,.quick-filter.active,.picker-filter button.active {
+  background:var(--v26-accent-soft)!important;
+  color:var(--v26-accent)!important;
+  border-color:var(--v26-accent)!important;
+}
+
+/* Result cards */
+.item-option,.picker-item,.select-item,.result-item,.search-result-item,
+.modal-content .item-card,.modal-panel .item-card,.picker-modal .item-card,
+.picker-panel .item-card,.item-picker .item-card,[role="dialog"] .item-card,
+[class*="picker"] [class*="card"], [class*="result"] [class*="card"] {
+  background:var(--v26-picker-card)!important;
+  color:var(--v26-text)!important;
+  border-color:var(--v26-border)!important;
+}
+
+.item-option:hover,.picker-item:hover,.select-item:hover,.result-item:hover,
+.search-result-item:hover,.modal-content .item-card:hover,
+.picker-modal .item-card:hover,.item-picker .item-card:hover {
+  background:var(--v26-picker-card-hover)!important;
+}
+
+.item-option h3,.picker-item h3,.select-item h3,.result-item h3,.search-result-item h3,
+.modal-content .item-card h3,.picker-panel .item-card h3 {
+  color:var(--v26-accent)!important;
+}
+
+.item-option p,.picker-item p,.select-item p,.result-item p,.search-result-item p,
+.modal-content .item-card p,.picker-panel .item-card p,
+.modal-content .muted,.modal-panel .muted,.picker-modal .muted,.picker-panel .muted,
+.item-picker .muted,[role="dialog"] .muted {
+  color:var(--v26-muted)!important;
+}
+
+/* Favorite heart */
+.favorite-btn,.fav-btn,[class*="favorite"],[class*="fav-button"] {
+  color:var(--v26-fav)!important;
+  border-color:var(--v26-border-strong)!important;
+  background:var(--v26-surface-2)!important;
+}
+.favorite-btn.active,.fav-btn.active,[class*="favorite"].active,[aria-pressed="true"].favorite-btn {
+  color:#e85f73!important;
+}
+
+/* Avoid light theme inheriting dark result-card hardcodes */
+html[data-theme="light"] .item-option,
+html[data-theme="light"] .picker-item,
+html[data-theme="light"] .select-item,
+html[data-theme="light"] .result-item,
+html[data-theme="light"] .search-result-item,
+body.light .item-option,
+body.light-mode .item-option {
+  background:#fff!important;
+  color:#172033!important;
+}
+
+/* Avoid dark theme white cards with white text */
+html[data-theme="dark"] .guide-card,
+html[data-theme="dark"] .guide-step,
+body.dark .guide-card,
+body.dark-mode .guide-card {
+  background:#141f30!important;
+  color:#f4f7fb!important;
+}
+</style>
+
 </head>
 <body>
   <div class="app-shell">
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span>Version 2.25.7</span></h1>
+        <h1>IrunaDB <span>Version 2.6</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -277,7 +477,7 @@
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 2.25.7</h2>
+          <h2>IrunaDB Version 2.6</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -288,7 +488,7 @@
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v2.25.7 更新履歴</h3>
+            <h3>v2.6 更新履歴</h3>
             <ul><li>レリック専用タブを「使い方」へ変更</li><li>ビルド保存枠を初期3枠＋追加無制限へ変更</li><li>特殊装備の精錬+9表示・計算を廃止</li><li>お気に入り優先表示・能力内訳表示を継続</li></ul>
           </div>
         </div>
@@ -328,13 +528,13 @@
     </section>
   </div>
 
-  <script src="./js/config.js?v=2.25.7"></script>
-  <script src="./js/utils.js?v=2.25.7"></script>
-  <script src="./js/api.js?v=2.25.7"></script>
-  <script src="./js/modal.js?v=2.25.7"></script>
-  <script src="./js/ui.js?v=2.25.7"></script>
+  <script src="./js/config.js?v=2.6"></script>
+  <script src="./js/utils.js?v=2.6"></script>
+  <script src="./js/api.js?v=2.6"></script>
+  <script src="./js/modal.js?v=2.6"></script>
+  <script src="./js/ui.js?v=2.6"></script>
   <script src="./data/skills.js?v=2.25.6"></script>
-  <script src="./js/app.js?v=2.25.7"></script>
-  <script src="./js/theme.js?v=2.25.7"></script>
+  <script src="./js/app.js?v=2.6"></script>
+  <script src="./js/theme.js?v=2.6"></script>
 </body>
 </html>
