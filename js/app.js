@@ -1,4 +1,4 @@
-const APP_VERSION = "2.6.4";
+const APP_VERSION = "2.6.5";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -127,7 +127,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.25");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.6.5");
       }
     });
   }
@@ -1296,7 +1296,7 @@ function collectTotalData() {
       (context.effectsByItem.get(sourceEntry.id) || []).filter(effect => {
         if (isFormulaEffect(effect)) return false;
         const groupId = effect["条件グループID"];
-        // v2.25.5: 条件付き能力はシミュレーターではすべて発動扱い。
+        // v2.6.5: 条件付き能力はシミュレーターではすべて発動扱い。
         // 条件文自体は内訳・詳細確認用として保持する。
         if (!isBlank(groupId)) activeConditional.push(effect);
         return true;
@@ -1401,7 +1401,7 @@ function collectTotalData() {
 
     screenshotSummaryBody.innerHTML = `
       <article class="screenshot-card" id="screenshotCard">
-        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v2.6.4</small></header>
+        <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v${APP_VERSION}</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
         <div class="screenshot-columns">
           <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
@@ -1427,7 +1427,7 @@ function collectTotalData() {
         const icon = /HP|体力|耐性|軽減|DEF|防御/i.test(name) ? "♥" : /MP|MATK|魔法|詠唱|スペル/i.test(name) ? "✦" : /ATK|物理|クリ|攻撃|貫通/i.test(name) ? "⚔" : "＋";
         const sources = Array.isArray(row.sources) ? row.sources : [];
         const sourceHtml = sources.map(source => {
-          const sourceValue = `${source.value > 0 ? "+" : ""}${source.value}${source.unit || ""}`;
+          const sourceValue = `${source.value > 0 ? "+" : ""}${formatDisplayNumber(source.value)}${source.unit || ""}`;
           const condition = source.conditionText ? `<small class="total-source-condition">条件：${escapeHtml(source.conditionText)}</small>` : "";
           return `<div class="total-source-row">
             <span><b>${escapeHtml(source.label)}</b><em>${escapeHtml(source.name)}</em>${condition}</span>
@@ -1438,7 +1438,7 @@ function collectTotalData() {
           <summary>
             <span class="total-expand-icon" aria-hidden="true"></span>
             <span class="total-stat-label"><i aria-hidden="true">${icon}</i>${escapeHtml(name)}</span>
-            <strong>${row.value > 0 ? "+" : ""}${escapeHtml(row.value)}${escapeHtml(row.unit)}</strong>
+            <strong>${row.value > 0 ? "+" : ""}${escapeHtml(formatDisplayNumber(row.value))}${escapeHtml(row.unit)}</strong>
           </summary>
           <div class="total-source-list">
             <div class="total-source-title">効果の発生元 ${sources.length}件</div>
@@ -1714,7 +1714,7 @@ function collectTotalData() {
         }
       });
 
-      // v0.5.0の旧URL（15個のレリック枠）も可能な範囲で自動配置する
+      // v2.6.5の旧URL（15個のレリック枠）も可能な範囲で自動配置する
       if (!savedPlacements.length && Array.isArray(decodedBuild?.relics)) {
         decodedBuild.relics.filter(Boolean).forEach((id, index) => {
           const itemId = String(id);
@@ -1966,7 +1966,7 @@ function collectTotalData() {
         message.textContent = "現在表示中のビルドの共有URLを表示しました。";
       }
     });
-  // v2.6.4: 共有処理修正時に消えていた選択画面の検索イベントを復元
+  // v2.6.5: 共有処理修正時に消えていた選択画面の検索イベントを復元
   document.getElementById("clearUrlButton").addEventListener("click", () => {
     const url = new URL(location.href);
     url.searchParams.delete("build");
@@ -2058,3 +2058,10 @@ function collectTotalData() {
 
   loadData();
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const appVersionLabel = document.getElementById("appVersionLabel");
+  if (appVersionLabel) appVersionLabel.textContent = `Version ${APP_VERSION}`;
+
+});
