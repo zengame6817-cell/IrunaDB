@@ -1,0 +1,6 @@
+IrunaDB v2.7.1
+- MSタブが0/0になる問題を修正
+- EP1データをindex.htmlへ直接埋め込み、読み込み順依存を解消
+- missions.jsをDOM ready状態に関係なく初期化可能に修正
+- EP1 75ミッション / 必要アイテム 15種類
+- Service Workerキャッシュを2.7.1へ更新
