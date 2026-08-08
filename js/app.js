@@ -1,4 +1,4 @@
-const APP_VERSION = "2.6.6";
+const APP_VERSION = "2.6.7";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -127,7 +127,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       if (element.children.length) return;
       const value = String(element.textContent || "");
       if (/v1\.[0-9]+(?:\.\d+)?/i.test(value)) {
-        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, "v2.6.5");
+        element.textContent = value.replace(/v1\.[0-9]+(?:\.\d+)?/ig, `v${APP_VERSION}`);
       }
     });
   }
@@ -1280,10 +1280,21 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   }
 
   function findStatIdByDisplayName(targetName) {
+    // STAT_MASTERを優先
     for (const [statId] of context.statMap.entries()) {
-      if (displayStatName(statId) === targetName) return String(statId);
+      if (displayStatName(String(statId)) === targetName) return String(statId);
     }
-    return "";
+
+    // ITEM_EFFECT側も検索
+    for (const effects of context.effectsByItem.values()) {
+      for (const effect of (effects || [])) {
+        const statId = String(effect["能力ID"] || "");
+        if (statId && displayStatName(statId) === targetName) return statId;
+      }
+    }
+
+    // 能力ID自体が表示名のケース（スキルDB等）
+    return targetName;
   }
 
 function collectTotalData() {
@@ -1307,33 +1318,27 @@ function collectTotalData() {
       // 「ディレイ」はスキルディレイ・アイテムディレイの両方を短縮する共通値として扱う。
       // 合計欄には「ディレイ」単独行を出さず、2項目へ吸収する。
       if (displayName === "ディレイ") {
-        const skillDelayId = findStatIdByDisplayName("スキルディレイ");
-        const itemDelayId = findStatIdByDisplayName("アイテムディレイ");
+        // 共通ディレイは必ずスキルディレイ・アイテムディレイの両方へ加算。
+        // 「ディレイ」単独行は作らない。
+        const skillDelayId = findStatIdByDisplayName("スキルディレイ") || "スキルディレイ";
+        const itemDelayId = findStatIdByDisplayName("アイテムディレイ") || "アイテムディレイ";
 
         const sharedSource = {
           ...sourceInfo,
-          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`
+          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`,
+          sourceAbility: "ディレイ"
         };
 
-        if (skillDelayId) {
-          addNumericRaw(skillDelayId, unit, numeric, {
-            ...sharedSource,
-            sourceAbility: "ディレイ",
-            appliedAs: "スキルディレイ"
-          });
-        }
-        if (itemDelayId) {
-          addNumericRaw(itemDelayId, unit, numeric, {
-            ...sharedSource,
-            sourceAbility: "ディレイ",
-            appliedAs: "アイテムディレイ"
-          });
-        }
+        addNumericRaw(skillDelayId, unit, numeric, {
+          ...sharedSource,
+          appliedAs: "スキルディレイ"
+        });
 
-        // STAT_MASTERにどちらも見つからない場合だけ従来どおり残す。
-        if (!skillDelayId && !itemDelayId) {
-          addNumericRaw(statId, unit, numeric, sourceInfo);
-        }
+        addNumericRaw(itemDelayId, unit, numeric, {
+          ...sharedSource,
+          appliedAs: "アイテムディレイ"
+        });
+
         return;
       }
 
@@ -1387,7 +1392,22 @@ function collectTotalData() {
     });
     textOnly.push(...skillData.text);
 
-    const rows = [...totals.values()].sort((x,y) =>
+    // 表示名と単位が同じ能力は、元の能力IDが異なっても1行へ統合する。
+    const mergedByDisplay = new Map();
+    [...totals.values()].forEach(row => {
+      const displayName = displayStatName(String(row.statId));
+      const mergeKey = `${displayName}__${row.unit}`;
+      const current = mergedByDisplay.get(mergeKey) || {
+        ...row,
+        value: 0,
+        sources: []
+      };
+      current.value += Number(row.value || 0);
+      current.sources.push(...(row.sources || []));
+      mergedByDisplay.set(mergeKey, current);
+    });
+
+    const rows = [...mergedByDisplay.values()].sort((x,y) =>
       (context.statMap.get(x.statId)?.["表示順"] || 9999) -
       (context.statMap.get(y.statId)?.["表示順"] || 9999)
     );
