@@ -1,4 +1,4 @@
-const APP_VERSION = window.IRUNA_CONFIG?.APP_VERSION || "2.9.2";
+const APP_VERSION = window.IRUNA_CONFIG?.APP_VERSION || "2.9.4";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -485,6 +485,12 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     });
     document.querySelectorAll(".app-view").forEach(section => section.classList.toggle("is-active", section.id === `view-${view}`));
 
+    const mainTabs = document.getElementById("mainTabs");
+    const mobileToggle = document.getElementById("mobileTabToggle");
+    if (mainTabs && mobileToggle && window.matchMedia("(max-width: 720px)").matches) {
+      mainTabs.classList.remove("is-open");
+      mobileToggle.setAttribute("aria-expanded", "false");
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -2138,4 +2144,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const appVersionLabel = document.getElementById("appVersionLabel");
   if (appVersionLabel) appVersionLabel.textContent = `Version ${APP_VERSION}`;
 
+});
+
+
+// v2.9.4 mobile collapsible main menu
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("mobileTabToggle");
+  const tabs = document.getElementById("mainTabs");
+  if (!toggle || !tabs) return;
+  toggle.addEventListener("click", () => {
+    const open = tabs.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = open ? "× 閉じる" : "☰ メニュー";
+  });
+  tabs.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 720px)").matches) {
+      tabs.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "☰ メニュー";
+    }
+  }));
 });

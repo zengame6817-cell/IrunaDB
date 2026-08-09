@@ -80,12 +80,6 @@
     const hide=document.getElementById("sqHideCompleted"); if(hide)hide.addEventListener("change",()=>{state.hideDone=hide.checked;renderList();});
     const lvl=document.getElementById("sqLevelFilter"); if(lvl)lvl.addEventListener("change",()=>{state.maxLevel=Number(lvl.value)||999;renderList();});
     const acq=document.getElementById("sqAcqFilter"); if(acq)acq.addEventListener("change",()=>{state.acquisition=acq.value;renderList();});
-    document.querySelectorAll("[data-mission-mode]").forEach(btn=>btn.addEventListener("click",()=>{
-      const mode=btn.dataset.missionMode;
-      document.querySelectorAll("[data-mission-mode]").forEach(x=>x.classList.toggle("is-active",x===btn));
-      document.getElementById("missionStoryMode")?.classList.toggle("is-hidden",mode!=="ms");
-      document.getElementById("skillQuestMode")?.classList.toggle("is-hidden",mode!=="sq");
-    }));
     renderAll();
   }
   document.addEventListener("DOMContentLoaded",boot);
