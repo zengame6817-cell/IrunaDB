@@ -1,5 +1,5 @@
 window.IRUNA_MISSION_DATA = {
-  "version": "2.8.1",
+  "version": "2.9.1",
   "sourceNote": "EP1～EP5はAmeblo攻略を基準に、会話・移動・BOSS・収集・報告を追えるナビ表示へ拡張。EP2～EP5は順次座標/階層を詳細化。",
   "episodes": [
     "EP1",

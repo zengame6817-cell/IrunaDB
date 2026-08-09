@@ -1,4 +1,4 @@
-const APP_VERSION = "2.9.0";
+const APP_VERSION = window.IRUNA_CONFIG?.APP_VERSION || "2.9.1";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);

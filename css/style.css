@@ -3429,3 +3429,16 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .sk-acq-badge{display:inline-flex;margin:6px 0;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:900;background:var(--field)}
 .sk-shop{color:#b7791f}.sk-drop{color:#805ad5}.sk-transfer{color:#2f855a}.sk-quest{color:var(--accent)}
 .sk-info{margin:4px 0;font-size:12px}
+
+
+/* v2.9.1 MS details / SK organization */
+.sq-toolbar{grid-template-columns:minmax(150px,.65fr) minmax(260px,1.4fr) minmax(120px,.5fr) minmax(150px,.65fr) auto}
+.sk-book-panel{margin-top:8px}
+.sk-book-list{display:grid;gap:8px}
+.sk-book-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(180px,.8fr);gap:12px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--field)}
+.sk-book-row>div{display:grid;gap:3px}.sk-book-row strong{font-size:14px}.sk-book-row small{color:var(--muted);font-size:12px}.sk-book-meta{text-align:right;justify-items:end}.sk-book-meta b{font-size:12px}.sk-detail-grid,.mission-detail-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0 12px}
+.sk-detail-grid>div,.mission-detail-meta>div{display:grid;gap:3px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field)}
+.sk-detail-grid span,.mission-detail-meta span,.sk-location span{color:var(--muted);font-size:11px;font-weight:800}.sk-detail-grid strong,.mission-detail-meta strong,.sk-location strong{font-size:12px;overflow-wrap:anywhere}
+.sk-location{display:flex;gap:8px;align-items:baseline;margin:0 0 8px}.mission-route-label{margin:4px 0 8px;color:var(--muted);font-size:12px;font-weight:900}
+.sq-source-link,.mission-source-link{display:none!important}
+@media(max-width:800px){.sq-toolbar{grid-template-columns:1fr}.sk-book-row{grid-template-columns:1fr}.sk-book-meta{text-align:left;justify-items:start}.sk-detail-grid,.mission-detail-meta{grid-template-columns:1fr}}

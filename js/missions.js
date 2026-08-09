@@ -120,12 +120,19 @@
             </label>
             <div class="mission-card-title">
               <strong>${esc(m.title)}</strong>
-              <small>${m.exp ? `${m.exp.toLocaleString("ja-JP")} EXP` : ""}${m.rewards ? ` / ${esc(m.rewards)}` : ""}</small>
+              <small>${esc(m.region || (m.chapter||"").replace(/^EP\d+\s*/,"").replace(/第\d+章.*$/,"").trim() || m.chapter || "")} / ${m.steps?.length||0}ステップ</small>
             </div>
             <b class="mission-chevron">＋</b>
           </summary>
           <div class="mission-card-body">
-            ${m.steps.map((step, idx) => { const sm=stepMeta(step); return `<div class="mission-step"><i>${idx+1}</i><p><span class="mission-step-type">${esc(sm.type)}</span>${esc(sm.text)}</p></div>`; }).join("")}${m.source ? `<a class="mission-source-link" href="${esc(m.source)}" target="_blank" rel="noopener">攻略元で詳細を確認 ↗</a>` : ""}
+            <div class="mission-detail-meta">
+              <div><span>章</span><strong>${esc(m.chapter||"-")}</strong></div>
+              <div><span>EXP</span><strong>${m.exp ? m.exp.toLocaleString("ja-JP") : "-"}</strong></div>
+              <div><span>報酬</span><strong>${esc(m.rewards||"-")}</strong></div>
+              <div><span>進行</span><strong>${m.steps?.length||0}ステップ</strong></div>
+            </div>
+            <div class="mission-route-label">進行詳細</div>
+            ${m.steps.map((step, idx) => { const sm=stepMeta(step); return `<div class="mission-step"><i>${idx+1}</i><p><span class="mission-step-type">${esc(sm.type)}</span>${esc(sm.text)}</p></div>`; }).join("")}
           </div>
         </details>
       `);
