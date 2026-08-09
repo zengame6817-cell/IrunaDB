@@ -3405,3 +3405,27 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   .mission-section-head{align-items:flex-start}
   .mission-card-body{padding-left:12px}
 }
+
+/* v2.8.0 Skill Quest */
+.mission-mode-switch{display:flex;gap:8px;margin:0 0 14px}
+.mission-mode-btn{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 16px;border-radius:12px;font-weight:800;cursor:pointer}
+.mission-mode-btn.is-active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.is-hidden{display:none!important}
+.sq-toolbar{grid-template-columns:minmax(180px,.7fr) minmax(300px,1.5fr) minmax(130px,.5fr) auto}
+.sq-select-label{display:grid;gap:6px;color:var(--muted);font-weight:700}
+.sq-select-label select{width:100%;background:var(--field);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.sq-job-tabs{display:flex;gap:7px;overflow-x:auto;padding:0 2px 10px;scrollbar-width:thin}
+.sq-job-tab{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer}
+.sq-job-tab.is-active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sq-source-link{display:inline-block;margin:10px 0 2px;color:var(--accent);font-weight:800;text-decoration:none}
+.sq-note{margin:10px 0;color:var(--muted);font-size:13px}
+@media(max-width:800px){.sq-toolbar{grid-template-columns:1fr}.mission-mode-switch{position:sticky;top:0;z-index:4;background:var(--bg);padding:4px 0}.mission-mode-btn{flex:1}}
+
+/* v2.8.1 MS navigation */
+.mission-step-type{display:inline-flex;align-items:center;margin:0 7px 3px 0;padding:2px 7px;border:1px solid var(--line);border-radius:999px;background:var(--field);color:var(--accent);font-size:11px;font-weight:900;vertical-align:1px}
+.mission-source-link{display:inline-block;margin:12px 0 2px;color:var(--accent);font-weight:800;text-decoration:none}
+
+/* v2.9.0 SK Skill acquisition guide */
+.sk-acq-badge{display:inline-flex;margin:6px 0;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:900;background:var(--field)}
+.sk-shop{color:#b7791f}.sk-drop{color:#805ad5}.sk-transfer{color:#2f855a}.sk-quest{color:var(--accent)}
+.sk-info{margin:4px 0;font-size:12px}

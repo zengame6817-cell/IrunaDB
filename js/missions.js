@@ -82,6 +82,19 @@
     ].join(" ")).includes(q);
   }
 
+
+  function stepMeta(step) {
+    const s = String(step || "");
+    const tagged = s.match(/^【([^】]+)】\s*(.*)$/);
+    if (tagged) return { type: tagged[1], text: tagged[2] };
+    if (/BOSS|ボス|戦闘|討伐/.test(s)) return { type:"戦闘", text:s };
+    if (/会話|話し/.test(s)) return { type:"会話", text:s };
+    if (/報告/.test(s)) return { type:"報告", text:s };
+    if (/収集|入手|集め|×|x\\d/.test(s)) return { type:"収集", text:s };
+    if (/移動|から.*へ|付近/.test(s)) return { type:"移動", text:s };
+    return { type:"進行", text:s };
+  }
+
   function renderMissions() {
     const list = document.getElementById("missionList");
     const count = document.getElementById("missionResultCount");
@@ -112,7 +125,7 @@
             <b class="mission-chevron">＋</b>
           </summary>
           <div class="mission-card-body">
-            ${m.steps.map((step, idx) => `<div class="mission-step"><i>${idx+1}</i><p>${esc(step)}</p></div>`).join("")}
+            ${m.steps.map((step, idx) => { const sm=stepMeta(step); return `<div class="mission-step"><i>${idx+1}</i><p><span class="mission-step-type">${esc(sm.type)}</span>${esc(sm.text)}</p></div>`; }).join("")}${m.source ? `<a class="mission-source-link" href="${esc(m.source)}" target="_blank" rel="noopener">攻略元で詳細を確認 ↗</a>` : ""}
           </div>
         </details>
       `);
