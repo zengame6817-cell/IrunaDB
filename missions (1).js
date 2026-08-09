@@ -2,6 +2,9 @@
 "use strict";
 (() => {
   const data = window.IRUNA_MISSION_DATA || { episodes: [], missions: [], items: [] };
+  if (!data.missions?.length) {
+    console.error("IrunaDB MS: mission data is empty.");
+  }
   const STORAGE_DONE = "irunadb_mission_done_v1";
   const STORAGE_OWNED = "irunadb_mission_owned_v1";
   const state = {
@@ -129,15 +132,34 @@
     renderEpTabs(); renderProgress(); renderItems(); renderMissions();
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  
+  function initMissionUI() {
     const search = document.getElementById("missionSearchInput");
     const hideDone = document.getElementById("missionHideCompleted");
     const hideOwned = document.getElementById("missionHideOwned");
-    if (!search) return;
+    if (!search || !hideDone || !hideOwned) return;
 
-    search.addEventListener("input", e => { state.query = e.target.value; renderMissions(); });
-    hideDone.addEventListener("change", e => { state.hideCompleted = e.target.checked; renderMissions(); });
-    hideOwned.addEventListener("change", e => { state.hideOwned = e.target.checked; renderItems(); });
+    if (!search.dataset.missionBound) {
+      search.dataset.missionBound = "1";
+      search.addEventListener("input", e => {
+        state.query = e.target.value;
+        renderMissions();
+      });
+      hideDone.addEventListener("change", e => {
+        state.hideCompleted = e.target.checked;
+        renderMissions();
+      });
+      hideOwned.addEventListener("change", e => {
+        state.hideOwned = e.target.checked;
+        renderItems();
+      });
+    }
     renderAll();
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMissionUI, { once: true });
+  } else {
+    initMissionUI();
+  }
 })();

@@ -1,4 +1,4 @@
-const APP_VERSION = "2.7.0";
+const APP_VERSION = "2.7.4";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
