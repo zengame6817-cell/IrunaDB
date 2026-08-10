@@ -1,5 +1,5 @@
 window.IRUNA_SKILL_QUEST_DATA = {
-  "version": "2.9.7",
+  "version": "2.9.8",
   "jobs": [
     "ナイト",
     "ハンター",

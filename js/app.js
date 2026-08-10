@@ -1439,27 +1439,28 @@ function collectTotalData() {
     ].join(" / ");
 
     const equipmentRows = SLOT_DEFS.map(slot => {
-      if (slot.key === "decoration") {
-        const starName = selectedItemName(state.build.stars[slot.key]);
-        return starName ? `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(starName)}</span></li>` : "";
-      }
-      const itemName = selectedItemName(state.build[slot.key]);
-      if (!itemName) return "";
+      const itemName = slot.key === "decoration" ? "" : selectedItemName(state.build[slot.key]);
       const setting = state.build.equipmentSettings[slot.key] || {};
-      const suffix = slot.key === "special" ? `${Number(setting.slots || 0)}s` : `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`;
-      return `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span></li>`;
+      const suffix = itemName
+        ? (slot.key === "special" ? `${Number(setting.slots || 0)}s` : `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`)
+        : "";
+      const crystals = slot.key === "decoration" ? [] : (state.build.crystals[slot.key] || [])
+        .filter(Boolean).map(id => selectedItemName(id)).filter(Boolean);
+      const starName = selectedItemName(state.build.stars[slot.key]);
+
+      // 装飾は☆能力のみ。その他は装備・クリスタ・☆能力を同じ部位行にまとめる。
+      if (!itemName && !crystals.length && !starName) return "";
+      const itemHtml = itemName
+        ? `<span class="screenshot-item-name">${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span>`
+        : `<span class="screenshot-item-name empty-mini">—</span>`;
+      const attached = [
+        ...crystals.map(name => `<span class="screenshot-attach screenshot-crystal">${escapeHtml(name)}</span>`),
+        ...(starName ? [`<span class="screenshot-attach screenshot-star">${escapeHtml(starName)}</span>`] : [])
+      ].join("");
+      return `<li><b>${escapeHtml(slot.label)}</b>${itemHtml}<span class="screenshot-slot-tags">${attached}</span></li>`;
     }).filter(Boolean).join("");
 
-    const crystalNames = [], alNames = [], relicNames = [];
-    SLOT_DEFS.forEach(slot => {
-      if (slot.key !== "decoration") {
-        (state.build.crystals[slot.key] || []).filter(Boolean).forEach(id => {
-          const name = selectedItemName(id); if (name) crystalNames.push(name);
-        });
-      }
-      const star = selectedItemName(state.build.stars[slot.key]);
-      if (star) crystalNames.push(star);
-    });
+    const alNames = [], relicNames = [];
     state.build.alCrystas.filter(Boolean).forEach(id => {
       const name = selectedItemName(id); if (name) alNames.push(name);
     });
@@ -1480,10 +1481,7 @@ function collectTotalData() {
       <article class="screenshot-card" id="screenshotCard">
         <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v${APP_VERSION}</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
-        <div class="screenshot-columns">
-          <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
-          <section><h4>クリスタ・☆能力</h4><p class="screenshot-tags">${crystalNames.length ? crystalNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
-        </div>
+        <section class="screenshot-build-slots"><h4>装備・クリスタ・☆能力</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
         <div class="screenshot-section-grid">
           <section><h4>アルクリスタ</h4><p class="screenshot-tags">${alNames.length ? alNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
           <section><h4>レリック</h4><p class="screenshot-tags">${relicNames.length ? relicNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
