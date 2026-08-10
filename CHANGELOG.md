@@ -1,4 +1,9 @@
 
+## v2.9.9
+- Microsoft Clarity の計測コードを復旧。
+- Clarity Project ID を `xwi8zmzhuc` に統一。
+- アプリ表示バージョンとキャッシュ名を v2.9.9 に更新。
+
 ## v2.9.1
 - MS詳細表示を拡張。
 - SKの入手方法整理とスキル本まとめを追加。
