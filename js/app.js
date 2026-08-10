@@ -1325,6 +1325,26 @@ function collectTotalData() {
       // v2.6.6:
       // 「ディレイ」はスキルディレイ・アイテムディレイの両方を短縮する共通値として扱う。
       // 合計欄には「ディレイ」単独行を出さず、2項目へ吸収する。
+      // v2.9.10: 複合能力は最終値が分かるよう個別能力へ分配して集計する。
+      // 例: 「絶対・魔法回避 +17%」→ 絶対回避 +17% / 魔法回避 +17%
+      const compositeTargets = {
+        "絶対・魔法回避": ["絶対回避", "魔法回避"],
+        "物理・魔法耐性": ["物理耐性", "魔法耐性"]
+      };
+      const targets = compositeTargets[displayName];
+      if (targets) {
+        targets.forEach(targetName => {
+          const targetId = findStatIdByDisplayName(targetName) || targetName;
+          addNumericRaw(targetId, unit, numeric, {
+            ...sourceInfo,
+            effectText: sourceInfo?.effectText || `${displayName}${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`,
+            sourceAbility: displayName,
+            appliedAs: targetName
+          });
+        });
+        return;
+      }
+
       if (displayName === "ディレイ") {
         // 共通ディレイは必ずスキルディレイ・アイテムディレイの両方へ加算。
         // 「ディレイ」単独行は作らない。
