@@ -1317,6 +1317,23 @@ function collectTotalData() {
       totals.set(key, current);
     };
 
+    // v2.9.11: 同一アイテムに「個別能力」と「複合能力」が両方登録されている場合、
+    // 複合能力の分配で二重加算しないため、各アイテムが直接持つ能力名を先に記録する。
+    const directAbilityNamesBySource = new Map();
+    selectedEntries.forEach(sourceEntry => {
+      const names = new Set();
+      (context.effectsByItem.get(sourceEntry.id) || []).forEach(effect => {
+        if (isFormulaEffect(effect)) return;
+        const statId = String(effect["能力ID"] || "");
+        if (!statId) return;
+        const name = String(displayStatName(statId) || "")
+          .replace(/[\s　]+/g, "")
+          .replace(/－/g, "-");
+        if (name) names.add(name);
+      });
+      directAbilityNamesBySource.set(String(sourceEntry.id), names);
+    });
+
     const addNumeric = (statId, unit, numeric, sourceInfo) => {
       const displayName = String(displayStatName(statId) || "")
         .replace(/[\s　]+/g, "")
@@ -1325,7 +1342,7 @@ function collectTotalData() {
       // v2.6.6:
       // 「ディレイ」はスキルディレイ・アイテムディレイの両方を短縮する共通値として扱う。
       // 合計欄には「ディレイ」単独行を出さず、2項目へ吸収する。
-      // v2.9.10: 複合能力は最終値が分かるよう個別能力へ分配して集計する。
+      // v2.9.11: 複合能力は最終値が分かるよう個別能力へ分配して集計する。
       // 例: 「絶対・魔法回避 +17%」→ 絶対回避 +17% / 魔法回避 +17%
       const compositeTargets = {
         "絶対・魔法回避": ["絶対回避", "魔法回避"],
@@ -1333,7 +1350,10 @@ function collectTotalData() {
       };
       const targets = compositeTargets[displayName];
       if (targets) {
+        const directNames = directAbilityNamesBySource.get(String(sourceInfo?.id || "")) || new Set();
         targets.forEach(targetName => {
+          // 同一アイテムに対象の個別能力が既にある場合は、複合能力からは加算しない。
+          if (directNames.has(targetName)) return;
           const targetId = findStatIdByDisplayName(targetName) || targetName;
           addNumericRaw(targetId, unit, numeric, {
             ...sourceInfo,
