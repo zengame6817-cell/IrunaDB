@@ -3444,7 +3444,7 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 @media(max-width:800px){.sq-toolbar{grid-template-columns:1fr}.sk-book-row{grid-template-columns:1fr}.sk-book-meta{text-align:left;justify-items:start}.sk-detail-grid,.mission-detail-meta{grid-template-columns:1fr}}
 \n\n/* =========================================================\n   IrunaDB v2.9.4 — compact / collapsible navigation\n   ========================================================= */\n.main-tabs{grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:10px}\n.mobile-tab-toggle{display:none}\n@media(max-width:720px){\n  .app-shell{padding-top:10px}\n  .site-header{margin-bottom:8px;padding:11px 12px}\n  .mobile-tab-toggle{\n    position:sticky;top:6px;z-index:22;display:flex;align-items:center;justify-content:center;\n    width:100%;min-height:38px;margin:0 0 7px;padding:7px 12px;border:1px solid var(--line);\n    border-radius:11px;color:var(--text);background:color-mix(in srgb,var(--surface) 94%,transparent);\n    box-shadow:var(--shadow-soft);font-size:12px;font-weight:800;cursor:pointer;backdrop-filter:blur(12px)\n  }\n  .main-tabs{display:none;position:sticky;top:50px;z-index:21;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:0 0 9px;padding:5px}\n  .main-tabs.is-open{display:grid}\n  .main-tab{min-height:43px;padding:5px 3px;font-size:9px}\n  .main-tab span{font-size:13px}\n}\n
 /* =========================================================
-   IrunaDB v2.9.5 — mobile collapsible navigation FIX
+   IrunaDB v2.9.6 — mobile collapsible navigation FIX
    ========================================================= */
 .mobile-tab-toggle { display: none; }
 @media (max-width: 720px) {
@@ -3495,4 +3495,22 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
     font-size: 9px !important;
   }
   .main-tab span { font-size: 13px !important; }
+}
+
+/* =========================================================
+   IrunaDB v2.9.7 — mobile menu text visibility fix
+   ========================================================= */
+@media (max-width: 720px) {
+  /* Menu control uses a dark background in both themes, so keep its label bright. */
+  .mobile-tab-toggle,
+  :root[data-theme="light"] .mobile-tab-toggle,
+  :root[data-theme="dark"] .mobile-tab-toggle {
+    color: #f7f1df !important;
+    -webkit-text-fill-color: #f7f1df !important;
+  }
+  .mobile-tab-toggle:hover,
+  .mobile-tab-toggle:focus-visible {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
 }
