@@ -301,11 +301,20 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     const data = window.IRUNA_SKILL_DATA || { jobs:[], skills:[], effects:[], conditions:[] };
     if (Array.isArray(data.jobs) && data.jobs.length) state.jobs = data.jobs.map(job => ({ ...job }));
     context.skillsByJob.clear(); context.skillEffectsBySkill.clear(); context.skillConditionMap.clear();
+    const buildReflectSkillIds = new Set(
+      (Array.isArray(data.effects) ? data.effects : [])
+        .filter(effect => String(effect["ビルド反映"] || "").toUpperCase() === "TRUE" && String(effect["有効"] || "TRUE").toUpperCase() !== "FALSE")
+        .map(effect => String(effect["スキルID"] || ""))
+        .filter(Boolean)
+    );
     data.skills.forEach(skill => {
-      // v2.9.15: 「未分類」のスキルはビルド画面・自動選択・合計能力の対象外にする。
-      if (String(skill["カテゴリ"] || "").trim() === "未分類") return;
+      // v2.9.18: 未分類でも「ビルド反映=TRUE」の効果を持つスキルは表示・反映対象にする。
+      // 効果未登録の未分類スキルは従来どおり除外し、未確定値を合計能力へ混ぜない。
+      const skillId = String(skill["スキルID"] || "");
+      const isUncategorized = String(skill["カテゴリ"] || "").trim() === "未分類";
+      if (isUncategorized && !buildReflectSkillIds.has(skillId)) return;
       const jid=String(skill["職業ID"]||""); if(!context.skillsByJob.has(jid)) context.skillsByJob.set(jid,[]); context.skillsByJob.get(jid).push(skill);
-      if(String(skill["選択方式"]||"")==="AUTO") state.selectedSkills.add(String(skill["スキルID"]));
+      if(String(skill["選択方式"]||"")==="AUTO") state.selectedSkills.add(skillId);
     });
     data.effects.forEach(effect => { const sid=String(effect["スキルID"]||""); if(!context.skillEffectsBySkill.has(sid)) context.skillEffectsBySkill.set(sid,[]); context.skillEffectsBySkill.get(sid).push(effect); });
     data.conditions.forEach(cond => { const gid=String(cond["条件グループID"]||""); if(!context.skillConditionMap.has(gid)) context.skillConditionMap.set(gid,[]); context.skillConditionMap.get(gid).push(cond); });
