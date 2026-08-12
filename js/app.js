@@ -302,7 +302,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     if (Array.isArray(data.jobs) && data.jobs.length) state.jobs = data.jobs.map(job => ({ ...job }));
     context.skillsByJob.clear(); context.skillEffectsBySkill.clear(); context.skillConditionMap.clear();
     data.skills.forEach(skill => {
-      // v2.9.14: 「未分類」のスキルはビルド画面・自動選択・合計能力の対象外にする。
+      // v2.9.15: 「未分類」のスキルはビルド画面・自動選択・合計能力の対象外にする。
       if (String(skill["カテゴリ"] || "").trim() === "未分類") return;
       const jid=String(skill["職業ID"]||""); if(!context.skillsByJob.has(jid)) context.skillsByJob.set(jid,[]); context.skillsByJob.get(jid).push(skill);
       if(String(skill["選択方式"]||"")==="AUTO") state.selectedSkills.add(String(skill["スキルID"]));
@@ -433,7 +433,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
 
   function evaluateSkillFormula(formula, skill) {
     if(!formula) return NaN;
-    const vars={Lv:Number(state.status.lv||1),STR:Number(state.status.str||0),INT:Number(state.status.int||0),VIT:Number(state.status.vit||0),AGI:Number(state.status.agi||0),DEX:Number(state.status.dex||0),CRT:Number(state.status.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(state.status.dex||0)};
+    const vars={Lv:Number(state.status.lv||1),STR:Number(state.status.str||0),INT:Number(state.status.int||0),VIT:Number(state.status.vit||0),AGI:Number(state.status.agi||0),DEX:Number(state.status.dex||0),CRT:Number(state.status.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(state.status.dex||0),武器精錬値:9,REFINEMENT:9,REFINE:9};
     let expr=String(formula).replace(/FLOOR/g,'Math.floor').replace(/MIN/g,'Math.min').replace(/MAX/g,'Math.max');
     Object.entries(vars).sort((x,y)=>y[0].length-x[0].length).forEach(([k,v])=>{expr=expr.replace(new RegExp(k,'g'),String(v))});
     if(!/^[0-9+\-*/()., Mathminfloorax]+$/.test(expr)) return NaN;
@@ -448,7 +448,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       if(String(effect["ビルド反映"]??"TRUE").toUpperCase()==="FALSE")return;
       if(!skillEffectConditionsPass(effect)) { if(effect["表示文"]) text.push(`条件付き：${String(effect["表示文"])}`); return; }
       const statId=String(effect["能力ID"]||""); const unit=String(effect["単位"]||"");
-      // v2.9.13: 空欄/null を Number() に通すと 0 になり、計算式が実行されない不具合を修正。
+      // v2.9.15: 空欄/null を Number() に通すと 0 になり、計算式が実行されない不具合を修正。
       // 「値」が実際に入力されている場合だけ固定値として扱い、空欄なら数式を評価する。
       const rawValue = effect["値"];
       const hasFixedValue = rawValue !== null && rawValue !== undefined && String(rawValue).trim() !== "";
