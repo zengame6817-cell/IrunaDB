@@ -433,7 +433,8 @@ function formatDisplayNumber(value, maxDecimals = 2) {
 
   function evaluateSkillFormula(formula, skill) {
     if(!formula) return NaN;
-    const vars={Lv:Number(state.status.lv||1),STR:Number(state.status.str||0),INT:Number(state.status.int||0),VIT:Number(state.status.vit||0),AGI:Number(state.status.agi||0),DEX:Number(state.status.dex||0),CRT:Number(state.status.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(state.status.dex||0),武器精錬値:9,REFINEMENT:9,REFINE:9};
+    const effective = calculateEffectiveStatus().status;
+    const vars={Lv:Number(effective.lv||1),STR:Number(effective.str||0),INT:Number(effective.int||0),VIT:Number(effective.vit||0),AGI:Number(effective.agi||0),DEX:Number(effective.dex||0),CRT:Number(effective.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(effective.dex||0),武器精錬値:9,REFINEMENT:9,REFINE:9};
     let expr=String(formula).replace(/FLOOR/g,'Math.floor').replace(/MIN/g,'Math.min').replace(/MAX/g,'Math.max');
     Object.entries(vars).sort((x,y)=>y[0].length-x[0].length).forEach(([k,v])=>{expr=expr.replace(new RegExp(k,'g'),String(v))});
     if(!/^[0-9+\-*/()., Mathminfloorax]+$/.test(expr)) return NaN;
@@ -1098,9 +1099,10 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     const equipped = selectedItems();
 
     const key = itemName.toUpperCase();
-    if (["LV", "LEVEL", "レベル"].includes(key)) return state.status.lv;
+    const effectiveStatus = calculateEffectiveStatus().status;
+    if (["LV", "LEVEL", "レベル"].includes(key)) return effectiveStatus.lv;
     if (["STR", "INT", "VIT", "AGI", "DEX", "CRT"].includes(key)) {
-      return state.status[key.toLowerCase()];
+      return effectiveStatus[key.toLowerCase()];
     }
 
     if (["職業", "JOB"].includes(key)) {
@@ -1254,6 +1256,100 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       result = join === "OR" ? result || next : result && next;
     }
     return result;
+  }
+
+  function evaluateSimpleStatusExpression(expression, vars) {
+    let expr = String(expression || "").trim();
+    if (!expr) return NaN;
+    expr = expr
+      .replace(/FLOOR/gi, "Math.floor")
+      .replace(/CEIL/gi, "Math.ceil")
+      .replace(/ROUND/gi, "Math.round")
+      .replace(/MIN/gi, "Math.min")
+      .replace(/MAX/gi, "Math.max");
+
+    const names = Object.keys(vars).sort((a, b) => b.length - a.length);
+    names.forEach(name => {
+      const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      expr = expr.replace(new RegExp(`\\b${escaped}\\b`, "g"), String(Number(vars[name] || 0)));
+    });
+
+    if (!/^[0-9+\-*/().,\sA-Za-z.]+$/.test(expr)) return NaN;
+    try {
+      const value = Function(`"use strict"; return (${expr});`)();
+      return Number(value);
+    } catch (_) {
+      return NaN;
+    }
+  }
+
+  function calculateEffectiveStatus() {
+    const status = {
+      lv: Number(state.status.lv || 1),
+      str: Number(state.status.str || 0),
+      int: Number(state.status.int || 0),
+      vit: Number(state.status.vit || 0),
+      agi: Number(state.status.agi || 0),
+      dex: Number(state.status.dex || 0),
+      crt: Number(state.status.crt || 0)
+    };
+    const deltas = [];
+    const selectedEntries = allSelectedSourceEntries();
+
+    const statusKeyMap = {
+      LV: "lv", LEVEL: "lv", STR: "str", INT: "int", VIT: "vit",
+      AGI: "agi", DEX: "dex", CRT: "crt"
+    };
+
+    selectedEntries.forEach(sourceEntry => {
+      (context.effectsByItem.get(String(sourceEntry.id)) || []).forEach(effect => {
+        if (!isFormulaEffect(effect)) return;
+        const formula = String(effect["数式"] || "").trim();
+        if (!formula) return;
+
+        const vars = {
+          Lv: status.lv, LEVEL: status.lv,
+          STR: status.str, INT: status.int, VIT: status.vit,
+          AGI: status.agi, DEX: status.dex, CRT: status.crt,
+          X: 0, Y: 0, Z: 0,
+          武器精錬値: Number(state.build.equipmentSettings.weapon?.refinement || 0),
+          REFINEMENT: Number(state.build.equipmentSettings.weapon?.refinement || 0),
+          REFINE: Number(state.build.equipmentSettings.weapon?.refinement || 0)
+        };
+
+        formula.split(/[;\n]+/).map(part => part.trim()).filter(Boolean).forEach(statement => {
+          let match = /^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+)$/.exec(statement);
+          if (match) {
+            const value = evaluateSimpleStatusExpression(match[2], vars);
+            if (Number.isFinite(value)) vars[match[1]] = value;
+            return;
+          }
+
+          match = /^(STR|INT|VIT|AGI|DEX|CRT)\s+up\s+by\s+(.+)$/i.exec(statement);
+          if (match) {
+            const statName = match[1].toUpperCase();
+            const value = evaluateSimpleStatusExpression(match[2], vars);
+            if (!Number.isFinite(value)) return;
+            const applied = Math.trunc(value);
+            const key = statusKeyMap[statName];
+            status[key] += applied;
+            vars[statName] = status[key];
+            if (statName === "LV") vars.Lv = status[key];
+            deltas.push({
+              statId: statName,
+              unit: "",
+              value: applied,
+              sourceId: String(sourceEntry.id),
+              sourceName: sourceEntry.name,
+              sourceLabel: sourceEntry.label,
+              effectText: String(effect["表示文"] || formula)
+            });
+          }
+        });
+      });
+    });
+
+    return { status, deltas };
   }
 
   function renderStatus() {
@@ -1429,6 +1525,22 @@ function collectTotalData() {
         } else if (effect["表示文"]) {
           textOnly.push(String(effect["表示文"]));
         }
+      });
+    });
+
+    // v2.9.17: 装備のステータス変換式を合計能力へ反映。
+    // 例: 流離の服「STRの半分をCRTに変換」→ STR減少 / CRT増加。
+    const transformedStatus = calculateEffectiveStatus();
+    transformedStatus.deltas.forEach(delta => {
+      addNumeric(delta.statId, delta.unit, delta.value, {
+        id: delta.sourceId,
+        name: delta.sourceName,
+        label: delta.sourceLabel,
+        kind: "装備数式",
+        value: delta.value,
+        unit: delta.unit,
+        conditionText: "",
+        effectText: delta.effectText
       });
     });
 
