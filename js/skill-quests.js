@@ -76,7 +76,7 @@
   function boot(){
     const job=document.getElementById("sqJobSelect");
     if(job){job.innerHTML=data.jobs.map(j=>`<option>${esc(j)}</option>`).join(""); job.value=state.job; job.addEventListener("change",()=>{state.job=job.value;renderAll();});}
-    const search=document.getElementById("sqSearchInput"); if(search)search.addEventListener("input",()=>{state.query=search.value;renderList();});
+    const search=document.getElementById("sqSearchInput"); if(search){let t=0;search.addEventListener("input",()=>{state.query=search.value;clearTimeout(t);t=setTimeout(renderList,120);});}
     const hide=document.getElementById("sqHideCompleted"); if(hide)hide.addEventListener("change",()=>{state.hideDone=hide.checked;renderList();});
     const lvl=document.getElementById("sqLevelFilter"); if(lvl)lvl.addEventListener("change",()=>{state.maxLevel=Number(lvl.value)||999;renderList();});
     const acq=document.getElementById("sqAcqFilter"); if(acq)acq.addEventListener("change",()=>{state.acquisition=acq.value;renderList();});

@@ -50,7 +50,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     databaseFilters: { weaponType: "", attribute: "", sort: "name", favoriteOnly: false },
     favorites: loadStoredFavorites(),
     build: createEmptyBuild(),
-    pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
+    pickerSlot: null, pickerQuery: "", pickerVisibleCount: 80, selectedRelicUid: null,
     pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
     status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 },
     selectedSkills: new Set()
@@ -82,6 +82,15 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   const screenshotModeButton = document.getElementById("screenshotModeButton");
   const skillSelections = document.getElementById("skillSelections");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
+
+  // v2.9.19: スマホで入力のたびに全件検索・全再描画しないための軽量デバウンス。
+  function debounce(fn, wait = 120) {
+    let timer = 0;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), wait);
+    };
+  }
 
   const JOB_MASTER_V12 = [
     "冒険者", "グラディエーター", "パラディン", "スナイパー", "アサシン", "サマナー",
@@ -1750,6 +1759,7 @@ function collectTotalData() {
   function openPicker(slotToken) {
     state.pickerSlot = slotToken;
     state.pickerQuery = "";
+    state.pickerVisibleCount = 80;
     state.pickerFilters = { weaponType: "", attribute: "", quickTag: "", sort: "name" };
     pickerSearchInput.value = "";
     const descriptor = getSlotDescriptor(slotToken);
@@ -1816,7 +1826,7 @@ function collectTotalData() {
       `<button class="picker-item is-none" type="button" data-picker-id="">
         <span><strong>未選択にする</strong><small>このスロットを解除</small></span><b>×</b>
       </button>` +
-      (items.length ? items.map(item => {
+      (items.length ? items.slice(0, state.pickerVisibleCount).map(item => {
         const itemId = String(item["アイテムID"]);
         const attributeId = String(item["属性ID"] || "");
         const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
@@ -1840,7 +1850,9 @@ function collectTotalData() {
           </button>
           <button class="picker-card-detail" type="button" data-picker-detail="${escapeHtml(itemId)}">詳細を見る</button>
         </article>`;
-      }).join("") : `<div class="state-card">条件に一致する装備がありません。フィルターを解除してください。</div>`);
+      }).join("") + (state.pickerVisibleCount < items.length
+        ? `<button class="button button-secondary iruna-load-more" type="button" data-picker-load-more>さらに表示（残り ${items.length - state.pickerVisibleCount}件）</button>`
+        : "") : `<div class="state-card">条件に一致する装備がありません。フィルターを解除してください。</div>`);
 
     pickerList.querySelectorAll("[data-picker-id]").forEach(button =>
       button.addEventListener("click", () => {
@@ -1863,6 +1875,10 @@ function collectTotalData() {
         renderDatabase();
       })
     );
+    pickerList.querySelector("[data-picker-load-more]")?.addEventListener("click", () => {
+      state.pickerVisibleCount += 80;
+      renderPicker();
+    });
     pickerList.querySelectorAll("[data-picker-detail]").forEach(button =>
       button.addEventListener("click", () => {
         const item = context.itemsById.get(String(button.dataset.pickerDetail));
@@ -2161,7 +2177,17 @@ function collectTotalData() {
       const connectionLabel = result.meta.source === "static"
         ? "GitHub静的DB"
         : result.meta.source === "all" ? "GAS一括取得" : "GAS互換取得";
-      applyData(result.data, connectionLabel, result.meta);
+
+      // v2.9.19: 起動時にキャッシュを描画済みで、取得したDBも同一なら二重描画しない。
+      const cachedStamp = cached?.meta?.generatedAt || cached?.meta?.updatedAt || cached?.meta?.dataVersion || "";
+      const resultStamp = result.meta?.generatedAt || result.meta?.updatedAt || result.meta?.dataVersion || "";
+      const sameCachedData = cacheShown && cachedStamp && resultStamp && String(cachedStamp) === String(resultStamp);
+      if (sameCachedData) {
+        ui.setConnectionStatus("online", connectionLabel);
+        updateDatabaseInfo(result.meta);
+      } else {
+        applyData(result.data, connectionLabel, result.meta);
+      }
       api.writeCache(result.data, result.meta);
     } catch (error) {
       console.error("GAS API connection failed", error);
@@ -2221,9 +2247,13 @@ function collectTotalData() {
       "URLからビルド情報を削除しました。装備はそのままです。";
   });
 
-  pickerSearchInput.addEventListener("input", event => {
-    state.pickerQuery = event.target.value;
+  const renderPickerFromInput = debounce(value => {
+    state.pickerQuery = value;
+    state.pickerVisibleCount = 80;
     renderPicker();
+  }, 120);
+  pickerSearchInput.addEventListener("input", event => {
+    renderPickerFromInput(event.target.value);
   });
 
   document.getElementById("pickerClearButton").addEventListener("click", () => {
@@ -2253,13 +2283,16 @@ function collectTotalData() {
     renderBuild();
   });
 
+  const renderBuildFromStatusInput = debounce(() => {
+    syncUrl(false);
+    renderBuild();
+  }, 80);
   document.querySelectorAll("[data-status-key]").forEach(input => {
     input.addEventListener("input", event => {
       const key = event.target.dataset.statusKey;
       const minimum = key === "lv" ? 1 : 0;
       state.status[key] = Math.max(minimum, Number(event.target.value || minimum));
-      syncUrl(false);
-      renderBuild();
+      renderBuildFromStatusInput();
     });
   });
 

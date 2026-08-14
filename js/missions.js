@@ -161,9 +161,11 @@
 
     if (!search.dataset.missionBound) {
       search.dataset.missionBound = "1";
+      let searchTimer = 0;
       search.addEventListener("input", e => {
         state.query = e.target.value;
-        renderMissions();
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(renderMissions, 120);
       });
       hideDone.addEventListener("change", e => {
         state.hideCompleted = e.target.checked;
