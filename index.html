@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v2.9.19</title>
+  <title>IrunaDB v2.9.20</title>
   <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -13,7 +13,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
-  <link rel="stylesheet" href="./css/style.css?v=2.9.19">
+  <link rel="stylesheet" href="./css/style.css?v=2.9.20">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -281,7 +281,7 @@ body.light-mode .calculation-card {
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span id="appVersionLabel">Version 2.9.19</span></h1>
+        <h1>IrunaDB <span id="appVersionLabel">Version 2.9.20</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -634,7 +634,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 2.9.19</h2>
+          <h2>IrunaDB Version 2.9.20</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -645,14 +645,14 @@ body.light-mode .calculation-card {
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v2.9.19 更新履歴</h3>
-            <p>スマホ負荷を軽減。大量データを一度にDOM描画しない方式へ変更しました。</p>
+            <h3>v2.9.20 更新履歴</h3>
+            <p>ディレイ集計の重複・単位分裂と、レリック削除操作を修正しました。</p>
             <ul>
-              <li>DB一覧を120件ずつ段階表示</li>
-              <li>装備選択候補を80件ずつ段階表示</li>
-              <li>検索・ステータス入力の連続再計算を抑制</li>
-              <li>DBカードのイベント登録を1箇所へ集約</li>
-              <li>HTML内に残っていた旧ミッション重複データを削除</li>
+              <li>スキル/アイテムディレイの単位空欄を「秒」に統一して二重表示を防止</li>
+              <li>共通ディレイと個別ディレイが同一アイテムにある場合の二重加算を防止</li>
+              <li>同一アイテム内の完全重複効果を1回だけ集計</li>
+              <li>レリック一覧の行タップで削除対象を選択できるよう修正</li>
+              <li>v2.9.19のスマホ軽量化を継続</li>
             </ul>
             <h3>v2.9.8 更新履歴</h3>
             <ul><li>スマホのメインタブを折りたたみ式メニューに変更</li><li>MS（ミッション）の隣にSK（スキル）を独立タブとして配置</li><li>タブ周辺の余白を圧縮して表示領域を拡大</li><li>v2.9.3のスキルDB自動公開対応を継続</li></ul>
@@ -694,18 +694,18 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config.js?v=2.9.19"></script>
-  <script src="./js/utils.js?v=2.9.19"></script>
-  <script src="./js/api.js?v=2.9.19"></script>
-  <script src="./js/modal.js?v=2.9.19"></script>
-  <script src="./js/ui.js?v=2.9.19"></script>
-  <script src="./data/skills.js?v=2.9.19"></script>
-<script src="./data/missions.js?v=2.9.19"></script>
-  <script src="./data/skill-quests.js?v=2.9.19"></script>
-<script src="./js/missions.js?v=2.9.19"></script>
-  <script src="./js/skill-quests.js?v=2.9.19"></script>
-  <script src="./js/app.js?v=2.9.19"></script>
-  <script src="./js/theme.js?v=2.9.19"></script>
+  <script src="./js/config.js?v=2.9.20"></script>
+  <script src="./js/utils.js?v=2.9.20"></script>
+  <script src="./js/api.js?v=2.9.20"></script>
+  <script src="./js/modal.js?v=2.9.20"></script>
+  <script src="./js/ui.js?v=2.9.20"></script>
+  <script src="./data/skills.js?v=2.9.20"></script>
+<script src="./data/missions.js?v=2.9.20"></script>
+  <script src="./data/skill-quests.js?v=2.9.20"></script>
+<script src="./js/missions.js?v=2.9.20"></script>
+  <script src="./js/skill-quests.js?v=2.9.20"></script>
+  <script src="./js/app.js?v=2.9.20"></script>
+  <script src="./js/theme.js?v=2.9.20"></script>
 
 <script id="mission-data-guard">
 window.addEventListener("DOMContentLoaded", () => {

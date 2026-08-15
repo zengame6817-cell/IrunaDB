@@ -1,4 +1,4 @@
-const APP_VERSION = window.IRUNA_CONFIG?.APP_VERSION || "2.9.4";
+const APP_VERSION = window.IRUNA_CONFIG?.APP_VERSION || "2.9.20";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -974,8 +974,13 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     relicPlacementList.querySelectorAll("[data-relic-select]").forEach(button => {
       button.addEventListener("click", () => {
         const placement = state.build.relicPlacements.find(entry => entry.uid === button.dataset.relicSelect);
-        const item = placement ? context.itemsById.get(String(placement.itemId)) : null;
-        if (item) modal.open(item, context);
+        if (!placement) return;
+        // v2.9.20: 行タップは詳細表示ではなく削除対象の選択にする。
+        // 詳細は右端の「詳細」ボタンから開く。
+        state.selectedRelicUid = placement.uid;
+        const item = context.itemsById.get(String(placement.itemId));
+        relicMessage.textContent = `${item?.["名前"] || "レリック"}を選択しました。削除ボタンでこのレリックを削除できます。`;
+        renderRelicBoard();
       });
     });
     relicPlacementList.querySelectorAll("[data-relic-detail]").forEach(button => {
@@ -1430,19 +1435,35 @@ function collectTotalData() {
     const totals = new Map(), textOnly = [];
     const activeConditional = [], inactiveConditional = [];
 
+    // v2.9.20: ディレイ系で「秒」と単位空欄が別能力として分裂しないように正規化。
+    const normalizeTotalUnit = (statId, unit) => {
+      const displayName = String(displayStatName(String(statId)) || statId || "")
+        .replace(/[\s　]+/g, "")
+        .replace(/－/g, "-");
+      const rawUnit = String(unit ?? "").trim();
+      const lowerUnit = rawUnit.toLowerCase();
+      if (["スキルディレイ", "アイテムディレイ", "ディレイ"].includes(displayName)) {
+        if (["", "s", "sec", "second", "seconds", "秒"].includes(lowerUnit || rawUnit)) return "秒";
+      }
+      return rawUnit;
+    };
+
     const addNumericRaw = (statId, unit, numeric, sourceInfo) => {
-      const key = `${statId}__${unit}`;
-      const current = totals.get(key) || { statId, unit, value: 0, sources: [] };
+      const normalizedUnit = normalizeTotalUnit(statId, unit);
+      const key = `${statId}__${normalizedUnit}`;
+      const current = totals.get(key) || { statId, unit: normalizedUnit, value: 0, sources: [] };
       current.value += numeric;
-      current.sources.push(sourceInfo);
+      current.sources.push({ ...sourceInfo, unit: normalizedUnit });
       totals.set(key, current);
     };
 
     // v2.9.11: 同一アイテムに「個別能力」と「複合能力」が両方登録されている場合、
     // 複合能力の分配で二重加算しないため、各アイテムが直接持つ能力名を先に記録する。
     const directAbilityNamesBySource = new Map();
+    const directAbilityKeysBySource = new Map();
     selectedEntries.forEach(sourceEntry => {
       const names = new Set();
+      const keys = new Set();
       (context.effectsByItem.get(sourceEntry.id) || []).forEach(effect => {
         if (isFormulaEffect(effect)) return;
         const statId = String(effect["能力ID"] || "");
@@ -1450,9 +1471,13 @@ function collectTotalData() {
         const name = String(displayStatName(statId) || "")
           .replace(/[\s　]+/g, "")
           .replace(/－/g, "-");
-        if (name) names.add(name);
+        if (name) {
+          names.add(name);
+          keys.add(`${name}__${normalizeTotalUnit(statId, effect["単位"] || "")}`);
+        }
       });
       directAbilityNamesBySource.set(String(sourceEntry.id), names);
+      directAbilityKeysBySource.set(String(sourceEntry.id), keys);
     });
 
     const addNumeric = (statId, unit, numeric, sourceInfo) => {
@@ -1487,26 +1512,33 @@ function collectTotalData() {
       }
 
       if (displayName === "ディレイ") {
-        // 共通ディレイは必ずスキルディレイ・アイテムディレイの両方へ加算。
-        // 「ディレイ」単独行は作らない。
+        // 共通ディレイはスキル/アイテムの両方へ展開する。
+        // v2.9.20: 同じアイテムに同単位の個別ディレイが登録済みなら、
+        // 共通ディレイ側からは重ねて加算しない（二重発動防止）。
         const skillDelayId = findStatIdByDisplayName("スキルディレイ") || "スキルディレイ";
         const itemDelayId = findStatIdByDisplayName("アイテムディレイ") || "アイテムディレイ";
+        const normalizedUnit = normalizeTotalUnit(statId, unit);
+        const directKeys = directAbilityKeysBySource.get(String(sourceInfo?.id || "")) || new Set();
 
         const sharedSource = {
           ...sourceInfo,
-          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`,
+          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${normalizedUnit || ""}`,
           sourceAbility: "ディレイ"
         };
 
-        addNumericRaw(skillDelayId, unit, numeric, {
-          ...sharedSource,
-          appliedAs: "スキルディレイ"
-        });
+        if (!directKeys.has(`スキルディレイ__${normalizedUnit}`)) {
+          addNumericRaw(skillDelayId, normalizedUnit, numeric, {
+            ...sharedSource,
+            appliedAs: "スキルディレイ"
+          });
+        }
 
-        addNumericRaw(itemDelayId, unit, numeric, {
-          ...sharedSource,
-          appliedAs: "アイテムディレイ"
-        });
+        if (!directKeys.has(`アイテムディレイ__${normalizedUnit}`)) {
+          addNumericRaw(itemDelayId, normalizedUnit, numeric, {
+            ...sharedSource,
+            appliedAs: "アイテムディレイ"
+          });
+        }
 
         return;
       }
@@ -1515,6 +1547,7 @@ function collectTotalData() {
     };
 
     selectedEntries.forEach(sourceEntry => {
+      const seenEffectSignatures = new Set();
       (context.effectsByItem.get(sourceEntry.id) || []).filter(effect => {
         if (isFormulaEffect(effect)) return false;
         const groupId = effect["条件グループID"];
@@ -1526,8 +1559,13 @@ function collectTotalData() {
         const statId = String(effect["能力ID"] || "");
         const numeric = Number(effect["値"]);
         if (statId && Number.isFinite(numeric) && !isBlank(effect["値"])) {
-          const unit = String(effect["単位"] || "");
+          const unit = normalizeTotalUnit(statId, effect["単位"] || "");
           const groupId = effect["条件グループID"];
+          const displayName = String(displayStatName(statId) || statId).replace(/[\s　]+/g, "");
+          const signature = `${displayName}__${unit}__${numeric}__${String(groupId || "")}`;
+          // v2.9.20: 同一アイテム内に同じ能力・値・単位・条件の重複行があっても1回だけ反映。
+          if (seenEffectSignatures.has(signature)) return;
+          seenEffectSignatures.add(signature);
           const group = !isBlank(groupId) ? (context.conditionMap.get(String(groupId)) || []) : [];
           const conditionText = group.map(condition => condition["表示文"]).filter(Boolean).join(" ＆ ");
           addNumeric(statId, unit, numeric, {
