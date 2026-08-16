@@ -1635,10 +1635,18 @@ function collectTotalData() {
     // 表示名と単位が同じ能力は、元の能力IDが異なっても1行へ統合する。
     const mergedByDisplay = new Map();
     [...totals.values()].forEach(row => {
-      const displayName = normalizeAbilityName(displayStatName(String(row.statId)));
-      const mergeKey = `${displayName}__${row.unit}`;
+      const rawDisplayName = normalizeAbilityName(displayStatName(String(row.statId)));
+      const normalizedUnit = String(row.unit ?? "").normalize("NFKC").trim();
+      // v2.9.23: percentage HIT aliases are one ability.
+      // Fixed-value 命中 (no % unit) remains separate.
+      const displayName = normalizedUnit === "%" && ["HIT", "HIT率", "命中", "命中率"].includes(rawDisplayName)
+        ? "HIT"
+        : rawDisplayName;
+      const mergeKey = `${displayName}__${normalizedUnit}`;
       const current = mergedByDisplay.get(mergeKey) || {
         ...row,
+        statId: displayName === "HIT" ? "HIT" : row.statId,
+        unit: normalizedUnit,
         value: 0,
         sources: []
       };
