@@ -1403,7 +1403,8 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     "割合ダメージ軽減":"割合軽減",
     "範囲ダメージ軽減":"範囲軽減",
     "最大HP":"MaxHP",
-    "最大MP":"MaxMP"
+    "最大MP":"MaxMP",
+    "オートスキル発動":"オートスキル発動率"
   };
 
   function displayStatName(statId){
@@ -1631,10 +1632,42 @@ function collectTotalData() {
       mergedByDisplay.set(mergeKey, current);
     });
 
-    const rows = [...mergedByDisplay.values()].sort((x,y) =>
-      (context.statMap.get(x.statId)?.["表示順"] || 9999) -
-      (context.statMap.get(y.statId)?.["表示順"] || 9999)
-    );
+    // v2.9.21: スナイパーのダブルアタック発動率（パッシブ）を最終能力から算出。
+    // 基礎10% + 最終CRT/8 + 最終オートスキル発動率。
+    // ヒドゥンスナイパーON時の -20% はスキル効果として最終オート値に含まれる。
+    if (String(state.status.jobId || "") === "JOB004") {
+      const mergedRows = [...mergedByDisplay.values()];
+      const finalCrtBonus = mergedRows
+        .filter(row => String(displayStatName(String(row.statId)) || "").replace(/[\s　]+/g, "") === "CRT")
+        .reduce((sum, row) => sum + Number(row.value || 0), 0);
+      const finalCrt = Number(state.status.crt || 0) + finalCrtBonus;
+      const finalAutoSkillRate = mergedRows
+        .filter(row => {
+          const name = String(displayStatName(String(row.statId)) || "").replace(/[\s　]+/g, "");
+          return name === "オートスキル発動率" || name === "オートスキル発動";
+        })
+        .filter(row => String(row.unit || "") === "%" || String(row.unit || "") === "")
+        .reduce((sum, row) => sum + Number(row.value || 0), 0);
+      const doubleAttackRate = 10 + finalCrt / 8 + finalAutoSkillRate;
+      const hiddenOn = state.selectedSkills.has("SNPSK000010");
+      mergedByDisplay.set("ダブルアタック発動率（パッシブ）__%", {
+        statId: "ダブルアタック発動率（パッシブ）",
+        unit: "%",
+        value: doubleAttackRate,
+        sources: [
+          { id:"derived-da-base", name:"基礎発動率", label:"ダブルアタック（パッシブ）", kind:"計算", value:10, unit:"%", conditionText:"", effectText:"基礎発動率 10%" },
+          { id:"derived-da-crt", name:`最終CRT ${formatDisplayNumber(finalCrt)}`, label:"CRT補正", kind:"計算", value:finalCrt / 8, unit:"%", conditionText:"", effectText:`CRT ${formatDisplayNumber(finalCrt)} ÷ 8` },
+          { id:"derived-da-auto", name:`最終オート ${formatDisplayNumber(finalAutoSkillRate)}%`, label:"オートスキル発動率", kind:"計算", value:finalAutoSkillRate, unit:"%", conditionText:hiddenOn ? "ヒドゥンスナイパー -20%反映済み" : "", effectText:"装備・スキル等のオートスキル発動率を反映" }
+        ]
+      });
+    }
+
+    const rows = [...mergedByDisplay.values()].sort((x,y) => {
+      if (x.statId === "ダブルアタック発動率（パッシブ）") return -1;
+      if (y.statId === "ダブルアタック発動率（パッシブ）") return 1;
+      return (context.statMap.get(x.statId)?.["表示順"] || 9999) -
+        (context.statMap.get(y.statId)?.["表示順"] || 9999);
+    });
     return { selectedIds, selectedEntries, rows, textOnly, activeConditional, inactiveConditional };
   }
 
