@@ -1407,9 +1407,24 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     "オートスキル発動":"オートスキル発動率"
   };
 
+  function normalizeAbilityName(name){
+    const normalized = String(name ?? "")
+      .normalize("NFKC")
+      .replace(/[\s　]+/g, "")
+      .replace(/－/g, "-");
+    const aliases = {
+      "オートスキル": "オートスキル発動率",
+      "オートスキル発動": "オートスキル発動率",
+      "オートスキル発動率": "オートスキル発動率"
+    };
+    return aliases[normalized] || normalized;
+  }
+
   function displayStatName(statId){
-    const n=context.statMap.get(statId)?.["表示名"]||statId;
-    return STAT_NAME_ALIASES[n]||n;
+    const raw = context.statMap.get(statId)?.["表示名"] || statId;
+    const normalized = String(raw ?? "").normalize("NFKC");
+    const aliased = STAT_NAME_ALIASES[raw] || STAT_NAME_ALIASES[normalized] || normalized;
+    return normalizeAbilityName(aliased);
   }
 
   function findStatIdByDisplayName(targetName) {
@@ -1441,8 +1456,9 @@ function collectTotalData() {
       const displayName = String(displayStatName(String(statId)) || statId || "")
         .replace(/[\s　]+/g, "")
         .replace(/－/g, "-");
-      const rawUnit = String(unit ?? "").trim();
+      const rawUnit = String(unit ?? "").normalize("NFKC").trim();
       const lowerUnit = rawUnit.toLowerCase();
+      if (["%", "percent", "pct"].includes(lowerUnit)) return "%";
       if (["スキルディレイ", "アイテムディレイ", "ディレイ"].includes(displayName)) {
         if (["", "s", "sec", "second", "seconds", "秒"].includes(lowerUnit || rawUnit)) return "秒";
       }
@@ -1619,8 +1635,7 @@ function collectTotalData() {
     // 表示名と単位が同じ能力は、元の能力IDが異なっても1行へ統合する。
     const mergedByDisplay = new Map();
     [...totals.values()].forEach(row => {
-      const displayName = String(displayStatName(String(row.statId)) || "")
-        .replace(/[\s　]+/g, "");
+      const displayName = normalizeAbilityName(displayStatName(String(row.statId)));
       const mergeKey = `${displayName}__${row.unit}`;
       const current = mergedByDisplay.get(mergeKey) || {
         ...row,
@@ -1638,18 +1653,23 @@ function collectTotalData() {
     if (String(state.status.jobId || "") === "JOB004") {
       const mergedRows = [...mergedByDisplay.values()];
       const finalCrtBonus = mergedRows
-        .filter(row => String(displayStatName(String(row.statId)) || "").replace(/[\s　]+/g, "") === "CRT")
+        .filter(row => normalizeAbilityName(displayStatName(String(row.statId))) === "CRT")
         .reduce((sum, row) => sum + Number(row.value || 0), 0);
       const finalCrt = Number(state.status.crt || 0) + finalCrtBonus;
       const finalAutoSkillRate = mergedRows
         .filter(row => {
-          const name = String(displayStatName(String(row.statId)) || "").replace(/[\s　]+/g, "");
-          return name === "オートスキル発動率" || name === "オートスキル発動";
+          const name = normalizeAbilityName(displayStatName(String(row.statId)));
+          return name === "オートスキル発動率";
         })
         .filter(row => String(row.unit || "") === "%" || String(row.unit || "") === "")
         .reduce((sum, row) => sum + Number(row.value || 0), 0);
-      const doubleAttackRate = 10 + finalCrt / 8 + finalAutoSkillRate;
       const hiddenOn = state.selectedSkills.has("SNPSK000010");
+      // v2.9.22: 「現在のオートスキル発動率」とヒドゥンスナイパー低下分を分けて計算。
+      // mergedRows の finalAutoSkillRate にはヒドゥンスナイパー -20% が既に含まれるため、
+      // ON時だけ20%を戻して現在値を求め、式の最後で -20% を明示的に適用する。
+      const currentAutoSkillRate = finalAutoSkillRate + (hiddenOn ? 20 : 0);
+      const hiddenPenalty = hiddenOn ? 20 : 0;
+      const doubleAttackRate = 10 + finalCrt / 8 + currentAutoSkillRate - hiddenPenalty;
       mergedByDisplay.set("ダブルアタック発動率（パッシブ）__%", {
         statId: "ダブルアタック発動率（パッシブ）",
         unit: "%",
@@ -1657,7 +1677,8 @@ function collectTotalData() {
         sources: [
           { id:"derived-da-base", name:"基礎発動率", label:"ダブルアタック（パッシブ）", kind:"計算", value:10, unit:"%", conditionText:"", effectText:"基礎発動率 10%" },
           { id:"derived-da-crt", name:`最終CRT ${formatDisplayNumber(finalCrt)}`, label:"CRT補正", kind:"計算", value:finalCrt / 8, unit:"%", conditionText:"", effectText:`CRT ${formatDisplayNumber(finalCrt)} ÷ 8` },
-          { id:"derived-da-auto", name:`最終オート ${formatDisplayNumber(finalAutoSkillRate)}%`, label:"オートスキル発動率", kind:"計算", value:finalAutoSkillRate, unit:"%", conditionText:hiddenOn ? "ヒドゥンスナイパー -20%反映済み" : "", effectText:"装備・スキル等のオートスキル発動率を反映" }
+          { id:"derived-da-auto", name:`現在オート ${formatDisplayNumber(currentAutoSkillRate)}%`, label:"現在のオートスキル発動率", kind:"計算", value:currentAutoSkillRate, unit:"%", conditionText:"", effectText:"装備・クリスタ・アルクリスタ・レリック・スキル等のオートスキル発動率を合算" },
+          ...(hiddenOn ? [{ id:"derived-da-hidden", name:"ヒドゥンスナイパー -20%", label:"ヒドゥンスナイパー", kind:"計算", value:-20, unit:"%", conditionText:"ON", effectText:"ダブルアタック発動率から20%低下" }] : [])
         ]
       });
     }
