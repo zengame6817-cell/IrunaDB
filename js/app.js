@@ -1655,11 +1655,23 @@ function collectTotalData() {
       mergedByDisplay.set(mergeKey, current);
     });
 
-    // v2.9.21: スナイパーのダブルアタック発動率（パッシブ）を最終能力から算出。
-    // 基礎10% + 最終CRT/8 + 最終オートスキル発動率。
-    // ヒドゥンスナイパーON時の -20% はスキル効果として最終オート値に含まれる。
-    if (String(state.status.jobId || "") === "JOB004") {
-      const mergedRows = [...mergedByDisplay.values()];
+    // v2.9.24: ダブルアタック発動率（パッシブ）は、
+    // 1) スナイパーでヒドゥンスナイパーがON、または
+    // 2) 装備・特殊性能などで「ダブルアタックSL+1 / SLv+1」等を取得している
+    // 場合だけ表示する。スナイパーを選んだだけでは表示しない。
+    const mergedRows = [...mergedByDisplay.values()];
+    const isSniper = String(state.status.jobId || "") === "JOB004";
+    const hiddenOn = isSniper && state.selectedSkills.has("SNPSK000010");
+    const doubleAttackGrantText = [
+      ...textOnly.map(v => String(v || "")),
+      ...mergedRows.flatMap(row => (row.sources || []).map(src =>
+        [src.name, src.label, src.effectText, src.conditionText].filter(Boolean).join(" ")
+      ))
+    ].join(" ").normalize("NFKC");
+    // 「ダブルアタック威力+○%」は取得判定に含めず、SL/SLv表記があるものだけ対象。
+    const hasDoubleAttackSkillGrant = /ダブルアタック\s*S(?:KILL)?L(?:V)?\.?\s*(?:\+|＋)?\s*[1-9]\d*/i.test(doubleAttackGrantText);
+
+    if (hiddenOn || hasDoubleAttackSkillGrant) {
       const finalCrtBonus = mergedRows
         .filter(row => normalizeAbilityName(displayStatName(String(row.statId))) === "CRT")
         .reduce((sum, row) => sum + Number(row.value || 0), 0);
@@ -1671,7 +1683,6 @@ function collectTotalData() {
         })
         .filter(row => String(row.unit || "") === "%" || String(row.unit || "") === "")
         .reduce((sum, row) => sum + Number(row.value || 0), 0);
-      const hiddenOn = state.selectedSkills.has("SNPSK000010");
       // v2.9.22: 「現在のオートスキル発動率」とヒドゥンスナイパー低下分を分けて計算。
       // mergedRows の finalAutoSkillRate にはヒドゥンスナイパー -20% が既に含まれるため、
       // ON時だけ20%を戻して現在値を求め、式の最後で -20% を明示的に適用する。
