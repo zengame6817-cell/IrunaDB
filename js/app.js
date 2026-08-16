@@ -1671,6 +1671,25 @@ function collectTotalData() {
     // 「ダブルアタック威力+○%」は取得判定に含めず、SL/SLv表記があるものだけ対象。
     const hasDoubleAttackSkillGrant = /ダブルアタック\s*S(?:KILL)?L(?:V)?\.?\s*(?:\+|＋)?\s*[1-9]\d*/i.test(doubleAttackGrantText);
 
+    // v2.9.25: 装備等の「ダブルアタック発動率+○%」は単独行で表示せず、
+    // パッシブが有効な時だけ派生値へ加算する。
+    const doubleAttackRateRows = mergedRows.filter(row => {
+      const name = normalizeAbilityName(displayStatName(String(row.statId)));
+      return ["ダブルアタック発動率", "ダブルアタック率"].includes(name)
+        && (String(row.unit || "") === "%" || String(row.unit || "") === "");
+    });
+    const doubleAttackRateBonus = doubleAttackRateRows
+      .reduce((sum, row) => sum + Number(row.value || 0), 0);
+    const doubleAttackRateSources = doubleAttackRateRows
+      .flatMap(row => row.sources || []);
+    // standalone のダブルアタック発動率は常に隠す。
+    for (const [key, row] of [...mergedByDisplay.entries()]) {
+      const name = normalizeAbilityName(displayStatName(String(row.statId)));
+      if (["ダブルアタック発動率", "ダブルアタック率"].includes(name)) {
+        mergedByDisplay.delete(key);
+      }
+    }
+
     if (hiddenOn || hasDoubleAttackSkillGrant) {
       const finalCrtBonus = mergedRows
         .filter(row => normalizeAbilityName(displayStatName(String(row.statId))) === "CRT")
@@ -1688,7 +1707,7 @@ function collectTotalData() {
       // ON時だけ20%を戻して現在値を求め、式の最後で -20% を明示的に適用する。
       const currentAutoSkillRate = finalAutoSkillRate + (hiddenOn ? 20 : 0);
       const hiddenPenalty = hiddenOn ? 20 : 0;
-      const doubleAttackRate = 10 + finalCrt / 8 + currentAutoSkillRate - hiddenPenalty;
+      const doubleAttackRate = 10 + finalCrt / 8 + currentAutoSkillRate - hiddenPenalty + doubleAttackRateBonus;
       mergedByDisplay.set("ダブルアタック発動率（パッシブ）__%", {
         statId: "ダブルアタック発動率（パッシブ）",
         unit: "%",
@@ -1697,7 +1716,8 @@ function collectTotalData() {
           { id:"derived-da-base", name:"基礎発動率", label:"ダブルアタック（パッシブ）", kind:"計算", value:10, unit:"%", conditionText:"", effectText:"基礎発動率 10%" },
           { id:"derived-da-crt", name:`最終CRT ${formatDisplayNumber(finalCrt)}`, label:"CRT補正", kind:"計算", value:finalCrt / 8, unit:"%", conditionText:"", effectText:`CRT ${formatDisplayNumber(finalCrt)} ÷ 8` },
           { id:"derived-da-auto", name:`現在オート ${formatDisplayNumber(currentAutoSkillRate)}%`, label:"現在のオートスキル発動率", kind:"計算", value:currentAutoSkillRate, unit:"%", conditionText:"", effectText:"装備・クリスタ・アルクリスタ・レリック・スキル等のオートスキル発動率を合算" },
-          ...(hiddenOn ? [{ id:"derived-da-hidden", name:"ヒドゥンスナイパー -20%", label:"ヒドゥンスナイパー", kind:"計算", value:-20, unit:"%", conditionText:"ON", effectText:"ダブルアタック発動率から20%低下" }] : [])
+          ...(hiddenOn ? [{ id:"derived-da-hidden", name:"ヒドゥンスナイパー -20%", label:"ヒドゥンスナイパー", kind:"計算", value:-20, unit:"%", conditionText:"ON", effectText:"ダブルアタック発動率から20%低下" }] : []),
+          ...(doubleAttackRateBonus ? [{ id:"derived-da-equipment", name:`装備等の発動率 ${formatDisplayNumber(doubleAttackRateBonus)}%`, label:"ダブルアタック発動率補正", kind:"計算", value:doubleAttackRateBonus, unit:"%", conditionText:"", effectText:"装備・クリスタ等のダブルアタック発動率を合算", sources:doubleAttackRateSources }] : [])
         ]
       });
     }
