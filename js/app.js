@@ -1722,9 +1722,71 @@ function collectTotalData() {
       });
     }
 
+    // v2.9.26: ハイウィザード専用・マルチキャスト減衰率。
+    // マルチキャスト自身の「詠唱時間+100%」は減衰判定から除外するため、
+    // 通常の装備・クリスタ・スキル等から集計された最終「詠唱時間%」のみを使用する。
+    const isHighWizard = String(state.status.jobId || "") === "JOB007";
+    const multiCastOn = isHighWizard && state.selectedSkills.has("HWSK000026");
+    if (multiCastOn) {
+      const castTimeRate = [...mergedByDisplay.values()]
+        .filter(row => {
+          const name = normalizeAbilityName(displayStatName(String(row.statId)));
+          return name === "詠唱時間" && String(row.unit || "") === "%";
+        })
+        .reduce((sum, row) => sum + Number(row.value || 0), 0);
+
+      let multicastDecay = 0;
+      let decayBand = "～ -109%：減衰なし";
+      let nextLine = "-110%で10%減衰";
+
+      if (castTimeRate <= -221) {
+        multicastDecay = 30;
+        decayBand = "-221%以下：30%減衰";
+        nextLine = "最大減衰";
+      } else if (castTimeRate <= -180) {
+        multicastDecay = 20;
+        decayBand = "-180～-220%：20%減衰";
+        nextLine = "-221%で30%減衰";
+      } else if (castTimeRate <= -110) {
+        multicastDecay = 10;
+        decayBand = "-110～-179%：10%減衰";
+        nextLine = "-180%で20%減衰";
+      }
+
+      mergedByDisplay.set("マルチキャスト減衰率__%", {
+        statId: "マルチキャスト減衰率",
+        unit: "%",
+        value: multicastDecay,
+        sources: [
+          {
+            id: "derived-multicast-cast",
+            name: `判定用詠唱時間 ${formatDisplayNumber(castTimeRate)}%`,
+            label: "マルチキャスト",
+            kind: "計算",
+            value: castTimeRate,
+            unit: "%",
+            conditionText: "ハイウィザード / マルチキャストON",
+            effectText: "マルチキャスト自身の詠唱時間+100%は判定から除外"
+          },
+          {
+            id: "derived-multicast-band",
+            name: decayBand,
+            label: "減衰判定",
+            kind: "計算",
+            value: multicastDecay,
+            unit: "%",
+            conditionText: nextLine,
+            effectText: `判定用詠唱時間 ${formatDisplayNumber(castTimeRate)}% → 減衰 ${multicastDecay}%`
+          }
+        ]
+      });
+    }
+
     const rows = [...mergedByDisplay.values()].sort((x,y) => {
       if (x.statId === "ダブルアタック発動率（パッシブ）") return -1;
       if (y.statId === "ダブルアタック発動率（パッシブ）") return 1;
+      if (x.statId === "マルチキャスト減衰率") return -1;
+      if (y.statId === "マルチキャスト減衰率") return 1;
       return (context.statMap.get(x.statId)?.["表示順"] || 9999) -
         (context.statMap.get(y.statId)?.["表示順"] || 9999);
     });
