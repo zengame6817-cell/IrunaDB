@@ -52,7 +52,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     build: createEmptyBuild(),
     pickerSlot: null, pickerQuery: "", pickerVisibleCount: 80, selectedRelicUid: null,
     pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
-    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 },
+    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0, rlb: 0, glb: 0, blb: 0 },
     selectedSkills: new Set()
   };
   const context = {
@@ -1314,7 +1314,10 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       vit: Number(state.status.vit || 0),
       agi: Number(state.status.agi || 0),
       dex: Number(state.status.dex || 0),
-      crt: Number(state.status.crt || 0)
+      crt: Number(state.status.crt || 0),
+      rlb: Math.min(100, Math.max(0, Number(state.status.rlb || 0))),
+      glb: Math.min(100, Math.max(0, Number(state.status.glb || 0))),
+      blb: Math.min(100, Math.max(0, Number(state.status.blb || 0)))
     };
     const deltas = [];
     const selectedEntries = allSelectedSourceEntries();
@@ -1373,6 +1376,20 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     });
 
     return { status, deltas };
+  }
+
+  function getApostoriaLineBoostRates() {
+    const rlb = Math.min(100, Math.max(0, Number(state.status.rlb || 0)));
+    const glb = Math.min(100, Math.max(0, Number(state.status.glb || 0)));
+    const blb = Math.min(100, Math.max(0, Number(state.status.blb || 0)));
+    return {
+      red: rlb * 2,
+      green: glb * 2,
+      blue: blb * 2,
+      yellow: rlb + glb,
+      aqua: glb + blb,
+      purple: rlb + blb
+    };
   }
 
   function renderStatus() {
@@ -2117,7 +2134,7 @@ function collectTotalData() {
         return Number(setting?.slots || 0) !== 0;
       });
     const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
-      ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
+      ["str","int","vit","agi","dex","crt","rlb","glb","blb"].some(key => Number(payload.status[key] || 0) !== 0);
     if (hasBuild || hasStatus) url.searchParams.set("build", encodeBuild(payload)); else url.searchParams.delete("build");
     history[push ? "pushState" : "replaceState"]({}, "", url);
   }
@@ -2185,7 +2202,10 @@ function collectTotalData() {
         vit: Number(decodedStatus.vit ?? 0),
         agi: Number(decodedStatus.agi ?? 0),
         dex: Number(decodedStatus.dex ?? 0),
-        crt: Number(decodedStatus.crt ?? 0)
+        crt: Number(decodedStatus.crt ?? 0),
+        rlb: Math.min(100, Math.max(0, Number(decodedStatus.rlb ?? 0))),
+        glb: Math.min(100, Math.max(0, Number(decodedStatus.glb ?? 0))),
+        blb: Math.min(100, Math.max(0, Number(decodedStatus.blb ?? 0)))
       };
       document.getElementById("shareMessage").textContent = "共有URLの装備構成とステータスを読み込みました。";
     }
@@ -2484,13 +2504,16 @@ function collectTotalData() {
     input.addEventListener("input", event => {
       const key = event.target.dataset.statusKey;
       const minimum = key === "lv" ? 1 : 0;
-      state.status[key] = Math.max(minimum, Number(event.target.value || minimum));
+      let value = Math.max(minimum, Number(event.target.value || minimum));
+      if (["rlb","glb","blb"].includes(key)) value = Math.min(100, value);
+      state.status[key] = value;
+      if (String(event.target.value) !== String(value)) event.target.value = value;
       renderBuildFromStatusInput();
     });
   });
 
   document.getElementById("resetStatusButton").addEventListener("click", () => {
-    state.status = { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 };
+    state.status = { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0, rlb: 0, glb: 0, blb: 0 };
     state.selectedSkills.clear();
     renderStatus();
     syncUrl(false);

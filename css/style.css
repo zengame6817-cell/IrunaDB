@@ -3529,3 +3529,7 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 
 /* v2.9.19 mobile performance: paged list controls */
 .iruna-load-more{width:100%;margin:10px 0 4px;grid-column:1/-1}
+
+/* v2.9.27 Apostoria special status */
+.character-settings .special-status-field span{font-weight:900}
+.character-settings .special-status-field input{font-variant-numeric:tabular-nums}
