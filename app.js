@@ -1,4 +1,4 @@
-const APP_VERSION = "2.7.4";
+const APP_VERSION = window.IRUNA_CONFIG?.APP_VERSION || "2.9.20";
 
 function formatDisplayNumber(value, maxDecimals = 2) {
   const n = Number(value);
@@ -50,9 +50,9 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     databaseFilters: { weaponType: "", attribute: "", sort: "name", favoriteOnly: false },
     favorites: loadStoredFavorites(),
     build: createEmptyBuild(),
-    pickerSlot: null, pickerQuery: "", selectedRelicUid: null,
+    pickerSlot: null, pickerQuery: "", pickerVisibleCount: 80, selectedRelicUid: null,
     pickerFilters: { weaponType: "", attribute: "", quickTag: "", sort: "name" },
-    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 },
+    status: { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0, rlb: 0, glb: 0, blb: 0, lineRed: 0, lineGreen: 0, lineBlue: 0, lineYellow: 0, lineAqua: 0, linePurple: 0 },
     selectedSkills: new Set()
   };
   const context = {
@@ -82,6 +82,15 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   const screenshotModeButton = document.getElementById("screenshotModeButton");
   const skillSelections = document.getElementById("skillSelections");
   const pickerModal = document.getElementById("pickerModal"), pickerTitle = document.getElementById("pickerTitle"), pickerList = document.getElementById("pickerList"), pickerSearchInput = document.getElementById("pickerSearchInput");
+
+  // v2.9.19: スマホで入力のたびに全件検索・全再描画しないための軽量デバウンス。
+  function debounce(fn, wait = 120) {
+    let timer = 0;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), wait);
+    };
+  }
 
   const JOB_MASTER_V12 = [
     "冒険者", "グラディエーター", "パラディン", "スナイパー", "アサシン", "サマナー",
@@ -301,9 +310,20 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     const data = window.IRUNA_SKILL_DATA || { jobs:[], skills:[], effects:[], conditions:[] };
     if (Array.isArray(data.jobs) && data.jobs.length) state.jobs = data.jobs.map(job => ({ ...job }));
     context.skillsByJob.clear(); context.skillEffectsBySkill.clear(); context.skillConditionMap.clear();
+    const buildReflectSkillIds = new Set(
+      (Array.isArray(data.effects) ? data.effects : [])
+        .filter(effect => String(effect["ビルド反映"] || "").toUpperCase() === "TRUE" && String(effect["有効"] || "TRUE").toUpperCase() !== "FALSE")
+        .map(effect => String(effect["スキルID"] || ""))
+        .filter(Boolean)
+    );
     data.skills.forEach(skill => {
+      // v2.9.18: 未分類でも「ビルド反映=TRUE」の効果を持つスキルは表示・反映対象にする。
+      // 効果未登録の未分類スキルは従来どおり除外し、未確定値を合計能力へ混ぜない。
+      const skillId = String(skill["スキルID"] || "");
+      const isUncategorized = String(skill["カテゴリ"] || "").trim() === "未分類";
+      if (isUncategorized && !buildReflectSkillIds.has(skillId)) return;
       const jid=String(skill["職業ID"]||""); if(!context.skillsByJob.has(jid)) context.skillsByJob.set(jid,[]); context.skillsByJob.get(jid).push(skill);
-      if(String(skill["選択方式"]||"")==="AUTO") state.selectedSkills.add(String(skill["スキルID"]));
+      if(String(skill["選択方式"]||"")==="AUTO") state.selectedSkills.add(skillId);
     });
     data.effects.forEach(effect => { const sid=String(effect["スキルID"]||""); if(!context.skillEffectsBySkill.has(sid)) context.skillEffectsBySkill.set(sid,[]); context.skillEffectsBySkill.get(sid).push(effect); });
     data.conditions.forEach(cond => { const gid=String(cond["条件グループID"]||""); if(!context.skillConditionMap.has(gid)) context.skillConditionMap.set(gid,[]); context.skillConditionMap.get(gid).push(cond); });
@@ -431,7 +451,8 @@ function formatDisplayNumber(value, maxDecimals = 2) {
 
   function evaluateSkillFormula(formula, skill) {
     if(!formula) return NaN;
-    const vars={Lv:Number(state.status.lv||1),STR:Number(state.status.str||0),INT:Number(state.status.int||0),VIT:Number(state.status.vit||0),AGI:Number(state.status.agi||0),DEX:Number(state.status.dex||0),CRT:Number(state.status.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(state.status.dex||0)};
+    const effective = calculateEffectiveStatus().status;
+    const vars={Lv:Number(effective.lv||1),STR:Number(effective.str||0),INT:Number(effective.int||0),VIT:Number(effective.vit||0),AGI:Number(effective.agi||0),DEX:Number(effective.dex||0),CRT:Number(effective.crt||0),SLv:Number(skill["最大Lv"]||1),MaxHP:0,現在HP:0,DEX_BEFORE:Number(effective.dex||0),武器精錬値:9,REFINEMENT:9,REFINE:9};
     let expr=String(formula).replace(/FLOOR/g,'Math.floor').replace(/MIN/g,'Math.min').replace(/MAX/g,'Math.max');
     Object.entries(vars).sort((x,y)=>y[0].length-x[0].length).forEach(([k,v])=>{expr=expr.replace(new RegExp(k,'g'),String(v))});
     if(!/^[0-9+\-*/()., Mathminfloorax]+$/.test(expr)) return NaN;
@@ -445,7 +466,12 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     selected.forEach(skill=>(context.skillEffectsBySkill.get(String(skill["スキルID"]))||[]).forEach(effect=>{
       if(String(effect["ビルド反映"]??"TRUE").toUpperCase()==="FALSE")return;
       if(!skillEffectConditionsPass(effect)) { if(effect["表示文"]) text.push(`条件付き：${String(effect["表示文"])}`); return; }
-      const statId=String(effect["能力ID"]||""); const unit=String(effect["単位"]||""); let value=Number(effect["値"]);
+      const statId=String(effect["能力ID"]||""); const unit=String(effect["単位"]||"");
+      // v2.9.15: 空欄/null を Number() に通すと 0 になり、計算式が実行されない不具合を修正。
+      // 「値」が実際に入力されている場合だけ固定値として扱い、空欄なら数式を評価する。
+      const rawValue = effect["値"];
+      const hasFixedValue = rawValue !== null && rawValue !== undefined && String(rawValue).trim() !== "";
+      let value = hasFixedValue ? Number(rawValue) : NaN;
       if(!Number.isFinite(value)&&effect["数式"]) value=evaluateSkillFormula(effect["数式"],skill);
       if(statId&&Number.isFinite(value)) rows.push({
         statId, unit, value, source: 'skill',
@@ -485,6 +511,12 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     });
     document.querySelectorAll(".app-view").forEach(section => section.classList.toggle("is-active", section.id === `view-${view}`));
 
+    const mainTabs = document.getElementById("mainTabs");
+    const mobileToggle = document.getElementById("mobileTabToggle");
+    if (mainTabs && mobileToggle && window.matchMedia("(max-width: 720px)").matches) {
+      mainTabs.classList.remove("is-open");
+      mobileToggle.setAttribute("aria-expanded", "false");
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -942,8 +974,13 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     relicPlacementList.querySelectorAll("[data-relic-select]").forEach(button => {
       button.addEventListener("click", () => {
         const placement = state.build.relicPlacements.find(entry => entry.uid === button.dataset.relicSelect);
-        const item = placement ? context.itemsById.get(String(placement.itemId)) : null;
-        if (item) modal.open(item, context);
+        if (!placement) return;
+        // v2.9.20: 行タップは詳細表示ではなく削除対象の選択にする。
+        // 詳細は右端の「詳細」ボタンから開く。
+        state.selectedRelicUid = placement.uid;
+        const item = context.itemsById.get(String(placement.itemId));
+        relicMessage.textContent = `${item?.["名前"] || "レリック"}を選択しました。削除ボタンでこのレリックを削除できます。`;
+        renderRelicBoard();
       });
     });
     relicPlacementList.querySelectorAll("[data-relic-detail]").forEach(button => {
@@ -1085,9 +1122,10 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     const equipped = selectedItems();
 
     const key = itemName.toUpperCase();
-    if (["LV", "LEVEL", "レベル"].includes(key)) return state.status.lv;
+    const effectiveStatus = calculateEffectiveStatus().status;
+    if (["LV", "LEVEL", "レベル"].includes(key)) return effectiveStatus.lv;
     if (["STR", "INT", "VIT", "AGI", "DEX", "CRT"].includes(key)) {
-      return state.status[key.toLowerCase()];
+      return effectiveStatus[key.toLowerCase()];
     }
 
     if (["職業", "JOB"].includes(key)) {
@@ -1243,6 +1281,218 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     return result;
   }
 
+  function evaluateSimpleStatusExpression(expression, vars) {
+    let expr = String(expression || "").trim();
+    if (!expr) return NaN;
+    expr = expr
+      .replace(/FLOOR/gi, "Math.floor")
+      .replace(/CEIL/gi, "Math.ceil")
+      .replace(/ROUND/gi, "Math.round")
+      .replace(/MIN/gi, "Math.min")
+      .replace(/MAX/gi, "Math.max");
+
+    const names = Object.keys(vars).sort((a, b) => b.length - a.length);
+    names.forEach(name => {
+      const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      expr = expr.replace(new RegExp(`\\b${escaped}\\b`, "g"), String(Number(vars[name] || 0)));
+    });
+
+    if (!/^[0-9+\-*/().,\sA-Za-z.]+$/.test(expr)) return NaN;
+    try {
+      const value = Function(`"use strict"; return (${expr});`)();
+      return Number(value);
+    } catch (_) {
+      return NaN;
+    }
+  }
+
+  function calculateEffectiveStatus() {
+    const status = {
+      lv: Number(state.status.lv || 1),
+      str: Number(state.status.str || 0),
+      int: Number(state.status.int || 0),
+      vit: Number(state.status.vit || 0),
+      agi: Number(state.status.agi || 0),
+      dex: Number(state.status.dex || 0),
+      crt: Number(state.status.crt || 0),
+      rlb: Math.min(100, Math.max(0, Number(state.status.rlb || 0))),
+      glb: Math.min(100, Math.max(0, Number(state.status.glb || 0))),
+      blb: Math.min(100, Math.max(0, Number(state.status.blb || 0)))
+    };
+    const deltas = [];
+    const selectedEntries = allSelectedSourceEntries();
+
+    const statusKeyMap = {
+      LV: "lv", LEVEL: "lv", STR: "str", INT: "int", VIT: "vit",
+      AGI: "agi", DEX: "dex", CRT: "crt"
+    };
+
+    selectedEntries.forEach(sourceEntry => {
+      (context.effectsByItem.get(String(sourceEntry.id)) || []).forEach(effect => {
+        if (!isFormulaEffect(effect)) return;
+        const formula = String(effect["数式"] || "").trim();
+        if (!formula) return;
+
+        const vars = {
+          Lv: status.lv, LEVEL: status.lv,
+          STR: status.str, INT: status.int, VIT: status.vit,
+          AGI: status.agi, DEX: status.dex, CRT: status.crt,
+          X: 0, Y: 0, Z: 0,
+          武器精錬値: Number(state.build.equipmentSettings.weapon?.refinement || 0),
+          REFINEMENT: Number(state.build.equipmentSettings.weapon?.refinement || 0),
+          REFINE: Number(state.build.equipmentSettings.weapon?.refinement || 0)
+        };
+
+        formula.split(/[;\n]+/).map(part => part.trim()).filter(Boolean).forEach(statement => {
+          let match = /^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+)$/.exec(statement);
+          if (match) {
+            const value = evaluateSimpleStatusExpression(match[2], vars);
+            if (Number.isFinite(value)) vars[match[1]] = value;
+            return;
+          }
+
+          match = /^(STR|INT|VIT|AGI|DEX|CRT)\s+up\s+by\s+(.+)$/i.exec(statement);
+          if (match) {
+            const statName = match[1].toUpperCase();
+            const value = evaluateSimpleStatusExpression(match[2], vars);
+            if (!Number.isFinite(value)) return;
+            const applied = Math.trunc(value);
+            const key = statusKeyMap[statName];
+            status[key] += applied;
+            vars[statName] = status[key];
+            if (statName === "LV") vars.Lv = status[key];
+            deltas.push({
+              statId: statName,
+              unit: "",
+              value: applied,
+              sourceId: String(sourceEntry.id),
+              sourceName: sourceEntry.name,
+              sourceLabel: sourceEntry.label,
+              effectText: String(effect["表示文"] || formula)
+            });
+          }
+        });
+      });
+    });
+
+    return { status, deltas };
+  }
+
+  const APOSTORIA_LINE_ALLOWED = {
+    red:[0,1,2,3,4,5,8], green:[0,1,2,3,4,5,8], blue:[0,1,2,3,4,5,8],
+    yellow:[0,1,2,3,4,5,6], aqua:[0,1,2,3,4,5,6], purple:[0,1,2,3,4,5,6]
+  };
+
+  // 各配列は [強化0%, 強化50%, 強化200%]。
+  // Wiki掲載値を基準点として使用し、途中の強化率は基準点間を線形補間して切り捨てる。
+  const APOSTORIA_LINE_TABLES = {
+    red:{
+      1:{hp:[400,600,1200],def:[85,128,256],hpRegen:[10,16,32]},
+      2:{hp:[750,1125,2250],def:[128,192,384],hpRegen:[20,30,60]},
+      3:{hp:[1050,1575,3150],def:[149,224,448],hpRegen:[28,42,84]},
+      4:{hp:[1300,1950,3900],def:[160,240,480],hpRegen:[34,52,104]},
+      5:{hp:[1500,2250,4500],def:[165,248,496],hpRegen:[40,60,120]},
+      8:{hp:[1800,2700,5400],def:[170,255,510],hpRegen:[48,72,147]}
+    },
+    green:{
+      1:{avd:[20,30,60]},2:{avd:[37,56,112]},3:{avd:[52,78,157]},
+      4:{avd:[65,97,195]},5:{avd:[75,112,225]},8:{avd:[90,135,270]}
+    },
+    blue:{
+      1:{mp:[100,150,300],mdef:[128,192,384],mpRegen:[5,8,16]},
+      2:{mp:[187,281,562],mdef:[192,288,576],mpRegen:[10,15,30]},
+      3:{mp:[262,393,787],mdef:[224,336,672],mpRegen:[14,21,42]},
+      4:{mp:[325,487,975],mdef:[240,360,720],mpRegen:[17,26,52]},
+      5:{mp:[375,562,1125],mdef:[248,372,744],mpRegen:[20,30,60]},
+      8:{mp:[450,675,1350],mdef:[255,382,765],mpRegen:[24,36,72]}
+    },
+    yellow:{
+      1:{atk:[21,31,63],pierce:[0,0,1],power:[23,35,70]},
+      2:{atk:[36,54,108],pierce:[0,1,2],power:[43,64,129]},
+      3:{atk:[48,72,144],pierce:[1,1,3],power:[59,88,177]},
+      4:{atk:[57,85,171],pierce:[1,2,4],power:[71,107,214]},
+      5:{atk:[63,94,189],pierce:[1,2,5],power:[80,120,240]},
+      6:{atk:[66,99,198],pierce:[2,3,6],power:[83,125,250]}
+    },
+    aqua:{
+      1:{matk:[35,52,105],pierce:[0,0,1],power:[46,70,140]},
+      2:{matk:[60,90,180],pierce:[0,1,2],power:[86,129,258]},
+      3:{matk:[80,120,240],pierce:[1,1,3],power:[118,177,354]},
+      4:{matk:[95,142,285],pierce:[1,2,4],power:[142,214,428]},
+      5:{matk:[105,157,315],pierce:[1,2,5],power:[160,240,480]},
+      6:{matk:[110,165,330],pierce:[2,3,6],power:[166,250,500]}
+    },
+    purple:{
+      1:{auto:[0,0,1],aspd:[10,10,30]},2:{auto:[0,1,2],aspd:[10,20,50]},
+      3:{auto:[1,1,3],aspd:[20,30,70]},4:{auto:[1,2,4],aspd:[20,40,80]},
+      5:{auto:[1,2,5],aspd:[30,40,90]},6:{auto:[2,3,6],aspd:[30,50,100]}
+    }
+  };
+
+  function normalizeApostoriaLineCount(color, value) {
+    const n = Number(value || 0);
+    return (APOSTORIA_LINE_ALLOWED[color] || [0]).includes(n) ? n : 0;
+  }
+
+  function getApostoriaLineBoostRates() {
+    const rlb = Math.min(100, Math.max(0, Number(state.status.rlb || 0)));
+    const glb = Math.min(100, Math.max(0, Number(state.status.glb || 0)));
+    const blb = Math.min(100, Math.max(0, Number(state.status.blb || 0)));
+    return {
+      red:rlb*2, green:glb*2, blue:blb*2,
+      yellow:rlb+glb, aqua:glb+blb, purple:rlb+blb
+    };
+  }
+
+  function interpolateApostoriaValue(points, boostRate) {
+    if (!Array.isArray(points) || points.length < 3) return 0;
+    const b = Math.min(200, Math.max(0, Number(boostRate || 0)));
+    const value = b <= 50
+      ? Number(points[0]) + (Number(points[1])-Number(points[0]))*(b/50)
+      : Number(points[1]) + (Number(points[2])-Number(points[1]))*((b-50)/150);
+    return Math.floor(value + 1e-9);
+  }
+
+  function collectApostoriaLineBonuses() {
+    const boosts=getApostoriaLineBoostRates();
+    const selected={
+      red:normalizeApostoriaLineCount("red",state.status.lineRed),
+      green:normalizeApostoriaLineCount("green",state.status.lineGreen),
+      blue:normalizeApostoriaLineCount("blue",state.status.lineBlue),
+      yellow:normalizeApostoriaLineCount("yellow",state.status.lineYellow),
+      aqua:normalizeApostoriaLineCount("aqua",state.status.lineAqua),
+      purple:normalizeApostoriaLineCount("purple",state.status.linePurple)
+    };
+    const rows=[];
+    const push=(color,count,statId,unit,points,label)=>{
+      if(!count || !points) return;
+      const value=interpolateApostoriaValue(points,boosts[color]);
+      if(!value) return;
+      rows.push({statId,unit,value,color,count,boost:boosts[color],label,
+        effectText:`${label} ${count}本 / 強化+${formatDisplayNumber(boosts[color])}%`});
+    };
+
+    let row=APOSTORIA_LINE_TABLES.red[selected.red];
+    if(row){push("red",selected.red,"MaxHP","",row.hp,"赤ライン");push("red",selected.red,"DEF","",row.def,"赤ライン");push("red",selected.red,"HP自然回復","",row.hpRegen,"赤ライン");}
+
+    row=APOSTORIA_LINE_TABLES.green[selected.green];
+    if(row){push("green",selected.green,"AVD","",row.avd,"緑ライン");}
+
+    row=APOSTORIA_LINE_TABLES.blue[selected.blue];
+    if(row){push("blue",selected.blue,"MaxMP","",row.mp,"青ライン");push("blue",selected.blue,"MDEF","",row.mdef,"青ライン");push("blue",selected.blue,"MP自然回復","",row.mpRegen,"青ライン");}
+
+    row=APOSTORIA_LINE_TABLES.yellow[selected.yellow];
+    if(row){push("yellow",selected.yellow,"ATK","",row.atk,"黄ライン");push("yellow",selected.yellow,"物理貫通","%",row.pierce,"黄ライン");push("yellow",selected.yellow,"物理威力","",row.power,"黄ライン");}
+
+    row=APOSTORIA_LINE_TABLES.aqua[selected.aqua];
+    if(row){push("aqua",selected.aqua,"MATK","",row.matk,"水ライン");push("aqua",selected.aqua,"魔法貫通","%",row.pierce,"水ライン");push("aqua",selected.aqua,"魔法威力","",row.power,"水ライン");}
+
+    row=APOSTORIA_LINE_TABLES.purple[selected.purple];
+    if(row){push("purple",selected.purple,"オートスキル発動率","%",row.auto,"紫ライン");push("purple",selected.purple,"ASPD","%",row.aspd,"紫ライン");}
+
+    return {boosts,selected,rows};
+  }
+
   function renderStatus() {
     const jobSelect = document.getElementById("jobSelect");
     const sortedJobs = [...state.jobs].sort(
@@ -1254,8 +1504,15 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     jobSelect.value = state.status.jobId;
 
     document.querySelectorAll("[data-status-key]").forEach(input => {
-      input.value = state.status[input.dataset.statusKey];
+      input.value = state.status[input.dataset.statusKey] ?? 0;
     });
+    const lineBoostSummary = document.getElementById("apostoriaLineBoostSummary");
+    if (lineBoostSummary) {
+      const b = getApostoriaLineBoostRates();
+      lineBoostSummary.textContent =
+        `強化率：赤+${formatDisplayNumber(b.red)}% / 緑+${formatDisplayNumber(b.green)}% / 青+${formatDisplayNumber(b.blue)}% / ` +
+        `黄+${formatDisplayNumber(b.yellow)}% / 水+${formatDisplayNumber(b.aqua)}% / 紫+${formatDisplayNumber(b.purple)}%`;
+    }
   }
 
   
@@ -1271,12 +1528,28 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     "割合ダメージ軽減":"割合軽減",
     "範囲ダメージ軽減":"範囲軽減",
     "最大HP":"MaxHP",
-    "最大MP":"MaxMP"
+    "最大MP":"MaxMP",
+    "オートスキル発動":"オートスキル発動率"
   };
 
+  function normalizeAbilityName(name){
+    const normalized = String(name ?? "")
+      .normalize("NFKC")
+      .replace(/[\s　]+/g, "")
+      .replace(/－/g, "-");
+    const aliases = {
+      "オートスキル": "オートスキル発動率",
+      "オートスキル発動": "オートスキル発動率",
+      "オートスキル発動率": "オートスキル発動率"
+    };
+    return aliases[normalized] || normalized;
+  }
+
   function displayStatName(statId){
-    const n=context.statMap.get(statId)?.["表示名"]||statId;
-    return STAT_NAME_ALIASES[n]||n;
+    const raw = context.statMap.get(statId)?.["表示名"] || statId;
+    const normalized = String(raw ?? "").normalize("NFKC");
+    const aliased = STAT_NAME_ALIASES[raw] || STAT_NAME_ALIASES[normalized] || normalized;
+    return normalizeAbilityName(aliased);
   }
 
   function findStatIdByDisplayName(targetName) {
@@ -1303,13 +1576,51 @@ function collectTotalData() {
     const totals = new Map(), textOnly = [];
     const activeConditional = [], inactiveConditional = [];
 
+    // v2.9.20: ディレイ系で「秒」と単位空欄が別能力として分裂しないように正規化。
+    const normalizeTotalUnit = (statId, unit) => {
+      const displayName = String(displayStatName(String(statId)) || statId || "")
+        .replace(/[\s　]+/g, "")
+        .replace(/－/g, "-");
+      const rawUnit = String(unit ?? "").normalize("NFKC").trim();
+      const lowerUnit = rawUnit.toLowerCase();
+      if (["%", "percent", "pct"].includes(lowerUnit)) return "%";
+      if (["スキルディレイ", "アイテムディレイ", "ディレイ"].includes(displayName)) {
+        if (["", "s", "sec", "second", "seconds", "秒"].includes(lowerUnit || rawUnit)) return "秒";
+      }
+      return rawUnit;
+    };
+
     const addNumericRaw = (statId, unit, numeric, sourceInfo) => {
-      const key = `${statId}__${unit}`;
-      const current = totals.get(key) || { statId, unit, value: 0, sources: [] };
+      const normalizedUnit = normalizeTotalUnit(statId, unit);
+      const key = `${statId}__${normalizedUnit}`;
+      const current = totals.get(key) || { statId, unit: normalizedUnit, value: 0, sources: [] };
       current.value += numeric;
-      current.sources.push(sourceInfo);
+      current.sources.push({ ...sourceInfo, unit: normalizedUnit });
       totals.set(key, current);
     };
+
+    // v2.9.11: 同一アイテムに「個別能力」と「複合能力」が両方登録されている場合、
+    // 複合能力の分配で二重加算しないため、各アイテムが直接持つ能力名を先に記録する。
+    const directAbilityNamesBySource = new Map();
+    const directAbilityKeysBySource = new Map();
+    selectedEntries.forEach(sourceEntry => {
+      const names = new Set();
+      const keys = new Set();
+      (context.effectsByItem.get(sourceEntry.id) || []).forEach(effect => {
+        if (isFormulaEffect(effect)) return;
+        const statId = String(effect["能力ID"] || "");
+        if (!statId) return;
+        const name = String(displayStatName(statId) || "")
+          .replace(/[\s　]+/g, "")
+          .replace(/－/g, "-");
+        if (name) {
+          names.add(name);
+          keys.add(`${name}__${normalizeTotalUnit(statId, effect["単位"] || "")}`);
+        }
+      });
+      directAbilityNamesBySource.set(String(sourceEntry.id), names);
+      directAbilityKeysBySource.set(String(sourceEntry.id), keys);
+    });
 
     const addNumeric = (statId, unit, numeric, sourceInfo) => {
       const displayName = String(displayStatName(statId) || "")
@@ -1319,27 +1630,57 @@ function collectTotalData() {
       // v2.6.6:
       // 「ディレイ」はスキルディレイ・アイテムディレイの両方を短縮する共通値として扱う。
       // 合計欄には「ディレイ」単独行を出さず、2項目へ吸収する。
+      // v2.9.11: 複合能力は最終値が分かるよう個別能力へ分配して集計する。
+      // 例: 「絶対・魔法回避 +17%」→ 絶対回避 +17% / 魔法回避 +17%
+      const compositeTargets = {
+        "絶対・魔法回避": ["絶対回避", "魔法回避"],
+        "物理・魔法耐性": ["物理耐性", "魔法耐性"]
+      };
+      const targets = compositeTargets[displayName];
+      if (targets) {
+        const directNames = directAbilityNamesBySource.get(String(sourceInfo?.id || "")) || new Set();
+        targets.forEach(targetName => {
+          // 同一アイテムに対象の個別能力が既にある場合は、複合能力からは加算しない。
+          if (directNames.has(targetName)) return;
+          const targetId = findStatIdByDisplayName(targetName) || targetName;
+          addNumericRaw(targetId, unit, numeric, {
+            ...sourceInfo,
+            effectText: sourceInfo?.effectText || `${displayName}${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`,
+            sourceAbility: displayName,
+            appliedAs: targetName
+          });
+        });
+        return;
+      }
+
       if (displayName === "ディレイ") {
-        // 共通ディレイは必ずスキルディレイ・アイテムディレイの両方へ加算。
-        // 「ディレイ」単独行は作らない。
+        // 共通ディレイはスキル/アイテムの両方へ展開する。
+        // v2.9.20: 同じアイテムに同単位の個別ディレイが登録済みなら、
+        // 共通ディレイ側からは重ねて加算しない（二重発動防止）。
         const skillDelayId = findStatIdByDisplayName("スキルディレイ") || "スキルディレイ";
         const itemDelayId = findStatIdByDisplayName("アイテムディレイ") || "アイテムディレイ";
+        const normalizedUnit = normalizeTotalUnit(statId, unit);
+        const directKeys = directAbilityKeysBySource.get(String(sourceInfo?.id || "")) || new Set();
 
         const sharedSource = {
           ...sourceInfo,
-          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${unit || ""}`,
+          effectText: sourceInfo?.effectText || `ディレイ${numeric > 0 ? "+" : ""}${numeric}${normalizedUnit || ""}`,
           sourceAbility: "ディレイ"
         };
 
-        addNumericRaw(skillDelayId, unit, numeric, {
-          ...sharedSource,
-          appliedAs: "スキルディレイ"
-        });
+        if (!directKeys.has(`スキルディレイ__${normalizedUnit}`)) {
+          addNumericRaw(skillDelayId, normalizedUnit, numeric, {
+            ...sharedSource,
+            appliedAs: "スキルディレイ"
+          });
+        }
 
-        addNumericRaw(itemDelayId, unit, numeric, {
-          ...sharedSource,
-          appliedAs: "アイテムディレイ"
-        });
+        if (!directKeys.has(`アイテムディレイ__${normalizedUnit}`)) {
+          addNumericRaw(itemDelayId, normalizedUnit, numeric, {
+            ...sharedSource,
+            appliedAs: "アイテムディレイ"
+          });
+        }
 
         return;
       }
@@ -1348,6 +1689,7 @@ function collectTotalData() {
     };
 
     selectedEntries.forEach(sourceEntry => {
+      const seenEffectSignatures = new Set();
       (context.effectsByItem.get(sourceEntry.id) || []).filter(effect => {
         if (isFormulaEffect(effect)) return false;
         const groupId = effect["条件グループID"];
@@ -1359,8 +1701,13 @@ function collectTotalData() {
         const statId = String(effect["能力ID"] || "");
         const numeric = Number(effect["値"]);
         if (statId && Number.isFinite(numeric) && !isBlank(effect["値"])) {
-          const unit = String(effect["単位"] || "");
+          const unit = normalizeTotalUnit(statId, effect["単位"] || "");
           const groupId = effect["条件グループID"];
+          const displayName = String(displayStatName(statId) || statId).replace(/[\s　]+/g, "");
+          const signature = `${displayName}__${unit}__${numeric}__${String(groupId || "")}`;
+          // v2.9.20: 同一アイテム内に同じ能力・値・単位・条件の重複行があっても1回だけ反映。
+          if (seenEffectSignatures.has(signature)) return;
+          seenEffectSignatures.add(signature);
           const group = !isBlank(groupId) ? (context.conditionMap.get(String(groupId)) || []) : [];
           const conditionText = group.map(condition => condition["表示文"]).filter(Boolean).join(" ＆ ");
           addNumeric(statId, unit, numeric, {
@@ -1376,6 +1723,22 @@ function collectTotalData() {
         } else if (effect["表示文"]) {
           textOnly.push(String(effect["表示文"]));
         }
+      });
+    });
+
+    // v2.9.17: 装備のステータス変換式を合計能力へ反映。
+    // 例: 流離の服「STRの半分をCRTに変換」→ STR減少 / CRT増加。
+    const transformedStatus = calculateEffectiveStatus();
+    transformedStatus.deltas.forEach(delta => {
+      addNumeric(delta.statId, delta.unit, delta.value, {
+        id: delta.sourceId,
+        name: delta.sourceName,
+        label: delta.sourceLabel,
+        kind: "装備数式",
+        value: delta.value,
+        unit: delta.unit,
+        conditionText: "",
+        effectText: delta.effectText
       });
     });
 
@@ -1397,11 +1760,18 @@ function collectTotalData() {
     // 表示名と単位が同じ能力は、元の能力IDが異なっても1行へ統合する。
     const mergedByDisplay = new Map();
     [...totals.values()].forEach(row => {
-      const displayName = String(displayStatName(String(row.statId)) || "")
-        .replace(/[\s　]+/g, "");
-      const mergeKey = `${displayName}__${row.unit}`;
+      const rawDisplayName = normalizeAbilityName(displayStatName(String(row.statId)));
+      const normalizedUnit = String(row.unit ?? "").normalize("NFKC").trim();
+      // v2.9.23: percentage HIT aliases are one ability.
+      // Fixed-value 命中 (no % unit) remains separate.
+      const displayName = normalizedUnit === "%" && ["HIT", "HIT率", "命中", "命中率"].includes(rawDisplayName)
+        ? "HIT"
+        : rawDisplayName;
+      const mergeKey = `${displayName}__${normalizedUnit}`;
       const current = mergedByDisplay.get(mergeKey) || {
         ...row,
+        statId: displayName === "HIT" ? "HIT" : row.statId,
+        unit: normalizedUnit,
         value: 0,
         sources: []
       };
@@ -1410,10 +1780,158 @@ function collectTotalData() {
       mergedByDisplay.set(mergeKey, current);
     });
 
-    const rows = [...mergedByDisplay.values()].sort((x,y) =>
-      (context.statMap.get(x.statId)?.["表示順"] || 9999) -
-      (context.statMap.get(y.statId)?.["表示順"] || 9999)
-    );
+    // v2.9.28: アポストリアのラインボーナスを派生計算より先に加算。
+    // これにより紫ラインのオートスキル発動率もダブルアタック派生値へ反映される。
+    const apostoriaLineData = collectApostoriaLineBonuses();
+    apostoriaLineData.rows.forEach((bonus,index)=>{
+      const displayName=normalizeAbilityName(displayStatName(String(bonus.statId)));
+      const normalizedUnit=String(bonus.unit||"").normalize("NFKC").trim();
+      const mergeKey=`${displayName}__${normalizedUnit}`;
+      const current=mergedByDisplay.get(mergeKey)||{statId:bonus.statId,unit:normalizedUnit,value:0,sources:[]};
+      current.value+=Number(bonus.value||0);
+      current.sources.push({
+        id:`apostoria-${bonus.color}-${index}`,name:`${bonus.label} ${bonus.count}本`,
+        label:"アポストリア",kind:"ラインボーナス",value:bonus.value,unit:normalizedUnit,
+        conditionText:`ライン強化 +${formatDisplayNumber(bonus.boost)}%`,effectText:bonus.effectText
+      });
+      mergedByDisplay.set(mergeKey,current);
+    });
+
+    // v2.9.24: ダブルアタック発動率（パッシブ）は、
+    // 1) スナイパーでヒドゥンスナイパーがON、または
+    // 2) 装備・特殊性能などで「ダブルアタックSL+1 / SLv+1」等を取得している
+    // 場合だけ表示する。スナイパーを選んだだけでは表示しない。
+    const mergedRows = [...mergedByDisplay.values()];
+    const isSniper = String(state.status.jobId || "") === "JOB004";
+    const hiddenOn = isSniper && state.selectedSkills.has("SNPSK000010");
+    const doubleAttackGrantText = [
+      ...textOnly.map(v => String(v || "")),
+      ...mergedRows.flatMap(row => (row.sources || []).map(src =>
+        [src.name, src.label, src.effectText, src.conditionText].filter(Boolean).join(" ")
+      ))
+    ].join(" ").normalize("NFKC");
+    // 「ダブルアタック威力+○%」は取得判定に含めず、SL/SLv表記があるものだけ対象。
+    const hasDoubleAttackSkillGrant = /ダブルアタック\s*S(?:KILL)?L(?:V)?\.?\s*(?:\+|＋)?\s*[1-9]\d*/i.test(doubleAttackGrantText);
+
+    // v2.9.25: 装備等の「ダブルアタック発動率+○%」は単独行で表示せず、
+    // パッシブが有効な時だけ派生値へ加算する。
+    const doubleAttackRateRows = mergedRows.filter(row => {
+      const name = normalizeAbilityName(displayStatName(String(row.statId)));
+      return ["ダブルアタック発動率", "ダブルアタック率"].includes(name)
+        && (String(row.unit || "") === "%" || String(row.unit || "") === "");
+    });
+    const doubleAttackRateBonus = doubleAttackRateRows
+      .reduce((sum, row) => sum + Number(row.value || 0), 0);
+    const doubleAttackRateSources = doubleAttackRateRows
+      .flatMap(row => row.sources || []);
+    // standalone のダブルアタック発動率は常に隠す。
+    for (const [key, row] of [...mergedByDisplay.entries()]) {
+      const name = normalizeAbilityName(displayStatName(String(row.statId)));
+      if (["ダブルアタック発動率", "ダブルアタック率"].includes(name)) {
+        mergedByDisplay.delete(key);
+      }
+    }
+
+    if (hiddenOn || hasDoubleAttackSkillGrant) {
+      const finalCrtBonus = mergedRows
+        .filter(row => normalizeAbilityName(displayStatName(String(row.statId))) === "CRT")
+        .reduce((sum, row) => sum + Number(row.value || 0), 0);
+      const finalCrt = Number(state.status.crt || 0) + finalCrtBonus;
+      const finalAutoSkillRate = mergedRows
+        .filter(row => {
+          const name = normalizeAbilityName(displayStatName(String(row.statId)));
+          return name === "オートスキル発動率";
+        })
+        .filter(row => String(row.unit || "") === "%" || String(row.unit || "") === "")
+        .reduce((sum, row) => sum + Number(row.value || 0), 0);
+      // v2.9.22: 「現在のオートスキル発動率」とヒドゥンスナイパー低下分を分けて計算。
+      // mergedRows の finalAutoSkillRate にはヒドゥンスナイパー -20% が既に含まれるため、
+      // ON時だけ20%を戻して現在値を求め、式の最後で -20% を明示的に適用する。
+      const currentAutoSkillRate = finalAutoSkillRate + (hiddenOn ? 20 : 0);
+      const hiddenPenalty = hiddenOn ? 20 : 0;
+      const doubleAttackRate = 10 + finalCrt / 8 + currentAutoSkillRate - hiddenPenalty + doubleAttackRateBonus;
+      mergedByDisplay.set("ダブルアタック発動率（パッシブ）__%", {
+        statId: "ダブルアタック発動率（パッシブ）",
+        unit: "%",
+        value: doubleAttackRate,
+        sources: [
+          { id:"derived-da-base", name:"基礎発動率", label:"ダブルアタック（パッシブ）", kind:"計算", value:10, unit:"%", conditionText:"", effectText:"基礎発動率 10%" },
+          { id:"derived-da-crt", name:`最終CRT ${formatDisplayNumber(finalCrt)}`, label:"CRT補正", kind:"計算", value:finalCrt / 8, unit:"%", conditionText:"", effectText:`CRT ${formatDisplayNumber(finalCrt)} ÷ 8` },
+          { id:"derived-da-auto", name:`現在オート ${formatDisplayNumber(currentAutoSkillRate)}%`, label:"現在のオートスキル発動率", kind:"計算", value:currentAutoSkillRate, unit:"%", conditionText:"", effectText:"装備・クリスタ・アルクリスタ・レリック・スキル等のオートスキル発動率を合算" },
+          ...(hiddenOn ? [{ id:"derived-da-hidden", name:"ヒドゥンスナイパー -20%", label:"ヒドゥンスナイパー", kind:"計算", value:-20, unit:"%", conditionText:"ON", effectText:"ダブルアタック発動率から20%低下" }] : []),
+          ...(doubleAttackRateBonus ? [{ id:"derived-da-equipment", name:`装備等の発動率 ${formatDisplayNumber(doubleAttackRateBonus)}%`, label:"ダブルアタック発動率補正", kind:"計算", value:doubleAttackRateBonus, unit:"%", conditionText:"", effectText:"装備・クリスタ等のダブルアタック発動率を合算", sources:doubleAttackRateSources }] : [])
+        ]
+      });
+    }
+
+    // v2.9.26: ハイウィザード専用・マルチキャスト減衰率。
+    // マルチキャスト自身の「詠唱時間+100%」は減衰判定から除外するため、
+    // 通常の装備・クリスタ・スキル等から集計された最終「詠唱時間%」のみを使用する。
+    const isHighWizard = String(state.status.jobId || "") === "JOB007";
+    const multiCastOn = isHighWizard && state.selectedSkills.has("HWSK000026");
+    if (multiCastOn) {
+      const castTimeRate = [...mergedByDisplay.values()]
+        .filter(row => {
+          const name = normalizeAbilityName(displayStatName(String(row.statId)));
+          return name === "詠唱時間" && String(row.unit || "") === "%";
+        })
+        .reduce((sum, row) => sum + Number(row.value || 0), 0);
+
+      let multicastDecay = 0;
+      let decayBand = "～ -109%：減衰なし";
+      let nextLine = "-110%で10%減衰";
+
+      if (castTimeRate <= -221) {
+        multicastDecay = 30;
+        decayBand = "-221%以下：30%減衰";
+        nextLine = "最大減衰";
+      } else if (castTimeRate <= -180) {
+        multicastDecay = 20;
+        decayBand = "-180～-220%：20%減衰";
+        nextLine = "-221%で30%減衰";
+      } else if (castTimeRate <= -110) {
+        multicastDecay = 10;
+        decayBand = "-110～-179%：10%減衰";
+        nextLine = "-180%で20%減衰";
+      }
+
+      mergedByDisplay.set("マルチキャスト減衰率__%", {
+        statId: "マルチキャスト減衰率",
+        unit: "%",
+        value: multicastDecay,
+        sources: [
+          {
+            id: "derived-multicast-cast",
+            name: `判定用詠唱時間 ${formatDisplayNumber(castTimeRate)}%`,
+            label: "マルチキャスト",
+            kind: "計算",
+            value: castTimeRate,
+            unit: "%",
+            conditionText: "ハイウィザード / マルチキャストON",
+            effectText: "マルチキャスト自身の詠唱時間+100%は判定から除外"
+          },
+          {
+            id: "derived-multicast-band",
+            name: decayBand,
+            label: "減衰判定",
+            kind: "計算",
+            value: multicastDecay,
+            unit: "%",
+            conditionText: nextLine,
+            effectText: `判定用詠唱時間 ${formatDisplayNumber(castTimeRate)}% → 減衰 ${multicastDecay}%`
+          }
+        ]
+      });
+    }
+
+    const rows = [...mergedByDisplay.values()].sort((x,y) => {
+      if (x.statId === "ダブルアタック発動率（パッシブ）") return -1;
+      if (y.statId === "ダブルアタック発動率（パッシブ）") return 1;
+      if (x.statId === "マルチキャスト減衰率") return -1;
+      if (y.statId === "マルチキャスト減衰率") return 1;
+      return (context.statMap.get(x.statId)?.["表示順"] || 9999) -
+        (context.statMap.get(y.statId)?.["表示順"] || 9999);
+    });
     return { selectedIds, selectedEntries, rows, textOnly, activeConditional, inactiveConditional };
   }
 
@@ -1429,31 +1947,34 @@ function collectTotalData() {
     const statusText = [
       `Lv ${state.status.lv}`,
       `STR ${state.status.str}`, `INT ${state.status.int}`, `VIT ${state.status.vit}`,
-      `AGI ${state.status.agi}`, `DEX ${state.status.dex}`, `CRT ${state.status.crt}`
+      `AGI ${state.status.agi}`, `DEX ${state.status.dex}`, `CRT ${state.status.crt}`,
+      `Rlb ${state.status.rlb || 0}`, `Glb ${state.status.glb || 0}`, `Blb ${state.status.blb || 0}`,
+      `ライン 赤${state.status.lineRed || 0} 緑${state.status.lineGreen || 0} 青${state.status.lineBlue || 0} 黄${state.status.lineYellow || 0} 水${state.status.lineAqua || 0} 紫${state.status.linePurple || 0}`
     ].join(" / ");
 
     const equipmentRows = SLOT_DEFS.map(slot => {
-      if (slot.key === "decoration") {
-        const starName = selectedItemName(state.build.stars[slot.key]);
-        return starName ? `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(starName)}</span></li>` : "";
-      }
-      const itemName = selectedItemName(state.build[slot.key]);
-      if (!itemName) return "";
+      const itemName = slot.key === "decoration" ? "" : selectedItemName(state.build[slot.key]);
       const setting = state.build.equipmentSettings[slot.key] || {};
-      const suffix = slot.key === "special" ? `${Number(setting.slots || 0)}s` : `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`;
-      return `<li><b>${escapeHtml(slot.label)}</b><span>${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span></li>`;
+      const suffix = itemName
+        ? (slot.key === "special" ? `${Number(setting.slots || 0)}s` : `+${Number(setting.refinement || 0)} / ${Number(setting.slots || 0)}s`)
+        : "";
+      const crystals = slot.key === "decoration" ? [] : (state.build.crystals[slot.key] || [])
+        .filter(Boolean).map(id => selectedItemName(id)).filter(Boolean);
+      const starName = selectedItemName(state.build.stars[slot.key]);
+
+      // 装飾は☆能力のみ。その他は装備・クリスタ・☆能力を同じ部位行にまとめる。
+      if (!itemName && !crystals.length && !starName) return "";
+      const itemHtml = itemName
+        ? `<span class="screenshot-item-name">${escapeHtml(itemName)} <small>${escapeHtml(suffix)}</small></span>`
+        : `<span class="screenshot-item-name empty-mini">—</span>`;
+      const attached = [
+        ...crystals.map(name => `<span class="screenshot-attach screenshot-crystal">${escapeHtml(name)}</span>`),
+        ...(starName ? [`<span class="screenshot-attach screenshot-star">${escapeHtml(starName)}</span>`] : [])
+      ].join("");
+      return `<li><b>${escapeHtml(slot.label)}</b>${itemHtml}<span class="screenshot-slot-tags">${attached}</span></li>`;
     }).filter(Boolean).join("");
 
-    const crystalNames = [], alNames = [], relicNames = [];
-    SLOT_DEFS.forEach(slot => {
-      if (slot.key !== "decoration") {
-        (state.build.crystals[slot.key] || []).filter(Boolean).forEach(id => {
-          const name = selectedItemName(id); if (name) crystalNames.push(name);
-        });
-      }
-      const star = selectedItemName(state.build.stars[slot.key]);
-      if (star) crystalNames.push(star);
-    });
+    const alNames = [], relicNames = [];
     state.build.alCrystas.filter(Boolean).forEach(id => {
       const name = selectedItemName(id); if (name) alNames.push(name);
     });
@@ -1474,10 +1995,7 @@ function collectTotalData() {
       <article class="screenshot-card" id="screenshotCard">
         <header><div><strong>IrunaDB</strong><span>ビルドシミュレーター</span></div><small>v${APP_VERSION}</small></header>
         <section class="screenshot-character"><b>${escapeHtml(jobName)}</b><span>${escapeHtml(statusText)}</span></section>
-        <div class="screenshot-columns">
-          <section><h4>装備</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
-          <section><h4>クリスタ・☆能力</h4><p class="screenshot-tags">${crystalNames.length ? crystalNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
-        </div>
+        <section class="screenshot-build-slots"><h4>装備・クリスタ・☆能力</h4><ul class="screenshot-equipment">${equipmentRows || '<li class="empty-mini">未選択</li>'}</ul></section>
         <div class="screenshot-section-grid">
           <section><h4>アルクリスタ</h4><p class="screenshot-tags">${alNames.length ? alNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
           <section><h4>レリック</h4><p class="screenshot-tags">${relicNames.length ? relicNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") : '<span class="empty-mini">未選択</span>'}</p></section>
@@ -1578,6 +2096,7 @@ function collectTotalData() {
   function openPicker(slotToken) {
     state.pickerSlot = slotToken;
     state.pickerQuery = "";
+    state.pickerVisibleCount = 80;
     state.pickerFilters = { weaponType: "", attribute: "", quickTag: "", sort: "name" };
     pickerSearchInput.value = "";
     const descriptor = getSlotDescriptor(slotToken);
@@ -1644,7 +2163,7 @@ function collectTotalData() {
       `<button class="picker-item is-none" type="button" data-picker-id="">
         <span><strong>未選択にする</strong><small>このスロットを解除</small></span><b>×</b>
       </button>` +
-      (items.length ? items.map(item => {
+      (items.length ? items.slice(0, state.pickerVisibleCount).map(item => {
         const itemId = String(item["アイテムID"]);
         const attributeId = String(item["属性ID"] || "");
         const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
@@ -1668,7 +2187,9 @@ function collectTotalData() {
           </button>
           <button class="picker-card-detail" type="button" data-picker-detail="${escapeHtml(itemId)}">詳細を見る</button>
         </article>`;
-      }).join("") : `<div class="state-card">条件に一致する装備がありません。フィルターを解除してください。</div>`);
+      }).join("") + (state.pickerVisibleCount < items.length
+        ? `<button class="button button-secondary iruna-load-more" type="button" data-picker-load-more>さらに表示（残り ${items.length - state.pickerVisibleCount}件）</button>`
+        : "") : `<div class="state-card">条件に一致する装備がありません。フィルターを解除してください。</div>`);
 
     pickerList.querySelectorAll("[data-picker-id]").forEach(button =>
       button.addEventListener("click", () => {
@@ -1691,6 +2212,10 @@ function collectTotalData() {
         renderDatabase();
       })
     );
+    pickerList.querySelector("[data-picker-load-more]")?.addEventListener("click", () => {
+      state.pickerVisibleCount += 80;
+      renderPicker();
+    });
     pickerList.querySelectorAll("[data-picker-detail]").forEach(button =>
       button.addEventListener("click", () => {
         const item = context.itemsById.get(String(button.dataset.pickerDetail));
@@ -1736,7 +2261,7 @@ function collectTotalData() {
         return Number(setting?.slots || 0) !== 0;
       });
     const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
-      ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
+      ["str","int","vit","agi","dex","crt","rlb","glb","blb","lineRed","lineGreen","lineBlue","lineYellow","lineAqua","linePurple"].some(key => Number(payload.status[key] || 0) !== 0);
     if (hasBuild || hasStatus) url.searchParams.set("build", encodeBuild(payload)); else url.searchParams.delete("build");
     history[push ? "pushState" : "replaceState"]({}, "", url);
   }
@@ -1804,7 +2329,16 @@ function collectTotalData() {
         vit: Number(decodedStatus.vit ?? 0),
         agi: Number(decodedStatus.agi ?? 0),
         dex: Number(decodedStatus.dex ?? 0),
-        crt: Number(decodedStatus.crt ?? 0)
+        crt: Number(decodedStatus.crt ?? 0),
+        rlb: Math.min(100, Math.max(0, Number(decodedStatus.rlb ?? 0))),
+        glb: Math.min(100, Math.max(0, Number(decodedStatus.glb ?? 0))),
+        blb: Math.min(100, Math.max(0, Number(decodedStatus.blb ?? 0))),
+        lineRed: normalizeApostoriaLineCount("red", decodedStatus.lineRed),
+        lineGreen: normalizeApostoriaLineCount("green", decodedStatus.lineGreen),
+        lineBlue: normalizeApostoriaLineCount("blue", decodedStatus.lineBlue),
+        lineYellow: normalizeApostoriaLineCount("yellow", decodedStatus.lineYellow),
+        lineAqua: normalizeApostoriaLineCount("aqua", decodedStatus.lineAqua),
+        linePurple: normalizeApostoriaLineCount("purple", decodedStatus.linePurple)
       };
       document.getElementById("shareMessage").textContent = "共有URLの装備構成とステータスを読み込みました。";
     }
@@ -1989,7 +2523,17 @@ function collectTotalData() {
       const connectionLabel = result.meta.source === "static"
         ? "GitHub静的DB"
         : result.meta.source === "all" ? "GAS一括取得" : "GAS互換取得";
-      applyData(result.data, connectionLabel, result.meta);
+
+      // v2.9.19: 起動時にキャッシュを描画済みで、取得したDBも同一なら二重描画しない。
+      const cachedStamp = cached?.meta?.generatedAt || cached?.meta?.updatedAt || cached?.meta?.dataVersion || "";
+      const resultStamp = result.meta?.generatedAt || result.meta?.updatedAt || result.meta?.dataVersion || "";
+      const sameCachedData = cacheShown && cachedStamp && resultStamp && String(cachedStamp) === String(resultStamp);
+      if (sameCachedData) {
+        ui.setConnectionStatus("online", connectionLabel);
+        updateDatabaseInfo(result.meta);
+      } else {
+        applyData(result.data, connectionLabel, result.meta);
+      }
       api.writeCache(result.data, result.meta);
     } catch (error) {
       console.error("GAS API connection failed", error);
@@ -2022,7 +2566,7 @@ function collectTotalData() {
       const hasBuild = allSelectedIds().length > 0 ||
         EQUIPMENT_KEYS.some(key => Number(state.build.equipmentSettings[key]?.slots || 0) !== 0);
       const hasStatus = payload.status.jobId || payload.status.lv !== 1 ||
-        ["str","int","vit","agi","dex","crt"].some(key => payload.status[key] !== 0);
+        ["str","int","vit","agi","dex","crt","rlb","glb","blb","lineRed","lineGreen","lineBlue","lineYellow","lineAqua","linePurple"].some(key => Number(payload.status[key] || 0) !== 0);
 
       if (hasBuild || hasStatus || payload.skills.length) {
         shareUrl.searchParams.set("build", encodeBuild(payload));
@@ -2049,9 +2593,13 @@ function collectTotalData() {
       "URLからビルド情報を削除しました。装備はそのままです。";
   });
 
-  pickerSearchInput.addEventListener("input", event => {
-    state.pickerQuery = event.target.value;
+  const renderPickerFromInput = debounce(value => {
+    state.pickerQuery = value;
+    state.pickerVisibleCount = 80;
     renderPicker();
+  }, 120);
+  pickerSearchInput.addEventListener("input", event => {
+    renderPickerFromInput(event.target.value);
   });
 
   document.getElementById("pickerClearButton").addEventListener("click", () => {
@@ -2081,18 +2629,27 @@ function collectTotalData() {
     renderBuild();
   });
 
+  const renderBuildFromStatusInput = debounce(() => {
+    syncUrl(false);
+    renderBuild();
+  }, 80);
   document.querySelectorAll("[data-status-key]").forEach(input => {
     input.addEventListener("input", event => {
       const key = event.target.dataset.statusKey;
       const minimum = key === "lv" ? 1 : 0;
-      state.status[key] = Math.max(minimum, Number(event.target.value || minimum));
-      syncUrl(false);
-      renderBuild();
+      let value = Math.max(minimum, Number(event.target.value || minimum));
+      if (["rlb","glb","blb"].includes(key)) value = Math.min(100, value);
+      const lineColor={lineRed:"red",lineGreen:"green",lineBlue:"blue",lineYellow:"yellow",lineAqua:"aqua",linePurple:"purple"}[key];
+      if (lineColor) value = normalizeApostoriaLineCount(lineColor, value);
+      state.status[key] = value;
+      if (String(event.target.value) !== String(value)) event.target.value = value;
+      renderStatus();
+      renderBuildFromStatusInput();
     });
   });
 
   document.getElementById("resetStatusButton").addEventListener("click", () => {
-    state.status = { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0 };
+    state.status = { jobId: "", lv: 1, str: 0, int: 0, vit: 0, agi: 0, dex: 0, crt: 0, rlb: 0, glb: 0, blb: 0, lineRed: 0, lineGreen: 0, lineBlue: 0, lineYellow: 0, lineAqua: 0, linePurple: 0 };
     state.selectedSkills.clear();
     renderStatus();
     syncUrl(false);
@@ -2138,4 +2695,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const appVersionLabel = document.getElementById("appVersionLabel");
   if (appVersionLabel) appVersionLabel.textContent = `Version ${APP_VERSION}`;
 
+});
+
+
+// v2.9.4 mobile collapsible main menu
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("mobileTabToggle");
+  const tabs = document.getElementById("mainTabs");
+  if (!toggle || !tabs) return;
+  toggle.addEventListener("click", () => {
+    const open = tabs.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = open ? "× 閉じる" : "☰ メニュー";
+  });
+  tabs.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 720px)").matches) {
+      tabs.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "☰ メニュー";
+    }
+  }));
 });
