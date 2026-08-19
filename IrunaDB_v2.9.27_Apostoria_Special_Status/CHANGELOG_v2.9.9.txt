@@ -1,6 +1,0 @@
-IrunaDB v2.9.11
-
-- Microsoft Clarity の計測コードを復旧
-- Clarity Project ID: xwi8zmzhuc
-- v2.9.8 をベースに更新
-- アプリ表示バージョンとキャッシュ名を v2.9.11 に更新
