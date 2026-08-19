@@ -1397,15 +1397,8 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       8:{hp:[1800,2700,5400],def:[170,255,510],hpRegen:[48,72,147]}
     },
     green:{
-      // 絶対回避・魔法回避の基礎値は検証記事より:
-      // 1本=0, 2本=1, 3本=1, 4本=2, 5本=2, 8本=3.4以上。
-      // 8本は記事記載の「3.4以上」を基準値3.4として扱い、最終表示は切り捨て。
-      1:{avd:[20,30,60],absoluteEvasionBase:0,magicEvasionBase:0},
-      2:{avd:[37,56,112],absoluteEvasionBase:1,magicEvasionBase:1},
-      3:{avd:[52,78,157],absoluteEvasionBase:1,magicEvasionBase:1},
-      4:{avd:[65,97,195],absoluteEvasionBase:2,magicEvasionBase:2},
-      5:{avd:[75,112,225],absoluteEvasionBase:2,magicEvasionBase:2},
-      8:{avd:[90,135,270],absoluteEvasionBase:3.4,magicEvasionBase:3.4}
+      1:{avd:[20,30,60]},2:{avd:[37,56,112]},3:{avd:[52,78,157]},
+      4:{avd:[65,97,195]},5:{avd:[75,112,225]},8:{avd:[90,135,270]}
     },
     blue:{
       1:{mp:[100,150,300],mdef:[128,192,384],mpRegen:[5,8,16]},
@@ -1462,12 +1455,6 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     return Math.floor(value + 1e-9);
   }
 
-  function scaleApostoriaBaseValue(baseValue, boostRate) {
-    const base = Number(baseValue || 0);
-    const boost = Math.min(200, Math.max(0, Number(boostRate || 0)));
-    return Math.floor(base * (1 + boost / 100) + 1e-9);
-  }
-
   function collectApostoriaLineBonuses() {
     const boosts=getApostoriaLineBoostRates();
     const selected={
@@ -1491,27 +1478,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     if(row){push("red",selected.red,"MaxHP","",row.hp,"赤ライン");push("red",selected.red,"DEF","",row.def,"赤ライン");push("red",selected.red,"HP自然回復","",row.hpRegen,"赤ライン");}
 
     row=APOSTORIA_LINE_TABLES.green[selected.green];
-    if(row){
-      push("green",selected.green,"AVD","",row.avd,"緑ライン");
-
-      const absoluteEvasion = scaleApostoriaBaseValue(row.absoluteEvasionBase, boosts.green);
-      if (absoluteEvasion) {
-        rows.push({
-          statId:"絶対回避", unit:"%", value:absoluteEvasion, color:"green",
-          count:selected.green, boost:boosts.green, label:"緑ライン",
-          effectText:`緑ライン ${selected.green}本 / 強化+${formatDisplayNumber(boosts.green)}%`
-        });
-      }
-
-      const magicEvasion = scaleApostoriaBaseValue(row.magicEvasionBase, boosts.green);
-      if (magicEvasion) {
-        rows.push({
-          statId:"魔法回避", unit:"%", value:magicEvasion, color:"green",
-          count:selected.green, boost:boosts.green, label:"緑ライン",
-          effectText:`緑ライン ${selected.green}本 / 強化+${formatDisplayNumber(boosts.green)}%`
-        });
-      }
-    }
+    if(row){push("green",selected.green,"AVD","",row.avd,"緑ライン");}
 
     row=APOSTORIA_LINE_TABLES.blue[selected.blue];
     if(row){push("blue",selected.blue,"MaxMP","",row.mp,"青ライン");push("blue",selected.blue,"MDEF","",row.mdef,"青ライン");push("blue",selected.blue,"MP自然回復","",row.mpRegen,"青ライン");}

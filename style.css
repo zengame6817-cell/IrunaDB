@@ -3543,3 +3543,6 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .apostoria-line-title small{opacity:.78}
 .line-status-field select{width:100%;min-width:0}
 @media (max-width:760px){.apostoria-line-settings{grid-template-columns:repeat(3,minmax(64px,1fr))}}
+
+/* v2.9.30 Apostoria source/weekday note */
+.apostoria-weekday-note{grid-column:1/-1;opacity:.72;font-size:.78rem}
