@@ -3559,3 +3559,23 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .relic-board-fields select{width:100%}
 .relic-board-summary{margin:10px 0 0;font-weight:700}
 @media(max-width:620px){.relic-board-fields{grid-template-columns:1fr}.relic-board-bonus-head{align-items:stretch}.relic-board-mode-label{justify-content:space-between}}
+
+/* v3.0.0 integrated relic 7x7 */
+.relic-v3-tabs{display:flex;gap:6px;margin:12px 0 8px}
+.relic-v3-tab{border:1px solid var(--border);background:transparent;color:inherit;border-radius:9px;padding:8px 12px;font-weight:700}
+.relic-v3-tab.is-active{background:rgba(72,206,220,.12);outline:1px solid rgba(72,206,220,.5)}
+.relic-v3-workspace{margin:10px 0;padding:10px;border:1px solid var(--border);border-radius:12px}
+.relic-v3-grid-wrap{display:grid;grid-template-columns:minmax(280px,420px) minmax(220px,1fr);gap:14px}
+.relic-v3-grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;width:min(100%,420px);margin-top:8px}
+.relic-v3-cell{aspect-ratio:1;border:1px solid var(--border);border-radius:6px;background:rgba(255,255,255,.05);position:relative;color:inherit}
+.relic-v3-cell.is-blocked{background:rgba(110,110,110,.55)}
+.relic-v3-cell.is-occupied{background:rgba(72,206,220,.28);outline:2px solid rgba(72,206,220,.6)}
+.relic-v3-cell>strong{position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
+.relic-v3-bonus{position:absolute;right:2px;top:2px;z-index:2;min-width:17px;height:17px;padding:0 3px;border-radius:999px;display:grid;place-items:center;font-size:9px;font-weight:900;border:1px solid rgba(0,0,0,.2)}
+.relic-v3-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.relic-v3-section-title{font-weight:800}
+.relic-v3-hint,.relic-v3-selected-summary{font-size:12px;opacity:.75;margin-top:3px}
+.relic-v3-status{font-size:12px;line-height:1.5;margin:9px 0}
+.relic-v3-candidate-nav{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:10px}
+.relic-board-fields strong{font-size:14px}
+@media(max-width:720px){.relic-v3-grid-wrap{grid-template-columns:1fr}.relic-v3-workspace{padding:8px}.relic-v3-cell{border-radius:4px}}
