@@ -1,0 +1,5 @@
+IrunaDB v2.9.3
+- スプレッドシートのSKILL_MASTER / SKILL_EFFECT_MASTER / SKILL_CONDITION_MASTERをGitHubのdata/skills.jsへ一括公開できるGASを追加
+- SKILL_ACQUISITIONからdata/skill-quests.jsも同時更新
+- 今回の差分（アサシン・ハイウィザード・ビショップ・エンチャンター）をskills.jsへ統合
+- Service Workerキャッシュをv2.9.3へ更新

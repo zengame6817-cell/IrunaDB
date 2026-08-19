@@ -1,0 +1,7 @@
+IrunaDB v2.7.3
+- MSのEP2～EP7が表示されない問題を修正
+- data/missions.js をMS UIより先に読み込むよう変更
+- missions.jsのepisodes配列をEP1～EP7で検証
+- EPタブ生成をwindow.IRUNA_MISSION_DATA.episodes基準へ統一
+- キャッシュバスターを2.7.3へ更新
+- Service Workerキャッシュ名をirunadb-v2-7-3へ更新
