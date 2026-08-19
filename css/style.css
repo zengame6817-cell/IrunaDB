@@ -3743,3 +3743,15 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   .relic-shape-preview i{width:12px;height:12px}
   .build-relic-link-head{align-items:flex-start}
 }
+
+/* v3.0.8 independent build relics + RG transfer */
+.build-relic-panel{margin-bottom:14px}
+.build-relic-toolbar{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}
+.build-relic-list{margin-top:8px}
+.build-relic-row .danger-icon{min-width:38px}
+.build-relic-board-bonus{margin-top:12px}
+.build-relic-board-bonus .relic-board-fields{margin-top:8px}
+.relic-tool-piece-actions [data-relic-manual]{font-weight:800}
+@media(max-width:720px){
+  .build-relic-toolbar .button{flex:1 1 44%}
+}
