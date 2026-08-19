@@ -3533,3 +3533,16 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 /* v2.9.27 Apostoria special status */
 .character-settings .special-status-field span{font-weight:900}
 .character-settings .special-status-field input{font-variant-numeric:tabular-nums}
+
+/* v2.9.28 Apostoria line bonus */
+.apostoria-line-settings{
+  grid-column:1/-1;display:grid;grid-template-columns:repeat(6,minmax(64px,1fr));
+  gap:8px;padding-top:8px;margin-top:2px;border-top:1px solid var(--border);
+}
+.apostoria-line-title{grid-column:1/-1;display:flex;gap:10px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.apostoria-line-title small{opacity:.78}
+.line-status-field select{width:100%;min-width:0}
+@media (max-width:760px){.apostoria-line-settings{grid-template-columns:repeat(3,minmax(64px,1fr))}}
+
+/* v2.9.30 Apostoria source/weekday note */
+.apostoria-weekday-note{grid-column:1/-1;opacity:.72;font-size:.78rem}
