@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v3.0.8</title>
+  <title>IrunaDB v3.0.9</title>
   <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -13,7 +13,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
-  <link rel="stylesheet" href="./css/style.css?v=3.0.8">
+  <link rel="stylesheet" href="./css/style.css?v=3.0.9">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -279,7 +279,7 @@ body.light-mode .calculation-card {
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.8</span></h1>
+        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.9</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -582,7 +582,7 @@ body.light-mode .calculation-card {
         <section class="rg-start-guide">
           <strong>はじめ方：この順番でOK</strong>
           <div class="rg-start-steps">
-            <span><b>1</b> 盤面を選ぶ</span><span><b>2</b> レリックを追加</span><span><b>3</b> 使うレリックに✓</span><span><b>4</b> 形状・色を確認</span><span><b>5</b> 自動 / 手動配置</span>
+            <span><b>1</b> 盤面を選ぶ</span><span><b>2</b> レリックを追加</span><span><b>3</b> 使うレリックに✓</span><span><b>4</b> 形状・色を確認</span><span><b>5</b> 最後に自動配置</span>
           </div>
           <p>✓を付けたレリックだけ配置対象です。形状候補はプレビューを見ながら選択できます。自動配置のほか、候補を選んで盤面をタップする手動配置もできます。RGで配置を確認したら「チェックONをビルドへ転送」でシミュレーターへ送れます。</p>
         </section>
@@ -698,7 +698,17 @@ body.light-mode .calculation-card {
             </div>
 
             <div class="relic-tool-section-head relic-tool-section-spaced">
-              <div><span class="relic-step">4</span><h3>自動配置</h3></div>
+              <div><span class="relic-step">4</span><h3>配置結果</h3></div>
+            </div>
+            <div class="relic-v3-candidate-nav">
+              <button id="relicV3Prev" class="button button-secondary" type="button" disabled>◀ 前の候補</button>
+              <strong id="relicV3Counter">候補 0 / 0</strong>
+              <button id="relicV3Next" class="button button-secondary" type="button" disabled>次の候補 ▶</button>
+            </div>
+            <div id="relicBoardSummary" class="relic-board-summary relic-tool-result-summary">盤面ボーナスなし</div>
+
+            <div class="relic-tool-section-head relic-tool-section-spaced">
+              <div><span class="relic-step">5</span><h3>自動配置</h3></div>
             </div>
             <p class="relic-tool-help">候補レリックの登録形状から回転4方向を自動生成して探索します。RGは配置確認用です。能力と盤面ボーナスのビルド反映はシミュレーター側で設定します。</p>
             <div id="relicV3SelectedSummary" class="relic-v3-selected-summary"></div>
@@ -707,16 +717,6 @@ body.light-mode .calculation-card {
               <button id="relicV3ResetResult" class="button button-secondary" type="button">結果を消す</button>
             </div>
             <p id="relicV3SolveStatus" class="relic-v3-status">レリックを追加して「自動配置する」を押してください。</p>
-
-            <div class="relic-tool-section-head relic-tool-section-spaced">
-              <div><span class="relic-step">5</span><h3>配置結果</h3></div>
-            </div>
-            <div class="relic-v3-candidate-nav">
-              <button id="relicV3Prev" class="button button-secondary" type="button" disabled>◀ 前の候補</button>
-              <strong id="relicV3Counter">候補 0 / 0</strong>
-              <button id="relicV3Next" class="button button-secondary" type="button" disabled>次の候補 ▶</button>
-            </div>
-            <div id="relicBoardSummary" class="relic-board-summary relic-tool-result-summary">盤面ボーナスなし</div>
           </section>
         </div>
 
@@ -869,7 +869,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 3.0.8</h2>
+          <h2>IrunaDB Version 3.0.9</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -880,7 +880,7 @@ body.light-mode .calculation-card {
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v3.0.8 更新履歴</h3>
+            <h3>v3.0.9 更新履歴</h3>
             <p>HIT% と 命中% を「HIT%」として統合し、同じ割合補正を1行で合算表示。</p>
             <p>ディレイ集計の重複・単位分裂と、レリック削除操作を修正しました。</p>
             <ul>
@@ -930,18 +930,18 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.8.js?v=3.0.8"></script>
-  <script src="./js/utils.js?v=3.0.8"></script>
-  <script src="./js/api.js?v=3.0.8"></script>
-  <script src="./js/modal.js?v=3.0.8"></script>
-  <script src="./js/ui.js?v=3.0.8"></script>
-  <script src="./data/skills.js?v=3.0.8"></script>
-<script src="./data/missions.js?v=3.0.8"></script>
-  <script src="./data/skill-quests.js?v=3.0.8"></script>
-<script src="./js/missions.js?v=3.0.8"></script>
-  <script src="./js/skill-quests.js?v=3.0.8"></script>
-  <script src="./js/app-v3.0.8.js?v=3.0.8"></script>
-  <script src="./js/theme.js?v=3.0.8"></script>
+  <script src="./js/config-v3.0.9.js?v=3.0.9"></script>
+  <script src="./js/utils.js?v=3.0.9"></script>
+  <script src="./js/api.js?v=3.0.9"></script>
+  <script src="./js/modal.js?v=3.0.9"></script>
+  <script src="./js/ui.js?v=3.0.9"></script>
+  <script src="./data/skills.js?v=3.0.9"></script>
+<script src="./data/missions.js?v=3.0.9"></script>
+  <script src="./data/skill-quests.js?v=3.0.9"></script>
+<script src="./js/missions.js?v=3.0.9"></script>
+  <script src="./js/skill-quests.js?v=3.0.9"></script>
+  <script src="./js/app-v3.0.9.js?v=3.0.9"></script>
+  <script src="./js/theme.js?v=3.0.9"></script>
 
 <script id="mission-data-guard">
 window.addEventListener("DOMContentLoaded", () => {
