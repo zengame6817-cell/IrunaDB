@@ -539,26 +539,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     renderDatabase();
   }
 
-  const RG_ONBOARDING_KEY = "irunadb.rg.onboardingSeen.v1";
-
-  function markRgOnboardingSeen(){
-    localStorage.setItem(RG_ONBOARDING_KEY,"1");
-    const box=document.getElementById("rgOnboarding");
-    const navNew=document.getElementById("rgNavNew");
-    if(box) box.hidden=true;
-    if(navNew) navNew.hidden=true;
-  }
-
-  function updateRgOnboarding(){
-    const seen=localStorage.getItem(RG_ONBOARDING_KEY)==="1";
-    const box=document.getElementById("rgOnboarding");
-    const navNew=document.getElementById("rgNavNew");
-    if(box) box.hidden=seen;
-    if(navNew) navNew.hidden=seen;
-  }
-
   function setView(view) {
-    if(view==="relic") markRgOnboardingSeen();
     state.activeView = view;
     document.querySelectorAll(".main-tab").forEach(tab => {
       const active = tab.dataset.view === view;
@@ -1640,7 +1621,6 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     }));
     renderEquipmentOptions();
     renderTotals();
-    if (state.activeView === "database") renderDatabase();
   }
 
   function normalizeOperator(value) {
@@ -2359,7 +2339,7 @@ function collectTotalData() {
       mergedByDisplay.set(mergeKey, current);
     });
 
-    // v3.0.5: レリック盤面ボーナス。
+    // v3.0.4: レリック盤面ボーナス。
     const relicBoardData=collectRelicBoardBonuses();
     relicBoardData.rows.forEach((bonus,index)=>{
       const displayName=normalizeAbilityName(displayStatName(String(bonus.statId)));
@@ -2979,8 +2959,7 @@ function collectTotalData() {
       if (sort === "defAsc") return Number(a["基礎DEF"]||0)-Number(b["基礎DEF"]||0);
       return String(a["名前"]||"").localeCompare(String(b["名前"]||""), "ja");
     });
-    const appliedIds = new Set(allSelectedIds().map(String));
-    ui.renderItems(filtered, context, item => modal.open(item, context), state.favorites, toggleFavorite, appliedIds);
+    ui.renderItems(filtered, context, item => modal.open(item, context), state.favorites, toggleFavorite);
   }
 
   function updateDatabaseInfo(meta = {}) {
@@ -3098,9 +3077,6 @@ function collectTotalData() {
 
   function setupV21Navigation() {
     document.querySelectorAll(".main-tab").forEach(tab => tab.addEventListener("click", () => setView(tab.dataset.view)));
-    document.getElementById("rgOnboardingOpen")?.addEventListener("click",()=>setView("relic"));
-    document.getElementById("rgOnboardingDismiss")?.addEventListener("click",markRgOnboardingSeen);
-    updateRgOnboarding();
     const addSlotButton = document.getElementById("addSavedBuildSlotButton");
     addSlotButton?.addEventListener("click", () => {
       const builds = readSavedBuilds();

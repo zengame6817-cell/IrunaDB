@@ -21,7 +21,7 @@ window.IrunaUi = (() => {
     const attributeName = attributeMap.get(String(item["属性ID"] || ""))?.["属性名"] || "";
     return [item["武器種"], attributeName ? `${attributeName}属性` : "", !isBlank(item["基礎ATK"]) ? `ATK ${item["基礎ATK"]}` : "", !isBlank(item["基礎DEF"]) ? `DEF ${item["基礎DEF"]}` : "", Number(item["スロット数"]) > 0 ? `Slot ${item["スロット数"]}` : ""].filter(Boolean).map(value => `<span>${escapeHtml(value)}</span>`).join("");
   }
-  function renderItems(items, context, onOpen, favorites = new Set(), onFavorite = () => {}) {
+  function renderItems(items, context, onOpen, favorites = new Set(), onFavorite = () => {}, appliedIds = new Set()) {
     const PAGE_SIZE = 120;
     elements.resultCount.textContent = `検索結果 ${items.length}件`;
     if (!items.length) {
@@ -37,7 +37,8 @@ window.IrunaUi = (() => {
       elements.itemGrid.innerHTML = visibleItems.map((item, index) => {
         const id = String(item["アイテムID"] || "");
         const favorite = favorites.has(id);
-        return `<article class="item-card" data-item-index="${index}" tabindex="0"><div class="item-card-header"><div class="item-card-title-area"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(id)}" aria-label="お気に入り${favorite ? "解除" : "登録"}" title="お気に入り${favorite ? "解除" : "登録"}">${favorite ? "★" : "☆"}</button><div class="item-name">${escapeHtml(item["名前"] || "名称未設定")}</div></div><span class="badge">${escapeHtml(item["表示分類"] || item["サブ分類"] || item["分類"] || "未分類")}</span></div><div class="item-meta">${buildMeta(item, context.attributeMap)}</div><div class="item-description">${escapeHtml(formatFormulaText(item["説明文"] || item["特殊性能"] || "説明はまだ登録されていません。"))}</div></article>`;
+        const applied = appliedIds.has(id);
+        return `<article class="item-card ${applied ? "is-build-applied" : ""}" data-item-index="${index}" tabindex="0"><div class="item-card-header"><div class="item-card-title-area"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(id)}" aria-label="お気に入り${favorite ? "解除" : "登録"}" title="お気に入り${favorite ? "解除" : "登録"}">${favorite ? "★" : "☆"}</button><div class="item-name">${escapeHtml(item["名前"] || "名称未設定")}</div></div><div class="item-card-badges">${applied ? '<span class="build-applied-badge">✓ ビルド反映中</span>' : ''}<span class="badge">${escapeHtml(item["表示分類"] || item["サブ分類"] || item["分類"] || "未分類")}</span></div></div><div class="item-meta">${buildMeta(item, context.attributeMap)}</div><div class="item-description">${escapeHtml(formatFormulaText(item["説明文"] || item["特殊性能"] || "説明はまだ登録されていません。"))}</div></article>`;
       }).join("") + (visibleCount < items.length
         ? `<button class="button button-secondary iruna-load-more" type="button" data-load-more-items>さらに表示（残り ${items.length - visibleCount}件）</button>`
         : "");
