@@ -3546,3 +3546,16 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 
 /* v2.9.30 Apostoria source/weekday note */
 .apostoria-weekday-note{grid-column:1/-1;opacity:.72;font-size:.78rem}
+
+/* v2.9.33 Relic board bonus */
+.relic-board-bonus{margin-top:12px;padding:12px;border:1px solid var(--border);border-radius:12px}
+.relic-board-bonus-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.relic-board-bonus-head>div{display:flex;flex-direction:column;gap:2px}
+.relic-board-bonus-head small,.relic-board-fields small{opacity:.72}
+.relic-board-mode-label{display:flex;gap:8px;align-items:center}
+.relic-board-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.relic-board-fields label{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;align-items:center}
+.relic-board-fields label small{grid-column:1/-1}
+.relic-board-fields select{width:100%}
+.relic-board-summary{margin:10px 0 0;font-weight:700}
+@media(max-width:620px){.relic-board-fields{grid-template-columns:1fr}.relic-board-bonus-head{align-items:stretch}.relic-board-mode-label{justify-content:space-between}}
