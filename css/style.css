@@ -3588,3 +3588,17 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 @media(max-width:720px){
   .main-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
+/* v3.0.2: レリックを完全独立タブ化 */
+.relic-standalone-layout{max-width:1180px;margin:0 auto}
+.relic-standalone-layout>.relic-editor-panel{margin:0}
+.relic-row.is-applied{border-color:rgba(42,180,120,.65);box-shadow:inset 3px 0 0 rgba(42,180,120,.8)}
+.relic-row.is-candidate{opacity:.82}
+.relic-apply-state{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:999px;font-size:10px;font-style:normal;font-weight:700;vertical-align:middle}
+.relic-row.is-applied .relic-apply-state{background:rgba(42,180,120,.16);color:#198754}
+.relic-row.is-candidate .relic-apply-state{background:rgba(140,140,140,.14);color:#777}
+[data-theme="dark"] .relic-row.is-applied .relic-apply-state{color:#74e3b0}
+[data-theme="dark"] .relic-row.is-candidate .relic-apply-state{color:#bbb}
+@media(max-width:720px){
+  .relic-standalone-layout{width:100%}
+}

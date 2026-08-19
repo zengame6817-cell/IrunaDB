@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v3.0.1</title>
+  <title>IrunaDB v3.0.2</title>
   <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -13,7 +13,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
-  <link rel="stylesheet" href="./css/style.css?v=3.0.1">
+  <link rel="stylesheet" href="./css/style.css?v=3.0.2">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -279,7 +279,7 @@ body.light-mode .calculation-card {
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.1</span></h1>
+        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.2</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -434,91 +434,7 @@ body.light-mode .calculation-card {
             </section>
 
             <div id="relicHomeAnchor" hidden></div>
-            <section class="sim-panel relic-editor-panel">
-              <header class="sim-panel-header">
-                <div>
-                  <span class="panel-number">05</span>
-                  <h3>レリック（能力のみ）</h3>
-                </div>
-                <span id="relicCount" class="count-badge">0 / 15</span>
-              </header>
-
-              <div class="relic-command-area">
-                <div class="relic-toolbar">
-                  <button id="addRelicButton" class="button button-primary" type="button">＋ レリック追加</button>
-                  <button id="rotateRelicButton" class="button button-secondary" type="button" hidden disabled>↻ 90°回転</button>
-                  <button id="removeRelicButton" class="button button-danger" type="button" disabled>× 削除</button>
-                </div>
-                <p id="relicMessage" class="relic-message" aria-live="polite">
-                  レリックは形状・配置を無視して選択できます。能力のみ合計へ反映します。
-                </p>
-              </div>
-              <div class="relic-list-only">
-                <p class="relic-list-title">選択中のレリック</p>
-                <div id="relicPlacementList" class="relic-placement-list"></div>
-              </div>
-              
-              <div class="relic-board-bonus relic-v3">
-                <div class="relic-board-bonus-head">
-                  <div>
-                    <strong>レリック 7×7盤面配置</strong>
-                    <small>選択中のレリックをDB登録済み形状で自動配置します。回転のみ・反転なし。</small>
-                  </div>
-                  <label class="relic-board-mode-label">盤面
-                    <select id="relicBoardMode">
-                      <option value="none">なし（ボーナスなし）</option>
-                      <option value="physical">物理盤面</option>
-                      <option value="magic">魔法盤面</option>
-                    </select>
-                  </label>
-                </div>
-
-                <div class="relic-v3-tabs" role="tablist">
-                  <button id="relicAbilityTab" class="relic-v3-tab is-active" type="button">能力・選択</button>
-                  <button id="relicBoardTab" class="relic-v3-tab" type="button">7×7盤面配置</button>
-                </div>
-
-                <div id="relicBoardWorkspace" class="relic-v3-workspace" hidden>
-                  <div class="relic-v3-grid-wrap">
-                    <div>
-                      <div class="relic-v3-section-title">盤面</div>
-                      <div class="relic-v3-hint">使用できないマスをタップしてON/OFFできます。色付きの小さな印がボーナスマスです。</div>
-                      <div id="relicV3Board" class="relic-v3-grid7" aria-label="レリック7×7盤面"></div>
-                      <div class="relic-v3-actions">
-                        <button id="relicV3ClearBlocked" class="button button-secondary" type="button">使用不可をクリア</button>
-                        <button id="relicV3InvertBlocked" class="button button-secondary" type="button">使用不可を反転</button>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="relic-v3-section-title">自動配置</div>
-                      <div id="relicV3SelectedSummary" class="relic-v3-selected-summary"></div>
-                      <div class="relic-v3-actions">
-                        <button id="relicV3Solve" class="button button-primary" type="button">自動配置する</button>
-                        <button id="relicV3ResetResult" class="button button-secondary" type="button">配置を消す</button>
-                      </div>
-                      <p id="relicV3SolveStatus" class="relic-v3-status">レリックを選択して「自動配置する」を押してください。</p>
-                      <div class="relic-v3-candidate-nav">
-                        <button id="relicV3Prev" class="button button-secondary" type="button" disabled>◀ 前</button>
-                        <strong id="relicV3Counter">候補 0 / 0</strong>
-                        <button id="relicV3Next" class="button button-secondary" type="button" disabled>次 ▶</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="relicBoardPhysical" class="relic-board-fields" hidden>
-                  <label><span>🔴 赤</span><strong id="relicBoardRedAuto">0マス</strong><small>ATK +20 / マス</small></label>
-                  <label><span>🟡 黄</span><strong id="relicBoardYellowAuto">0マス</strong><small>ASPD +2% / マス</small></label>
-                  <label><span>⚪ 白</span><strong id="relicBoardWhiteAuto">0マス</strong><small>VIT +1 / マス</small></label>
-                </div>
-                <div id="relicBoardMagic" class="relic-board-fields" hidden>
-                  <label><span>🔵 青</span><strong id="relicBoardBlueAuto">0マス</strong><small>MATK +20 / マス</small></label>
-                  <label><span>🟢 緑</span><strong id="relicBoardGreenAuto">0マス</strong><small>詠唱時間 -2% / マス</small></label>
-                  <label><span>⚫ 黒</span><strong id="relicBoardBlackAuto">0マス</strong><small>INT +1 / マス</small></label>
-                </div>
-                <p id="relicBoardSummary" class="relic-board-summary">盤面ボーナスなし</p>
-              </div>
-            </section>
+            
           </div>
 
           <aside class="build-side-column">
@@ -588,7 +504,107 @@ body.light-mode .calculation-card {
         </section>
       </section>
 
-      <section id="view-database" class="app-view">
+      
+      <section id="view-relic" class="app-view">
+        <div class="build-commandbar">
+          <div>
+            <p class="section-kicker">RELIC GLASS</p>
+            <h2>レリック 7×7配置</h2>
+          </div>
+          <div class="build-command-actions">
+            <span id="relicAppliedBadge" class="count-badge">配置 0個</span>
+          </div>
+        </div>
+        <div class="relic-standalone-layout">
+          <section class="sim-panel relic-editor-panel">
+              <header class="sim-panel-header">
+                <div>
+                  <span class="panel-number">05</span>
+                  <h3>レリック</h3>
+                </div>
+                <span id="relicCount" class="count-badge">0 / 15</span>
+              </header>
+
+              <div class="relic-command-area">
+                <div class="relic-toolbar">
+                  <button id="addRelicButton" class="button button-primary" type="button">＋ レリック追加</button>
+                  <button id="rotateRelicButton" class="button button-secondary" type="button" hidden disabled>↻ 90°回転</button>
+                  <button id="removeRelicButton" class="button button-danger" type="button" disabled>× 削除</button>
+                </div>
+                <p id="relicMessage" class="relic-message" aria-live="polite">
+                  追加したレリックは配置候補です。7×7盤面に配置されたレリックだけビルドへ反映します。
+                </p>
+              </div>
+              <div class="relic-list-only">
+                <p class="relic-list-title">配置候補のレリック</p>
+                <div id="relicPlacementList" class="relic-placement-list"></div>
+              </div>
+              
+              <div class="relic-board-bonus relic-v3">
+                <div class="relic-board-bonus-head">
+                  <div>
+                    <strong>レリック 7×7盤面配置</strong>
+                    <small>候補レリックをDB登録済み形状で自動配置します。配置されたレリックだけ能力をビルドへ反映。回転のみ・反転なし。</small>
+                  </div>
+                  <label class="relic-board-mode-label">盤面
+                    <select id="relicBoardMode">
+                      <option value="none">なし（ボーナスなし）</option>
+                      <option value="physical">物理盤面</option>
+                      <option value="magic">魔法盤面</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div class="relic-v3-tabs" role="tablist">
+                  <button id="relicAbilityTab" class="relic-v3-tab is-active" type="button">能力・選択</button>
+                  <button id="relicBoardTab" class="relic-v3-tab" type="button">7×7盤面配置</button>
+                </div>
+
+                <div id="relicBoardWorkspace" class="relic-v3-workspace" hidden>
+                  <div class="relic-v3-grid-wrap">
+                    <div>
+                      <div class="relic-v3-section-title">盤面</div>
+                      <div class="relic-v3-hint">使用できないマスをタップしてON/OFFできます。色付きの小さな印がボーナスマスです。</div>
+                      <div id="relicV3Board" class="relic-v3-grid7" aria-label="レリック7×7盤面"></div>
+                      <div class="relic-v3-actions">
+                        <button id="relicV3ClearBlocked" class="button button-secondary" type="button">使用不可をクリア</button>
+                        <button id="relicV3InvertBlocked" class="button button-secondary" type="button">使用不可を反転</button>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="relic-v3-section-title">自動配置</div>
+                      <div id="relicV3SelectedSummary" class="relic-v3-selected-summary"></div>
+                      <div class="relic-v3-actions">
+                        <button id="relicV3Solve" class="button button-primary" type="button">自動配置する</button>
+                        <button id="relicV3ResetResult" class="button button-secondary" type="button">配置を消す</button>
+                      </div>
+                      <p id="relicV3SolveStatus" class="relic-v3-status">レリックを選択して「自動配置する」を押してください。</p>
+                      <div class="relic-v3-candidate-nav">
+                        <button id="relicV3Prev" class="button button-secondary" type="button" disabled>◀ 前</button>
+                        <strong id="relicV3Counter">候補 0 / 0</strong>
+                        <button id="relicV3Next" class="button button-secondary" type="button" disabled>次 ▶</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="relicBoardPhysical" class="relic-board-fields" hidden>
+                  <label><span>🔴 赤</span><strong id="relicBoardRedAuto">0マス</strong><small>ATK +20 / マス</small></label>
+                  <label><span>🟡 黄</span><strong id="relicBoardYellowAuto">0マス</strong><small>ASPD +2% / マス</small></label>
+                  <label><span>⚪ 白</span><strong id="relicBoardWhiteAuto">0マス</strong><small>VIT +1 / マス</small></label>
+                </div>
+                <div id="relicBoardMagic" class="relic-board-fields" hidden>
+                  <label><span>🔵 青</span><strong id="relicBoardBlueAuto">0マス</strong><small>MATK +20 / マス</small></label>
+                  <label><span>🟢 緑</span><strong id="relicBoardGreenAuto">0マス</strong><small>詠唱時間 -2% / マス</small></label>
+                  <label><span>⚫ 黒</span><strong id="relicBoardBlackAuto">0マス</strong><small>INT +1 / マス</small></label>
+                </div>
+                <p id="relicBoardSummary" class="relic-board-summary">盤面ボーナスなし</p>
+              </div>
+            </section>
+        </div>
+      </section>
+
+<section id="view-database" class="app-view">
         <section class="search-panel" aria-label="検索">
           <div class="search-row">
             <input id="searchInput" type="search" placeholder="装備名・タグ・能力・条件を検索" autocomplete="off">
@@ -731,7 +747,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 3.0.1</h2>
+          <h2>IrunaDB Version 3.0.2</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -742,7 +758,7 @@ body.light-mode .calculation-card {
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v3.0.1 更新履歴</h3>
+            <h3>v3.0.2 更新履歴</h3>
             <p>HIT% と 命中% を「HIT%」として統合し、同じ割合補正を1行で合算表示。</p>
             <p>ディレイ集計の重複・単位分裂と、レリック削除操作を修正しました。</p>
             <ul>
@@ -792,18 +808,18 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.1.js?v=3.0.1"></script>
-  <script src="./js/utils.js?v=3.0.1"></script>
-  <script src="./js/api.js?v=3.0.1"></script>
-  <script src="./js/modal.js?v=3.0.1"></script>
-  <script src="./js/ui.js?v=3.0.1"></script>
-  <script src="./data/skills.js?v=3.0.1"></script>
-<script src="./data/missions.js?v=3.0.1"></script>
-  <script src="./data/skill-quests.js?v=3.0.1"></script>
-<script src="./js/missions.js?v=3.0.1"></script>
-  <script src="./js/skill-quests.js?v=3.0.1"></script>
-  <script src="./js/app-v3.0.1.js?v=3.0.1"></script>
-  <script src="./js/theme.js?v=3.0.1"></script>
+  <script src="./js/config-v3.0.2.js?v=3.0.2"></script>
+  <script src="./js/utils.js?v=3.0.2"></script>
+  <script src="./js/api.js?v=3.0.2"></script>
+  <script src="./js/modal.js?v=3.0.2"></script>
+  <script src="./js/ui.js?v=3.0.2"></script>
+  <script src="./data/skills.js?v=3.0.2"></script>
+<script src="./data/missions.js?v=3.0.2"></script>
+  <script src="./data/skill-quests.js?v=3.0.2"></script>
+<script src="./js/missions.js?v=3.0.2"></script>
+  <script src="./js/skill-quests.js?v=3.0.2"></script>
+  <script src="./js/app-v3.0.2.js?v=3.0.2"></script>
+  <script src="./js/theme.js?v=3.0.2"></script>
 
 <script id="mission-data-guard">
 window.addEventListener("DOMContentLoaded", () => {
