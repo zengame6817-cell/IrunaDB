@@ -3579,3 +3579,12 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .relic-v3-candidate-nav{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:10px}
 .relic-board-fields strong{font-size:14px}
 @media(max-width:720px){.relic-v3-grid-wrap{grid-template-columns:1fr}.relic-v3-workspace{padding:8px}.relic-v3-cell{border-radius:4px}}
+
+/* v3.0.1: レリックをメインタブへ追加 */
+.main-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(min-width:721px){
+  .main-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .main-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
