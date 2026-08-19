@@ -3707,3 +3707,10 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   .rg-onboarding-actions .button{flex:1}
   .item-card-badges{max-width:48%}
 }
+
+/* v3.0.6 RG workflow */
+.rg-start-guide{margin:0 0 14px;padding:12px 14px;border:1px solid #bfdbfe;border-radius:14px;background:#eff6ff}
+.rg-start-guide>strong{font-size:14px;color:#1d4ed8}.rg-start-guide p{margin:8px 0 0;font-size:11px;color:#475569}
+.rg-start-steps{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.rg-start-steps span{display:flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;background:#fff;border:1px solid #dbeafe;font-size:11px;font-weight:700}.rg-start-steps b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#2563eb;color:#fff;font-size:10px}
+.relic-tool-piece-check{cursor:pointer}.relic-tool-piece-check .relic-tool-checkmark:empty{background:#fff}.relic-tool-piece-check .relic-tool-checkmark:not(:empty){background:#2563eb;color:#fff;border-color:#2563eb}
+[data-theme="dark"] .rg-start-guide{background:#12213b;border-color:#294b7a}.relic-piece-settings label select[data-relic-pattern]{min-width:120px}
