@@ -3863,3 +3863,9 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
     font-weight:700;
   }
 }
+
+/* v3.0.23 RG calculated total bonus */
+.rg-total-bonus{margin:10px 0 12px;padding:10px 12px;border:1px solid var(--border,#d7e0ea);border-radius:10px;background:var(--panel-soft,#f7f9fc);display:flex;flex-direction:column;gap:4px}
+.rg-total-bonus strong{font-size:12px}
+.rg-total-bonus span{font-size:13px;font-weight:700;line-height:1.55}
+@media(max-width:680px){.rg-total-bonus{padding:8px 10px}.rg-total-bonus span{font-size:11px}}
