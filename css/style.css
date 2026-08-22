@@ -3819,3 +3819,15 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   background-color:rgba(239,68,68,.18)!important;
 }
 #relicManualDeselect:disabled{opacity:.45}
+
+/* v3.0.16 RG live hover preview */
+.relic-v3-grid7 .relic-v3-cell{cursor:crosshair}
+.relic-v3-cell.is-blocked::before{
+  content:attr(data-blocked-mark);
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-weight:900;font-size:18px;color:#991b1b;opacity:.75;pointer-events:none;z-index:4
+}
+.relic-v3-cell.is-blocked{
+  position:relative;
+  background-image:repeating-linear-gradient(135deg,rgba(239,68,68,.10) 0 5px,rgba(239,68,68,.22) 5px 10px)!important;
+}
