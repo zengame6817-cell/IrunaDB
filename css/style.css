@@ -3874,3 +3874,8 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .rg-effect-total{margin-top:8px}
 .rg-effect-total span{font-weight:600}
 .rg-effect-total small{display:inline-block;margin-top:4px;font-size:10px;font-weight:500;color:var(--muted,#64748b);line-height:1.5}
+
+/* v3.0.26 RG saved slots */
+.rg-saved-panel{margin-top:14px}
+.rg-save-name-field{margin:8px 0}
+.rg-saved-slots .saved-build-slot{background:var(--panel-soft,#f7f9fc)}
