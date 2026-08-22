@@ -3799,3 +3799,12 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   color:#ef4444!important;
   text-shadow:0 0 2px #fff,0 0 4px #fff,0 1px 1px #fff!important;
 }
+
+/* v3.0.14 manual placement draft controls */
+#relicManualConfirm:not(:disabled){box-shadow:0 0 0 2px rgba(37,99,235,.12)}
+#relicBlockEditMode.is-active{outline:2px solid rgba(220,38,38,.45)}
+.relic-v3-actions{align-items:center}
+@media(max-width:680px){
+  .relic-v3-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .relic-v3-actions .button{width:100%;min-width:0;padding:8px 5px;font-size:10px}
+}
