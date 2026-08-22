@@ -3755,3 +3755,12 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 @media(max-width:720px){
   .build-relic-toolbar .button{flex:1 1 44%}
 }
+
+/* v3.0.11 partial reset */
+.partial-reset-control{display:inline-flex;align-items:center;gap:5px}
+.partial-reset-control select{height:36px;max-width:150px;border:1px solid var(--line,#d8dee8);border-radius:8px;padding:0 7px;background:var(--panel,#fff);color:inherit;font-size:11px}
+@media(max-width:680px){
+  .partial-reset-control{width:100%}
+  .partial-reset-control select{flex:1;max-width:none}
+  .partial-reset-control .button{flex:0 0 auto}
+}
