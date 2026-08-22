@@ -3869,3 +3869,8 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .rg-total-bonus strong{font-size:12px}
 .rg-total-bonus span{font-size:13px;font-weight:700;line-height:1.55}
 @media(max-width:680px){.rg-total-bonus{padding:8px 10px}.rg-total-bonus span{font-size:11px}}
+
+/* v3.0.24 RG placed relic effect total */
+.rg-effect-total{margin-top:8px}
+.rg-effect-total span{font-weight:600}
+.rg-effect-total small{display:inline-block;margin-top:4px;font-size:10px;font-weight:500;color:var(--muted,#64748b);line-height:1.5}
