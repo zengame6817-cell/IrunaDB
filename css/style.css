@@ -3808,3 +3808,14 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   .relic-v3-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
   .relic-v3-actions .button{width:100%;min-width:0;padding:8px 5px;font-size:10px}
 }
+
+/* v3.0.15 manual placement stabilization */
+.relic-v3-cell.is-manual-preview-valid{
+  box-shadow:inset 0 0 0 4px #22c55e!important;
+  background-color:rgba(34,197,94,.22)!important;
+}
+.relic-v3-cell.is-manual-preview-invalid{
+  box-shadow:inset 0 0 0 4px #ef4444!important;
+  background-color:rgba(239,68,68,.18)!important;
+}
+#relicManualDeselect:disabled{opacity:.45}
