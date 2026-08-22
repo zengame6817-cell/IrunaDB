@@ -3846,3 +3846,20 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 
 /* v3.0.18 click-to-freeze manual editing */
 .relic-v3-cell.is-selected-relic-cell{cursor:move}
+
+/* v3.0.21 RG -> Build */
+.rg-apply-build-button{white-space:nowrap}
+@media(max-width:680px){
+  .relic-tool-hero-stats{
+    display:grid!important;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    width:100%;
+  }
+  .relic-tool-hero-stats .rg-apply-build-button{
+    grid-column:1/-1;
+    width:100%;
+    min-height:40px;
+    font-weight:700;
+  }
+}

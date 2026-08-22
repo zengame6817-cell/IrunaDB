@@ -1270,7 +1270,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   }
 
   function migrateLegacyRelicBlockedCellsV3016(){
-    const key="irunadb.relic.blockedMigration.v3.0.22";
+    const key="irunadb.relic.blockedMigration.v3.0.21";
     if(localStorage.getItem(key)) return;
     const b=normalizeRelicBoardState();
     if(b.blocked.some(Boolean)) b.blocked=Array(49).fill(false);
@@ -2049,36 +2049,12 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       .map(pl=>String(pl.itemId))
       .filter(id=>context.itemsById.has(id))
       .slice(0,15);
-
-    // RG側のレリックをビルド側へ丸ごと上書き。
     state.build.buildRelics=ids;
-
-    // RG盤面で実際に発動している同色ボーナスマス数も計算し、
-    // ビルド側の手動プルダウン値へ上書きする。
-    // 反映後は通常のプルダウンなので、ユーザーが自由に変更可能。
-    const rgBoard=normalizeRelicBoardState();
-    const counts=updateRelicBoardAutoCounts();
-    state.build.relicBoardBonus={
-      mode:["physical","magic"].includes(rgBoard.mode)?rgBoard.mode:"none",
-      red:clampBuildRelicBoardCount("red",counts.red),
-      yellow:clampBuildRelicBoardCount("yellow",counts.yellow),
-      white:clampBuildRelicBoardCount("white",counts.white),
-      blue:clampBuildRelicBoardCount("blue",counts.blue),
-      green:clampBuildRelicBoardCount("green",counts.green),
-      black:clampBuildRelicBoardCount("black",counts.black)
-    };
-
     if(buildRelicMessage){
-      const bonusText=state.build.relicBoardBonus.mode==="physical"
-        ? `盤面：赤${state.build.relicBoardBonus.red} / 黄${state.build.relicBoardBonus.yellow} / 白${state.build.relicBoardBonus.white}`
-        : state.build.relicBoardBonus.mode==="magic"
-          ? `盤面：青${state.build.relicBoardBonus.blue} / 緑${state.build.relicBoardBonus.green} / 黒${state.build.relicBoardBonus.black}`
-          : "盤面ボーナスなし";
       buildRelicMessage.textContent=ids.length
-        ? `RGのチェックON ${ids.length}個と${bonusText}で、ビルド側を上書きしました。プルダウンから後で変更できます。`
-        : `RGにチェックONのレリックがないため、ビルド側レリックを空にしました。${bonusText}。`;
+        ? `RGのチェックON ${ids.length}個で、ビルド側レリックを上書きしました。`
+        : "RGにチェックONのレリックがないため、ビルド側レリックを空にしました。";
     }
-
     syncUrl(false);
     renderBuild();
     setView("build");
@@ -2961,7 +2937,7 @@ function collectTotalData() {
       mergedByDisplay.set(mergeKey, current);
     });
 
-    // v3.0.22: レリック盤面ボーナス。
+    // v3.0.21: レリック盤面ボーナス。
     const relicBoardData=collectRelicBoardBonuses();
     relicBoardData.rows.forEach((bonus,index)=>{
       const displayName=normalizeAbilityName(displayStatName(String(bonus.statId)));
