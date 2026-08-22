@@ -3831,3 +3831,15 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
   position:relative;
   background-image:repeating-linear-gradient(135deg,rgba(239,68,68,.10) 0 5px,rgba(239,68,68,.22) 5px 10px)!important;
 }
+
+/* v3.0.17 center-anchor manual placement */
+.relic-v3-cell.is-manual-anchor::after{
+  content:"◎"!important;
+  color:#dc2626!important;
+  font-size:20px!important;
+  font-weight:900!important;
+  text-shadow:0 0 2px #fff,0 0 4px #fff!important;
+}
+.relic-v3-cell.is-manual-preview-valid.is-manual-anchor::after{
+  color:#166534!important;
+}

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v3.0.16</title>
+  <title>IrunaDB v3.0.17</title>
   <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -13,7 +13,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
-  <link rel="stylesheet" href="./css/style.css?v=3.0.16">
+  <link rel="stylesheet" href="./css/style.css?v=3.0.17">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -279,7 +279,7 @@ body.light-mode .calculation-card {
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.16</span></h1>
+        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.17</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -647,7 +647,7 @@ body.light-mode .calculation-card {
                 <button id="relicV3ClearBlocked" class="button button-secondary" type="button">使用不可マス全解除</button>
               </div>
               <p id="relicManualHint" class="relic-manual-hint">手動配置OFF：配置済みレリックをタップすると選択できます。</p>
-              <p class="relic-anchor-note">手動配置では <b>◎</b> が支点です。盤面を1回タップすると、そのマスを形状のどこか1マスとして置ける位置を自動で探します。緑の形を確認 → 必要なら90°回転 → <b>変更確定</b> で保存します。</p>
+              <p class="relic-anchor-note"><b>配置条件：</b>7×7内 / 使用不可マスなし / 他レリック重複なし。<br>手動配置では <b>◎</b> が支点です。盤面を1回タップすると、そのマスを形状のどこか1マスとして置ける位置を自動で探します。緑の形を確認 → 必要なら90°回転 → <b>変更確定</b> で保存します。</p>
             </div>
 
             <div class="relic-tool-section-head relic-tool-section-spaced">
@@ -888,7 +888,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 3.0.16</h2>
+          <h2>IrunaDB Version 3.0.17</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -899,7 +899,7 @@ body.light-mode .calculation-card {
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v3.0.16 更新履歴</h3>
+            <h3>v3.0.17 更新履歴</h3>
             <p>HIT% と 命中% を「HIT%」として統合し、同じ割合補正を1行で合算表示。</p>
             <p>ディレイ集計の重複・単位分裂と、レリック削除操作を修正しました。</p>
             <ul>
@@ -949,18 +949,18 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.16.js?v=3.0.16"></script>
-  <script src="./js/utils.js?v=3.0.16"></script>
-  <script src="./js/api.js?v=3.0.16"></script>
-  <script src="./js/modal.js?v=3.0.16"></script>
-  <script src="./js/ui.js?v=3.0.16"></script>
-  <script src="./data/skills.js?v=3.0.16"></script>
-<script src="./data/missions.js?v=3.0.16"></script>
-  <script src="./data/skill-quests.js?v=3.0.16"></script>
-<script src="./js/missions.js?v=3.0.16"></script>
-  <script src="./js/skill-quests.js?v=3.0.16"></script>
-  <script src="./js/app-v3.0.16.js?v=3.0.16"></script>
-  <script src="./js/theme.js?v=3.0.16"></script>
+  <script src="./js/config-v3.0.17.js?v=3.0.17"></script>
+  <script src="./js/utils.js?v=3.0.17"></script>
+  <script src="./js/api.js?v=3.0.17"></script>
+  <script src="./js/modal.js?v=3.0.17"></script>
+  <script src="./js/ui.js?v=3.0.17"></script>
+  <script src="./data/skills.js?v=3.0.17"></script>
+<script src="./data/missions.js?v=3.0.17"></script>
+  <script src="./data/skill-quests.js?v=3.0.17"></script>
+<script src="./js/missions.js?v=3.0.17"></script>
+  <script src="./js/skill-quests.js?v=3.0.17"></script>
+  <script src="./js/app-v3.0.17.js?v=3.0.17"></script>
+  <script src="./js/theme.js?v=3.0.17"></script>
 
 <script id="mission-data-guard">
 window.addEventListener("DOMContentLoaded", () => {
