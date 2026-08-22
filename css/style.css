@@ -3787,3 +3787,15 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 }
 
 .partial-reset-control{display:none!important}
+
+/* v3.0.13 RG manual placement runtime fix */
+.relic-v3-cell.is-selected-relic-cell{
+  outline:3px solid rgba(37,99,235,.85);
+  outline-offset:-3px;
+}
+.relic-v3-cell.is-manual-anchor::after{
+  content:"◎"!important;
+  font-size:20px!important;
+  color:#ef4444!important;
+  text-shadow:0 0 2px #fff,0 0 4px #fff,0 1px 1px #fff!important;
+}
