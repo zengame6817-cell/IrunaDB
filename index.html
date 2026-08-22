@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v3.0.11</title>
+  <title>IrunaDB v3.0.12</title>
   <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -13,7 +13,7 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
-  <link rel="stylesheet" href="./css/style.css?v=3.0.11">
+  <link rel="stylesheet" href="./css/style.css?v=3.0.12">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -279,7 +279,7 @@ body.light-mode .calculation-card {
     <header class="site-header">
       <div>
         <p class="eyebrow">BUILD SIMULATOR</p>
-        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.11</span></h1>
+        <h1>IrunaDB <span id="appVersionLabel">Version 3.0.12</span></h1>
       </div>
       <div class="header-actions">
         <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"><span id="themeToggleLabel">☾ ダーク</span></button>
@@ -310,19 +310,6 @@ body.light-mode .calculation-card {
           </div>
           <div class="build-command-actions">
             <span id="selectedCount" class="count-badge">0件</span>
-            <label class="partial-reset-control">
-              <select id="partialResetSelect" aria-label="部分リセット">
-                <option value="">部分リセット…</option>
-                <option value="equipment">装備だけ</option>
-                <option value="crystals">クリスタ・☆能力だけ</option>
-                <option value="alcrysta">アルクリスタだけ</option>
-                <option value="relic">レリックだけ</option>
-                <option value="skills">スキルだけ</option>
-                <option value="status">ステータスだけ</option>
-                <option value="apostoria">アポストリアだけ</option>
-              </select>
-              <button id="partialResetButton" class="button button-secondary" type="button">リセット</button>
-            </label>
             <button id="resetBuildButton" class="button button-secondary" type="button">全解除</button>
           </div>
         </div>
@@ -345,7 +332,10 @@ body.light-mode .calculation-card {
               <span class="panel-number">RG</span>
               <h3>レリック</h3>
             </div>
-            <span id="buildRelicCount" class="count-badge">0 / 15</span>
+            <div class="section-header-actions">
+              <span id="buildRelicCount" class="count-badge">0 / 15</span>
+              <button class="button button-secondary compact-button" type="button" data-partial-reset="relic">リセット</button>
+            </div>
           </header>
 
           <p class="summary-note">
@@ -396,7 +386,7 @@ body.light-mode .calculation-card {
                   <span class="panel-number">01</span>
                   <h3>キャラクター設定</h3>
                 </div>
-                <button id="resetStatusButton" class="button button-secondary compact-button" type="button">初期化</button>
+                <button id="resetStatusButton" class="button button-secondary compact-button" type="button">ステータスリセット</button>
               </header>
               <div class="character-settings">
                 <label class="status-field character-job">
@@ -447,7 +437,10 @@ body.light-mode .calculation-card {
                 </label>
                 <div class="apostoria-line-settings" aria-label="アルクリスタ ライン">
                   <div class="apostoria-line-title">
-                    <strong>アルクリスタ ライン</strong>
+                    <div class="apostoria-line-title-row">
+                      <strong>アルクリスタ ライン</strong>
+                      <button class="button button-secondary compact-button" type="button" data-partial-reset="apostoria">リセット</button>
+                    </div>
                     <small id="apostoriaLineBoostSummary">強化率：赤+0% / 緑+0% / 青+0% / 黄+0% / 水+0% / 紫+0%</small>
                     <small class="apostoria-weekday-note">※曜日ラインボーナス（+50%）は反映しません。</small>
                   </div>
@@ -480,7 +473,7 @@ body.light-mode .calculation-card {
                   <span class="panel-number">02</span>
                   <h3>装備</h3>
                 </div>
-                <small>カードから装備を検索・確認</small>
+                <button class="button button-secondary compact-button" type="button" data-partial-reset="equipment">リセット</button>
               </header>
               <div id="equipmentSlots" class="equipment-slots"></div>
             </section>
@@ -491,7 +484,10 @@ body.light-mode .calculation-card {
                   <span class="panel-number">03</span>
                   <h3>クリスタ・☆能力</h3>
                 </div>
-                <small>装飾は☆能力のみ</small>
+                <div class="section-header-actions">
+                  <small>装飾は☆能力のみ</small>
+                  <button class="button button-secondary compact-button" type="button" data-partial-reset="crystals">リセット</button>
+                </div>
               </header>
               <div id="equipmentOptions" class="equipment-options"></div>
             </section>
@@ -502,7 +498,10 @@ body.light-mode .calculation-card {
                   <span class="panel-number">04</span>
                   <h3>アルクリスタ</h3>
                 </div>
-                <span id="alCount" class="count-badge">0 / 5</span>
+                <div class="section-header-actions">
+                  <span id="alCount" class="count-badge">0 / 5</span>
+                  <button class="button button-secondary compact-button" type="button" data-partial-reset="alcrysta">リセット</button>
+                </div>
               </header>
               <div id="alSlots" class="compact-slots"></div>
             </section>
@@ -515,7 +514,10 @@ body.light-mode .calculation-card {
             <section class="sim-panel skill-panel" id="skillPanel">
               <header class="sim-panel-header">
                 <div><span class="panel-number">06</span><h3>スキル</h3></div>
-                <small>職業に応じて表示</small>
+                <div class="section-header-actions">
+                  <small>職業に応じて表示</small>
+                  <button class="button button-secondary compact-button" type="button" data-partial-reset="skills">リセット</button>
+                </div>
               </header>
               <p class="summary-note">パッシブは自動適用、バフ・継続効果はON/OFFできます。</p>
               <div id="skillSelections" class="skill-selections"><div class="state-card">職業を選択してください。</div></div>
@@ -642,6 +644,7 @@ body.light-mode .calculation-card {
                 <button id="relicV3InvertBlocked" class="button button-secondary" type="button">反転</button>
               </div>
               <p id="relicManualHint" class="relic-manual-hint">手動配置OFF：盤面タップは使用不可マスの切替です。</p>
+              <p class="relic-anchor-note">手動配置では <b>◎</b> が形状の支点です。支点を置きたい盤面マスに合わせます。スマホは1回目のタップでプレビュー、同じ場所をもう1回タップで確定します。</p>
             </div>
 
             <div class="relic-tool-section-head relic-tool-section-spaced">
@@ -882,7 +885,7 @@ body.light-mode .calculation-card {
       <section id="view-settings" class="app-view">
         <div class="placeholder-panel">
           <p class="section-kicker">VERSION</p>
-          <h2>IrunaDB Version 3.0.11</h2>
+          <h2>IrunaDB Version 3.0.12</h2>
           <p>シミュレーター・データベース・使い方・設定を分離したUIです。武器・体・追加は精錬+9固定、特殊装備は精錬なしで計算します。公開データは静的JSONから高速取得します。</p>
           <div class="db-info-card">
             <h3>公開DB情報</h3>
@@ -893,7 +896,7 @@ body.light-mode .calculation-card {
             </dl>
           </div>
           <div class="changelog-card">
-            <h3>v3.0.11 更新履歴</h3>
+            <h3>v3.0.12 更新履歴</h3>
             <p>HIT% と 命中% を「HIT%」として統合し、同じ割合補正を1行で合算表示。</p>
             <p>ディレイ集計の重複・単位分裂と、レリック削除操作を修正しました。</p>
             <ul>
@@ -943,18 +946,18 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.11.js?v=3.0.11"></script>
-  <script src="./js/utils.js?v=3.0.11"></script>
-  <script src="./js/api.js?v=3.0.11"></script>
-  <script src="./js/modal.js?v=3.0.11"></script>
-  <script src="./js/ui.js?v=3.0.11"></script>
-  <script src="./data/skills.js?v=3.0.11"></script>
-<script src="./data/missions.js?v=3.0.11"></script>
-  <script src="./data/skill-quests.js?v=3.0.11"></script>
-<script src="./js/missions.js?v=3.0.11"></script>
-  <script src="./js/skill-quests.js?v=3.0.11"></script>
-  <script src="./js/app-v3.0.11.js?v=3.0.11"></script>
-  <script src="./js/theme.js?v=3.0.11"></script>
+  <script src="./js/config-v3.0.12.js?v=3.0.12"></script>
+  <script src="./js/utils.js?v=3.0.12"></script>
+  <script src="./js/api.js?v=3.0.12"></script>
+  <script src="./js/modal.js?v=3.0.12"></script>
+  <script src="./js/ui.js?v=3.0.12"></script>
+  <script src="./data/skills.js?v=3.0.12"></script>
+<script src="./data/missions.js?v=3.0.12"></script>
+  <script src="./data/skill-quests.js?v=3.0.12"></script>
+<script src="./js/missions.js?v=3.0.12"></script>
+  <script src="./js/skill-quests.js?v=3.0.12"></script>
+  <script src="./js/app-v3.0.12.js?v=3.0.12"></script>
+  <script src="./js/theme.js?v=3.0.12"></script>
 
 <script id="mission-data-guard">
 window.addEventListener("DOMContentLoaded", () => {
