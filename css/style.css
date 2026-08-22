@@ -3843,3 +3843,6 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .relic-v3-cell.is-manual-preview-valid.is-manual-anchor::after{
   color:#166534!important;
 }
+
+/* v3.0.18 click-to-freeze manual editing */
+.relic-v3-cell.is-selected-relic-cell{cursor:move}
