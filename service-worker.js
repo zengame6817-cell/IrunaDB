@@ -1,34 +1,62 @@
 "use strict";
-const CACHE_NAME = "irunadb-v3-0-34";
+const CACHE_NAME = "irunadb-v3-0-36";
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
-  "./js/config-v3.0.35.js", "./js/utils.js", "./js/api.js",
-  "./js/ui.js", "./js/modal.js", "./js/app-v3.0.35.js", "./js/theme.js",
-  "./data/skills.js", "./data/missions.js", "./data/skill-quests.js", "./js/skill-quests.js", "./js/missions.js"
+  "./js/config-v3.0.36.js", "./js/utils.js", "./js/api.js",
+  "./js/ui.js", "./js/modal.js", "./js/app-v3.0.36.js", "./js/theme.js",
+  "./data/skills.js", "./data/missions.js", "./data/skill-quests.js",
+  "./js/skill-quests.js", "./js/missions.js"
 ];
+
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    // 1ファイルの取得失敗でService Worker全体を失敗させない。
+    const results = await Promise.allSettled(APP_SHELL.map(async url => {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+      await cache.put(url, response.clone());
+    }));
+    results.forEach((result, index) => {
+      if (result.status === "rejected") console.warn("App shell cache skipped", APP_SHELL[index], result.reason);
+    });
+  })());
   self.skipWaiting();
 });
+
 self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))));
+  event.waitUntil(caches.keys().then(keys => Promise.all(
+    keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+  )));
   self.clients.claim();
 });
+
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+
   if (url.pathname.endsWith("/data/db.json")) {
     event.respondWith(fetch(event.request, { cache: "no-store" }));
     return;
   }
-  const isAppAsset = url.pathname.endsWith("/") || url.pathname.endsWith("/index.html") || url.pathname.endsWith(".js") || url.pathname.endsWith(".css");
+
+  const isAppAsset = url.pathname.endsWith("/") || url.pathname.endsWith("/index.html") ||
+    url.pathname.endsWith(".js") || url.pathname.endsWith(".css");
+
   if (isAppAsset) {
-    event.respondWith(fetch(event.request, { cache: "no-store" }).then(response => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
-      return response;
-    }).catch(() => caches.match(event.request, { ignoreSearch: true }).then(hit => hit || caches.match("./index.html"))));
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" }).then(response => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy)).catch(() => {});
+        }
+        return response;
+      }).catch(async () => {
+        return (await caches.match(event.request, { ignoreSearch: true })) ||
+          (await caches.match("./index.html")) || Response.error();
+      })
+    );
     return;
   }
   event.respondWith(fetch(event.request));

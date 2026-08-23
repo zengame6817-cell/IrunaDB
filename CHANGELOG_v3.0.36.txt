@@ -1,0 +1,8 @@
+IrunaDB v3.0.36
+- v3.0.35で欠落していた config-v3.0.35.js 問題を修正し、config-v3.0.36.jsを追加。
+- IrunaApi初期化失敗による readCache エラーを防止。
+- 保存ビルド・RG保存枠・RG作業内容・お気に入りを元キーを変更せず自動バックアップ。
+- RG作業内容のJSON読込エラー時もlocalStorageを削除しないよう保護。
+- Service WorkerのaddAll一括失敗を廃止し、個別キャッシュ方式へ変更。
+- Service Workerキャッシュを irunadb-v3-0-36 に更新。
+- v3.0.35のスキルDB復旧、ペットスキル、Clarity RG対応を維持。
