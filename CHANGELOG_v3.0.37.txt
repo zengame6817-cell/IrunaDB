@@ -1,0 +1,7 @@
+IrunaDB v3.0.37
+
+- favicon.ico 404 を解消（埋め込みSVG favicon）
+- 大容量DBをlocalStorageへ保存しない容量保護を追加
+- QuotaExceededError時はDBキャッシュだけを安全に破棄し、ビルド/RG/お気に入り保存には触れない
+- 表示バージョン・config・app・Service Workerを3.0.37へ統一
+- v3.0.36の保存データ復旧/バックアップ保護を維持

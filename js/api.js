@@ -27,8 +27,19 @@ window.IrunaApi = (() => {
 
   function writeCache(data, meta = {}) {
     if (!validateData(data)) throw new Error("キャッシュ対象のデータ形式が正しくありません");
+
+    // v3.0.37: localStorage はユーザーのビルド/RG保存を最優先にする。
+    // DBが大きい場合は無理に保存せず、毎回 static db.json を取得する。
+    const serialized = JSON.stringify(data);
+    const MAX_DB_CACHE_CHARS = 3000000;
+    if (serialized.length > MAX_DB_CACHE_CHARS) {
+      clearCache();
+      console.info(`[IrunaDB] DBキャッシュをスキップしました (${serialized.length.toLocaleString()}文字)`);
+      return false;
+    }
+
     try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+      localStorage.setItem(CACHE_KEY, serialized);
       localStorage.setItem(CACHE_META_KEY, JSON.stringify({
         savedAt: new Date().toISOString(),
         updatedAt: meta.updatedAt || meta.generatedAt || "",
@@ -40,9 +51,12 @@ window.IrunaApi = (() => {
       }));
       return true;
     } catch (error) {
-      // 大容量DBではlocalStorage上限を超える場合があります。静的JSONの利用自体は継続します。
-      console.warn("データキャッシュを保存できませんでした", error);
       clearCache();
+      if (error?.name === "QuotaExceededError") {
+        console.info("[IrunaDB] localStorage容量保護のためDBキャッシュを保存しませんでした");
+      } else {
+        console.warn("データキャッシュを保存できませんでした", error);
+      }
       return false;
     }
   }
