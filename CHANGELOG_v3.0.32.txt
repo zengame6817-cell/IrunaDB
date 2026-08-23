@@ -1,0 +1,6 @@
+IrunaDB v3.0.32
+
+- Microsoft Clarity セッション録画向けにRG関連のゲーム情報へ data-clarity-unmask="true" を追加。
+- RGオンボーディング、ビルド側レリック欄、RGレリック画面の盤面・レリック名・ボーナス表示を録画で確認しやすくした。
+- 入力欄・selectはClarity仕様上、引き続きマスクされる。
+- Service Workerキャッシュを v3.0.32 に更新。
