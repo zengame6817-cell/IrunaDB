@@ -2,8 +2,8 @@
 const CACHE_NAME = "irunadb-v3-0-34";
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
-  "./js/config-v3.0.34.js", "./js/utils.js", "./js/api.js",
-  "./js/ui.js", "./js/modal.js", "./js/app-v3.0.34.js", "./js/theme.js",
+  "./js/config-v3.0.35.js", "./js/utils.js", "./js/api.js",
+  "./js/ui.js", "./js/modal.js", "./js/app-v3.0.35.js", "./js/theme.js",
   "./data/skills.js", "./data/missions.js", "./data/skill-quests.js", "./js/skill-quests.js", "./js/missions.js"
 ];
 self.addEventListener("install", event => {
