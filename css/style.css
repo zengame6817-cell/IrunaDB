@@ -3879,3 +3879,9 @@ body.screenshot-mode .app-shell{width:100%;max-width:none;padding:0!important}bo
 .rg-saved-panel{margin-top:14px}
 .rg-save-name-field{margin:8px 0}
 .rg-saved-slots .saved-build-slot{background:var(--panel-soft,#f7f9fc)}
+
+/* v3.0.27 ペットスキル編成 */
+.pet-skill-capacity{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;margin:0 0 10px;padding:10px 12px;border:1px solid var(--line,#d7dce5);border-radius:10px;background:var(--panel-soft,#f7f8fb)}
+.pet-skill-capacity span{font-weight:800;font-variant-numeric:tabular-nums}
+.pet-skill-capacity small{grid-column:1/-1;opacity:.72;line-height:1.4}
+.pet-skill-capacity.is-full span{font-weight:900}
