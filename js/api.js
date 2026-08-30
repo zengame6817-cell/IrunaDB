@@ -28,7 +28,7 @@ window.IrunaApi = (() => {
   function writeCache(data, meta = {}) {
     if (!validateData(data)) throw new Error("キャッシュ対象のデータ形式が正しくありません");
 
-    // v3.0.37: localStorage はユーザーのビルド/RG保存を最優先にする。
+    // v3.0.38: localStorage はユーザーのビルド/RG保存を最優先にする。
     // DBが大きい場合は無理に保存せず、毎回 static db.json を取得する。
     const serialized = JSON.stringify(data);
     const MAX_DB_CACHE_CHARS = 3000000;
