@@ -402,28 +402,29 @@ body.light-mode .calculation-card {
                 </label>
                 <label class="status-field">
                   <span>STR</span>
-                  <input id="statusStr" data-status-key="str" type="number" min="0" max="9999" value="0">
+                  <input id="statusStr" data-status-key="str" type="number" min="1" max="1723" value="1" inputmode="numeric">
                 </label>
                 <label class="status-field">
                   <span>AGI</span>
-                  <input id="statusAgi" data-status-key="agi" type="number" min="0" max="9999" value="0">
+                  <input id="statusAgi" data-status-key="agi" type="number" min="1" max="1723" value="1" inputmode="numeric">
                 </label>
                 <label class="status-field">
                   <span>VIT</span>
-                  <input id="statusVit" data-status-key="vit" type="number" min="0" max="9999" value="0">
+                  <input id="statusVit" data-status-key="vit" type="number" min="1" max="1723" value="1" inputmode="numeric">
                 </label>
                 <label class="status-field">
                   <span>INT</span>
-                  <input id="statusInt" data-status-key="int" type="number" min="0" max="9999" value="0">
+                  <input id="statusInt" data-status-key="int" type="number" min="1" max="1723" value="1" inputmode="numeric">
                 </label>
                 <label class="status-field">
                   <span>DEX</span>
-                  <input id="statusDex" data-status-key="dex" type="number" min="0" max="9999" value="0">
+                  <input id="statusDex" data-status-key="dex" type="number" min="1" max="1723" value="1" inputmode="numeric">
                 </label>
                 <label class="status-field">
                   <span>CRT</span>
-                  <input id="statusCrt" data-status-key="crt" type="number" min="0" max="9999" value="0">
+                  <input id="statusCrt" data-status-key="crt" type="number" min="1" max="1723" value="1" inputmode="numeric">
                 </label>
+                <div class="status-help character-help" style="grid-column:1/-1;margin:2px 0 6px;font-weight:700;">ステータスポイント残り：<span id="statusPointRemaining">1722 / 1722 pt</span></div>
                 <label class="status-field special-status-field">
                   <span>Rlb</span>
                   <input id="statusRlb" data-status-key="rlb" type="number" min="0" max="100" value="0" inputmode="numeric">
@@ -465,7 +466,7 @@ body.light-mode .calculation-card {
                   </select></label>
                 </div>
               </div>
-              <p class="status-help character-help">変更すると条件付き能力と数式効果をリアルタイムで再判定します。Rlb / Glb / Blb は各0～100。ライン本数のボーナスも合計能力へ反映します。</p>
+              <p class="status-help character-help">変更すると条件付き能力と数式効果をリアルタイムで再判定します。STR～CRTは初期1で、追加1722ptをRlb / Glb / Blb（各0～100）と共通で割り振ります。ライン本数のボーナスも合計能力へ反映します。</p>
             </section>
 
             <section class="sim-panel equipment-panel">
@@ -1009,7 +1010,7 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.46.js?v=3.0.46"></script>
+  <script src="./js/config-v3.0.47.js?v=3.0.47"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
   <script src="./js/modal.js?v=3.0.37"></script>
@@ -1019,7 +1020,7 @@ body.light-mode .calculation-card {
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./js/app-v3.0.46.js?v=3.0.46"></script>
+  <script src="./js/app-v3.0.47.js?v=3.0.47"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">
