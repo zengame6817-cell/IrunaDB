@@ -1,0 +1,5 @@
+IrunaDB v3.0.45
+
+- 完成済みスプレッドシートのモンク SKILL_MASTER / SKILL_EFFECT_MASTER を反映。
+- MONSK 29件、MONEFF 17件を取り込み。
+- 他JOB・ペットスキル・既存条件データはv3.0.44を維持。
