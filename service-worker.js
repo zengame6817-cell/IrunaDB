@@ -1,9 +1,10 @@
 "use strict";
-const CACHE_NAME = "irunadb-v3-0-52";
+importScripts("./js/config-v3.0.53.js");
+const CACHE_NAME = `irunadb-v${IRUNA_CONFIG.APP_VERSION.replaceAll(".", "-")}`;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
-  "./js/config-v3.0.52.js", "./js/utils.js", "./js/api.js",
-  "./js/ui.js", "./js/modal.js", "./js/app-v3.0.52.js", "./js/theme.js",
+  "./js/config-v3.0.53.js", "./js/utils.js", "./js/api.js",
+  "./js/environment.js", "./js/environment-ui.js", "./js/ui.js", "./js/modal.js", "./js/app-v3.0.53.js", "./js/theme.js",
   "./data/skills.js", "./data/missions.js", "./data/skill-quests.js",
   "./js/skill-quests.js", "./js/missions.js"
 ];

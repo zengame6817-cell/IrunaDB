@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f7fc">
   <meta name="description" content="Iruna Online Database & Build Simulator">
-  <title>IrunaDB v3.0.27</title>
+  <title>IrunaDB</title>
   <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -575,6 +575,17 @@ body.light-mode .calculation-card {
                 <button id="copyUrlButton" class="button button-primary" type="button">共有URLをコピー</button>
                 <button id="clearUrlButton" class="button button-secondary" type="button">URL情報を削除</button>
               </div>
+              <hr>
+              <h4>環境を丸ごと共有</h4>
+              <p>保存ビルド・レリック保存枠・お気に入り・編集中のビルド・設定をJSONで保存／取り込みします。ビルドとレリック保存枠は追加し、同名は連番で保持します。お気に入りと編集中の環境・設定はファイルの内容で上書きします。</p>
+              <button id="environmentExport" class="button button-secondary" type="button">環境を保存（JSON）</button>
+              <p><label for="environmentFile">環境JSONを選ぶ</label><input id="environmentFile" type="file" accept=".json,application/json"></p>
+              <pre id="environmentPreview" style="white-space:pre-wrap;overflow-wrap:anywhere" aria-live="polite"></pre>
+              <button id="environmentImport" class="button button-primary" type="button" disabled>確認した環境を取り込む</button>
+              <p>取り込み前に自動バックアップします。容量不足時は取り込みを中止します。不要な保存枠は取り込み後に削除できます。</p>
+              <button id="environmentRollback" class="button button-secondary" type="button" disabled>前回取り込み前に戻す</button>
+              <button id="environmentBackupExport" class="button button-secondary" type="button" disabled>取り込み前の環境をJSON保存</button>
+              <p id="environmentMessage" class="share-message" role="status" aria-live="polite"></p>
               <p id="shareMessage" class="share-message" aria-live="polite"></p>
             </section>
           </aside>
@@ -1010,7 +1021,8 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.52.js?v=3.0.52"></script>
+  <script src="./js/config-v3.0.53.js?v=3.0.53"></script>
+  <script src="./js/environment.js?v=3.0.53"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
   <script src="./js/modal.js?v=3.0.37"></script>
@@ -1020,7 +1032,8 @@ body.light-mode .calculation-card {
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./js/app-v3.0.52.js?v=3.0.52"></script>
+  <script src="./js/app-v3.0.53.js?v=3.0.53"></script>
+  <script src="./js/environment-ui.js?v=3.0.53"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">
