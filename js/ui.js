@@ -1,7 +1,7 @@
 "use strict";
 window.IrunaUi = (() => {
   const { escapeHtml, normalizeSearchText, isBlank, formatFormulaText } = window.IrunaUtils;
-  const categories = ["すべて", "武器", "体", "追加", "特殊", "クリスタ", "アルクリスタ", "☆能力", "レリック"];
+  const categories = ["すべて", "武器", "体", "追加", "特殊", "クリスタ", "アルクリスタ", "☆能力", "レリック", "素材", "収集品", "消費"];
   const elements = {
     itemGrid: document.getElementById("itemGrid"), categoryTabs: document.getElementById("categoryTabs"),
     searchInput: document.getElementById("searchInput"), resultCount: document.getElementById("resultCount"),

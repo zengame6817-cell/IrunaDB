@@ -6,7 +6,7 @@ window.IrunaEnvironment = (() => {
   const BUILDS = "irunadb.savedBuilds.v21", RG = "irunadb.savedRgSlots.v1";
   const fixed = new Set([BUILDS, RG, "irunadb.rg.workspace.v1", "irunadb.favorites",
     "irunadb.relic.customPatterns.v1", "irunadb.rg.onboardingSeen.v1", "irunadb.theme.v2",
-    "irunadb_mission_done_v1", "irunadb_mission_owned_v1", "irunadb_skillquest_done_v1", DRAFT]);
+    "irunadb_mission_done_v1", "irunadb_mission_owned_v1", "irunadb_skillquest_done_v1", "irunadb.craft.user.v1", DRAFT]);
   const isAllowed = key => fixed.has(key) || /^irunadb\.panel\.[^\r\n]{1,100}\.collapsed$/.test(key) ||
     /^irunadb\.equipment-card\.(weapon|body|additional|special|decoration)\.collapsed$/.test(key) ||
     /^irunadb\.v12\.collapse\.[\w-]{1,60}$/.test(key);
@@ -75,7 +75,13 @@ window.IrunaEnvironment = (() => {
     if (key.includes(".collapsed")) { assert(["true", "false"].includes(raw), key); return; }
     if (key.startsWith("irunadb.v12.collapse.")) { assert(["open", "closed"].includes(raw), key); return; }
     const v = JSON.parse(raw); safeTree(v);
-    if (key === BUILDS || key === RG) {
+    if (key === "irunadb.craft.user.v1") {
+      const fields = ["鍛冶", "木工", "裁縫", "彫金", "錬金術", "調理"];
+      assert(plain(v) && plain(v.levels) && Object.keys(v.levels).length === fields.length, "生産設定");
+      fields.forEach(f => assert(Number.isInteger(v.levels[f]) && v.levels[f] >= 0 && v.levels[f] <= 999, "生産Lv"));
+      arr(v.favorites, 10000, "生産のお気に入り");
+      assert(v.favorites.every(x => id(x) && x.length > 0) && new Set(v.favorites).size === v.favorites.length, "生産のお気に入りID・並び順");
+    } else if (key === BUILDS || key === RG) {
       arr(v, 10000, key); v.forEach(e => {
         if (e === null) return;
         assert(plain(e) && id(e.name) && typeof e.savedAt === "string" && Number.isFinite(Date.parse(e.savedAt)), "保存枠");
