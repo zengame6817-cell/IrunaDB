@@ -153,6 +153,7 @@ window.IrunaModal = (() => {
     }
 
     window.IrunaCatalog?.decorateModal(item);
+    window.IrunaItemMemo?.decorate(item);
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
