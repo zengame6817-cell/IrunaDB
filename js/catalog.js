@@ -21,10 +21,9 @@
   const resultRows = id => data.results.filter(r => active(r) && r["レシピID"] === id);
   const button = (attr,id,text) => `<button type="button" class="catalog-link" ${attr}="${esc(id)}">${esc(text)}</button>`;
   function source(row) {
-    let url; try { url = new URL(row["出典URL"]); } catch { return ""; }
-    if (!["https:","http:"].includes(url.protocol)) return "";
-    return `<p class="catalog-source"><a href="${esc(url.href)}" target="_blank" rel="noopener noreferrer">出典を確認</a> · ${esc(row["確認日"])} · ${esc(row["確認状態"])}</p>`;
+    return `<p class="catalog-source">確認日：${esc(row["確認日"])} · ${esc(row["確認状態"])}</p>`;
   }
+  const publicNote = value => esc(String(value || "").replace(/https?:\/\/\S+/g, "").trim());
   function save(next) {
     try { env.validateValue(model.key,JSON.stringify(next)); localStorage.setItem(model.key,JSON.stringify(next)); settings = next; renderCraft(); message("生産設定を保存しました。"); return true; }
     catch (e) { message(`保存できませんでした：${e.message}`); return false; }
@@ -63,7 +62,7 @@
       return `<article class="catalog-card"><h3>${button("data-item",r["アイテムID"],name(r["アイテムID"]))}</h3><p><strong>${esc(mob["名前"])}</strong> ${esc(lv)}</p>
       <p>${spawns.map(s => esc(maps.get(s["マップID"])?.["マップ名"]||"未確認")).join(" / ")}</p>
       <p>ドロップ枠：${esc(r["ドロップ枠"]||"未確認")} · 確率：${r["ドロップ率(%)"]===""?"未確認":esc(r["ドロップ率(%)"])+"%"}</p>
-      ${source(r)}<p class="catalog-note">${esc(mob["備考"]||"")} ${esc(r["備考"]||"")}</p></article>`;
+      ${source(r)}<p class="catalog-note">${publicNote(mob["備考"])} ${publicNote(r["備考"])}</p></article>`;
     }).join("") || '<p class="catalog-empty">一致するドロップ情報は未登録です。</p>';
     const purchases = data.items.filter(r => r["入手区分"] === "購入" && model.normalize([r["名前"],r["入手先"],r["マップ"]].join(" ")).includes(q));
     if (purchases.length) $("dropList").innerHTML += purchases.map(r => `<article class="catalog-card"><h3>${button("data-item",r["アイテムID"],r["名前"])}</h3><p>購入：${esc(r["入手先"])} / ${esc(r["マップ"])}</p><p class="catalog-note">ドロップ以外の入手先です。価格は未確認です。</p></article>`).join("");
