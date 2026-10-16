@@ -4351,9 +4351,12 @@ function collectTotalData() {
   }
 
   function renderDatabase() {
-    ui.renderTabs(state.activeCategory, category => { state.activeCategory = category; renderDatabase(); });
+    ui.renderTabs(state.activeCategory, category => { state.activeCategory = category; if(category !== "すべて")document.getElementById("databaseItemType").value=""; renderDatabase(); });
     let filtered = ui.filterItems(state.items, state.activeCategory, state.searchQuery, context.searchIndex);
     filtered = filtered.filter(item => {
+      const itemType = document.getElementById("databaseItemType")?.value || "";
+      if (itemType && window.IrunaItemFilters.kind(item) !== itemType) return false;
+      if (!window.IrunaItemFilters.matches(item,document.getElementById("databaseEffect")?.value || "",document.getElementById("databaseEffectSearch")?.value || "")) return false;
       const typeFilter = String(state.databaseFilters.weaponType || "");
       const attributeId = String(item["属性ID"] || "");
       const attributeName = context.attributeMap.get(attributeId)?.["属性名"] || attributeId;
@@ -4415,8 +4418,10 @@ function collectTotalData() {
     const catalogItems = window.IRUNA_CATALOG_DATA?.items || [];
     const existingIds = new Set(state.items.map(item => String(item["アイテムID"])));
     state.items = [...state.items, ...catalogItems.filter(item => item["有効"] !== false && !existingIds.has(String(item["アイテムID"])))];
+    state.items = state.items.map(window.IrunaItemFilters.overlay);
     mergeJobMaster();
     buildIndexes();
+    window.IrunaItemFilters.setContext(context);
     initializeSkillData();
     populateDatabaseFilters();
     const hasUrlBuild=new URL(location.href).searchParams.has("build");
@@ -4731,6 +4736,8 @@ function collectTotalData() {
   const databaseSort = document.getElementById("databaseSort");
   const databaseFavoriteOnly = document.getElementById("favoriteOnly");
   let databaseSearchTimer = 0;
+  window.IrunaItemFilters.populate(document.getElementById("databaseEffect"));
+  ["databaseItemType","databaseEffect","databaseEffectSearch"].forEach(id => document.getElementById(id).addEventListener("input",()=>{if(id==="databaseItemType")state.activeCategory="すべて";renderDatabase();}));
 
   databaseSearchInput?.addEventListener("input", event => {
     state.searchQuery = event.target.value || "";
@@ -4751,6 +4758,7 @@ function collectTotalData() {
     if (databaseAttribute) databaseAttribute.value = "";
     if (databaseSort) databaseSort.value = "name";
     if (databaseFavoriteOnly) databaseFavoriteOnly.checked = false;
+    ["databaseItemType","databaseEffect","databaseEffectSearch"].forEach(id => {document.getElementById(id).value="";});
     renderDatabase();
   });
   databaseWeaponType?.addEventListener("change", event => {

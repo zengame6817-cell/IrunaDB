@@ -83,7 +83,7 @@ test('production settings join environment allowlist and validate without modify
   assert.throws(()=>env.validateValue(memoKey,JSON.stringify([...memo,...memo])));
 });
 test('all changed scripts parse and app shell/HTML references exist', () => {
-  for(const file of ['js/app-v3.0.55.js','js/config-v3.0.58.js','js/item-memo.js','js/navigation.js','js/catalog.js','js/catalog-model.js','js/environment.js','js/modal.js','js/ui.js','data/catalog.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,file),'utf8'),{filename:file});
+  for(const file of ['js/app-v3.0.55.js','js/config-v3.0.59.js','js/item-filters.js','data/item-effects.js','js/item-memo.js','js/navigation.js','js/catalog.js','js/catalog-model.js','js/environment.js','js/modal.js','js/ui.js','data/catalog.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,file),'utf8'),{filename:file});
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   for(const match of html.matchAll(/(?:href|src)="(\.\/[^"?]+)(?:\?[^" ]*)?"/g))assert(fs.existsSync(path.join(root,match[1])),match[1]);
   const sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
