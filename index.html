@@ -15,6 +15,7 @@
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
   <link rel="stylesheet" href="./css/style.css?v=3.0.27">
+  <link rel="stylesheet" href="./css/catalog.css?v=3.0.55">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -298,6 +299,8 @@ body.light-mode .calculation-card {
       <button class="main-tab" data-view="mission" type="button"><span>MS</span>ミッション</button>
       <button class="main-tab" data-view="skill" type="button"><span>SK</span>スキル</button>
       <button class="main-tab" data-view="relic" type="button"><span>RG</span>レリック<em id="rgNavNew" class="rg-nav-new">NEW</em></button>
+      <button class="main-tab" data-view="craft" type="button"><span>製</span>生産</button>
+      <button class="main-tab" data-view="drops" type="button"><span>入</span>ドロップ情報</button>
       <button class="main-tab" data-view="guide" type="button"><span>?</span>使い方</button>
       <button class="main-tab" data-view="settings" type="button"><span>⚙</span>設定</button>
     </nav>
@@ -919,6 +922,26 @@ body.light-mode .calculation-card {
         </div>
       </section>
 
+      <section id="view-craft" class="app-view">
+        <h2>生産</h2>
+        <p>生産Lvは1人分を分野ごとに保存します。お気に入りだけ表示すると、上下ボタンで自分用の順番に並べられます。</p>
+        <div id="craftLevels" class="catalog-levels"></div>
+        <div class="catalog-toolbar">
+          <input id="craftSearch" type="search" aria-label="レシピ・素材を検索" placeholder="レシピ名・素材名で検索">
+          <select id="craftField" aria-label="生産分野"><option value="">すべての分野</option><option>鍛冶</option><option>木工</option><option>裁縫</option><option>彫金</option><option>錬金術</option><option>調理</option></select>
+          <label><input id="craftOnlyPossible" type="checkbox">Lv条件を満たすだけ（自分のLv＋10まで）</label>
+          <label><input id="craftOnlyFavorite" type="checkbox">お気に入りだけ</label>
+        </div>
+        <p id="craftMessage" class="catalog-status" role="status"></p><p id="craftCount" aria-live="polite"></p>
+        <div id="craftList" class="catalog-list"></div>
+        <p id="catalogUpdated" class="catalog-note"></p>
+      </section>
+      <section id="view-drops" class="app-view">
+        <h2>ドロップ情報・入手先</h2>
+        <p>モンスター名・マップ名・アイテム名で検索できます。資料の確認状態を表示し、不明なドロップ率は「未確認」とします。</p>
+        <div class="catalog-toolbar"><input id="dropSearch" type="search" aria-label="モンスター・マップ・アイテムを検索" placeholder="モンスター名・マップ名・アイテム名"></div>
+        <p id="dropCount" aria-live="polite"></p><div id="dropList" class="catalog-list"></div>
+      </section>
       <section id="view-guide" class="app-view">
         <div class="page-heading">
           <div><p class="section-kicker">QUICK GUIDE</p><h2>IrunaDBの使い方</h2></div>
@@ -1021,19 +1044,22 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.54.js?v=3.0.54"></script>
-  <script src="./js/environment.js?v=3.0.54"></script>
+  <script src="./js/config-v3.0.55.js?v=3.0.55"></script>
+  <script src="./js/environment.js?v=3.0.55"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
-  <script src="./js/modal.js?v=3.0.37"></script>
-  <script src="./js/ui.js?v=3.0.37"></script>
+  <script src="./js/modal.js?v=3.0.55"></script>
+  <script src="./js/ui.js?v=3.0.55"></script>
   <script src="./data/skills.js?v=3.0.49"></script>
 <script src="./data/missions.js?v=3.0.37"></script>
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./js/app-v3.0.54.js?v=3.0.54"></script>
-  <script src="./js/environment-ui.js?v=3.0.54"></script>
+  <script src="./data/catalog.js?v=3.0.55"></script>
+  <script src="./js/catalog-model.js?v=3.0.55"></script>
+  <script src="./js/app-v3.0.55.js?v=3.0.55"></script>
+  <script src="./js/catalog.js?v=3.0.55"></script>
+  <script src="./js/environment-ui.js?v=3.0.55"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">
