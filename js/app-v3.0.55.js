@@ -926,6 +926,8 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   }
 
   function itemMatchesSlot(item, slot) {
+    if (String(item["アイテムID"] || "").startsWith("REF")) return false;
+    if (item["表示分類"] === "生産参照専用") return false;
     const candidates = [item["分類"], item["表示分類"], item["サブ分類"]]
       .map(value => String(value || "").trim())
       .filter(Boolean);
@@ -3203,7 +3205,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     }
   }
 
-  
+
   const STAT_NAME_ALIASES = {
     "詠唱":"詠唱時間",
     "ボスに物理":"ボス物理",

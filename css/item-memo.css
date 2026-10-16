@@ -1,0 +1,17 @@
+#itemMemoDialog{width:min(540px,calc(100% - 24px));max-height:80dvh;box-sizing:border-box;overflow:auto;border:1px solid var(--v26-border);border-radius:16px;background:var(--v26-surface);color:var(--v26-text);padding:20px;box-shadow:var(--v26-shadow)}
+#itemMemoDialog::backdrop{background:#0007}
+#itemMemoDialog header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#itemMemoDialog h2{margin:0;font-size:20px}
+#itemMemoDialog p{font-size:13px;line-height:1.6}
+#itemMemoDialog button{cursor:pointer}
+#itemMemoDialog [data-memo-close]{background:none;color:inherit;border:0;font-size:26px;min-width:40px;min-height:40px}
+.item-memo-entry{display:flex;gap:8px;margin-top:6px}
+.item-memo-entry input{min-width:0;flex:1;background:var(--v26-input);color:inherit;border:1px solid var(--v26-border);border-radius:8px;padding:10px;font-size:16px}
+#itemMemoList{list-style:none;margin:12px 0;padding:0}
+#itemMemoList li{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--v26-border);font-size:14px}
+#itemMemoList label{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+#itemMemoList span{overflow-wrap:anywhere}
+#itemMemoList input{flex:none;width:20px;height:20px}
+#itemMemoList .is-done span{text-decoration:line-through;opacity:.6}
+#itemMemoList button{border:1px solid var(--v26-border);background:var(--v26-surface-2);color:inherit;border-radius:8px;padding:8px;flex:none}
+body.screenshot-mode #itemMemoToggle{display:none}
