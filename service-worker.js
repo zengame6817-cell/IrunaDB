@@ -1,14 +1,14 @@
 "use strict";
-importScripts("./js/config-v3.0.60.js");
+importScripts("./js/config-v3.0.61.js");
 const CACHE_NAME = `irunadb-v${IRUNA_CONFIG.APP_VERSION.replaceAll(".", "-")}`;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
-  "./js/config-v3.0.60.js", "./js/utils.js", "./js/api.js",
+  "./js/config-v3.0.61.js", "./js/utils.js", "./js/api.js",
   "./data/catalog.js", "./js/catalog-model.js", "./js/catalog.js", "./css/catalog.css", "./css/navigation.css", "./js/navigation.js", "./js/environment.js", "./js/environment-ui.js", "./js/ui.js", "./js/modal.js", "./js/app-v3.0.55.js", "./js/theme.js",
   "./data/skills.js", "./data/missions.js", "./data/skill-quests.js",
   "./js/item-memo.js", "./css/item-memo.css",
   "./data/item-effects.js", "./js/item-filters.js",
-  "./data/locations.js",
+  "./data/locations.js", "./data/wiki.js", "./js/wiki-data.js",
   "./js/location-browser.js",
   "./js/skill-quests.js", "./js/missions.js"
 ];

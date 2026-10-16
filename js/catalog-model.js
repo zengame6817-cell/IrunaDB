@@ -45,11 +45,12 @@
       const rows=new Map(base[table].map(r=>[r[key],r]));
       const updates=extra.updates?.[table] || [];
       if(!Array.isArray(updates))throw new Error("入手先の更新形式が不正です");
-      if(updates.length && !['maps','monsters'].includes(table))throw new Error('この種類の入手先更新はできません');
+      if(updates.length && !['maps','monsters','drops'].includes(table))throw new Error('この種類の入手先更新はできません');
       const updated=new Set();
       for(const row of updates){
         if(!rows.has(row[key]) || updated.has(row[key]))throw new Error("入手先の更新IDが不正です");
         const old=rows.get(row[key]);
+        if(table==='drops' && Object.keys(row).some(field=>!['出典ID','出典URL','確認日','確認状態','備考'].includes(field)&&row[field]!==old[field]))throw new Error('ドロップの照合では参照先・条件・確率を置換できません');
         if((table==='maps'&&old['マップ名']!==row['マップ名'])||(table==='monsters'&&old['名前']!==row['名前']))throw new Error("別の場所・モンスターへの置換はできません");
         rows.set(row[key],{...old,...row});updated.add(row[key]);
       }
