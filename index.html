@@ -15,9 +15,9 @@
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
   <link rel="stylesheet" href="./css/style.css?v=3.0.27">
-  <link rel="stylesheet" href="./css/catalog.css?v=3.0.58">
-  <link rel="stylesheet" href="./css/navigation.css?v=3.0.58">
-  <link rel="stylesheet" href="./css/item-memo.css?v=3.0.58">
+  <link rel="stylesheet" href="./css/catalog.css?v=3.0.59">
+  <link rel="stylesheet" href="./css/navigation.css?v=3.0.59">
+  <link rel="stylesheet" href="./css/item-memo.css?v=3.0.59">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -828,6 +828,12 @@ body.light-mode .calculation-card {
             </label>
           </div>
           <p class="database-ranking-help">※ 能力値順は「種類」で選んだ能力を優先し、未選択時は検索語に含まれる能力名を使います。</p>
+          <div class="catalog-toolbar">
+            <label>アイテム区分 <select id="databaseItemType"><option value="">すべて</option><option value="equipment">装備</option><option value="recovery">回復アイテム</option><option value="consumable">消費アイテム（回復以外）</option><option value="material">素材・収集品</option><option value="other">その他</option></select></label>
+            <label>効能 <select id="databaseEffect"></select></label>
+            <input id="databaseEffectSearch" type="search" aria-label="アイテムの効能を検索" placeholder="効能のキーワード（例：HP、魔法耐性）">
+          </div>
+          <p class="catalog-note">効能は登録済みの説明・能力が対象です。資料に効能の記載がないアイテムは「効能の記載なし」で確認できます。</p>
           <label class="favorite-only-toggle"><input id="favoriteOnly" type="checkbox"> お気に入りのみ表示</label>
         </section>
         <section class="result-toolbar">
@@ -932,9 +938,17 @@ body.light-mode .calculation-card {
         <div class="catalog-toolbar">
           <input id="craftSearch" type="search" aria-label="レシピ・素材を検索" placeholder="レシピ名・素材名で検索">
           <select id="craftField" aria-label="生産分野"><option value="">すべての分野</option><option>鍛冶</option><option>木工</option><option>裁縫</option><option>彫金</option><option>錬金術</option><option>調理</option></select>
+          <label>完成品 <select id="craftItemType"><option value="">すべて</option><option value="equipment">装備</option><option value="recovery">回復アイテム</option><option value="consumable">消費アイテム（回復以外）</option><option value="material">素材・収集品</option><option value="other">その他</option></select></label>
+          <label>種別 <select id="craftKind"><option value="">すべて</option><option>作成</option><option>強化</option><option>未確認</option></select></label>
+          <label>Lv範囲 <input id="craftMinLevel" type="number" min="0" max="999" step="1" aria-label="生産Lvの下限" placeholder="下限">～<input id="craftMaxLevel" type="number" min="0" max="999" step="1" aria-label="生産Lvの上限" placeholder="上限"></label>
+          <label>並び順 <select id="craftSort"><option value="levelAsc">Lvが低い順</option><option value="levelDesc">Lvが高い順</option><option value="name">名前順</option><option value="field">分野・Lv順</option></select></label>
+          <label>効能 <select id="craftEffect"></select></label>
+          <input id="craftEffectSearch" type="search" aria-label="完成品の効能を検索" placeholder="効能のキーワード（例：HP、魔法耐性）">
           <label><input id="craftOnlyPossible" type="checkbox">Lv条件を満たすだけ（自分のLv＋10まで）</label>
           <label><input id="craftOnlyFavorite" type="checkbox">お気に入りだけ</label>
+          <button id="craftClearFilters" class="button button-secondary" type="button">絞り込みを解除</button>
         </div>
+        <p id="craftFilterHint" class="catalog-note" role="status"></p>
         <p id="craftMessage" class="catalog-status" role="status"></p><p id="craftCount" aria-live="polite"></p>
         <div id="craftList" class="catalog-list"></div>
         <p id="catalogUpdated" class="catalog-note"></p>
@@ -1047,24 +1061,26 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.58.js?v=3.0.58"></script>
-  <script src="./js/environment.js?v=3.0.58"></script>
-  <script src="./js/item-memo.js?v=3.0.58"></script>
+  <script src="./js/config-v3.0.59.js?v=3.0.59"></script>
+  <script src="./js/environment.js?v=3.0.59"></script>
+  <script src="./js/item-memo.js?v=3.0.59"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
-  <script src="./js/modal.js?v=3.0.58"></script>
-  <script src="./js/ui.js?v=3.0.58"></script>
+  <script src="./js/modal.js?v=3.0.59"></script>
+  <script src="./js/ui.js?v=3.0.59"></script>
   <script src="./data/skills.js?v=3.0.49"></script>
 <script src="./data/missions.js?v=3.0.37"></script>
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./data/catalog.js?v=3.0.58"></script>
-  <script src="./js/catalog-model.js?v=3.0.58"></script>
-  <script src="./js/app-v3.0.55.js?v=3.0.58"></script>
-  <script src="./js/catalog.js?v=3.0.58"></script>
-  <script src="./js/navigation.js?v=3.0.58"></script>
-  <script src="./js/environment-ui.js?v=3.0.58"></script>
+  <script src="./data/catalog.js?v=3.0.59"></script>
+  <script src="./data/item-effects.js?v=3.0.59"></script>
+  <script src="./js/item-filters.js?v=3.0.59"></script>
+  <script src="./js/catalog-model.js?v=3.0.59"></script>
+  <script src="./js/app-v3.0.55.js?v=3.0.59"></script>
+  <script src="./js/catalog.js?v=3.0.59"></script>
+  <script src="./js/navigation.js?v=3.0.59"></script>
+  <script src="./js/environment-ui.js?v=3.0.59"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">

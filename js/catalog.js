@@ -31,6 +31,9 @@
   const materialRows = id => materialsByRecipe.get(id) || [];
   const resultRows = id => resultsByRecipe.get(id) || [];
   const recipeSearch = new Map(data.recipes.map(r => [r["レシピID"],model.normalize([r["レシピ名"],r["生産分野"],...materialRows(r["レシピID"]).map(m => name(m["素材アイテムID"])),...resultRows(r["レシピID"]).map(m => name(m["完成アイテムID"]))].join(" "))]));
+  const itemFilters = window.IrunaItemFilters;
+  itemFilters.populate($("craftEffect"));
+  const outputItems = id => resultRows(id).map(r=>items.get(r["完成アイテムID"])).filter(Boolean);
   let visibleRecipes = 50;
   const button = (attr,id,text) => `<button type="button" class="catalog-link" ${attr}="${esc(id)}">${esc(text)}</button>`;
   function source(row) {
@@ -38,18 +41,35 @@
   }
   const publicNote = value => esc(String(value || "").replace(/https?:\/\/\S+/g, "").trim());
   function save(next) {
-    try { env.validateValue(model.key,JSON.stringify(next)); localStorage.setItem(model.key,JSON.stringify(next)); settings = next; renderCraft(); message("生産設定を保存しました。"); return true; }
+    try { env.validateValue(model.key,JSON.stringify(next)); localStorage.setItem(model.key,JSON.stringify(next)); settings = next; renderCraft(false); message("生産設定を保存しました。"); return true; }
     catch (e) { message(`保存できませんでした：${e.message}`); return false; }
   }
   function renderCraft(reset = true) {
     if (reset) visibleRecipes = 50;
     const q = model.normalize($("craftSearch").value), field = $("craftField").value;
+    const itemType = $("craftItemType").value, kind = $("craftKind").value, effect = $("craftEffect").value, effectQuery = $("craftEffectSearch").value;
+    const min = $("craftMinLevel").value === "" ? 0 : Number($("craftMinLevel").value), max = $("craftMaxLevel").value === "" ? 999 : Number($("craftMaxLevel").value);
+    const validRange = Number.isInteger(min) && Number.isInteger(max) && min >= 0 && max <= 999 && min <= max;
+    $("craftSort").disabled = $("craftOnlyFavorite").checked;
+    $("craftFilterHint").textContent = !validRange ? "Lv範囲は0～999の整数で、下限≦上限にしてください。" : $("craftOnlyFavorite").checked ? "お気に入りだけ表示中は、自分で並べた順番を優先します。" : "完成品の区分・効能は大成功の完成品も対象です。効能の記載がないものは推測せず区別しています。";
     let rows = data.recipes.filter(active).filter(r => (!field || r["生産分野"] === field) &&
+      validRange && r["レシピLv"] >= min && r["レシピLv"] <= max && (!kind || r["生産種別"] === kind) &&
+      ((!itemType && !effect && !effectQuery.trim()) || outputItems(r["レシピID"]).some(item => (!itemType || itemFilters.kind(item) === itemType) && itemFilters.matches(item,effect,effectQuery))) &&
       (!$("craftOnlyPossible").checked || model.canCraft(r,settings)) &&
       (!$("craftOnlyFavorite").checked || settings.favorites.includes(r["レシピID"])) &&
       recipeSearch.get(r["レシピID"]).includes(q));
     if ($("craftOnlyFavorite").checked) rows.sort((a,b) => settings.favorites.indexOf(a["レシピID"])-settings.favorites.indexOf(b["レシピID"]));
-    $("craftCount").textContent = `${rows.length}件 / 登録${data.recipes.filter(active).length}件`;
+    else {
+      const sort = $("craftSort").value;
+      rows.sort((a,b) => {
+        const byLevel = a["レシピLv"]-b["レシピLv"], byField = model.fields.indexOf(a["生産分野"])-model.fields.indexOf(b["生産分野"]), byName = a["レシピ名"].localeCompare(b["レシピ名"],"ja",{numeric:true});
+        if(sort === "name") return byName || byLevel;
+        if(sort === "field") return byField || byLevel || byName;
+        return (sort === "levelDesc" ? -byLevel : byLevel) || byField || byName;
+      });
+    }
+    const shown = Math.min(rows.length,visibleRecipes);
+    $("craftCount").textContent = `該当${rows.length}件 / 登録${data.recipes.filter(active).length}件 · ${shown}件を表示中（検索・絞り込みは全件が対象です）`;
     $("craftList").innerHTML = rows.slice(0,visibleRecipes).map(r => {
       const id = r["レシピID"], favorite = settings.favorites.includes(id), index = settings.favorites.indexOf(id);
       return `<article class="catalog-card" data-recipe-card="${esc(id)}"><h3>${esc(r["レシピ名"])}</h3>
@@ -60,16 +80,23 @@
       ${favorite && $("craftOnlyFavorite").checked?`<button type="button" class="button button-secondary" data-move="${esc(id)}" data-offset="-1" ${index===0?"disabled":""}>↑ 上へ</button><button type="button" class="button button-secondary" data-move="${esc(id)}" data-offset="1" ${index===settings.favorites.length-1?"disabled":""}>↓ 下へ</button>`:""}</div>
       <h4>${r["生産種別"]==="強化"?"強化対象":"必要素材"}</h4><ul>${materialRows(id).map(m => `<li>${button("data-item",m["素材アイテムID"],name(m["素材アイテムID"]))} ×${m["必要個数"]} · ${button("data-drop-item",m["素材アイテムID"],"入手先")} · ${button("data-memo-add",name(m["素材アイテムID"]),"メモに追加")}</li>`).join("") || "<li>未確認</li>"}</ul>
       <h4>完成品</h4><ul>${resultRows(id).map(m => `<li>${esc(m["結果区分"])}：${button("data-item",m["完成アイテムID"],name(m["完成アイテムID"]))} ×${m["完成個数"]}</li>`).join("") || "<li>未確認</li>"}</ul>
+      ${[...new Map(outputItems(id).filter(i=>i["分類"]==="消費").map(i=>[i["アイテムID"],i])).values()].map(i=>`<p class="catalog-effect-summary">${esc(i["名前"])}：${esc(itemFilters.textFor(i)||"効能の記載なし")}</p>`).join("")}
       <p class="catalog-note">${publicNote(r["備考"])}</p>
       ${source(r)}</article>`;
     }).join("") || '<p class="catalog-empty">条件に合うレシピがありません。検索・絞り込みを変更してください。</p>';
     if (rows.length > visibleRecipes) {
+      const pager = document.createElement("div"); pager.className = "catalog-pagination";
+      const summary = document.createElement("p"); summary.textContent = `${rows.length}件中 ${shown}件を表示中`;
       const more = document.createElement("button");
       more.type = "button"; more.className = "button button-secondary";
-      more.textContent = `さらに50件表示（残り ${rows.length-visibleRecipes}件）`;
+      more.textContent = `次の${Math.min(50,rows.length-shown)}件を表示（残り ${rows.length-shown}件）`;
       more.dataset.moreRecipes = "";
-      more.addEventListener("click",() => { visibleRecipes += 50; renderCraft(false); });
-      $("craftList").appendChild(more);
+      more.addEventListener("click",() => {
+        const previous = shown; visibleRecipes += 50; renderCraft(false);
+        const firstNew = $("craftList").querySelectorAll("[data-recipe-card]")[previous];
+        if (firstNew) { firstNew.tabIndex = -1; firstNew.focus({preventScroll:true}); firstNew.scrollIntoView({block:"start"}); }
+      });
+      pager.append(summary,more); $("craftList").appendChild(pager);
     }
   }
   function renderDrops() {
@@ -99,6 +126,7 @@
   function navigateRecipe(id) {
     const r = data.recipes.find(x => x["レシピID"]===id); if (!r) return;
     window.IrunaModal.close(); $("craftSearch").value=r["レシピ名"]; $("craftField").value="";
+    ["craftItemType","craftKind","craftMinLevel","craftMaxLevel","craftEffect","craftEffectSearch"].forEach(id=>{$(id).value="";});
     $("craftOnlyPossible").checked=$("craftOnlyFavorite").checked=false; renderCraft(); show("craft");
   }
   document.addEventListener("click", event => {
@@ -120,7 +148,12 @@
     if(event.target.value==="" || !Number.isInteger(n) || n<0 || n>999) {event.target.value=settings.levels[field];message("生産Lvは0～999の整数で入力してください。");return;}
     if(!save({...settings,levels:{...settings.levels,[field]:n}}))event.target.value=settings.levels[field];
   });
-  ["craftSearch","craftField","craftOnlyPossible","craftOnlyFavorite"].forEach(id => $(id).addEventListener("input",renderCraft));
+  ["craftSearch","craftField","craftOnlyPossible","craftOnlyFavorite","craftItemType","craftKind","craftMinLevel","craftMaxLevel","craftSort","craftEffect","craftEffectSearch"].forEach(id => $(id).addEventListener("input",renderCraft));
+  document.addEventListener("iruna-item-effects-ready",()=>renderCraft(false));
+  $("craftClearFilters").addEventListener("click",()=>{
+    ["craftSearch","craftField","craftItemType","craftKind","craftMinLevel","craftMaxLevel","craftEffect","craftEffectSearch"].forEach(id=>{$(id).value="";});
+    $("craftOnlyPossible").checked=$("craftOnlyFavorite").checked=false;$("craftSort").value="levelAsc";renderCraft();
+  });
   $("dropSearch").addEventListener("input",renderDrops);
   window.IrunaCatalog = {decorateModal(item) {
     const id=item["アイテムID"], uses=data.materials.filter(m => active(m) && m["素材アイテムID"]===id);
