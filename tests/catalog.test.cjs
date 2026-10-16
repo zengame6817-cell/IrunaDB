@@ -12,8 +12,20 @@ test('snapshot references and IDs are valid; no existing DB ID collision', () =>
   assert.equal(model.validate(data), data);
   const db = JSON.parse(fs.readFileSync(path.join(root,'data/db.json'),'utf8'));
   const existing = new Set(db.data.items.map(i=>i['アイテムID']));
-  assert(data.items.every(i=>!existing.has(i['アイテムID'])));
-  assert.equal(data.recipes.length,3); assert.equal(data.drops.length,3);
+  for(const item of data.items.filter(i=>existing.has(i['アイテムID']))) {
+    const original=db.data.items.find(i=>i['アイテムID']===item['アイテムID']);
+    assert.equal(item['名前'],original['名前']); assert.equal(item['分類'],original['分類']);
+  }
+  assert.equal(data.recipes.length,212); assert.equal(data.drops.length,3);
+  for(const field of model.fields) {
+    const recipes=data.recipes.filter(r=>r['生産分野']===field);
+    assert(recipes.length>0);
+    assert(recipes.every(r=>r['レシピLv']>=1 && r['レシピLv']<=20));
+    for(const r of recipes){
+      assert(data.materials.some(m=>m['レシピID']===r['レシピID']));
+      assert(data.results.some(m=>m['レシピID']===r['レシピID']&&m['結果区分']==='通常'));
+    }
+  }
 });
 test('bad references, duplicate IDs and unknown probability are distinguished', () => {
   const bad=structuredClone(data);bad.materials[0]['素材アイテムID']='missing';assert.throws(()=>model.validate(bad));
@@ -43,7 +55,7 @@ test('production settings join environment allowlist and validate without modify
   assert.equal(storage.getItem('other'),'keep');
 });
 test('all changed scripts parse and app shell/HTML references exist', () => {
-  for(const file of ['js/app-v3.0.55.js','js/config-v3.0.55.js','js/catalog.js','js/catalog-model.js','js/environment.js','js/modal.js','js/ui.js','data/catalog.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,file),'utf8'),{filename:file});
+  for(const file of ['js/app-v3.0.55.js','js/config-v3.0.56.js','js/catalog.js','js/catalog-model.js','js/environment.js','js/modal.js','js/ui.js','data/catalog.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,file),'utf8'),{filename:file});
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   for(const match of html.matchAll(/(?:href|src)="(\.\/[^"?]+)(?:\?[^" ]*)?"/g))assert(fs.existsSync(path.join(root,match[1])),match[1]);
   const sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
