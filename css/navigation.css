@@ -1,0 +1,24 @@
+/* One compact trigger at every screen width; the full navigation opens on demand. */
+#mobileTabToggle.mobile-tab-toggle{
+  position:sticky!important;top:8px!important;bottom:auto!important;left:auto!important;
+  z-index:41!important;display:flex!important;align-items:center;justify-content:center;
+  width:fit-content!important;max-width:100%;min-height:34px!important;
+  margin:0 0 12px!important;padding:7px 12px!important;gap:6px;
+  border:1px solid var(--line);border-radius:10px;color:var(--text);
+  background:var(--surface);box-shadow:var(--shadow-soft,0 2px 8px #0002);
+  font-size:12px!important;font-weight:700;cursor:pointer;
+}
+#mainTabs.main-tabs{
+  display:none!important;position:fixed!important;top:56px!important;bottom:auto!important;
+  left:50%!important;right:auto!important;transform:translateX(-50%)!important;
+  z-index:42!important;width:min(620px,calc(100% - 24px))!important;
+  max-height:calc(100dvh - 76px);overflow:auto;margin:0!important;padding:8px!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important;
+  border:1px solid var(--line)!important;border-radius:14px!important;
+  background:var(--surface)!important;box-shadow:var(--shadow);
+}
+#mainTabs.main-tabs.is-open{display:grid!important}
+#mainTabs .main-tab{min-height:42px!important;display:flex;flex-direction:row!important;gap:6px!important;font-size:12px!important;padding:8px!important}
+#mainTabs .main-tab:focus-visible,#mobileTabToggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:480px){#mainTabs.main-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+body.screenshot-mode #mainTabs,body.screenshot-mode #mobileTabToggle{display:none!important}
