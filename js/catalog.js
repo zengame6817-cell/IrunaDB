@@ -5,7 +5,7 @@
   const message = text => { $("craftMessage").textContent = text; };
   let data, settings = model.defaults();
   try {
-    data = model.validate(window.IRUNA_CATALOG_DATA);
+    data = model.validate(model.mergeLocations(window.IRUNA_CATALOG_DATA,window.IRUNA_LOCATION_DATA));
     const saved = localStorage.getItem(model.key);
     if (saved !== null) { env.validateValue(model.key,saved); settings = JSON.parse(saved); }
   } catch (e) {
@@ -99,30 +99,10 @@
       pager.append(summary,more); $("craftList").appendChild(pager);
     }
   }
-  function renderDrops() {
-    const q = model.normalize($("dropSearch").value);
-    const rows = data.drops.filter(active).filter(r => {
-      const mob = monsters.get(r["モンスターID"]);
-      const locations = data.spawns.filter(s => active(s) && s["モンスターID"]===r["モンスターID"]).map(s => maps.get(s["マップID"])?.["マップ名"]);
-      return model.normalize([name(r["アイテムID"]),mob["名前"],...locations].join(" ")).includes(q);
-    });
-    $("dropList").innerHTML = rows.map(r => {
-      const mob = monsters.get(r["モンスターID"]);
-      const spawns = data.spawns.filter(s => active(s) && s["モンスターID"]===r["モンスターID"]);
-      const lv = mob["Lv下限"] === "" ? "Lv未確認" : `Lv${mob["Lv下限"]}${mob["Lv上限"]!==mob["Lv下限"]?"～"+mob["Lv上限"]:""}`;
-      return `<article class="catalog-card"><h3>${button("data-item",r["アイテムID"],name(r["アイテムID"]))}</h3><p><strong>${esc(mob["名前"])}</strong> ${esc(lv)}</p>
-      <p>${spawns.map(s => esc(maps.get(s["マップID"])?.["マップ名"]||"未確認")).join(" / ")}</p>
-      <p>ドロップ枠：${esc(r["ドロップ枠"]||"未確認")} · 確率：${r["ドロップ率(%)"]===""?"未確認":esc(r["ドロップ率(%)"])+"%"}</p>
-      ${source(r)}<p class="catalog-note">${publicNote(mob["備考"])} ${publicNote(r["備考"])}</p></article>`;
-    }).join("") || '<p class="catalog-empty">一致するドロップ情報は未登録です。</p>';
-    const purchases = data.items.filter(r => r["入手区分"] === "購入" && model.normalize([r["名前"],r["入手先"],r["マップ"]].join(" ")).includes(q));
-    if (purchases.length) $("dropList").innerHTML += purchases.map(r => `<article class="catalog-card"><h3>${button("data-item",r["アイテムID"],r["名前"])}</h3><p>購入：${esc(r["入手先"])} / ${esc(r["マップ"])}</p><p class="catalog-note">ドロップ以外の入手先です。価格は未確認です。</p></article>`).join("");
-    const crafted = data.recipes.filter(active).filter(r => resultRows(r["レシピID"]).some(out => model.normalize(name(out["完成アイテムID"])).includes(q)));
-    if (q && crafted.length) $("dropList").innerHTML += crafted.map(r => `<article class="catalog-card"><h3>生産で入手</h3>${button("data-recipe",r["レシピID"],r["レシピ名"])}</article>`).join("");
-    $("dropCount").textContent = `ドロップ${rows.length}件 / 登録${data.drops.filter(active).length}件`;
-  }
+  const locations = window.IrunaLocationsBrowser.create(data);
+  function renderDrops() { locations.render(); }
   const show = view => window.IrunaCatalogBridge.show(view);
-  function navigateDrop(id) { window.IrunaModal.close(); $("dropSearch").value=name(id); renderDrops(); show("drops"); }
+  function navigateDrop(id) { locations.navigate("item",id); }
   function navigateRecipe(id) {
     const r = data.recipes.find(x => x["レシピID"]===id); if (!r) return;
     window.IrunaModal.close(); $("craftSearch").value=r["レシピ名"]; $("craftField").value="";
@@ -154,7 +134,7 @@
     ["craftSearch","craftField","craftItemType","craftKind","craftMinLevel","craftMaxLevel","craftEffect","craftEffectSearch"].forEach(id=>{$(id).value="";});
     $("craftOnlyPossible").checked=$("craftOnlyFavorite").checked=false;$("craftSort").value="levelAsc";renderCraft();
   });
-  $("dropSearch").addEventListener("input",renderDrops);
+  $("dropSearch").addEventListener("input",()=>locations.search());
   window.IrunaCatalog = {decorateModal(item) {
     const id=item["アイテムID"], uses=data.materials.filter(m => active(m) && m["素材アイテムID"]===id);
     const outputs=data.results.filter(m => active(m) && m["完成アイテムID"]===id);
