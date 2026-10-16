@@ -25,3 +25,6 @@
 .catalog-effect-summary{font-size:.9rem;line-height:1.6}
 .catalog-card{scroll-margin-top:64px}
 @media(max-width:600px){.catalog-toolbar{align-items:stretch}.catalog-toolbar>label{display:flex;gap:8px;align-items:center}.catalog-card{padding:14px}.catalog-levels label{flex:1 0 40%}}
+.catalog-wiki-audit{margin-top:16px;padding:12px;border:1px solid var(--v26-border);border-radius:10px}
+.catalog-wiki-audit summary{cursor:pointer;font-weight:700}
+.catalog-wiki-audit p{overflow-wrap:anywhere}

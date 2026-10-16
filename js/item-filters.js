@@ -7,7 +7,7 @@
   function textFor(item,extra = "") {
     let description = String(item["説明文"] || "");
     if (/参照データ|名称参照|^生産素材|^調理品$|^回復$|^一時強化アイテム$|^状態異常回復アイテム$|^移動アイテム$/.test(description)) description = "";
-    return [record(item)?.text || description,item["特殊性能"],effects.get(String(item["アイテムID"])),extra].filter(Boolean).join(" ");
+    return [record(item)?.text || description,item["特殊性能"],effects.get(String(item["アイテムID"])),root.IrunaWikiData?.evidence.get(item['アイテムID'])?.description,extra].filter(Boolean).join(" ");
   }
   function kind(item) {
     if (["武器","体","追加","特殊","クリスタ","アルクリスタ","☆能力","レリック"].includes(item["分類"])) return "equipment";

@@ -4415,10 +4415,11 @@ function collectTotalData() {
       if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
     }
     Object.assign(state, data);
-    const catalogItems = [...(window.IRUNA_CATALOG_DATA?.items || []),...(window.IRUNA_LOCATION_DATA?.items || [])];
+    const catalogItems = [...(window.IRUNA_CATALOG_DATA?.items || []),...(window.IRUNA_LOCATION_DATA?.items || []),...(window.IRUNA_WIKI_DATA?.items || [])];
     const existingIds = new Set(state.items.map(item => String(item["アイテムID"])));
     state.items = [...state.items, ...catalogItems.filter(item => item["有効"] !== false && !existingIds.has(String(item["アイテムID"])))];
     state.items = state.items.map(window.IrunaItemFilters.overlay);
+    if(window.IrunaWikiData){state.items=state.items.map(window.IrunaWikiData.overlayItem);state.effects=window.IrunaWikiData.mergeEffects(state.effects);}
     mergeJobMaster();
     buildIndexes();
     window.IrunaItemFilters.setContext(context);

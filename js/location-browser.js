@@ -1,7 +1,7 @@
 "use strict";
 window.IrunaLocationsBrowser = (() => {
   function create(data) {
-    const $=id=>document.getElementById(id),esc=window.IrunaUtils.escapeHtml,normalize=window.IrunaCatalogModel.normalize;
+    const $=id=>document.getElementById(id),esc=window.IrunaUtils.escapeHtml,normalize=value=>window.IrunaCatalogModel.normalize(value).replace(/^[◇◆▲△□■]/,'');
     const active=r=>r['有効']!==false&&String(r['有効']).toUpperCase()!=='FALSE';
     const items=new Map(data.items.map(r=>[r['アイテムID'],r])),monsters=new Map(data.monsters.filter(active).map(r=>[r['モンスターID'],r])),maps=new Map(data.maps.filter(active).map(r=>[r['マップID'],r]));
     const spawns=data.spawns.filter(active).filter(s=>monsters.has(s['モンスターID'])&&maps.has(s['マップID'])),drops=data.drops.filter(active).filter(d=>monsters.has(d['モンスターID']));
@@ -11,23 +11,30 @@ window.IrunaLocationsBrowser = (() => {
     const mapName=m=>m['マップ名']+(m['階層']?`【${m['階層']}】`:'');
     const source=r=>`<p class="catalog-source">確認日：${esc(r['確認日']||'未確認')} · ${esc(r['確認状態']||'未確認')}</p>`;
     const note=v=>esc(String(v||'').replace(/https?:\/\/\S+/g,'').trim());
-    const spawnRows=id=>spawns.filter(s=>s['モンスターID']===id);
+    const spawnsByMonster=new Map();for(const row of spawns){const id=row['モンスターID'];if(!spawnsByMonster.has(id))spawnsByMonster.set(id,[]);spawnsByMonster.get(id).push(row);}
+    const spawnRows=id=>spawnsByMonster.get(id)||[];
     const mapLinks=id=>spawnRows(id).map(s=>button('data-map',s['マップID'],mapName(maps.get(s['マップID'])))).join(' / ')||'出現場所は未登録です';
+    const searchText=new Map(drops.map(r=>[r['ドロップID'],normalize([name(r['アイテムID']),monsters.get(r['モンスターID'])['名前'],...spawnRows(r['モンスターID']).map(s=>mapName(maps.get(s['マップID'])))].join(' '))]));
+    const toolbar=$('dropSearch').closest('.catalog-toolbar');
+    toolbar.insertAdjacentHTML('beforeend','<label>モンスター種別<select id="dropMonsterType"><option value="">すべて</option><option>ボス</option><option>ミニボス</option><option>通常</option><option value="unknown">種別未確認</option></select></label><label>ドロップ区分<select id="dropItemType"><option value="">すべて</option><option>クリスタ</option><option>アルクリスタ</option><option>レリック</option><option value="equipment">装備</option><option value="material">素材・収集品</option><option>消費</option></select></label>');
+    const filterIds=['dropMonsterType','dropItemType'];
+    filterIds.forEach(id=>$(id).addEventListener('change',()=>search()));
     const nav=document.createElement('nav');nav.className='location-navigation';nav.setAttribute('aria-label','入手先の移動');
     const panel=document.createElement('section');panel.id='locationDetail';panel.className='location-detail';panel.tabIndex=-1;panel.hidden=true;
     $('dropSearch').closest('.catalog-toolbar').before(nav);$('dropCount').before(panel);
     let route={kind:'list'},visible=50;const history=[];
-    function snapshot(){return {route:{...route},query:$('dropSearch').value,visible,scroll:window.scrollY};}
+    function snapshot(){return {route:{...route},query:$('dropSearch').value,filters:filterIds.map(id=>$(id).value),visible,scroll:window.scrollY};}
     function valid(kind,id){return kind==='item'?items.has(id):kind==='monster'?monsters.has(id):kind==='map'?maps.has(id):false;}
     function navigate(kind,id){
       if(!valid(kind,id))return false;
       if(route.kind!==kind||route.id!==id)history.push(snapshot());
       window.IrunaModal.close();route={kind,id};visible=50;
+      filterIds.forEach(id=>$(id).value='');
       $('dropSearch').value=kind==='item'?name(id):kind==='monster'?monsters.get(id)['名前']:mapName(maps.get(id));
       render();window.IrunaCatalogBridge.show('drops');panel.focus({preventScroll:true});return true;
     }
-    function back(){const prev=history.pop();if(!prev){search(true);return;}route=prev.route;visible=prev.visible;$('dropSearch').value=prev.query;render();window.scrollTo({top:prev.scroll});$('dropSearch').focus({preventScroll:true});}
-    function search(clear=false){route={kind:'list'};visible=50;history.length=0;if(clear)$('dropSearch').value='';render();}
+    function back(){const prev=history.pop();if(!prev){search(true);return;}route=prev.route;visible=prev.visible;$('dropSearch').value=prev.query;filterIds.forEach((id,i)=>$(id).value=prev.filters[i]);render();window.scrollTo({top:prev.scroll});$('dropSearch').focus({preventScroll:true});}
+    function search(clear=false){route={kind:'list'};visible=50;history.length=0;if(clear){$('dropSearch').value='';filterIds.forEach(id=>$(id).value='');}render();}
     function detail(){
       nav.innerHTML=route.kind==='list'?'':`<button type="button" class="button button-secondary" data-location-back>← 戻る</button><button type="button" class="button button-secondary" data-location-list>一覧・全体検索へ</button>`;
       panel.hidden=route.kind==='list';panel.dataset.kind=route.kind;panel.dataset.id=route.id||'';
@@ -40,7 +47,7 @@ window.IrunaLocationsBrowser = (() => {
         const map=maps.get(route.id),ids=[...new Set(spawns.filter(s=>s['マップID']===route.id).map(s=>s['モンスターID']))];
         ids.sort((a,b)=>(monsters.get(a)['Lv下限']||0)-(monsters.get(b)['Lv下限']||0)||monsters.get(a)['名前'].localeCompare(monsters.get(b)['名前'],'ja'));
         panel.innerHTML=`<p class="catalog-note">マップ詳細</p><h3>${esc(mapName(map))}</h3>
-          <dl class="location-facts"><dt>エピソード（資料区分）</dt><dd>${esc(map['エピソード']||'未確認')}</dd><dt>エリア・区画</dt><dd>${esc([map['エリア'],map['階層']].filter(Boolean).join(' / ')||'未登録')}</dd></dl>
+          <dl class="location-facts"><dt>エピソード（資料区分）</dt><dd>${esc(map['エピソード']||'未確認')}</dd><dt>エリア・区画</dt><dd>${esc([map['エリア'],map['階層']].filter(Boolean).join(' / ')||'未登録')}</dd><dt>期間限定</dt><dd>${map['期間限定']?'イベント資料（開催状況は未確認）':'期間限定の記載なし'}</dd></dl>
           <h4>登録済みの出現モンスター ${ids.length}件</h4><ul class="location-monsters">${ids.map(id=>`<li>${button('data-monster',id,monsters.get(id)['名前']+' '+lv(monsters.get(id)))}</li>`).join('')||'<li>出現モンスターは未登録です。</li>'}</ul>
           ${source(map)}<p class="catalog-note">${note(map['備考'])}</p><h4>このマップの登録済みドロップ</h4>`;
       } else if(route.kind==='item'){
@@ -50,13 +57,16 @@ window.IrunaLocationsBrowser = (() => {
     function render(){
       detail();const q=normalize($('dropSearch').value),mapMobs=new Set(route.kind==='map'?spawns.filter(s=>s['マップID']===route.id).map(s=>s['モンスターID']):[]);
       const matching=drops.filter(r=>{
+        const type=$('dropMonsterType').value,kind=$('dropItemType').value,mob=monsters.get(r['モンスターID']),category=items.get(r['アイテムID'])?.['分類'];
+        if(type&&(type==='unknown'?Boolean(mob['種別']):mob['種別']!==type))return false;
+        if(kind&&(kind==='equipment'?!['武器','防具','体','追加','特殊'].includes(category):kind==='material'?!['素材','収集品'].includes(category):category!==kind))return false;
         if(route.kind==='item')return r['アイテムID']===route.id;
         if(route.kind==='monster')return r['モンスターID']===route.id;
         if(route.kind==='map')return mapMobs.has(r['モンスターID']);
-        return normalize([name(r['アイテムID']),monsters.get(r['モンスターID'])['名前'],...spawnRows(r['モンスターID']).map(s=>mapName(maps.get(s['マップID'])))].join(' ')).includes(q);
+        return searchText.get(r['ドロップID']).includes(q);
       });
       const entries=matching.map(row=>({kind:'drop',row}));
-      if(route.kind==='item'||(route.kind==='list'&&q)){
+      if(route.kind==='item'||(route.kind==='list'&&q&&!$('dropMonsterType').value&&!$('dropItemType').value)){
         const purchases=data.items.filter(r=>r['入手区分']==='購入'&&(route.kind==='item'?r['アイテムID']===route.id:normalize([r['名前'],r['入手先'],r['マップ']].join(' ')).includes(q)));
         entries.push(...purchases.map(row=>({kind:'purchase',row})));
         const recipeIds=new Set(data.results.filter(active).filter(r=>route.kind==='item'?r['完成アイテムID']===route.id:normalize(name(r['完成アイテムID'])).includes(q)).map(r=>r['レシピID']));
