@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-17T05:39:12.779Z",
+  "updatedAt": "2026-10-17T06:10:22.466Z",
   "coverageStart": "2025-10-17",
   "coverageEnd": "2026-10-17",
   "monthlyCoverage": [
@@ -23303,6 +23303,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=57",
           "title": "アップデート情報(8.4.6) ウィークリーレイドに新ボス「ヴァサリア」を追加!他",
           "publishedAt": "2026-08-26",
@@ -25782,6 +25789,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=21",
           "title": "2026年10月1日(木)からハロウィンイベントを開催!他",
           "publishedAt": "2026-09-28",
@@ -25805,6 +25819,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-14",
           "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
@@ -25840,6 +25861,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=21",
           "title": "2026年10月1日(木)からハロウィンイベントを開催!他",
           "publishedAt": "2026-09-28",
@@ -25863,6 +25891,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-14",
           "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
@@ -26625,6 +26660,13 @@
           "publishedAt": "2026-10-13",
           "sha256": "f26b77062710cbf09e8435daf44caa4c4267a9b5c9dc05f1c23936dc748c2351",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
+          "title": "イルーナ12神の天啓イベント開催!10月14日(水)0:00~10月15日(木)23:59",
+          "publishedAt": "2026-10-13",
+          "sha256": "f26b77062710cbf09e8435daf44caa4c4267a9b5c9dc05f1c23936dc748c2351",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年10月14日(水) 0:00~ / 終了:2026年10月15日(木)23:59まで"
@@ -26685,6 +26727,13 @@
           "publishedAt": "2026-10-14",
           "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
         }
       ],
       "dateLabel": "10月14日(水)メンテナンス後~10月21日(水)13:59まで",
@@ -26711,6 +26760,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-14",
           "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
@@ -26760,6 +26816,13 @@
           "title": "アップデート情報(8.5.1) 新ハロウィンイベント「長い永いハロウィンの果て」開催!他",
           "publishedAt": "2026-10-14",
           "sha256": "b2dc7f1c37d103ba030c130598dc1f3b039bb782023004f2aa91acef9d388d3b",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
           "kind": "notice"
         }
       ],
@@ -26858,6 +26921,13 @@
           "publishedAt": "2026-10-14",
           "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-14",
+          "sha256": "f64af89d3d8e4601ef2ccdc3b5e2016b423edb502a1e85e9004d60b2baed259e",
+          "kind": "notice"
         }
       ],
       "dateLabel": "10月16日(金)0:00~10月19日(月)23:59まで",
@@ -26928,6 +26998,13 @@
       "endNote": "",
       "kind": "range",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-17",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information?page=8",
           "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
