@@ -2005,14 +2005,14 @@
   ],
   "counts": {
     "sourceItems": 7535,
-    "matchedExisting": 5036,
+    "matchedExisting": 5047,
     "newItems": 1255,
     "newEffects": 3,
     "sourceMonsters": 3706,
     "verifiedMonsterGroups": 3065,
     "bossGroups": 481,
-    "verifiedDrops": 10750,
-    "itemsWithDrops": 2980,
+    "verifiedDrops": 10764,
+    "itemsWithDrops": 2990,
     "bossCrystalDrops": 229,
     "bossCrystalItems": 194
   },
@@ -2020,18 +2020,18 @@
     "maps": 624,
     "monsters": 3217,
     "spawns": 3425,
-    "drops": 11391
+    "drops": 11404
   },
   "added": {
     "maps": 261,
     "monsters": 2670,
     "spawns": 2878,
-    "drops": 9587
+    "drops": 9600
   },
   "updated": {
     "maps": 0,
     "monsters": 395,
-    "drops": 1163
+    "drops": 1164
   },
   "held": [
     {
@@ -3560,12 +3560,6 @@
     },
     {
       "kind": "item",
-      "id": 8849,
-      "name": "アウラー",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8850,
       "name": "アウラー (強化 1)",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -3584,12 +3578,6 @@
     },
     {
       "kind": "item",
-      "id": 8853,
-      "name": "アウリスゲイル",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8854,
       "name": "黎明の光背",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -3604,12 +3592,6 @@
       "kind": "item",
       "id": 8857,
       "name": "Bフログキャップ",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8858,
-      "name": "Ｂ－ウィング",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -3776,18 +3758,6 @@
     },
     {
       "kind": "item",
-      "id": 8888,
-      "name": "黒い髪留めＬ",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8889,
-      "name": "黒い髪留めＲ",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8890,
       "name": "うさリボン（黒）",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -3838,12 +3808,6 @@
       "kind": "item",
       "id": 8898,
       "name": "ブラックグラス",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8899,
-      "name": "黒いリボン",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -3926,12 +3890,6 @@
     },
     {
       "kind": "item",
-      "id": 8913,
-      "name": "青い髪留め",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8914,
       "name": "うさリボン（青）",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -3968,12 +3926,6 @@
     },
     {
       "kind": "item",
-      "id": 8920,
-      "name": "青いリボン",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8921,
       "name": "青いマフラー",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -3988,12 +3940,6 @@
       "kind": "item",
       "id": 8923,
       "name": "ブルーメギフト",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8924,
-      "name": "ブースター",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -4114,12 +4060,6 @@
       "kind": "item",
       "id": 8947,
       "name": "蝶の翅",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8948,
-      "name": "サボテンシニョン",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -4252,12 +4192,6 @@
       "kind": "item",
       "id": 8972,
       "name": "クリスマスリボン",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8973,
-      "name": "シエル",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -11293,21 +11227,6 @@
   ],
   "unmatchedDrops": [
     {
-      "monster": 85,
-      "name": "黒い髪留めＬ",
-      "type": "Additional"
-    },
-    {
-      "monster": 116,
-      "name": "アウラー",
-      "type": "Additional"
-    },
-    {
-      "monster": 120,
-      "name": "サボテンシニョン",
-      "type": "Additional"
-    },
-    {
       "monster": 135,
       "name": "ネギ",
       "type": "Sword"
@@ -11328,23 +11247,8 @@
       "type": "Additional"
     },
     {
-      "monster": 187,
-      "name": "ブースター",
-      "type": "Additional"
-    },
-    {
       "monster": 209,
       "name": "キャスケット",
-      "type": "Additional"
-    },
-    {
-      "monster": 261,
-      "name": "シエル",
-      "type": "Additional"
-    },
-    {
-      "monster": 288,
-      "name": "アウリスゲイル",
       "type": "Additional"
     },
     {
@@ -11363,54 +11267,14 @@
       "type": "Additional"
     },
     {
-      "monster": 429,
-      "name": "青いリボン",
-      "type": "Additional"
-    },
-    {
-      "monster": 476,
-      "name": "青い髪留め",
-      "type": "Additional"
-    },
-    {
-      "monster": 480,
-      "name": "青い髪留め",
-      "type": "Additional"
-    },
-    {
       "monster": 514,
       "name": "バックラー",
-      "type": "Additional"
-    },
-    {
-      "monster": 518,
-      "name": "黒い髪留めＲ",
-      "type": "Additional"
-    },
-    {
-      "monster": 531,
-      "name": "黒いリボン",
       "type": "Additional"
     },
     {
       "monster": 535,
       "name": "ちび雪ダルマ",
       "type": "IslandObject"
-    },
-    {
-      "monster": 547,
-      "name": "Ｂ－ウィング",
-      "type": "Additional"
-    },
-    {
-      "monster": 549,
-      "name": "Ｂ－ウィング",
-      "type": "Additional"
-    },
-    {
-      "monster": 550,
-      "name": "Ｂ－ウィング",
-      "type": "Additional"
     },
     {
       "monster": 553,
@@ -12239,6 +12103,143 @@
       {
         "file": "cloak2-next.html",
         "sha256": "9886fc61b83b99731e6a5798c523497a418600e15942a13c99040c3a0d601b35"
+      }
+    ]
+  },
+  "followUpV3064": {
+    "checkedAt": "2026-10-17",
+    "items": [
+      "AD000097",
+      "AD000055",
+      "AD000160",
+      "AD000133",
+      "AD000186",
+      "AD000059",
+      "AD000129",
+      "AD000122",
+      "AD000098",
+      "AD000108",
+      "AD000065"
+    ],
+    "addedDrops": [
+      "DROP011392",
+      "DROP011393",
+      "DROP011394",
+      "DROP011395",
+      "DROP011396",
+      "DROP011397",
+      "DROP011398",
+      "DROP011399",
+      "DROP011400",
+      "DROP011401",
+      "DROP011402",
+      "DROP011403",
+      "DROP011404"
+    ],
+    "reverifiedDrops": [
+      "DROP000917"
+    ],
+    "reusedExistingForCatalog": [],
+    "files": [
+      {
+        "file": "batch64-item-8888.html",
+        "sha256": "3584ec636c42177791b967595e486bf6901e411e3480ec967514f05a0ac2cdd0"
+      },
+      {
+        "file": "batch64-mon-85.html",
+        "sha256": "70a56e3a74c01f8aa72175a1ac6aef98e89a6782a62919ce6d6f4a407d2a5e74"
+      },
+      {
+        "file": "batch64-item-8849.html",
+        "sha256": "04fddf6554f938e4764761314382c8ee0de057b1d44bcaa3d45ce815d84f6c76"
+      },
+      {
+        "file": "batch64-mon-116.html",
+        "sha256": "c23253da384b011e96e7d21884c09e3569ca810f4ef98c01181a2c8a6fae5286"
+      },
+      {
+        "file": "batch64-item-8948.html",
+        "sha256": "c18917edb8819a83165889b16d268d38c67b9cad5f2243a5c6088558a8d6dd6d"
+      },
+      {
+        "file": "batch64-mon-120.html",
+        "sha256": "02f9af8538104249fa7f184416812076f27f04379ff6e6b72ddbd68188c75b00"
+      },
+      {
+        "file": "batch64-item-8924.html",
+        "sha256": "6cfb385ca370bd7d898c8e541b6689ab6d113b3ce938585cf06bec1686d46fe6"
+      },
+      {
+        "file": "batch64-mon-187.html",
+        "sha256": "60b3f1368d9bc1e3707fab4713c69182d7428967c1495411fa0fa5d89d3b7920"
+      },
+      {
+        "file": "batch64-item-8973.html",
+        "sha256": "290af6d2f50de91499a765f9c573055553c153bdf090d021008dd6678dab09b5"
+      },
+      {
+        "file": "batch64-mon-261.html",
+        "sha256": "f5fdecb23f8ca6481036d69ace33033d40283281eb3a1acf62a28f065249d963"
+      },
+      {
+        "file": "batch64-item-8853.html",
+        "sha256": "3fd6e16c9e476f85707476839bdf4c4b5c188b4692db8a6b8f0c7ba91a084b7f"
+      },
+      {
+        "file": "batch64-mon-288.html",
+        "sha256": "c336c171ec682066fd72c8db5bbee51f463b356d00d74570d740078640da2be3"
+      },
+      {
+        "file": "batch64-item-8920.html",
+        "sha256": "305f195f9030031b0a4b3362c2e14bd91dbf19b60657fe2aedd6a01cbe01d1b5"
+      },
+      {
+        "file": "batch64-mon-429.html",
+        "sha256": "390e84ea9568f136393c918f24ed5481f6a129f48ffb134f67681b8a654fa6f5"
+      },
+      {
+        "file": "batch64-item-8913.html",
+        "sha256": "cdb05f50b1893967ffb9a6bb347c0064822df1d46a736faca439ef84dc88e2c5"
+      },
+      {
+        "file": "batch64-mon-476.html",
+        "sha256": "ea18cc666523d618cf4fc646f4811514f2a46b0f366d834163b329eab27a11bf"
+      },
+      {
+        "file": "batch64-mon-480.html",
+        "sha256": "8e12972155c7660de2972e21f3a25cc19c9a40aa8395947719dcbd7cdbbc3070"
+      },
+      {
+        "file": "batch64-item-8889.html",
+        "sha256": "9e1d838a852ad9cbb177bf374e7203d706ccb84e667cbe626f8cfa0f5dc226f3"
+      },
+      {
+        "file": "batch64-mon-518.html",
+        "sha256": "ec22aaa45ebb4697d359353708fe892c6016f0da28f2115051ba1c4bb3d56879"
+      },
+      {
+        "file": "batch64-item-8899.html",
+        "sha256": "b4ca326a5b491d4b7880769a363dd8d5ac4e0206dee0bc64bdbf55a9900f0309"
+      },
+      {
+        "file": "batch64-mon-531.html",
+        "sha256": "2c673b4817f40a731552117834cc4feb9252417e4ae95c2ec9251a207ca6de00"
+      },
+      {
+        "file": "batch64-item-8858.html",
+        "sha256": "5c5487340e046d059aab85ec6a662434a47c99c492d5a532aeae7ae14452b238"
+      },
+      {
+        "file": "batch64-mon-547.html",
+        "sha256": "c3aa3435489109cee4e9304421f4bc9466058c922c46452f5274bcce907ae95c"
+      },
+      {
+        "file": "batch64-mon-549.html",
+        "sha256": "8b195aa7e561a22e6529119ddf8baab42c8798fa50dd75807dfce4ef9ccad66d"
+      },
+      {
+        "file": "batch64-mon-550.html",
+        "sha256": "0a7732d0efe6b5c3a8eb29fb187ade33887208f5748db18ec87e7868feaf0555"
       }
     ]
   }

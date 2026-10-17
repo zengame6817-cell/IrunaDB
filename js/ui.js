@@ -34,6 +34,7 @@ window.IrunaUi = (() => {
     let visibleCount = Math.min(PAGE_SIZE, items.length);
     const paint = () => {
       const visibleItems = items.slice(0, visibleCount);
+      elements.resultCount.textContent = `検索結果 ${items.length}件（${visibleItems.length}件を表示）`;
       elements.itemGrid.innerHTML = visibleItems.map((item, index) => {
         const id = String(item["アイテムID"] || "");
         const favorite = favorites.has(id);
@@ -75,7 +76,8 @@ window.IrunaUi = (() => {
   function renderError(message) { elements.resultCount.textContent = "取得失敗"; elements.itemGrid.innerHTML = `<div class="state-card is-error">${escapeHtml(message)}</div>`; }
   function filterItems(items, category, query, searchIndex) {
     const normalizedQuery = normalizeSearchText(query);
-    return items.filter(item => (category === "すべて" || item["分類"] === category) && (!normalizedQuery || (searchIndex.get(String(item["アイテムID"])) || "").includes(normalizedQuery)));
+    const aliases = ({"体":["体","体装備"],"追加":["追加","追加装備"],"特殊":["特殊","特殊装備"]})[category] || [category];
+    return items.filter(item => (category === "すべて" || [item["分類"],item["表示分類"],item["サブ分類"]].some(value=>aliases.includes(String(value||'').trim()))) && (!normalizedQuery || (searchIndex.get(String(item["アイテムID"])) || "").includes(normalizedQuery)));
   }
   return { elements, setConnectionStatus, renderTabs, renderItems, renderLoading, renderError, filterItems };
 })();
