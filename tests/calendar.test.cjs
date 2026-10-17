@@ -2,6 +2,10 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),P=require('../tools/calendar-parser.cjs'),M=require('../js/calendar-model.js'),{collect,dayBeforeYear}=require('../tools/update-calendar.cjs'),root=path.resolve(__dirname,'..');
 const source={url:'https://android.iruna.jp/information',title:'公式イベント',kind:'notice',publishedAt:'2026-10-16'};
 const event=(extra={})=>({id:'test',title:'テストイベント',category:'イベント',startDate:'2026-10-17',startTime:'00:00',startNote:'',endDate:'2026-10-18',endTime:'23:59',endNote:'',kind:'range',sources:[source],...extra});
+test('daily calendar counts continuing events but names only starts and ends on that date',()=>{
+ const ongoing=event({startDate:'2026-10-01',endDate:'2026-10-31'}),start=event({endDate:'2026-10-30'}),end=event({startDate:'2026-10-01',endDate:'2026-10-17'}),point=event({kind:'point',endDate:'2026-10-17'});
+ const day=M.daySummary([ongoing,start,end,point],'2026-10-17');assert.equal(day.count,4);assert.deepEqual(day.starts,[start,point]);assert.deepEqual(day.ends,[end]);assert(!day.starts.includes(ongoing));assert(!day.ends.includes(ongoing));assert.equal(M.daySummary([ongoing],'2026-11-01').count,0);
+});
 test('Japanese dates retain maintenance qualifiers, year rollover and unknown boundaries',()=>{
  assert.deepEqual(P.period('12月30日(水)メンテナンス後～1月6日(水)13:59まで',2026,12),{startDate:'2026-12-30',startTime:null,startNote:'メンテナンス後',endDate:'2027-01-06',endTime:'13:59',endNote:'',kind:'range'});
  const end=P.period('11月4日(水)13:59まで',2026,10);assert.equal(end.startDate,null);assert.equal(end.endDate,'2026-11-04');assert.equal(P.period('10月17日(土)',2026,10).kind,'point');assert.equal(P.dates('2026年2月30日',2026).length,0);assert.equal(P.dates('2026年10月17日25:00',2026).length,0);assert.equal(dayBeforeYear('2024-02-29'),'2023-02-28');

@@ -8,5 +8,6 @@
  function onDay(e,date){if(!e.startDate)return e.endDate===date;if(!e.endDate)return e.startDate===date;return e.startDate<=date&&date<=e.endDate;}
  const range=e=>`${e.startDate?(e.startDate+(e.startTime?' '+e.startTime:e.startNote?' '+e.startNote:'')):'開始日未記載'}${e.kind==='point'?'':(' ～ '+(e.endDate?(e.endDate+(e.endTime?' '+e.endTime:e.endNote?' '+e.endNote:'（時刻未記載）')):'終了日未記載'))}`;
  function monthDays(month){const [y,m]=month.split('-').map(Number),n=new Date(Date.UTC(y,m,0)).getUTCDate(),offset=new Date(Date.UTC(y,m-1,1)).getUTCDay();return [...Array(offset).fill(null),...Array.from({length:n},(_,i)=>`${month}-${String(i+1).padStart(2,'0')}`)];}
- const api={jstDate,validDate,validate,status,onDay,range,monthDays};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.IrunaCalendarModel=api;
+ function daySummary(events,date){const rows=events.filter(e=>onDay(e,date));return {count:rows.length,starts:rows.filter(e=>e.startDate===date),ends:rows.filter(e=>e.kind!=='point'&&e.endDate===date)};}
+ const api={jstDate,validDate,validate,status,onDay,range,monthDays,daySummary};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.IrunaCalendarModel=api;
 })(typeof window==='undefined'?globalThis:window);

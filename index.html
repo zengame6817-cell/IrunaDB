@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./css/catalog.css?v=3.0.72">
   <link rel="stylesheet" href="./css/navigation.css?v=3.0.72">
   <link rel="stylesheet" href="./css/item-memo.css?v=3.0.72">
-  <link rel="stylesheet" href="./css/calendar.css?v=3.0.72">
+  <link rel="stylesheet" href="./css/calendar.css?v=3.0.73">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -939,7 +939,7 @@ body.light-mode .calculation-card {
         <p id="calendarUpdated" class="calendar-status" role="status">イベント情報を読み込んでいます…</p>
         <p id="calendarCoverage" class="calendar-status"></p>
         <div class="calendar-filters"><input id="calendarSearch" type="search" aria-label="イベントを検索" placeholder="イベント名で検索"><select id="calendarCategory" aria-label="イベントの種類"><option value="">すべての種類</option><option>イベント</option><option>育成</option><option>ドロップ</option><option>精錬</option><option>生産・支援</option><option>レイド</option></select></div>
-        <section class="calendar-section"><div class="calendar-month-toolbar"><h3 id="calendarMonthLabel">月カレンダー</h3><div class="calendar-month-buttons"><button id="calendarPrev" type="button" class="button button-secondary" aria-label="前の月">‹</button><input id="calendarMonth" type="month" aria-label="表示する月"><button id="calendarNext" type="button" class="button button-secondary" aria-label="次の月">›</button><button id="calendarToday" type="button" class="button button-secondary">今日</button></div></div><div class="calendar-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div><div id="calendarGrid" class="calendar-grid" aria-label="月カレンダー"></div><p class="calendar-status">日付を選ぶと、その日のイベントを下に表示します。</p></section>
+        <section class="calendar-section"><div class="calendar-month-toolbar"><h3 id="calendarMonthLabel">月カレンダー</h3><div class="calendar-month-buttons"><button id="calendarPrev" type="button" class="button button-secondary" aria-label="前の月">‹</button><input id="calendarMonth" type="month" aria-label="表示する月"><button id="calendarNext" type="button" class="button button-secondary" aria-label="次の月">›</button><button id="calendarToday" type="button" class="button button-secondary">今日</button></div></div><div class="calendar-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div><div id="calendarGrid" class="calendar-grid" aria-label="月カレンダー"></div><p class="calendar-status">開催中はその日の件数、開始・終了は当日のイベント名を表示します。日付を選ぶと、その日の全イベントを下で確認できます。</p></section>
         <section id="calendarSelectedDay" class="calendar-section"><label>表示範囲 <select id="calendarScope"><option value="month">表示している月</option><option value="day">選択した日</option><option value="all">過去1年と今後の予定すべて</option></select></label><p class="calendar-status">イベント名を押すと、効果・参加方法などの詳細を開けます。</p><h3><span id="calendarDayLabel">選択した日</span><span id="calendarDayCount" class="calendar-count"></span></h3><div id="calendarDayEvents" class="event-list"></div></section>
       </section>
 
@@ -1074,7 +1074,7 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.72.js?v=3.0.72"></script>
+  <script src="./js/config-v3.0.73.js?v=3.0.72"></script>
   <script src="./js/environment.js?v=3.0.72"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
@@ -1098,8 +1098,8 @@ body.light-mode .calculation-card {
   <script src="./js/catalog.js?v=3.0.72"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>
   <script src="./js/environment-ui.js?v=3.0.72"></script>
-  <script src="./js/calendar-model.js?v=3.0.72"></script>
-  <script src="./js/calendar.js?v=3.0.72"></script>
+  <script src="./js/calendar-model.js?v=3.0.73"></script>
+  <script src="./js/calendar.js?v=3.0.73"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">
