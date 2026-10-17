@@ -1,15 +1,16 @@
 "use strict";
-importScripts("./js/config-v3.0.68.js");
+importScripts("./js/config-v3.0.69.js");
 const CACHE_NAME = `irunadb-v${IRUNA_CONFIG.APP_VERSION.replaceAll(".", "-")}`;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
-  "./js/config-v3.0.68.js", "./js/utils.js", "./js/api.js",
+  "./js/config-v3.0.69.js", "./js/utils.js", "./js/api.js",
   "./data/catalog.js", "./js/catalog-model.js", "./js/catalog.js", "./css/catalog.css", "./css/navigation.css", "./js/navigation.js", "./js/environment.js", "./js/environment-ui.js", "./js/ui.js", "./js/modal.js", "./js/app-v3.0.55.js", "./js/theme.js",
   "./data/skills.js", "./data/missions.js", "./data/skill-quests.js",
   "./js/item-memo.js", "./css/item-memo.css",
   "./data/item-effects.js", "./js/item-filters.js",
   "./data/locations.js", "./data/wiki.js", "./js/wiki-data.js",
   "./js/location-browser.js",
+  "./js/calendar-model.js", "./js/calendar.js", "./css/calendar.css", "./data/calendar.json",
   "./js/skill-quests.js", "./js/missions.js"
 ];
 
@@ -40,6 +41,14 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+
+  if (url.pathname.endsWith("/data/calendar.json")) {
+    event.respondWith(fetch(event.request, {cache:"no-store"}).then(response=>{
+      if(response.ok)caches.open(CACHE_NAME).then(cache=>cache.put(event.request,response.clone())).catch(()=>{});
+      return response;
+    }).catch(async()=> (await caches.match(event.request,{ignoreSearch:true})) || Response.error()));
+    return;
+  }
 
   if (url.pathname.endsWith("/data/db.json")) {
     event.respondWith(fetch(event.request, { cache: "no-store" }));

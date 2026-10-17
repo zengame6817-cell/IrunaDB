@@ -15,9 +15,10 @@
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
   <link rel="stylesheet" href="./css/style.css?v=3.0.27">
-  <link rel="stylesheet" href="./css/catalog.css?v=3.0.68">
-  <link rel="stylesheet" href="./css/navigation.css?v=3.0.68">
-  <link rel="stylesheet" href="./css/item-memo.css?v=3.0.68">
+  <link rel="stylesheet" href="./css/catalog.css?v=3.0.69">
+  <link rel="stylesheet" href="./css/navigation.css?v=3.0.69">
+  <link rel="stylesheet" href="./css/item-memo.css?v=3.0.69">
+  <link rel="stylesheet" href="./css/calendar.css?v=3.0.69">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -304,6 +305,7 @@ body.light-mode .calculation-card {
       <button class="main-tab" data-view="relic" type="button"><span>RG</span>レリック<em id="rgNavNew" class="rg-nav-new">NEW</em></button>
       <button class="main-tab" data-view="craft" type="button"><span>製</span>生産</button>
       <button class="main-tab" data-view="drops" type="button"><span>入</span>ドロップ情報</button>
+      <button class="main-tab" data-view="calendar" type="button"><span>暦</span>カレンダー</button>
       <button class="main-tab" data-view="guide" type="button"><span>?</span>使い方</button>
       <button class="main-tab" data-view="settings" type="button"><span>⚙</span>設定</button>
     </nav>
@@ -931,6 +933,19 @@ body.light-mode .calculation-card {
         </div>
       </section>
 
+      <section id="view-calendar" class="app-view">
+        <div class="calendar-heading"><div><p class="section-kicker">EVENT CALENDAR</p><h2>イベントカレンダー</h2></div><button id="calendarRefresh" class="button button-secondary" type="button">更新を確認</button></div>
+        <p class="calendar-intro">日本版公式のイベント・キャンペーンを1時間ごとに自動確認。開催中のイベントと過去1年の予定を見られます。月次予定は変更されることがあるため、参加前に公式情報もご確認ください。</p>
+        <p id="calendarUpdated" class="calendar-status" role="status">イベント情報を読み込んでいます…</p>
+        <p id="calendarCoverage" class="calendar-status"></p>
+        <div class="calendar-filters"><input id="calendarSearch" type="search" aria-label="イベントを検索" placeholder="イベント名で検索"><select id="calendarCategory" aria-label="イベントの種類"><option value="">すべての種類</option><option>イベント</option><option>育成</option><option>ドロップ</option><option>精錬</option><option>生産・支援</option><option>レイド</option></select></div>
+        <section class="calendar-section"><h3>開催中<span id="calendarNowCount" class="calendar-count"></span></h3><div id="calendarCurrent" class="event-list"></div><button id="calendarMore" class="button button-secondary calendar-more" type="button" hidden>すべて表示</button></section>
+        <section class="calendar-section"><div class="calendar-month-toolbar"><h3 id="calendarMonthLabel">月カレンダー</h3><div class="calendar-month-buttons"><button id="calendarPrev" type="button" class="button button-secondary" aria-label="前の月">‹</button><input id="calendarMonth" type="month" aria-label="表示する月"><button id="calendarNext" type="button" class="button button-secondary" aria-label="次の月">›</button><button id="calendarToday" type="button" class="button button-secondary">今日</button></div></div><div class="calendar-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div><div id="calendarGrid" class="calendar-grid" aria-label="月カレンダー"></div><p class="calendar-status">日付を選ぶと、その日のイベントを下に表示します。</p></section>
+        <section id="calendarSelectedDay" class="calendar-section"><h3><span id="calendarDayLabel">選択した日</span><span id="calendarDayCount" class="calendar-count"></span></h3><div id="calendarDayEvents" class="event-list"></div></section>
+        <section id="calendarTodayRaids" class="calendar-section"></section>
+        <details id="calendarPartial" class="calendar-section" hidden><summary id="calendarPartialCount">日程の一部が未記載</summary><div id="calendarPartialList" class="event-list"></div></details>
+      </section>
+
       <section id="view-craft" class="app-view">
         <h2>生産</h2>
         <p>生産Lvは1人分を分野ごとに保存します。お気に入りだけ表示すると、上下ボタンで自分用の順番に並べられます。</p>
@@ -1062,30 +1077,32 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.68.js?v=3.0.68"></script>
-  <script src="./js/environment.js?v=3.0.68"></script>
-  <script src="./js/item-memo.js?v=3.0.68"></script>
+  <script src="./js/config-v3.0.69.js?v=3.0.69"></script>
+  <script src="./js/environment.js?v=3.0.69"></script>
+  <script src="./js/item-memo.js?v=3.0.69"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
-  <script src="./js/modal.js?v=3.0.68"></script>
-  <script src="./js/ui.js?v=3.0.68"></script>
+  <script src="./js/modal.js?v=3.0.69"></script>
+  <script src="./js/ui.js?v=3.0.69"></script>
   <script src="./data/skills.js?v=3.0.49"></script>
 <script src="./data/missions.js?v=3.0.37"></script>
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./data/catalog.js?v=3.0.68"></script>
-  <script src="./data/locations.js?v=3.0.68"></script>
-  <script src="./data/wiki.js?v=3.0.68"></script>
-  <script src="./data/item-effects.js?v=3.0.68"></script>
-  <script src="./js/item-filters.js?v=3.0.68"></script>
-  <script src="./js/catalog-model.js?v=3.0.68"></script>
-  <script src="./js/wiki-data.js?v=3.0.68"></script>
-  <script src="./js/location-browser.js?v=3.0.68"></script>
-  <script src="./js/app-v3.0.55.js?v=3.0.68"></script>
-  <script src="./js/catalog.js?v=3.0.68"></script>
-  <script src="./js/navigation.js?v=3.0.68"></script>
-  <script src="./js/environment-ui.js?v=3.0.68"></script>
+  <script src="./data/catalog.js?v=3.0.69"></script>
+  <script src="./data/locations.js?v=3.0.69"></script>
+  <script src="./data/wiki.js?v=3.0.69"></script>
+  <script src="./data/item-effects.js?v=3.0.69"></script>
+  <script src="./js/item-filters.js?v=3.0.69"></script>
+  <script src="./js/catalog-model.js?v=3.0.69"></script>
+  <script src="./js/wiki-data.js?v=3.0.69"></script>
+  <script src="./js/location-browser.js?v=3.0.69"></script>
+  <script src="./js/app-v3.0.55.js?v=3.0.69"></script>
+  <script src="./js/catalog.js?v=3.0.69"></script>
+  <script src="./js/navigation.js?v=3.0.69"></script>
+  <script src="./js/environment-ui.js?v=3.0.69"></script>
+  <script src="./js/calendar-model.js?v=3.0.69"></script>
+  <script src="./js/calendar.js?v=3.0.69"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">

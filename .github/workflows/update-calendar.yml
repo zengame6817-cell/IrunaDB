@@ -1,0 +1,48 @@
+name: Update official event calendar
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-calendar.yml'
+      - 'tools/calendar-parser.cjs'
+      - 'tools/update-calendar.cjs'
+      - 'tests/calendar.test.cjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-event-calendar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify date parsing and calendar behavior
+        run: node --test tests/calendar.test.cjs
+      - name: Collect official schedules (daily full history, otherwise recent notices)
+        run: node tools/update-calendar.cjs
+      - name: Verify collected data
+        run: node --test tests/calendar.test.cjs
+      - name: Save the verified calendar
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/calendar.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'data: refresh official event calendar'
+          git pull --rebase origin main
+          git push origin HEAD:main

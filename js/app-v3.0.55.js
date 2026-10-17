@@ -5105,6 +5105,8 @@ function collectTotalData() {
 
   setupV12Ui();
   setupV21Navigation();
+  if (location.hash === "#calendar") setView("calendar");
+  window.addEventListener("hashchange", () => { if (location.hash === "#calendar") setView("calendar"); });
   setupPanelCollapsibles();
 
   // v2.9.32:
