@@ -1,5 +1,7 @@
 # 別PCへの引き継ぎ：IrunaDB v3.0.61
 
+追記（2026-10-17）：続きの作業・検証結果・残件は [HANDOFF_v3.0.62.md](HANDOFF_v3.0.62.md) を参照。以下はv3.0.61時点の記録。
+
 リポジトリ： https://github.com/zengame6817-cell/IrunaDB
 
 作業ブランチ： `codex/irunawiki-boss-drops-v3.0.61`
