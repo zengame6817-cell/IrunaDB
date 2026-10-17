@@ -62,7 +62,9 @@ test('recipe references have no invented equipment stats and cannot be selected 
   const refs=data.items.filter(i=>i['アイテムID'].startsWith('REF'));
   assert(refs.length>0);for(const i of refs){assert.equal(i['基礎ATK'],'');assert.equal(i['基礎DEF'],'');assert.equal(i['表示分類'],'生産参照専用');}
   const app=fs.readFileSync(path.join(root,'js/app-v3.0.55.js'),'utf8');
-  assert.match(app,/function itemMatchesSlot\(item, slot\)\s*\{\s*if \(String\(item\["アイテムID"\] \|\| ""\)\.startsWith\("REF"\)\) return false/);
+  const filter=app.match(/function itemMatchesSlot\(item, slot\)\s*\{[\s\S]*?\n  \}/)[0];
+  const testContext={window:{}};vm.runInNewContext(filter,testContext);
+  for(const item of refs)assert.equal(testContext.itemMatchesSlot(item,{category:item['分類']}),false);
   for(let n=1;n<=212;n++)assert(data.recipes.some(r=>r['レシピID']==='REC'+String(n).padStart(6,'0')));
 });
 test('production settings join environment allowlist and validate without modifying old storage keys', () => {

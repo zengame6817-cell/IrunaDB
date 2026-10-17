@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-17",
+  "source": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)",
+  "sourceSha256": "abebfdec04b5c80897fc8229d1e76b6f88e026a30a4f4752f1a45cb60e708289",
+  "items": [
+    {
+      "id": "REF000057",
+      "name": "◇AGI+1",
+      "value": 1,
+      "effectId": "REFEFF000057",
+      "url": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)",
+      "acquisitionType": "ドロップ / 生産 / 釣り",
+      "acquisition": "ヘルハウンドLv38・45、イーターLv46、生産（錬金術）、釣り",
+      "maps": "永久の迷宮（地下1階～地下5階）、コルダ峠",
+      "notes": "2026-10-17 日本語Wikiで名称・AGI加算値・入手先を照合（SRC000023）。既存の生産参照IDを保持して能力登録。生産Lvは版差・疑問符を解消するまで記載しない。ドロップ率・枠・ゲーム内挙動は未検証。"
+    },
+    {
+      "id": "REF000073",
+      "name": "◇AGI+2",
+      "value": 2,
+      "effectId": "REFEFF000073",
+      "url": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)",
+      "acquisitionType": "ドロップ / 生産 / 釣り",
+      "acquisition": "ケルベロスLv59、釣り、生産（錬金術）",
+      "maps": "闇の館",
+      "notes": "2026-10-17 日本語Wikiで名称・AGI加算値・入手先を照合（SRC000023）。既存の生産参照IDを保持して能力登録。生産Lvは版差・疑問符を解消するまで記載しない。ドロップ率・枠・ゲーム内挙動は未検証。"
+    },
+    {
+      "id": "REF000083",
+      "name": "◇AGI+3",
+      "value": 3,
+      "effectId": "REFEFF000083",
+      "url": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)",
+      "acquisitionType": "ドロップ / 生産",
+      "acquisition": "フライモールLv130・131、生産（錬金術）",
+      "maps": "ターナス鉱山",
+      "notes": "2026-10-17 日本語Wikiで名称・AGI加算値・入手先を照合（SRC000023）。既存の生産参照IDを保持して能力登録。生産Lvは版差・疑問符を解消するまで記載しない。ドロップ率・枠・ゲーム内挙動は未検証。"
+    }
+  ],
+  "scope": "AGI+1〜3のクリスタのみ。アルクリスタ・レリックを除外。無条件AGI加算。生産Lv・ドロップ率・枠は補完しない。"
+}

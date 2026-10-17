@@ -19,8 +19,21 @@ window.IrunaWikiData = (() => {
     updates.set(id,row);
   }
   for(const row of data.evidence){if(!row.id||evidence.has(row.id))throw new Error('Wiki照合IDが重複しています');evidence.set(row.id,row);}
+  const verifiedReferences=new Map();
+  for(const row of data.verifiedReferences||[]){
+    if(verifiedReferences.has(row.id)||!/^REF\d{6}$/.test(row.id)||row.name!==`◇AGI+${row.value}`||![1,2,3].includes(row.value)||!row.url?.startsWith('https://wikiwiki.jp/iruna-online/')||!evidence.has(row.id))throw new Error('参照アイテムの能力照合が不正です');
+    verifiedReferences.set(row.id,row);
+  }
+  const isVerifiedReference=item=>{
+    const row=verifiedReferences.get(item['アイテムID']);
+    return Boolean(row&&item['分類']==='クリスタ'&&itemName(item)===row.name);
+  };
   const isPlaceholder=value=>!value||/^(?:生産素材|名称参照|参照データ|調理品|回復$|一時強化アイテム$|状態異常回復アイテム$|移動アイテム$)/.test(value);
   const overlayItem=item=>{
+    if(isVerifiedReference(item)){
+      const row=verifiedReferences.get(item['アイテムID']);
+      return {...item,'名前':row.name,'表示分類':'クリスタ','タグ概要':`AGI+${row.value}`,'説明文':`AGI+${row.value}`,'入手区分':row.acquisitionType,'入手先':row.acquisition,'マップ':row.maps,'備考':row.notes};
+    }
     const patch=updates.get(item['アイテムID']),name=itemName(item);if(!patch)return name===item['名前']?item:{...item,'名前':name};
     const next={...item,...patch,'名前':name};
     if(!isPlaceholder(item['説明文']))next['説明文']=item['説明文'];
@@ -31,12 +44,15 @@ window.IrunaWikiData = (() => {
     const ids=new Map(rows.map(r=>[r['効果ID'],r]));
     const itemIds=new Set(data.items.map(r=>r['アイテムID']));
     for(const row of data.effects){
-      if(!itemIds.has(row['アイテムID'])||row['条件グループID']!==''||row['効果種類']!=='加算'||!['絶対回避','クリティカル率'].includes(row['能力ID'])||!Number.isFinite(row['値'])||row['単位']!=='%')throw new Error('Wiki追加能力が不正です');
+      const ref=verifiedReferences.get(row['アイテムID']);
+      const verifiedAgi=ref&&row['効果ID']===ref.effectId&&row['能力ID']==='AGI'&&row['値']===ref.value&&row['単位']==='';
+      const original=!ref&&itemIds.has(row['アイテムID'])&&['絶対回避','クリティカル率'].includes(row['能力ID'])&&Number.isFinite(row['値'])&&row['単位']==='%';
+      if((!verifiedAgi&&!original)||row['条件グループID']!==''||row['効果種類']!=='加算')throw new Error('Wiki追加能力が不正です');
       const old=ids.get(row['効果ID']);
       if(old&&['アイテムID','条件グループID','能力ID','値','単位'].some(k=>old[k]!==row[k]))throw new Error('Wiki追加能力のIDが競合しています');
       if(!old)ids.set(row['効果ID'],row);
     }
     return [...ids.values()];
   }
-  return {overlayItem,mergeCatalog,mergeEffects,evidence,itemName};
+  return {overlayItem,mergeCatalog,mergeEffects,evidence,itemName,isVerifiedReference};
 })();

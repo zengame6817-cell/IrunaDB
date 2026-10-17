@@ -4919,10 +4919,10 @@
     "unmatchedDrops": 131
   },
   "referenceOnly": {
-    "count": 125,
+    "count": 122,
     "byCategory": {
       "武器": 27,
-      "クリスタ": 69,
+      "クリスタ": 66,
       "特殊": 11,
       "追加": 18
     },
@@ -4983,7 +4983,6 @@
       "REF000054",
       "REF000055",
       "REF000056",
-      "REF000057",
       "REF000058",
       "REF000059",
       "REF000060",
@@ -4999,7 +4998,6 @@
       "REF000070",
       "REF000071",
       "REF000072",
-      "REF000073",
       "REF000074",
       "REF000075",
       "REF000076",
@@ -5009,7 +5007,6 @@
       "REF000080",
       "REF000081",
       "REF000082",
-      "REF000083",
       "REF000084",
       "REF000085",
       "REF000086",
@@ -5053,6 +5050,32 @@
       "MAT001854",
       "MAT001855"
     ],
-    "note": "名称参照用。能力・基礎値が未照合のため一覧掲載とビルド選択可否を区別する。数値を推測して選択対象にしない。"
-  }
+    "note": "残る参照用122件。既存能力データが別IDにある候補も含む。名称だけで統合せず、版・強化段階を照合する。"
+  },
+  "registeredReferences": [
+    {
+      "id": "REF000057",
+      "name": "◇AGI+1",
+      "ability": "AGI",
+      "value": 1,
+      "unit": "",
+      "source": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)"
+    },
+    {
+      "id": "REF000073",
+      "name": "◇AGI+2",
+      "ability": "AGI",
+      "value": 2,
+      "unit": "",
+      "source": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)"
+    },
+    {
+      "id": "REF000083",
+      "name": "◇AGI+3",
+      "ability": "AGI",
+      "value": 3,
+      "unit": "",
+      "source": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)"
+    }
+  ]
 }
