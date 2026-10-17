@@ -70,7 +70,8 @@ window.IrunaLocationsBrowser = (() => {
         return ['クリスタ','アルクリスタ','レリック'].includes(kind)?2:['武器','防具','体','追加','特殊','装飾'].includes(kind)?1:0;
       };
       rows.sort((a,b)=>rank(a)-rank(b));
-      return `<ul class="location-drops">${rows.map(g=>`<li>${button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))}</li>`).join('')||'<li>ドロップ情報は未登録です。</li>'}</ul>`;
+      const empty=monsters.get(id)['確認状態']==='ドロップなし確認'?'ドロップなし':'ドロップ情報は未登録です。';
+      return `<ul class="location-drops">${rows.map(g=>`<li>${button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))}</li>`).join('')||`<li>${empty}</li>`}</ul>`;
     }
     function render(){
       syncMapSelection(route.kind==='map'?route.id:route.kind==='monster'?spawnRows(route.id)[0]?.['マップID']:null);

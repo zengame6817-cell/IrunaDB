@@ -4,6 +4,8 @@ window.IrunaWikiData = (() => {
   if(!data)return null;
   const allowed=new Set(['アイテムID','説明文','備考','入手区分','入手先','マップ']);
   const updates=new Map(),evidence=new Map();
+  const catalogOnly=new Set(data.items.filter(row=>row['計算対象']===false).map(row=>row['アイテムID']));
+  const isCatalogOnly=item=>catalogOnly.has(item['アイテムID']);
   const prefixes=new Map();
   for(const row of data.namePrefixes||[]){if(!row.id||prefixes.has(row.id)||!['◇','◆'].includes(row.prefix)||!row.url)throw new Error('クリスタ記号の照合が不正です');prefixes.set(row.id,row.prefix);}
   const itemName=item=>{
@@ -54,5 +56,5 @@ window.IrunaWikiData = (() => {
     }
     return [...ids.values()];
   }
-  return {overlayItem,mergeCatalog,mergeEffects,evidence,itemName,isVerifiedReference};
+  return {overlayItem,mergeCatalog,mergeEffects,evidence,itemName,isVerifiedReference,isCatalogOnly};
 })();

@@ -2017,17 +2017,17 @@
     "bossCrystalItems": 194
   },
   "totals": {
-    "maps": 624,
-    "monsters": 3217,
-    "spawns": 3425,
-    "drops": 11778,
-    "items": 5756
+    "maps": 628,
+    "monsters": 3227,
+    "spawns": 3435,
+    "drops": 11813,
+    "items": 5777
   },
   "added": {
-    "maps": 261,
-    "monsters": 2670,
-    "spawns": 2878,
-    "drops": 9974
+    "maps": 265,
+    "monsters": 2680,
+    "spawns": 2888,
+    "drops": 10009
   },
   "updated": {
     "maps": 0,
@@ -12222,5 +12222,197 @@
       ],
       "unresolvedCandidates": 126
     }
+  },
+  "followUpV3068": {
+    "newItems": [
+      "JP000001",
+      "JP000002",
+      "JP000003",
+      "JP000004",
+      "JP000005",
+      "JP000006",
+      "JP000007",
+      "JP000008",
+      "JP000009",
+      "JP000010",
+      "JP000011"
+    ],
+    "reused": [
+      "SP000599",
+      "SW100006",
+      "CR000603",
+      "BW000335",
+      "CR000602",
+      "TH000245",
+      "AL000222",
+      "SP000595",
+      "BD000306",
+      "AL000220"
+    ],
+    "addedDrops": [
+      "DROP011780",
+      "DROP011781",
+      "DROP011782",
+      "DROP011783",
+      "DROP011784",
+      "DROP011785",
+      "DROP011786",
+      "DROP011787",
+      "DROP011788",
+      "DROP011789",
+      "DROP011790",
+      "DROP011791",
+      "DROP011792",
+      "DROP011793",
+      "DROP011794",
+      "DROP011795",
+      "DROP011796",
+      "DROP011797",
+      "DROP011798",
+      "DROP011799",
+      "DROP011800",
+      "DROP011801",
+      "DROP011802",
+      "DROP011803",
+      "DROP011804",
+      "DROP011805",
+      "DROP011806",
+      "DROP011807",
+      "DROP011808",
+      "DROP011809",
+      "DROP011810",
+      "DROP011811",
+      "DROP011812",
+      "DROP011813",
+      "DROP011814"
+    ],
+    "articles": [
+      {
+        "id": "12981575329",
+        "title": "10/14 新ハロウィンイベント実装、天恵解放etc",
+        "date": "2026-10-14T21:44:57.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12981575329.html",
+        "sha256": "d9b87117063516259b387c5f97822ca9c7e8204d3e4dbb44badca7b605069a21"
+      },
+      {
+        "id": "12980146558",
+        "title": "9/29 新スキル、新装備作成・追加",
+        "date": "2026-09-29T20:47:45.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12980146558.html",
+        "sha256": "9979cabf86adc5da4a2e56c67460b46d99ec10604526553f53ad10ca8cf2ecd4"
+      },
+      {
+        "id": "12978848627",
+        "title": "9/16 新ボス追加！",
+        "date": "2026-09-16T20:03:57.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12978848627.html",
+        "sha256": "3e72ed6c26b2b6cd3eec970444ed697391fd4857287b4d61af876f511449bd8f"
+      },
+      {
+        "id": "12978249734",
+        "title": "9/9 新ミッション追加！",
+        "date": "2026-09-09T22:03:02.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12978249734.html",
+        "sha256": "7424dd81ea25a69cbb7349e2c744b4bf0fc0f76017b1c149c5217637a6a4a5a3"
+      },
+      {
+        "id": "12976797066",
+        "title": "8/26 天恵解放&新装備作成強化＆ウィークリーボス追加",
+        "date": "2026-08-26T20:34:37.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12976797066.html",
+        "sha256": "4bfc1164a1ffc07dd382cebd37c4829ae2f482bc668946b42b739c3e8fa834b3"
+      },
+      {
+        "id": "12975482144",
+        "title": "8/12 アニバVチーム追加！",
+        "date": "2026-08-12T21:25:48.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12975482144.html",
+        "sha256": "3e84311e14c0e422ca602353eca78be7feca09d3e4f41aed404c4fe8869b9e5a"
+      },
+      {
+        "id": "12974571183",
+        "title": "海淵の金緑麗装 VS 魔コート",
+        "date": "2026-08-02T21:41:00.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12974571183.html",
+        "sha256": "2362d9998c199d46f4a759f58316f601e850293fba32523ecffc4fe244bd6c2c"
+      },
+      {
+        "id": "12974076707",
+        "title": "7/29 装備強化、作成etc",
+        "date": "2026-07-28T23:52:07.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12974076707.html",
+        "sha256": "8cd1145c126ef771ec565c215073fccf46b7c4bf2cbcb6a1f1f53fb68af5b4b7"
+      },
+      {
+        "id": "12973505805",
+        "title": "▲サンドリスについて",
+        "date": "2026-07-23T00:54:07.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12973505805.html",
+        "sha256": "ecc07998e55bde30cd3307980404ea318555178fa8b8078fc655570e52281125"
+      },
+      {
+        "id": "12973413704",
+        "title": "人魚イベント9話「珊晶宮の涙」",
+        "date": "2026-07-22T03:26:45.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12973413704.html",
+        "sha256": "3a6d5894f6dfed08b829f20207746e4d9bd77013a3bbed7ef4e40f57eac1b75b"
+      },
+      {
+        "id": "12972806845",
+        "title": "7/15 新イベント追加！",
+        "date": "2026-07-15T22:14:00.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12972806845.html",
+        "sha256": "9c23efe5959989d83675896ee4e0f7f6d7652ea39a47d5e5f22e034487e3eb9a"
+      },
+      {
+        "id": "12972149992",
+        "title": "白日の閃塔31〜40階層",
+        "date": "2026-07-09T00:01:52.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12972149992.html",
+        "sha256": "c899fdbe70e0f24f49bed62ec9451a9cf16fbd89c2ee18c4a6e15c82ea689836"
+      },
+      {
+        "id": "12972101714",
+        "title": "7/8 新妄世階層実装！",
+        "date": "2026-07-08T21:22:50.000+09:00",
+        "url": "https://ameblo.jp/pepetaisa/entry-12972101714.html",
+        "sha256": "ec4f5e15f383df05ff8eaaeb1fd2176845164f20d917bf721918b758473ccb5d"
+      }
+    ],
+    "held": [
+      {
+        "name": "英雄の腕章・閃",
+        "reason": "7/8闇耐性、7/9光耐性で不一致。現行値保持。"
+      },
+      {
+        "name": "妄世の耀弓",
+        "reason": "記事ATK1、DB0。基礎値を変更せず再照合へ。"
+      },
+      {
+        "name": "フタコポス",
+        "reason": "7/22Lv415、7/29Lv430。個体・更新差を未解決のため追加保留。"
+      },
+      {
+        "name": "新鮮な魚",
+        "reason": "MAT000255/IW00000099の複数候補。魚兵への関連を保留。"
+      },
+      {
+        "name": "マーマンシルト",
+        "reason": "DEF21〜41と20〜40の差。基礎DEF空欄、計算未対応。"
+      },
+      {
+        "name": "肉刮ぎ骨剣",
+        "reason": "記事は爪、DBは剣。分類変更は保留。"
+      }
+    ],
+    "scope": "ブログ13記事の初回差分確認。今回は人魚・ハロウィン・楽の至域を登録。他記事の入手先・強化素材は継続。",
+    "added": {
+      "items": 11,
+      "maps": 4,
+      "monsters": 10,
+      "spawns": 10,
+      "drops": 35
+    },
+    "countsScope": "従来のcountsはWiki由来の集計。今回の記事追加はfollowUpV3068.addedで別集計。"
   }
 }

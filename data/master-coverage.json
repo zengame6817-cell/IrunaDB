@@ -2,7 +2,7 @@
   "checkedAt": "2026-10-17",
   "source": "https://docs.google.com/spreadsheets/d/1g2BzWmxSat8KOZTiwuryjIxfhYQFPbkXoX4MJJ8VbFg/edit",
   "scope": "ITEM_MASTERの装備・クリスタ・アルクリスタ・レリック。ID、名前、説明・特殊性能、基礎値を照合。ゲーム内検証・全能力の意味検証を示すものではない。",
-  "targetRows": 4871,
+  "targetRows": 4879,
   "missingItemIds": 0,
   "hiddenBeforeFix": {
     "total": 473,
@@ -1626,7 +1626,9 @@
       "MAT001852",
       "MAT001853",
       "MAT001854",
-      "MAT001855"
+      "MAT001855",
+      "SW100006",
+      "BW000335"
     ],
     "体": [
       "BD000001",
@@ -3128,7 +3130,10 @@
       "REF000051",
       "REF000112",
       "MAT001845",
-      "MAT001851"
+      "MAT001851",
+      "JP000001",
+      "JP000002",
+      "JP000003"
     ],
     "特殊": [
       "SP000001",
@@ -3739,7 +3744,8 @@
       "REF000047",
       "REF000048",
       "REF000050",
-      "REF000110"
+      "REF000110",
+      "SP000599"
     ],
     "クリスタ": [
       "CR000001",
@@ -4422,7 +4428,9 @@
       "IW00011592",
       "IW00011593",
       "IW00011594",
-      "IW00011587"
+      "IW00011587",
+      "CR000603",
+      "CR000602"
     ],
     "アルクリスタ": [
       "AL000001",
@@ -5077,5 +5085,24 @@
       "unit": "",
       "source": "https://wikiwiki.jp/iruna-online/クリスタ/基礎ステータス(1種類)"
     }
-  ]
+  ],
+  "followUpV3068": {
+    "newMasterEquipmentIds": [
+      "JP000001",
+      "JP000002",
+      "JP000003",
+      "SP000599",
+      "SW100006",
+      "CR000603",
+      "BW000335",
+      "CR000602"
+    ],
+    "newMasterRows": 16,
+    "catalogOnlyIds": [
+      "JP000001",
+      "JP000002",
+      "JP000003"
+    ],
+    "note": "計算対象ではなくカテゴリ検索への到達性。新規3装備は説明のみで装備計算未対応。スプシ未反映だった既存5IDも追加。"
+  }
 }

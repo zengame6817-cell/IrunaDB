@@ -144,10 +144,14 @@
     const panel=document.createElement("section");panel.className="catalog-modal-links";
     panel.innerHTML=`<h3>入手先・生産</h3>${button("data-drop-item",id,"入手先を調べる")}<ul>${[...new Set([...uses,...outputs].map(m=>m["レシピID"]))].map(r => `<li>${button("data-recipe",r,data.recipes.find(x=>x["レシピID"]===r)["レシピ名"])}</li>`).join("")}</ul>`;
     $("modalEffectArea").appendChild(panel);
+    if(window.IrunaWikiData?.isCatalogOnly(item)){
+      const note=document.createElement('p');note.className='catalog-note';
+      note.textContent='能力説明のみ登録しています。装備計算への選択は未対応です。';panel.prepend(note);
+    }
     if(wiki){
       const audit=document.createElement('details');audit.className='catalog-wiki-audit';
       const differences=Object.entries(wiki.baseDifferences||{});
-      audit.innerHTML=`<summary>資料の照合（日本語）</summary><p>Iruna Wiki · ${esc(wiki.checkedAt||data.updatedAt)} · ${esc(wiki.status)}</p>
+      audit.innerHTML=`<summary>資料の照合（日本語）</summary><p>日本語資料 · ${esc(wiki.checkedAt||data.updatedAt)} · ${esc(wiki.status)}</p>
         ${wiki.description?`<p>${esc(wiki.description)}</p>`:'<p>資料には日本語の説明文がありません。</p>'}
         ${differences.length?`<p>基礎値の資料差：${differences.map(([key,v])=>`${esc(key)} 登録値 ${esc(v.registered)} / 資料値 ${esc(v.reference)}`).join('、')}</p>`:''}
         <p class="catalog-note">${wiki.status==='説明表記に差分あり'||differences.length?'数値・条件・強化段階の違いは個別確認が必要です。計算には既存の能力データを使用します。':'日本語表記を照合しています。'} 日本版の実装・現行仕様はゲーム内未検証です。</p>`;

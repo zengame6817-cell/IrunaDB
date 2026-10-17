@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),vm=require('vm'),path=require('path'),root=path.resolve(__dirname,'..');
-function setup(){
+function setup(empty=false){
  const nodes=new Map();function node(id){if(!nodes.has(id))nodes.set(id,{value:'',innerHTML:'',textContent:'',dataset:{},handlers:{},addEventListener(k,f){this.handlers[k]=f;},insertAdjacentHTML(_,s){this.innerHTML+=s;},before(){},setAttribute(){},focus(){},replaceChildren(){this.innerHTML='';},closest(){return node(id+'-parent');},append(){}});return nodes.get(id);}
  const lookup=id=>[...nodes.values()].find(n=>n.id===id)||node(id);
  const document={getElementById:lookup,createElement:tag=>node(tag+nodes.size),addEventListener(){}};
@@ -10,6 +10,7 @@ function setup(){
  const monsters=[{'モンスターID':'A','名前':'コロン','Lv下限':1,'Lv上限':2,'備考':'表示しない調査メモ','難易度':'未確認'},{'モンスターID':'B','名前':'コロン','Lv下限':10,'Lv上限':10}];
  const spawns=[{'マップID':'M1','モンスターID':'A'},{'マップID':'M2','モンスターID':'B'}];
  const drops=[['D1','A','I0',1],['D2','A','I1',4],['D3','A','I2',''],['D4','B','I0',2],['D5','A','I3','']].map(([id,m,i,s])=>({'ドロップID':id,'モンスターID':m,'アイテムID':i,'ドロップ枠':s,'備考':'日本語名で照合。枠番号・確率・難易度別条件・現在の開催状況は未確認。','確認日':'2026-10-16'}));
+ if(empty){drops.length=0;monsters[0]['確認状態']='ドロップなし確認';}
  const browser=ctx.window.IrunaLocationsBrowser.create({items,maps,monsters,spawns,drops,recipes:[],results:[]});return{browser,node:lookup};
 }
 test('map and area selection show only corresponding monsters and linked drop lists without audit text',()=>{
@@ -18,4 +19,8 @@ test('map and area selection show only corresponding monsters and linked drop li
  node('dropArea').value='M2';node('dropArea').handlers.change();html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv10'));assert(!html.includes('コロン Lv1～2'));assert(html.includes('data-item="I0"'));assert(!html.includes('data-item="I1"'));assert.equal(node('dropArea').value,'M2');
  browser.navigate('monster','A');assert(!node('locationDetail').innerHTML.includes('表示しない調査メモ'));assert(!node('locationDetail').innerHTML.includes('難易度'));
  browser.search(true);assert.equal(node('dropMap').value,'');assert.equal(node('dropArea').disabled,true);
+});
+test('source-confirmed no drops is distinct from an unregistered empty list',()=>{
+ const {browser,node}=setup(true);browser.navigate('monster','A');assert(node('locationDetail').innerHTML.includes('<li>ドロップなし</li>'));assert(!node('locationDetail').innerHTML.includes('ドロップ情報は未登録'));
+ browser.navigate('monster','B');assert(node('locationDetail').innerHTML.includes('ドロップ情報は未登録です。'));
 });
