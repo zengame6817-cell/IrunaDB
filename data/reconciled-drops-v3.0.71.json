@@ -1,0 +1,668 @@
+{
+  "checkedAt": "2026-10-17",
+  "scope": "既存14装備へ個別照合。12組の同一装備IDを入手先表示のみ関連付け。能力・効果・条件・参照専用IDは保持。",
+  "resolved": [
+    {
+      "sourceId": 9125,
+      "name": "グラスティアラ",
+      "canonicalId": "AD000348",
+      "aliases": [],
+      "excluded": [
+        "AD001076",
+        "REF000043"
+      ],
+      "reason": "DEF8・ヒール回復10%・DEX5の基本版。ヒール回復35%の別版は対象外。"
+    },
+    {
+      "sourceId": 10799,
+      "name": "ネタミ・ソネミ",
+      "canonicalId": "SP000145",
+      "aliases": [
+        "SP000572"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 9184,
+      "name": "ハイディー",
+      "canonicalId": "AD000409",
+      "aliases": [],
+      "excluded": [
+        "AD001035",
+        "REF000029"
+      ],
+      "reason": "ATK5/DEF5・DEX10の基本版。他IDには追加のイベーション効果記載があるため同一扱いしない。"
+    },
+    {
+      "sourceId": 11145,
+      "name": "戦士のチョーカー",
+      "canonicalId": "SP000494",
+      "aliases": [
+        "SP000578"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 10726,
+      "name": "祭祀の記録",
+      "canonicalId": "SP000070",
+      "aliases": [
+        "SP000571"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 11136,
+      "name": "菫青の石英",
+      "canonicalId": "SP000485",
+      "aliases": [
+        "SP000573"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 9079,
+      "name": "ファルシャッポ",
+      "canonicalId": "AD000300",
+      "aliases": [
+        "AD001030"
+      ],
+      "excluded": [
+        "REF000028"
+      ],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 10823,
+      "name": "フォーギヴァース",
+      "canonicalId": "SP000169",
+      "aliases": [
+        "SP000574"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 13294,
+      "name": "ハルピープリュム",
+      "canonicalId": "AD000396",
+      "aliases": [
+        "AD001042"
+      ],
+      "excluded": [
+        "REF000030"
+      ],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 13317,
+      "name": "闇将の籠手",
+      "canonicalId": "SP000106",
+      "aliases": [
+        "SP000588"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 13318,
+      "name": "闇将の加護",
+      "canonicalId": "SP000105",
+      "aliases": [
+        "SP000587"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 13328,
+      "name": "愛叫メガホン",
+      "canonicalId": "SP000253",
+      "aliases": [
+        "SP000584"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 10990,
+      "name": "十束剣の欠片",
+      "canonicalId": "SP000482",
+      "aliases": [
+        "SP000577"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    },
+    {
+      "sourceId": 14075,
+      "name": "アリックの弓柄",
+      "canonicalId": "SP000026",
+      "aliases": [
+        "SP000586"
+      ],
+      "excluded": [],
+      "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+    }
+  ],
+  "rows": [
+    {
+      "dropId": "DROP011815",
+      "itemId": "AD000348",
+      "name": "グラスティアラ",
+      "sourceItemId": 9125,
+      "monsterId": "MON000293",
+      "monsterName": "ポーデ",
+      "sourceMonsterId": 1758,
+      "level": 251,
+      "mapName": "重装騎兵砦",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Glass%20Tiara",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Pode_1758"
+    },
+    {
+      "dropId": "DROP011816",
+      "itemId": "SP000145",
+      "name": "ネタミ・ソネミ",
+      "sourceItemId": 10799,
+      "monsterId": "MON001313",
+      "monsterName": "ユニオンサム",
+      "sourceMonsterId": 1212,
+      "level": 400,
+      "mapName": "首都ソフィア",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Envy%20-%20Grudge",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Union%20Sam_1212"
+    },
+    {
+      "dropId": "DROP011817",
+      "itemId": "AD000409",
+      "name": "ハイディー",
+      "sourceItemId": 9184,
+      "monsterId": "MON002359",
+      "monsterName": "バグーム",
+      "sourceMonsterId": 2664,
+      "level": 383,
+      "mapName": "戦場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Heidi",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Bagoom_2664"
+    },
+    {
+      "dropId": "DROP011818",
+      "itemId": "AD000409",
+      "name": "ハイディー",
+      "sourceItemId": 9184,
+      "monsterId": "MON002361",
+      "monsterName": "バグーム",
+      "sourceMonsterId": 2666,
+      "level": 385,
+      "mapName": "戦場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Heidi",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Bagoom_2666"
+    },
+    {
+      "dropId": "DROP011819",
+      "itemId": "AD000409",
+      "name": "ハイディー",
+      "sourceItemId": 9184,
+      "monsterId": "MON002363",
+      "monsterName": "バグーム",
+      "sourceMonsterId": 2668,
+      "level": 388,
+      "mapName": "戦場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Heidi",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Bagoom_2668"
+    },
+    {
+      "dropId": "DROP011820",
+      "itemId": "SP000494",
+      "name": "戦士のチョーカー",
+      "sourceItemId": 11145,
+      "monsterId": "MON002360",
+      "monsterName": "プリシア",
+      "sourceMonsterId": 2665,
+      "level": 384,
+      "mapName": "戦場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Warrior's%20Choker",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Purisia_2665"
+    },
+    {
+      "dropId": "DROP011821",
+      "itemId": "SP000494",
+      "name": "戦士のチョーカー",
+      "sourceItemId": 11145,
+      "monsterId": "MON002362",
+      "monsterName": "プリシア",
+      "sourceMonsterId": 2667,
+      "level": 387,
+      "mapName": "戦場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Warrior's%20Choker",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Purisia_2667"
+    },
+    {
+      "dropId": "DROP011822",
+      "itemId": "SP000494",
+      "name": "戦士のチョーカー",
+      "sourceItemId": 11145,
+      "monsterId": "MON002364",
+      "monsterName": "プリシア",
+      "sourceMonsterId": 2669,
+      "level": 386,
+      "mapName": "戦場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Warrior's%20Choker",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Purisia_2669"
+    },
+    {
+      "dropId": "DROP011823",
+      "itemId": "SP000070",
+      "name": "祭祀の記録",
+      "sourceItemId": 10726,
+      "monsterId": "MON002377",
+      "monsterName": "ドゥアン",
+      "sourceMonsterId": 2682,
+      "level": 381,
+      "mapName": "バール神殿",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Ceremonial%20Record",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Duang_2682"
+    },
+    {
+      "dropId": "DROP011824",
+      "itemId": "SP000485",
+      "name": "菫青の石英",
+      "sourceItemId": 11136,
+      "monsterId": "MON002381",
+      "monsterName": "アブサーデュ",
+      "sourceMonsterId": 2686,
+      "level": 381,
+      "mapName": "天の祠",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Violet%20Quartz",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Absurdoom_2686"
+    },
+    {
+      "dropId": "DROP011825",
+      "itemId": "SP000485",
+      "name": "菫青の石英",
+      "sourceItemId": 11136,
+      "monsterId": "MON002384",
+      "monsterName": "アブサーデュ",
+      "sourceMonsterId": 2689,
+      "level": 384,
+      "mapName": "天の祠",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Violet%20Quartz",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Absurdoom_2689"
+    },
+    {
+      "dropId": "DROP011826",
+      "itemId": "SP000485",
+      "name": "菫青の石英",
+      "sourceItemId": 11136,
+      "monsterId": "MON002387",
+      "monsterName": "アブサーデュ",
+      "sourceMonsterId": 2692,
+      "level": 387,
+      "mapName": "天の祠",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Violet%20Quartz",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Absurdoom_2692"
+    },
+    {
+      "dropId": "DROP011827",
+      "itemId": "AD000300",
+      "name": "ファルシャッポ",
+      "sourceItemId": 9079,
+      "monsterId": "MON002382",
+      "monsterName": "ファルター",
+      "sourceMonsterId": 2687,
+      "level": 379,
+      "mapName": "天の祠",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Fal%20Chapeau",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Falter_2687"
+    },
+    {
+      "dropId": "DROP011828",
+      "itemId": "AD000300",
+      "name": "ファルシャッポ",
+      "sourceItemId": 9079,
+      "monsterId": "MON002385",
+      "monsterName": "ファルター",
+      "sourceMonsterId": 2690,
+      "level": 382,
+      "mapName": "天の祠",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Fal%20Chapeau",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Falter_2690"
+    },
+    {
+      "dropId": "DROP011829",
+      "itemId": "AD000300",
+      "name": "ファルシャッポ",
+      "sourceItemId": 9079,
+      "monsterId": "MON002388",
+      "monsterName": "ファルター",
+      "sourceMonsterId": 2693,
+      "level": 385,
+      "mapName": "天の祠",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Fal%20Chapeau",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Falter_2693"
+    },
+    {
+      "dropId": "DROP011830",
+      "itemId": "SP000169",
+      "name": "フォーギヴァース",
+      "sourceItemId": 10823,
+      "monsterId": "MON002391",
+      "monsterName": "アンシェイプ",
+      "sourceMonsterId": 2697,
+      "level": 380,
+      "mapName": "異空間・中心部",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Forgivers",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Unshape_2697"
+    },
+    {
+      "dropId": "DROP011831",
+      "itemId": "SP000169",
+      "name": "フォーギヴァース",
+      "sourceItemId": 10823,
+      "monsterId": "MON002394",
+      "monsterName": "アンシェイプ",
+      "sourceMonsterId": 2700,
+      "level": 384,
+      "mapName": "異空間・中心部",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Forgivers",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Unshape_2700"
+    },
+    {
+      "dropId": "DROP011832",
+      "itemId": "SP000169",
+      "name": "フォーギヴァース",
+      "sourceItemId": 10823,
+      "monsterId": "MON002397",
+      "monsterName": "アンシェイプ",
+      "sourceMonsterId": 2703,
+      "level": 388,
+      "mapName": "異空間・中心部",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Forgivers",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Unshape_2703"
+    },
+    {
+      "dropId": "DROP011833",
+      "itemId": "AD000396",
+      "name": "ハルピープリュム",
+      "sourceItemId": 13294,
+      "monsterId": "MON002878",
+      "monsterName": "ハルピュイア",
+      "sourceMonsterId": 3227,
+      "level": 381,
+      "mapName": "闇の深淵",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Harpy%20Plume",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Harpyia_3227"
+    },
+    {
+      "dropId": "DROP011834",
+      "itemId": "AD000396",
+      "name": "ハルピープリュム",
+      "sourceItemId": 13294,
+      "monsterId": "MON002881",
+      "monsterName": "ハルピュイア",
+      "sourceMonsterId": 3230,
+      "level": 385,
+      "mapName": "闇の深淵",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Harpy%20Plume",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Harpyia_3230"
+    },
+    {
+      "dropId": "DROP011835",
+      "itemId": "AD000396",
+      "name": "ハルピープリュム",
+      "sourceItemId": 13294,
+      "monsterId": "MON002884",
+      "monsterName": "ハルピュイア",
+      "sourceMonsterId": 3233,
+      "level": 388,
+      "mapName": "闇の深淵",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Harpy%20Plume",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Harpyia_3233"
+    },
+    {
+      "dropId": "DROP011836",
+      "itemId": "SP000106",
+      "name": "闇将の籠手",
+      "sourceItemId": 13317,
+      "monsterId": "MON002893",
+      "monsterName": "ヴェーテンデス",
+      "sourceMonsterId": 3242,
+      "level": 418,
+      "mapName": "始まりの庭",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Dark%20General's%20Gauntlet",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Vatendeth_3242"
+    },
+    {
+      "dropId": "DROP011837",
+      "itemId": "SP000105",
+      "name": "闇将の加護",
+      "sourceItemId": 13318,
+      "monsterId": "MON002893",
+      "monsterName": "ヴェーテンデス",
+      "sourceMonsterId": 3242,
+      "level": 418,
+      "mapName": "始まりの庭",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Dark%20General's%20Blessing",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Vatendeth_3242"
+    },
+    {
+      "dropId": "DROP011838",
+      "itemId": "SP000253",
+      "name": "愛叫メガホン",
+      "sourceItemId": 13328,
+      "monsterId": "MON002978",
+      "monsterName": "アンジュ",
+      "sourceMonsterId": 3338,
+      "level": 380,
+      "mapName": "ﾀﾞﾝｼﾝｸﾞﾊｰﾄ区域",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Idolizing%20Megaphone",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Ange_3338"
+    },
+    {
+      "dropId": "DROP011839",
+      "itemId": "SP000482",
+      "name": "十束剣の欠片",
+      "sourceItemId": 10990,
+      "monsterId": "MON003004",
+      "monsterName": "アマナギ",
+      "sourceMonsterId": 3364,
+      "level": 250,
+      "mapName": "大蛇の腹の中",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Unknown%20Sword%20Piece",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Amanagi_3364"
+    },
+    {
+      "dropId": "DROP011840",
+      "itemId": "SP000026",
+      "name": "アリックの弓柄",
+      "sourceItemId": 14075,
+      "monsterId": "MON003095",
+      "monsterName": "アリック",
+      "sourceMonsterId": 3455,
+      "level": 400,
+      "mapName": "アニバーサリー会場",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Arick's%20Bow%20Grip",
+      "monsterUrl": "https://irunawiki.com/ja_JP/monster/Arick_3455"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Glass%20Tiara",
+      "sha256": "7592fb3d4c51147036e32b0e5edc95bb0e4089f94b5a343bcc742843064885f3"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Pode_1758",
+      "sha256": "b93797f61f9a0348e7db3e2fcad30406ca49210fd6cfb10edf8f713f5c8ab5ab"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Envy%20-%20Grudge",
+      "sha256": "d48ae5ec7925f6b0fd5bcd081d9dac6ddda5e70ca5bdabcf2651661c4c52ee2f"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Union%20Sam_1212",
+      "sha256": "68fa3460751807ff78352ab6805507a2f0cb511b4d29d3241eac97e8984d3f6e"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Heidi",
+      "sha256": "806521ed804c206ebbdbc07b9e6bbcf87bd5f24730bf50938876053274fa166b"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Bagoom_2664",
+      "sha256": "31775ae438ffd371fe31ceb83da4341f634eafb5cfce6b330e198dcc09b26ee5"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Bagoom_2666",
+      "sha256": "d29a285afefcc98af0ffc0a8440f8ec257f531ede30c895219c76ea72ce3156c"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Bagoom_2668",
+      "sha256": "5c26492c392093b7f9091811c4cc9cf78951e93bb4c7cd06dc5cc0bfb30cc7ce"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Warrior's%20Choker",
+      "sha256": "296f5b33588ccaab216846180bcceeeafa4a61e0d35c90b58e109b63b26c2436"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Purisia_2665",
+      "sha256": "c5de410a4e2f047f92625e1ba21818670aea04de98ccbd5e59c1f16b64de5926"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Purisia_2667",
+      "sha256": "08d108f5d3168a87346486191eb8a17cd22d072e693bc2bb55c3ec9419479e29"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Purisia_2669",
+      "sha256": "2cbe6425de0a9f00757299dca173c1e930d3bcdc81724f1b28190f9ce6382728"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Ceremonial%20Record",
+      "sha256": "85e4a8a341acc020d9151180ce979ae97fa52372f8f5e64fb0300908e45d98f9"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Duang_2682",
+      "sha256": "21c83340345630ed6b768db18520393a6d9cdae1febe3734f47b3be9d12a8d9c"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Violet%20Quartz",
+      "sha256": "d73ff37dec04e89867da4558cfbd938a3c725edbee97b5e131f620dde5ffd9df"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Absurdoom_2686",
+      "sha256": "b3c813bafe6152a495666f841c30780e94dd99ccf3bd182b78ce10e84c78673d"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Absurdoom_2689",
+      "sha256": "b82372f81f4933550a28206c0707f35d45b90d361ee03e4115bf6178efe1becc"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Absurdoom_2692",
+      "sha256": "a912c9559173e2aabd7a9e6dcc9b83bbe74934db0ac1a8bc8fd4ba067c5d9adb"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Fal%20Chapeau",
+      "sha256": "ccdbfc83b4d17bf833148fc244ffb664c50c8c0af0fd989e65bfff452b462caf"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Falter_2687",
+      "sha256": "2c832c18b029b7617d7a16116635e049b7d2cfc73bd2367c826a0275d051ccdf"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Falter_2690",
+      "sha256": "6fead75878224aa4c917b3f2522736932292cdb25484eebc2fc4a3afb820fcd2"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Falter_2693",
+      "sha256": "a8b0aec8b9550bd27d7aff550364065da3fb8fb50c6a258b41225c649971e8a2"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Forgivers",
+      "sha256": "d30939b0e975ea961f2df8be68f1ca9d18908b45a0821115bdaedfbf2525f325"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Unshape_2697",
+      "sha256": "f49ca0d4575d4acb89d88c59dbd4c220271d8c818d2d2e40d05810a31a0d8dbe"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Unshape_2700",
+      "sha256": "afbe3d51a2f5b5b1a0162edd3793e3e041b07f41ae29a7bd30fa8508fe6c911b"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Unshape_2703",
+      "sha256": "ea4ea62d931b0f1b06be54e4c534e3e900e7bab67010974fcf59c39db7214966"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Harpy%20Plume",
+      "sha256": "a6f10445f17498bb43525dedc9ecab3ac666d0746480e58eedb64fa76df5441d"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Harpyia_3227",
+      "sha256": "831bcd6b81270931eedf15a31deb209f6b0f70ea7d4e4f91b905982d4ee646be"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Harpyia_3230",
+      "sha256": "8ebf98243a3698febb9670247cfc2641824f4421d7b263ced9f39c42538edbdf"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Harpyia_3233",
+      "sha256": "5795cb8e88faac9d951926b6d1ca226dcdeabfaa92270ff10d2d1b3bd4d8cb07"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Dark%20General's%20Gauntlet",
+      "sha256": "840cc32b9f4ffd81ca0e5d24544527c92c16b30df64e0d5ee35724aea4ea6c37"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Vatendeth_3242",
+      "sha256": "4b03aef54e1e7984ef6ed404e92182a61dd6755ad3cffee291a6a646d6c050a7"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Dark%20General's%20Blessing",
+      "sha256": "6c73cfa17553fe443d4a7ec0589a0c979b13ac12b9e9af8ce96e2cab6d439409"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Idolizing%20Megaphone",
+      "sha256": "fdb9368b7f95a7dda46e291d6d95419ad250243abf2667b9e0304fb941646813"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Ange_3338",
+      "sha256": "61e9ac4f74561ef9e2e816687aefee27680c4ca11628a692bc886f88f77daf36"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Unknown%20Sword%20Piece",
+      "sha256": "3dbd8a1d0902745522b1264b20333d691f0185793650f97d8b37dca317178968"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Amanagi_3364",
+      "sha256": "ebceece28f67a651b3e6c3dc7d57c4b7933b050d177fcfb1d4217205cacd6d1e"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/item/Arick's%20Bow%20Grip",
+      "sha256": "a2e7e8272aefc364a6fa54186fb80fe6f3c08544fcc80c4f7f7532cacaa789cb"
+    },
+    {
+      "url": "https://irunawiki.com/ja_JP/monster/Arick_3455",
+      "sha256": "643a23b0025e9af870e24638a4b1a916c0b328b763cb2f6a6c1fb1f239a8efc8"
+    }
+  ],
+  "held": [
+    {
+      "name": "愛叫マイク",
+      "reason": "日本語能力説明がないため今回は未採用。"
+    },
+    {
+      "name": "祭祀の記録",
+      "reason": "日本語説明はDEX300以上、hiddenはDEX>300。条件式は既存のまま保持。"
+    },
+    {
+      "name": "菫青の石英",
+      "reason": "日本語説明はVIT200以上、hiddenはVIT>200。条件式は既存のまま保持。"
+    },
+    {
+      "name": "ネタミ・ソネミ",
+      "reason": "hiddenの計算手順と既存数式の一致を確認できないため能力数式は未変更。"
+    }
+  ]
+}

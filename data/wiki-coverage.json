@@ -2011,7 +2011,7 @@
     "sourceMonsters": 3706,
     "verifiedMonsterGroups": 3065,
     "bossGroups": 481,
-    "verifiedDrops": 11138,
+    "verifiedDrops": 11164,
     "itemsWithDrops": 3171,
     "bossCrystalDrops": 229,
     "bossCrystalItems": 194
@@ -2020,14 +2020,14 @@
     "maps": 628,
     "monsters": 3227,
     "spawns": 3435,
-    "drops": 11813,
-    "items": 5777
+    "drops": 11839,
+    "items": 5803
   },
   "added": {
     "maps": 265,
     "monsters": 2680,
     "spawns": 2888,
-    "drops": 10009
+    "drops": 10035
   },
   "updated": {
     "maps": 0,
@@ -3067,41 +3067,11 @@
     },
     {
       "kind": "item",
-      "id": 9079,
-      "name": "ファルシャッポ",
-      "ids": [
-        "AD000300",
-        "AD001030"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 9125,
-      "name": "グラスティアラ",
-      "ids": [
-        "AD000348",
-        "AD001076"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
       "id": 9158,
       "name": "欲張り者の鞄",
       "ids": [
         "AD000382",
         "AD001029"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 9184,
-      "name": "ハイディー",
-      "ids": [
-        "AD000409",
-        "AD001035"
       ],
       "reason": "既存IDが複数候補"
     },
@@ -3172,16 +3142,6 @@
       "ids": [
         "AD000729",
         "AD001044"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 13294,
-      "name": "ハルピープリュム",
-      "ids": [
-        "AD000396",
-        "AD001042"
       ],
       "reason": "既存IDが複数候補"
     },
@@ -5535,16 +5495,6 @@
     },
     {
       "kind": "item",
-      "id": 10726,
-      "name": "祭祀の記録",
-      "ids": [
-        "SP000070",
-        "SP000571"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
       "id": 10734,
       "name": "鎮霊の鳴子",
       "ids": [
@@ -5555,31 +5505,11 @@
     },
     {
       "kind": "item",
-      "id": 10799,
-      "name": "ネタミ・ソネミ",
-      "ids": [
-        "SP000145",
-        "SP000572"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
       "id": 10813,
       "name": "切り火の拍子木",
       "ids": [
         "SP000159",
         "SP000576"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 10823,
-      "name": "フォーギヴァース",
-      "ids": [
-        "SP000169",
-        "SP000574"
       ],
       "reason": "既存IDが複数候補"
     },
@@ -5635,81 +5565,11 @@
     },
     {
       "kind": "item",
-      "id": 10990,
-      "name": "十束剣の欠片",
-      "ids": [
-        "SP000482",
-        "SP000577"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
       "id": 11083,
       "name": "魂のトンカチ",
       "ids": [
         "SP000430",
         "SP000570"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 11136,
-      "name": "菫青の石英",
-      "ids": [
-        "SP000485",
-        "SP000573"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 11145,
-      "name": "戦士のチョーカー",
-      "ids": [
-        "SP000494",
-        "SP000578"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 13317,
-      "name": "闇将の籠手",
-      "ids": [
-        "SP000106",
-        "SP000588"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 13318,
-      "name": "闇将の加護",
-      "ids": [
-        "SP000105",
-        "SP000587"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 13328,
-      "name": "愛叫メガホン",
-      "ids": [
-        "SP000253",
-        "SP000584"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 14075,
-      "name": "アリックの弓柄",
-      "ids": [
-        "SP000026",
-        "SP000586"
       ],
       "reason": "既存IDが複数候補"
     },
@@ -11288,11 +11148,6 @@
       "type": "IslandObject"
     },
     {
-      "monster": 1212,
-      "name": "ネタミ・ソネミ",
-      "type": "Special"
-    },
-    {
       "monster": 1325,
       "name": "ブルーメギフト",
       "type": "Additional"
@@ -11320,11 +11175,6 @@
     {
       "monster": 1595,
       "name": "シニョンリボン",
-      "type": "Additional"
-    },
-    {
-      "monster": 1758,
-      "name": "グラスティアラ",
       "type": "Additional"
     },
     {
@@ -11358,101 +11208,6 @@
       "type": "Bows"
     },
     {
-      "monster": 2664,
-      "name": "ハイディー",
-      "type": "Additional"
-    },
-    {
-      "monster": 2665,
-      "name": "戦士のチョーカー",
-      "type": "Special"
-    },
-    {
-      "monster": 2666,
-      "name": "ハイディー",
-      "type": "Additional"
-    },
-    {
-      "monster": 2667,
-      "name": "戦士のチョーカー",
-      "type": "Special"
-    },
-    {
-      "monster": 2668,
-      "name": "ハイディー",
-      "type": "Additional"
-    },
-    {
-      "monster": 2669,
-      "name": "戦士のチョーカー",
-      "type": "Special"
-    },
-    {
-      "monster": 2682,
-      "name": "祭祀の記録",
-      "type": "Special"
-    },
-    {
-      "monster": 2686,
-      "name": "菫青の石英",
-      "type": "Special"
-    },
-    {
-      "monster": 2687,
-      "name": "ファルシャッポ",
-      "type": "Additional"
-    },
-    {
-      "monster": 2689,
-      "name": "菫青の石英",
-      "type": "Special"
-    },
-    {
-      "monster": 2690,
-      "name": "ファルシャッポ",
-      "type": "Additional"
-    },
-    {
-      "monster": 2692,
-      "name": "菫青の石英",
-      "type": "Special"
-    },
-    {
-      "monster": 2693,
-      "name": "ファルシャッポ",
-      "type": "Additional"
-    },
-    {
-      "monster": 2697,
-      "name": "フォーギヴァース",
-      "type": "Special"
-    },
-    {
-      "monster": 2700,
-      "name": "フォーギヴァース",
-      "type": "Special"
-    },
-    {
-      "monster": 2703,
-      "name": "フォーギヴァース",
-      "type": "Special"
-    },
-    {
-      "monster": 3227,
-      "name": "ハルピープリュム",
-      "type": "Additional"
-    },
-    {
-      "monster": 3230,
-      "name": "ハルピープリュム",
-      "type": "Additional"
-    },
-    {
-      "monster": 3233,
-      "name": "ハルピープリュム",
-      "type": "Additional"
-    },
-    {
       "monster": 3238,
       "name": "七福コロン宝船",
       "type": "Transformation"
@@ -11461,31 +11216,6 @@
       "monster": 3240,
       "name": "正月飾り",
       "type": "IslandObject"
-    },
-    {
-      "monster": 3242,
-      "name": "闇将の籠手",
-      "type": "Special"
-    },
-    {
-      "monster": 3242,
-      "name": "闇将の加護",
-      "type": "Special"
-    },
-    {
-      "monster": 3338,
-      "name": "愛叫メガホン",
-      "type": "Special"
-    },
-    {
-      "monster": 3364,
-      "name": "十束剣の欠片",
-      "type": "Special"
-    },
-    {
-      "monster": 3455,
-      "name": "アリックの弓柄",
-      "type": "Special"
     },
     {
       "monster": 3484,
@@ -12414,5 +12144,550 @@
       "drops": 35
     },
     "countsScope": "従来のcountsはWiki由来の集計。今回の記事追加はfollowUpV3068.addedで別集計。"
+  },
+  "followUpV3071": {
+    "checkedAt": "2026-10-17",
+    "resolvedItems": [
+      {
+        "sourceId": 9125,
+        "name": "グラスティアラ",
+        "canonicalId": "AD000348",
+        "aliases": [],
+        "excluded": [
+          "AD001076",
+          "REF000043"
+        ],
+        "reason": "DEF8・ヒール回復10%・DEX5の基本版。ヒール回復35%の別版は対象外。"
+      },
+      {
+        "sourceId": 10799,
+        "name": "ネタミ・ソネミ",
+        "canonicalId": "SP000145",
+        "aliases": [
+          "SP000572"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 9184,
+        "name": "ハイディー",
+        "canonicalId": "AD000409",
+        "aliases": [],
+        "excluded": [
+          "AD001035",
+          "REF000029"
+        ],
+        "reason": "ATK5/DEF5・DEX10の基本版。他IDには追加のイベーション効果記載があるため同一扱いしない。"
+      },
+      {
+        "sourceId": 11145,
+        "name": "戦士のチョーカー",
+        "canonicalId": "SP000494",
+        "aliases": [
+          "SP000578"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 10726,
+        "name": "祭祀の記録",
+        "canonicalId": "SP000070",
+        "aliases": [
+          "SP000571"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 11136,
+        "name": "菫青の石英",
+        "canonicalId": "SP000485",
+        "aliases": [
+          "SP000573"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 9079,
+        "name": "ファルシャッポ",
+        "canonicalId": "AD000300",
+        "aliases": [
+          "AD001030"
+        ],
+        "excluded": [
+          "REF000028"
+        ],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 10823,
+        "name": "フォーギヴァース",
+        "canonicalId": "SP000169",
+        "aliases": [
+          "SP000574"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 13294,
+        "name": "ハルピープリュム",
+        "canonicalId": "AD000396",
+        "aliases": [
+          "AD001042"
+        ],
+        "excluded": [
+          "REF000030"
+        ],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 13317,
+        "name": "闇将の籠手",
+        "canonicalId": "SP000106",
+        "aliases": [
+          "SP000588"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 13318,
+        "name": "闇将の加護",
+        "canonicalId": "SP000105",
+        "aliases": [
+          "SP000587"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 13328,
+        "name": "愛叫メガホン",
+        "canonicalId": "SP000253",
+        "aliases": [
+          "SP000584"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 10990,
+        "name": "十束剣の欠片",
+        "canonicalId": "SP000482",
+        "aliases": [
+          "SP000577"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      },
+      {
+        "sourceId": 14075,
+        "name": "アリックの弓柄",
+        "canonicalId": "SP000026",
+        "aliases": [
+          "SP000586"
+        ],
+        "excluded": [],
+        "reason": "日本語能力説明一致。入手先表示のみ同一装備として関連付け。"
+      }
+    ],
+    "addedDrops": [
+      "DROP011815",
+      "DROP011816",
+      "DROP011817",
+      "DROP011818",
+      "DROP011819",
+      "DROP011820",
+      "DROP011821",
+      "DROP011822",
+      "DROP011823",
+      "DROP011824",
+      "DROP011825",
+      "DROP011826",
+      "DROP011827",
+      "DROP011828",
+      "DROP011829",
+      "DROP011830",
+      "DROP011831",
+      "DROP011832",
+      "DROP011833",
+      "DROP011834",
+      "DROP011835",
+      "DROP011836",
+      "DROP011837",
+      "DROP011838",
+      "DROP011839",
+      "DROP011840"
+    ],
+    "aliases": [
+      {
+        "aliasId": "SP000572",
+        "canonicalId": "SP000145",
+        "url": "https://irunawiki.com/ja_JP/item/Envy%20-%20Grudge",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000578",
+        "canonicalId": "SP000494",
+        "url": "https://irunawiki.com/ja_JP/item/Warrior's%20Choker",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000571",
+        "canonicalId": "SP000070",
+        "url": "https://irunawiki.com/ja_JP/item/Ceremonial%20Record",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000573",
+        "canonicalId": "SP000485",
+        "url": "https://irunawiki.com/ja_JP/item/Violet%20Quartz",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "AD001030",
+        "canonicalId": "AD000300",
+        "url": "https://irunawiki.com/ja_JP/item/Fal%20Chapeau",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000574",
+        "canonicalId": "SP000169",
+        "url": "https://irunawiki.com/ja_JP/item/Forgivers",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "AD001042",
+        "canonicalId": "AD000396",
+        "url": "https://irunawiki.com/ja_JP/item/Harpy%20Plume",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000588",
+        "canonicalId": "SP000106",
+        "url": "https://irunawiki.com/ja_JP/item/Dark%20General's%20Gauntlet",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000587",
+        "canonicalId": "SP000105",
+        "url": "https://irunawiki.com/ja_JP/item/Dark%20General's%20Blessing",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000584",
+        "canonicalId": "SP000253",
+        "url": "https://irunawiki.com/ja_JP/item/Idolizing%20Megaphone",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000577",
+        "canonicalId": "SP000482",
+        "url": "https://irunawiki.com/ja_JP/item/Unknown%20Sword%20Piece",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      },
+      {
+        "aliasId": "SP000586",
+        "canonicalId": "SP000026",
+        "url": "https://irunawiki.com/ja_JP/item/Arick's%20Bow%20Grip",
+        "checkedAt": "2026-10-17",
+        "reason": "日本語名・分類・日本語の全能力説明を個別照合。同一装備のマスター重複を入手先表示で関連付ける。ID・能力・効果行は保持。"
+      }
+    ],
+    "heldResolved": [
+      {
+        "kind": "item",
+        "id": 9079,
+        "name": "ファルシャッポ",
+        "ids": [
+          "AD000300",
+          "AD001030"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 9125,
+        "name": "グラスティアラ",
+        "ids": [
+          "AD000348",
+          "AD001076"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 9184,
+        "name": "ハイディー",
+        "ids": [
+          "AD000409",
+          "AD001035"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 13294,
+        "name": "ハルピープリュム",
+        "ids": [
+          "AD000396",
+          "AD001042"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 10726,
+        "name": "祭祀の記録",
+        "ids": [
+          "SP000070",
+          "SP000571"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 10799,
+        "name": "ネタミ・ソネミ",
+        "ids": [
+          "SP000145",
+          "SP000572"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 10823,
+        "name": "フォーギヴァース",
+        "ids": [
+          "SP000169",
+          "SP000574"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 10990,
+        "name": "十束剣の欠片",
+        "ids": [
+          "SP000482",
+          "SP000577"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 11136,
+        "name": "菫青の石英",
+        "ids": [
+          "SP000485",
+          "SP000573"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 11145,
+        "name": "戦士のチョーカー",
+        "ids": [
+          "SP000494",
+          "SP000578"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 13317,
+        "name": "闇将の籠手",
+        "ids": [
+          "SP000106",
+          "SP000588"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 13318,
+        "name": "闇将の加護",
+        "ids": [
+          "SP000105",
+          "SP000587"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 13328,
+        "name": "愛叫メガホン",
+        "ids": [
+          "SP000253",
+          "SP000584"
+        ],
+        "reason": "既存IDが複数候補"
+      },
+      {
+        "kind": "item",
+        "id": 14075,
+        "name": "アリックの弓柄",
+        "ids": [
+          "SP000026",
+          "SP000586"
+        ],
+        "reason": "既存IDが複数候補"
+      }
+    ],
+    "unmatchedResolved": [
+      {
+        "monster": 1212,
+        "name": "ネタミ・ソネミ",
+        "type": "Special"
+      },
+      {
+        "monster": 1758,
+        "name": "グラスティアラ",
+        "type": "Additional"
+      },
+      {
+        "monster": 2664,
+        "name": "ハイディー",
+        "type": "Additional"
+      },
+      {
+        "monster": 2665,
+        "name": "戦士のチョーカー",
+        "type": "Special"
+      },
+      {
+        "monster": 2666,
+        "name": "ハイディー",
+        "type": "Additional"
+      },
+      {
+        "monster": 2667,
+        "name": "戦士のチョーカー",
+        "type": "Special"
+      },
+      {
+        "monster": 2668,
+        "name": "ハイディー",
+        "type": "Additional"
+      },
+      {
+        "monster": 2669,
+        "name": "戦士のチョーカー",
+        "type": "Special"
+      },
+      {
+        "monster": 2682,
+        "name": "祭祀の記録",
+        "type": "Special"
+      },
+      {
+        "monster": 2686,
+        "name": "菫青の石英",
+        "type": "Special"
+      },
+      {
+        "monster": 2687,
+        "name": "ファルシャッポ",
+        "type": "Additional"
+      },
+      {
+        "monster": 2689,
+        "name": "菫青の石英",
+        "type": "Special"
+      },
+      {
+        "monster": 2690,
+        "name": "ファルシャッポ",
+        "type": "Additional"
+      },
+      {
+        "monster": 2692,
+        "name": "菫青の石英",
+        "type": "Special"
+      },
+      {
+        "monster": 2693,
+        "name": "ファルシャッポ",
+        "type": "Additional"
+      },
+      {
+        "monster": 2697,
+        "name": "フォーギヴァース",
+        "type": "Special"
+      },
+      {
+        "monster": 2700,
+        "name": "フォーギヴァース",
+        "type": "Special"
+      },
+      {
+        "monster": 2703,
+        "name": "フォーギヴァース",
+        "type": "Special"
+      },
+      {
+        "monster": 3227,
+        "name": "ハルピープリュム",
+        "type": "Additional"
+      },
+      {
+        "monster": 3230,
+        "name": "ハルピープリュム",
+        "type": "Additional"
+      },
+      {
+        "monster": 3233,
+        "name": "ハルピープリュム",
+        "type": "Additional"
+      },
+      {
+        "monster": 3242,
+        "name": "闇将の籠手",
+        "type": "Special"
+      },
+      {
+        "monster": 3242,
+        "name": "闇将の加護",
+        "type": "Special"
+      },
+      {
+        "monster": 3338,
+        "name": "愛叫メガホン",
+        "type": "Special"
+      },
+      {
+        "monster": 3364,
+        "name": "十束剣の欠片",
+        "type": "Special"
+      },
+      {
+        "monster": 3455,
+        "name": "アリックの弓柄",
+        "type": "Special"
+      }
+    ],
+    "remaining": {
+      "legacyHeld": 584,
+      "legacyUnmatchedDrops": 30,
+      "fullAuditMissingLinks": 100
+    },
+    "scope": "既存14装備へ個別照合。12組の同一装備IDを入手先表示のみ関連付け。能力・効果・条件・参照専用IDは保持。"
   }
 }
