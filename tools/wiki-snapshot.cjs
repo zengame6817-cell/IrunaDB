@@ -6,7 +6,7 @@ function pack(data){
   const strings=[],ids=new Map(),tables={};
   const encode=v=>{if(typeof v==='string'){if(!ids.has(v)){ids.set(v,strings.length);strings.push(v);}return ids.get(v);}return typeof v==='number'?[v]:v;};
   const table=rows=>{const cols=[...new Set(rows.flatMap(row=>Object.keys(row)))];return{cols,rows:rows.map(row=>cols.map(k=>Object.hasOwn(row,k)?encode(row[k]):null))};};
-  for(const name of ['items','maps','monsters','spawns','drops','itemUpdates','evidence','effects'])tables[name]=table(data[name]);
+  for(const name of ['items','maps','monsters','spawns','drops','itemUpdates','evidence','effects',...(data.itemAliases?['itemAliases']:[]),...(data.namePrefixes?['namePrefixes']:[])])tables[name]=table(data[name]);
   for(const name of ['maps','monsters','drops'])tables['updates.'+name]=table(data.updates[name]||[]);
   return '"use strict";\n// Japanese-source snapshot; scope: docs/RELEASE_v3.0.61.md.\nwindow.IRUNA_WIKI_DATA = (() => {\n  const packed='+JSON.stringify({strings,tables})+';\n  const decode=v=>typeof v==="number"?packed.strings[v]:Array.isArray(v)?v[0]:v;\n  const result={schemaVersion:1,updatedAt:'+JSON.stringify(data.updatedAt)+',updates:{}};\n  for(const [name,table] of Object.entries(packed.tables)){const rows=table.rows.map(values=>Object.fromEntries(table.cols.flatMap((key,i)=>values[i]===null?[]:[[key,decode(values[i])]])));if(name.startsWith("updates."))result.updates[name.slice(8)]=rows;else result[name]=rows;}\n  return result;\n})();\n';
 }

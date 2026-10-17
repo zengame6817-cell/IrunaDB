@@ -55,25 +55,26 @@ window.IrunaLocationsBrowser = (() => {
       } else panel.replaceChildren();
     }
     function render(){
-      detail();const q=normalize($('dropSearch').value),mapMobs=new Set(route.kind==='map'?spawns.filter(s=>s['マップID']===route.id).map(s=>s['モンスターID']):[]);
+      detail();const q=normalize($('dropSearch').value),symbol=$('dropSearch').value.trim().match(/^[◇◆▲]/)?.[0],related=route.kind==='item'?window.IrunaCatalogModel.relatedItemIds(data,route.id):null,mapMobs=new Set(route.kind==='map'?spawns.filter(s=>s['マップID']===route.id).map(s=>s['モンスターID']):[]);
       const matching=drops.filter(r=>{
         const type=$('dropMonsterType').value,kind=$('dropItemType').value,mob=monsters.get(r['モンスターID']),category=items.get(r['アイテムID'])?.['分類'];
         if(type&&(type==='unknown'?Boolean(mob['種別']):mob['種別']!==type))return false;
         if(kind&&(kind==='equipment'?!['武器','防具','体','追加','特殊'].includes(category):kind==='material'?!['素材','収集品'].includes(category):category!==kind))return false;
-        if(route.kind==='item')return r['アイテムID']===route.id;
+        if(route.kind==='item')return related.has(r['アイテムID']);
         if(route.kind==='monster')return r['モンスターID']===route.id;
         if(route.kind==='map')return mapMobs.has(r['モンスターID']);
-        return searchText.get(r['ドロップID']).includes(q);
+        return (!symbol||name(r['アイテムID']).startsWith(symbol))&&searchText.get(r['ドロップID']).includes(q);
       });
-      const entries=matching.map(row=>({kind:'drop',row}));
+      const grouped=window.IrunaCatalogModel.groupDrops(data,matching);
+      const entries=grouped.map(rows=>({kind:'drop',row:rows[0],rows}));
       if(route.kind==='item'||(route.kind==='list'&&q&&!$('dropMonsterType').value&&!$('dropItemType').value)){
         const purchases=data.items.filter(r=>r['入手区分']==='購入'&&(route.kind==='item'?r['アイテムID']===route.id:normalize([r['名前'],r['入手先'],r['マップ']].join(' ')).includes(q)));
         entries.push(...purchases.map(row=>({kind:'purchase',row})));
         const recipeIds=new Set(data.results.filter(active).filter(r=>route.kind==='item'?r['完成アイテムID']===route.id:normalize(name(r['完成アイテムID'])).includes(q)).map(r=>r['レシピID']));
         entries.push(...data.recipes.filter(active).filter(r=>recipeIds.has(r['レシピID'])).map(row=>({kind:'recipe',row})));
       }
-      $('dropCount').textContent=`ドロップ${matching.length}件 / 登録${drops.length}件 · 入手先情報${entries.length}件中 ${Math.min(entries.length,visible)}件を表示`;
-      $('dropList').innerHTML=entries.slice(0,visible).map(({kind,row:r})=>{
+      $('dropCount').textContent=`ドロップ${grouped.length}件 / 登録${drops.length}件${matching.length!==grouped.length?'（照合済みの同一入手先をまとめて表示）':''} · 入手先情報${entries.length}件中 ${Math.min(entries.length,visible)}件を表示`;
+      $('dropList').innerHTML=entries.slice(0,visible).map(({kind,row:r,rows})=>{
         if(kind==='purchase'){
           const map=data.maps.find(m=>m['マップ名']===r['マップ']&&active(m));
           return `<article class="catalog-card" data-location-card><h3>${button('data-item',r['アイテムID'],r['名前'])}</h3><p>購入：${esc(r['入手先'])} / ${map?button('data-map',map['マップID'],mapName(map)):esc(r['マップ']||'場所未登録')}</p><p class="catalog-note">価格・販売条件は未確認です。</p></article>`;
@@ -82,7 +83,8 @@ window.IrunaLocationsBrowser = (() => {
         const mob=monsters.get(r['モンスターID']);
         return `<article class="catalog-card" data-location-card><h3>${button('data-item',r['アイテムID'],name(r['アイテムID']))}</h3><p>${button('data-monster',r['モンスターID'],mob['名前'])} ${esc(lv(mob))}</p><p>${mapLinks(r['モンスターID'])}</p>
           <p>ドロップ枠：${esc(r['ドロップ枠']||'未確認')} · 確率：${r['ドロップ率(%)']===''?'未確認':esc(r['ドロップ率(%)'])+'%'}</p>
-          ${source(r)}<p class="catalog-note">${note(r['条件'])} ${note(r['備考'])}</p></article>`;
+          ${rows.length>1?`<p class="catalog-note">${rows.length}件の資料を照合。同じ入手先として表示しています。</p>`:''}
+          ${rows.map(x=>source(x)).join('')}<p class="catalog-note">${note(r['条件'])} ${note(r['備考'])}</p></article>`;
       }).join('')||'<p class="catalog-empty">この条件に一致する入手先情報は未登録です。情報がないことは、ドロップしないことを意味しません。</p>';
       if(entries.length>visible){
         const pager=document.createElement('div');pager.className='catalog-pagination';

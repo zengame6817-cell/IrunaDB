@@ -4,6 +4,14 @@ window.IrunaWikiData = (() => {
   if(!data)return null;
   const allowed=new Set(['アイテムID','説明文','備考','入手区分','入手先','マップ']);
   const updates=new Map(),evidence=new Map();
+  const prefixes=new Map();
+  for(const row of data.namePrefixes||[]){if(!row.id||prefixes.has(row.id)||!['◇','◆'].includes(row.prefix)||!row.url)throw new Error('クリスタ記号の照合が不正です');prefixes.set(row.id,row.prefix);}
+  const itemName=item=>{
+    const name=String(item['名前']||'');
+    if(item['分類']==='アルクリスタ')return '▲'+name.replace(/^[◇◆▲△]+/,'');
+    if(item['分類']==='クリスタ')return (prefixes.get(item['アイテムID'])||(name.startsWith('◆')?'◆':'◇'))+name.replace(/^[◇◆▲△]+/,'');
+    return name;
+  };
   if(data.schemaVersion!==1)throw new Error('Wiki補足データの形式が未対応です');
   for(const row of data.itemUpdates){
     const id=row['アイテムID'];
@@ -13,12 +21,12 @@ window.IrunaWikiData = (() => {
   for(const row of data.evidence){if(!row.id||evidence.has(row.id))throw new Error('Wiki照合IDが重複しています');evidence.set(row.id,row);}
   const isPlaceholder=value=>!value||/^(?:生産素材|名称参照|参照データ|調理品|回復$|一時強化アイテム$|状態異常回復アイテム$|移動アイテム$)/.test(value);
   const overlayItem=item=>{
-    const patch=updates.get(item['アイテムID']);if(!patch)return item;
-    const next={...item,...patch};
+    const patch=updates.get(item['アイテムID']),name=itemName(item);if(!patch)return name===item['名前']?item:{...item,'名前':name};
+    const next={...item,...patch,'名前':name};
     if(!isPlaceholder(item['説明文']))next['説明文']=item['説明文'];
     return next;
   };
-  function mergeCatalog(base){const next=window.IrunaCatalogModel.mergeLocations(base,data);next.items=next.items.map(overlayItem);return window.IrunaCatalogModel.validate(next);}
+  function mergeCatalog(base){const next=window.IrunaCatalogModel.mergeLocations(base,data);next.items=next.items.map(overlayItem);next.itemAliases=data.itemAliases||[];return window.IrunaCatalogModel.validate(next);}
   function mergeEffects(rows){
     const ids=new Map(rows.map(r=>[r['効果ID'],r]));
     const itemIds=new Set(data.items.map(r=>r['アイテムID']));
@@ -30,5 +38,5 @@ window.IrunaWikiData = (() => {
     }
     return [...ids.values()];
   }
-  return {overlayItem,mergeCatalog,mergeEffects,evidence};
+  return {overlayItem,mergeCatalog,mergeEffects,evidence,itemName};
 })();

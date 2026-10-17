@@ -2005,14 +2005,14 @@
   ],
   "counts": {
     "sourceItems": 7535,
-    "matchedExisting": 5031,
-    "newItems": 1254,
+    "matchedExisting": 5036,
+    "newItems": 1255,
     "newEffects": 3,
     "sourceMonsters": 3706,
     "verifiedMonsterGroups": 3065,
     "bossGroups": 481,
-    "verifiedDrops": 10748,
-    "itemsWithDrops": 2978,
+    "verifiedDrops": 10750,
+    "itemsWithDrops": 2980,
     "bossCrystalDrops": 229,
     "bossCrystalItems": 194
   },
@@ -2020,13 +2020,13 @@
     "maps": 624,
     "monsters": 3217,
     "spawns": 3425,
-    "drops": 11389
+    "drops": 11391
   },
   "added": {
     "maps": 261,
     "monsters": 2670,
     "spawns": 2878,
-    "drops": 9585
+    "drops": 9587
   },
   "updated": {
     "maps": 0,
@@ -4298,24 +4298,6 @@
     },
     {
       "kind": "item",
-      "id": 8980,
-      "name": "クローク",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8981,
-      "name": "クローク (強化 1)",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8982,
-      "name": "クローク (強化 2)",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8983,
       "name": "コレクトリボン",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -5849,24 +5831,6 @@
       "name": "▲忘失の虚",
       "ids": [
         "AL000171"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 11587,
-      "name": "◆プロボーグ",
-      "ids": [
-        "CR000379"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 11979,
-      "name": "◇プロボーグ",
-      "ids": [
-        "CR000379"
       ],
       "reason": "既存IDが複数候補"
     },
@@ -11329,16 +11293,6 @@
   ],
   "unmatchedDrops": [
     {
-      "monster": 49,
-      "name": "◆プロボーグ",
-      "type": "Crysta"
-    },
-    {
-      "monster": 77,
-      "name": "クローク",
-      "type": "Additional"
-    },
-    {
       "monster": 85,
       "name": "黒い髪留めＬ",
       "type": "Additional"
@@ -12221,6 +12175,70 @@
       {
         "file": ".wiki-mon-colon.html",
         "sha256": "ebe284f8b518389a78c1b700a646c99a7a47c2a26ff07977856f964e79e4d194"
+      }
+    ]
+  },
+  "followUpV3063": {
+    "checkedAt": "2026-10-17",
+    "heldResolved": [
+      8980,
+      8981,
+      8982,
+      11587,
+      11979
+    ],
+    "addedDrops": [
+      "DROP011390",
+      "DROP011391"
+    ],
+    "addedItems": [
+      "IW00011587"
+    ],
+    "reusedExistingForCatalog": [
+      "CR000379"
+    ],
+    "nameFormatting": "クリスタは◇（資料で区別したスキルクリスタは◆）、アルクリスタは▲。先頭記号の表示統一。数値・条件は未変更。",
+    "relatedItems": [
+      {
+        "aliasId": "MAT000060",
+        "canonicalId": "IW00000186",
+        "url": "https://irunawiki.com/ja_JP/item/Nut\nhttps://jp.iruna-online.info/iruna/item/%E6%9C%A8%E3%81%AE%E5%AE%9F",
+        "checkedAt": "2026-10-17",
+        "reason": "両資料で回復分類・同一説明・コロンのドロップ・生産材料を確認。生産参照用IDと回復IDを関連付け、元IDと全行を保持。"
+      }
+    ],
+    "files": [
+      {
+        "file": "additional-next.html",
+        "sha256": "c851f12f6559b0db74f8e3222700e1f2334109286a955e1f7e39627449043a7c"
+      },
+      {
+        "file": "crysta-next.html",
+        "sha256": "6ad2b5e484ddd1a7dc57a10e0d5b8a646e226b0bf2400f3262566cb9f30d68fa"
+      },
+      {
+        "file": "nut-next.html",
+        "sha256": "3f99b7346f461d6935e96fa0ec633d0173a3f2a1cb3abc79a51aa4414e9ce308"
+      },
+      {
+        "file": "argyros-next.html",
+        "sha256": "d14da751b1a2871e3020944cb5cabefafc4d9e50417e58de5bfbf1cad9748eeb"
+      },
+      {
+        "file": "kijimu-next.html",
+        "sha256": "a8e570aabb1a0b6e4a53532cf39e44626604a02a36e095b74af5ad8962e1044f"
+      },
+      {
+        "file": "nut-info-next.html",
+        "sha256": "178eb903a8bbcf476cda5d9c578e4212717e2870c38ae9bdd2e47e93d55b0f4f"
+      },
+      {
+        "file": "cloak1-next.html",
+        "sha256": "285e87c7c637d3439a09b3b37c0a7876b01310ece021d3d08c7a27496632ce2c"
+      },
+      {
+        "file": "cloak2-next.html",
+        "sha256": "9886fc61b83b99731e6a5798c523497a418600e15942a13c99040c3a0d601b35"
       }
     ]
   }

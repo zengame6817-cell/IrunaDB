@@ -32,7 +32,24 @@
     });
     data.spawns.forEach(r => { ref(r,"モンスターID","monsters"); ref(r,"マップID","maps"); });
     data.drops.forEach(r => { ref(r,"モンスターID","monsters"); ref(r,"アイテムID","items"); if (r["ドロップ率(%)"] !== "" && (!Number.isFinite(r["ドロップ率(%)"]) || r["ドロップ率(%)"] < 0 || r["ドロップ率(%)"] > 100)) throw new Error("ドロップ率が不正です"); });
+    const aliases=data.itemAliases||[],aliasIds=new Set();
+    if(!Array.isArray(aliases))throw new Error('同一アイテムの照合形式が不正です');
+    const canonicalIds=new Set(aliases.map(r=>r.canonicalId));
+    for(const row of aliases){
+      if(!ids.items.has(row.aliasId)||!ids.items.has(row.canonicalId)||row.aliasId===row.canonicalId||aliasIds.has(row.aliasId)||canonicalIds.has(row.aliasId)||!row.url||!row.reason)throw new Error('同一アイテムの照合ID・根拠が不正です');
+      aliasIds.add(row.aliasId);
+    }
     return data;
+  }
+  function relatedItemIds(data,id){const canonical=(data.itemAliases||[]).find(r=>r.aliasId===id)?.canonicalId||id;return new Set([canonical,...(data.itemAliases||[]).filter(r=>r.canonicalId===canonical).map(r=>r.aliasId)]);}
+  function groupDrops(data,rows){
+    const aliases=new Map((data.itemAliases||[]).flatMap(r=>[[r.aliasId,r.canonicalId],[r.canonicalId,r.canonicalId]])),groups=new Map();
+    for(const row of rows){
+      const canonical=aliases.get(row['アイテムID']);
+      const key=canonical?JSON.stringify([canonical,...['モンスターID','ドロップ枠','ドロップ率(%)','難易度','条件','イベントID'].map(k=>row[k])]):row['ドロップID'];
+      if(!groups.has(key))groups.set(key,[]);groups.get(key).push(row);
+    }
+    return [...groups.values()];
   }
   const defaults = () => ({levels:Object.fromEntries(fields.map(f => [f,0])), favorites:[]});
   function mergeLocations(base, extra) {
@@ -66,7 +83,7 @@
     if (index < 0 || target < 0 || target >= next.length) return next;
     [next[index],next[target]] = [next[target],next[index]]; return next;
   }
-  const api = {fields,key,normalize,validate,mergeLocations,defaults,requiredLevels,canCraft,moveFavorite};
+  const api = {fields,key,normalize,validate,mergeLocations,defaults,requiredLevels,canCraft,moveFavorite,relatedItemIds,groupDrops};
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else window.IrunaCatalogModel = api;
 })();
