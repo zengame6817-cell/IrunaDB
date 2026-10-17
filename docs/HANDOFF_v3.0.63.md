@@ -35,4 +35,7 @@ held 610項目、unmatchedDrops 145件（data/wiki-coverage.json）。
 ## 検証
 
 Nodeテスト26件成功。ローカルブラウザで◇／◆2件表示・▲・木の実の重複表示・マップ往復・検索復元を確認。
-公開結果は公開確認後に追記する。
+main保存：29b9c625bd5a732d91c8a96e064e19b3b492a839。ローカル検証済みツリー748e7dee75c912a505bc41eff86333cc0a605222と一致。
+GitHub Pages Actions 38987094417成功：https://github.com/zengame6817-cell/IrunaDB/actions/runs/38987094417
+公開 https://zengame6817-cell.github.io/IrunaDB/ でv3.0.63、◇／◆プロボーグの別々の2件表示、▲ピーノ、◆のキジムーLv33／ネジム湿原、通常クロークのアルギュロスLv100／ニデア海岸、木の実の照合済み重複表示の集約を確認した。
+登録11,391行、表示上の同一入手先11,388件。保存キー・既存能力・条件は保持。全幅・全機能の再試験は未実施。
