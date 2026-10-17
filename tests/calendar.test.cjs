@@ -27,3 +27,9 @@ test('stored year coverage and calendar shell validate, with no arbitrary source
  const bad=structuredClone(data);bad.events[0].sources[0].url='javascript:alert(1)';assert.throws(()=>M.validate(bad));for(const f of ['js/calendar.js','js/calendar-model.js'])new vm.Script(fs.readFileSync(path.join(root,f),'utf8'));
  const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');assert(html.includes('data-view="calendar"'));for(const f of ['js/calendar.js','js/calendar-model.js','css/calendar.css']){assert(html.includes(f));assert(sw.includes(f));}
 });
+
+test('single-event official content is retained and survives merging',()=>{
+ const body='取得経験値が50%増加します。\n▼イベント内容\nNPCと会話してください。\n■開催日時\n開始:10月17日20:00~\n終了:10月17日21:59まで\n▼イベントスケジュール\n別の予定';
+ const e=P.archive({heading:'取得経験値50%アップキャンペーン(10月17日 15:00)',html:body,body},'2026-10-17',source.url).events[0];assert(e.description.includes('50%'));assert(!e.description.includes('別の予定'));
+ assert.equal(P.mergeEvents([event({title:e.title,startTime:e.startTime,endDate:e.endDate,endTime:e.endTime}),e])[0].description,e.description);
+});
