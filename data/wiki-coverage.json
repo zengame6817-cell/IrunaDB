@@ -2005,14 +2005,14 @@
   ],
   "counts": {
     "sourceItems": 7535,
-    "matchedExisting": 5029,
+    "matchedExisting": 5031,
     "newItems": 1254,
     "newEffects": 3,
     "sourceMonsters": 3706,
     "verifiedMonsterGroups": 3065,
     "bossGroups": 481,
-    "verifiedDrops": 10746,
-    "itemsWithDrops": 2977,
+    "verifiedDrops": 10748,
+    "itemsWithDrops": 2978,
     "bossCrystalDrops": 229,
     "bossCrystalItems": 194
   },
@@ -2020,18 +2020,18 @@
     "maps": 624,
     "monsters": 3217,
     "spawns": 3425,
-    "drops": 11388
+    "drops": 11389
   },
   "added": {
     "maps": 261,
     "monsters": 2670,
     "spawns": 2878,
-    "drops": 9584
+    "drops": 9585
   },
   "updated": {
     "maps": 0,
     "monsters": 395,
-    "drops": 1162
+    "drops": 1163
   },
   "held": [
     {
@@ -3458,12 +3458,6 @@
     },
     {
       "kind": "item",
-      "id": 8829,
-      "name": "アームハット",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 8830,
       "name": "アルマレステカ",
       "reason": "強化段階・条件付き能力の個別照合待ち"
@@ -4324,12 +4318,6 @@
       "kind": "item",
       "id": 8983,
       "name": "コレクトリボン",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 8984,
-      "name": "コロンハット",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -11341,16 +11329,6 @@
   ],
   "unmatchedDrops": [
     {
-      "monster": 11,
-      "name": "アームハット",
-      "type": "Additional"
-    },
-    {
-      "monster": 13,
-      "name": "コロンハット",
-      "type": "Additional"
-    },
-    {
       "monster": 49,
       "name": "◆プロボーグ",
       "type": "Crysta"
@@ -12215,5 +12193,35 @@
       "name": "フリージアの雫",
       "description": "Used to upgrade Freesia Weapon.  Equip Freesia Weapon then use Freesia Bead"
     }
-  ]
+  ],
+  "followUp": {
+    "checkedAt": "2026-10-17",
+    "items": [
+      "AD000035",
+      "AD000197"
+    ],
+    "addedDrops": [
+      "DROP011389",
+      "DROP001718"
+    ],
+    "scope": "既存IDへ個別照合2件。残り615項目・未照合ドロップ147件。数値・条件は変更しない。",
+    "files": [
+      {
+        "file": ".wiki-arm.html",
+        "sha256": "dfa105351d7e58a801cdc08abfea93f55dc6425f051e0534e4c4f796d0973197"
+      },
+      {
+        "file": ".wiki-brosch.html",
+        "sha256": "e69b52e25fc64f3f3ad5daa59997787d6d17de2b3bd591da7af5c7a1e703f8ca"
+      },
+      {
+        "file": ".wiki-colon.html",
+        "sha256": "0d1ea71def891547be166b4ccd1aff9dcad06cde9e50e72fbb14b1087e8da564"
+      },
+      {
+        "file": ".wiki-mon-colon.html",
+        "sha256": "ebe284f8b518389a78c1b700a646c99a7a47c2a26ff07977856f964e79e4d194"
+      }
+    ]
+  }
 }
