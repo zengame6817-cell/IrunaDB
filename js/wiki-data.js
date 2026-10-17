@@ -45,11 +45,22 @@ window.IrunaWikiData = (() => {
   function mergeEffects(rows){
     const ids=new Map(rows.map(r=>[r['効果ID'],r]));
     const itemIds=new Set(data.items.map(r=>r['アイテムID']));
+    // Only unconditional AGI/DEX additions written explicitly in Japanese.
+    const simpleCrystals=new Map();
+    for(const item of data.items){
+      if(!/^JP\d{6}$/.test(item['アイテムID'])||item['分類']!=='クリスタ')continue;
+      const proof=evidence.get(item['アイテムID']),description=String(item['説明文']||'').normalize('NFKC').trim();
+      const match=/^AGI\+([1-7])(?:\s+DEX\+([1-5]))?$/.exec(description);
+      if(!match||!proof?.url?.startsWith('https://irunawiki.com/ja_JP/item/')||proof.description.normalize('NFKC').trim()!==description)continue;
+      simpleCrystals.set(item['アイテムID'],{AGI:+match[1],...(match[2]?{DEX:+match[2]}:{})});
+    }
     for(const row of data.effects){
       const ref=verifiedReferences.get(row['アイテムID']);
       const verifiedAgi=ref&&row['効果ID']===ref.effectId&&row['能力ID']==='AGI'&&row['値']===ref.value&&row['単位']==='';
       const original=!ref&&itemIds.has(row['アイテムID'])&&['絶対回避','クリティカル率'].includes(row['能力ID'])&&Number.isFinite(row['値'])&&row['単位']==='%';
-      if((!verifiedAgi&&!original)||row['条件グループID']!==''||row['効果種類']!=='加算')throw new Error('Wiki追加能力が不正です');
+      const simple=simpleCrystals.get(row['アイテムID']);
+      const verifiedSimple=simple&&Object.hasOwn(simple,row['能力ID'])&&row['効果ID']===`JPEFF${row['アイテムID'].slice(2)}_${row['能力ID']}`&&row['値']===simple[row['能力ID']]&&row['単位']===''&&row['数式']===''&&row['丸め処理']==='';
+      if((!verifiedAgi&&!original&&!verifiedSimple)||row['条件グループID']!==''||row['効果種類']!=='加算')throw new Error('Wiki追加能力が不正です');
       const old=ids.get(row['効果ID']);
       if(old&&['アイテムID','条件グループID','能力ID','値','単位'].some(k=>old[k]!==row[k]))throw new Error('Wiki追加能力のIDが競合しています');
       if(!old)ids.set(row['効果ID'],row);

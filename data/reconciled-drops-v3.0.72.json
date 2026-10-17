@@ -1,0 +1,725 @@
+{
+  "checkedAt": "2026-10-18",
+  "policy": "同名・同じマップは日本語Wikiでドロップを確認できる最低Lvを代表として登録。元の上位Lv個体は保持。別マップは分離。",
+  "newItems": [
+    {
+      "id": "JP000012",
+      "name": "◇AGI・DEX+1",
+      "type": "クリスタ",
+      "description": "AGI+1 DEX+1",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000013",
+      "name": "◇AGI・DEX+2",
+      "type": "クリスタ",
+      "description": "AGI+2 DEX+2",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000014",
+      "name": "◇AGI・DEX+3",
+      "type": "クリスタ",
+      "description": "AGI+3 DEX+3",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000015",
+      "name": "◇AGI・DEX+4",
+      "type": "クリスタ",
+      "description": "AGI+4 DEX+4",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000016",
+      "name": "◇AGI・DEX+5",
+      "type": "クリスタ",
+      "description": "AGI+5 DEX+5",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000017",
+      "name": "◇AGI+4",
+      "type": "クリスタ",
+      "description": "AGI+4",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000018",
+      "name": "◇AGI+5",
+      "type": "クリスタ",
+      "description": "AGI+5",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000019",
+      "name": "◇AGI+6",
+      "type": "クリスタ",
+      "description": "AGI+6",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000020",
+      "name": "◇AGI+7",
+      "type": "クリスタ",
+      "description": "AGI+7",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000021",
+      "name": "ティルアルコ",
+      "type": "武器",
+      "description": "STR+15 ATK+15% オートスキル発動+5% 物理貫通+8% MaxHP・MP-15% クリティカルダメージ-5%",
+      "catalogOnly": true
+    },
+    {
+      "id": "JP000022",
+      "name": "テンペスクロー",
+      "type": "武器",
+      "description": "風属性 クリティカル率+15 魔法耐性-20%",
+      "catalogOnly": true
+    },
+    {
+      "id": "JP000023",
+      "name": "ドクロ",
+      "type": "収集品",
+      "description": "島オブジェ",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000024",
+      "name": "正月飾り",
+      "type": "収集品",
+      "description": "島オブジェ",
+      "catalogOnly": false
+    },
+    {
+      "id": "JP000025",
+      "name": "七福コロン宝船",
+      "type": "消費",
+      "description": "トランス登録アイテム 七福コロン宝船型のトランス",
+      "catalogOnly": false
+    }
+  ],
+  "rows": [
+    {
+      "dropId": "DROP011841",
+      "itemId": "JP000012",
+      "name": "◇AGI・DEX+1",
+      "monsterId": "MON000978",
+      "monsterName": "リオイーク",
+      "level": 111,
+      "mapName": "永久の迷宮",
+      "sourceMonsterId": 803,
+      "sourceItemId": 11595,
+      "url": "https://irunawiki.com/ja_JP/monster/Lioik_803",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B1",
+      "coveredAuditRows": [
+        "MON000978",
+        "MON000984",
+        "MON000987"
+      ]
+    },
+    {
+      "dropId": "DROP011842",
+      "itemId": "JP000013",
+      "name": "◇AGI・DEX+2",
+      "monsterId": "MON000898",
+      "monsterName": "狛犬",
+      "level": 162,
+      "mapName": "ミカサの岩戸",
+      "sourceMonsterId": 714,
+      "sourceItemId": 11596,
+      "url": "https://irunawiki.com/ja_JP/monster/Guardian%20Statue_714",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B2",
+      "coveredAuditRows": [
+        "MON000898",
+        "MON000900",
+        "MON000902"
+      ]
+    },
+    {
+      "dropId": "DROP011843",
+      "itemId": "JP000014",
+      "name": "◇AGI・DEX+3",
+      "monsterId": "MON000312",
+      "monsterName": "プラントマン",
+      "level": 195,
+      "mapName": "ボードラゲ空洞",
+      "sourceMonsterId": 659,
+      "sourceItemId": 11597,
+      "url": "https://irunawiki.com/ja_JP/monster/Plant%20Man_659",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B3",
+      "coveredAuditRows": [
+        "MON000312"
+      ]
+    },
+    {
+      "dropId": "DROP011844",
+      "itemId": "JP000015",
+      "name": "◇AGI・DEX+4",
+      "monsterId": "MON001218",
+      "monsterName": "ポリプス",
+      "level": 272,
+      "mapName": "永久の迷宮",
+      "sourceMonsterId": 1056,
+      "sourceItemId": 11598,
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1056",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B4",
+      "coveredAuditRows": [
+        "MON001218",
+        "MON001222",
+        "MON001226",
+        "MON001230"
+      ]
+    },
+    {
+      "dropId": "DROP011845",
+      "itemId": "JP000015",
+      "name": "◇AGI・DEX+4",
+      "monsterId": "MON001684",
+      "monsterName": "ポリプス",
+      "level": 260,
+      "mapName": "サテリア地下",
+      "sourceMonsterId": 1831,
+      "sourceItemId": 11598,
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1831",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B4",
+      "coveredAuditRows": [
+        "MON001684"
+      ]
+    },
+    {
+      "dropId": "DROP011846",
+      "itemId": "JP000016",
+      "name": "◇AGI・DEX+5",
+      "monsterId": "MON001933",
+      "monsterName": "ティグラート",
+      "level": 329,
+      "mapName": "ティモア回廊",
+      "sourceMonsterId": 2155,
+      "sourceItemId": 11599,
+      "url": "https://irunawiki.com/ja_JP/monster/Tigrat_2155",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B5",
+      "coveredAuditRows": [
+        "MON001933",
+        "MON001937"
+      ]
+    },
+    {
+      "dropId": "DROP011847",
+      "itemId": "JP000017",
+      "name": "◇AGI+4",
+      "monsterId": "MON001249",
+      "monsterName": "烏武士",
+      "level": 175,
+      "mapName": "アマヅキ城･ボス部屋",
+      "sourceMonsterId": 1097,
+      "sourceItemId": 11603,
+      "url": "https://irunawiki.com/ja_JP/monster/Crow%20Samurai_1097",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B4",
+      "coveredAuditRows": [
+        "MON001249",
+        "MON001250"
+      ]
+    },
+    {
+      "dropId": "DROP011848",
+      "itemId": "JP000018",
+      "name": "◇AGI+5",
+      "monsterId": "MON001360",
+      "monsterName": "スノウラタ",
+      "level": 189,
+      "mapName": "ログラス郊外",
+      "sourceMonsterId": 1292,
+      "sourceItemId": 11604,
+      "url": "https://irunawiki.com/ja_JP/monster/Snowrata_1292",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B5",
+      "coveredAuditRows": [
+        "MON001360"
+      ]
+    },
+    {
+      "dropId": "DROP011849",
+      "itemId": "JP000018",
+      "name": "◇AGI+5",
+      "monsterId": "MON000664",
+      "monsterName": "風の精霊",
+      "level": 197,
+      "mapName": "神々の塔",
+      "sourceMonsterId": 284,
+      "sourceItemId": 11604,
+      "url": "https://irunawiki.com/ja_JP/monster/Wind%20Spirit_284",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B5",
+      "coveredAuditRows": [
+        "MON000664",
+        "MON000665"
+      ]
+    },
+    {
+      "dropId": "DROP011850",
+      "itemId": "JP000019",
+      "name": "◇AGI+6",
+      "monsterId": "MON001694",
+      "monsterName": "グリュー",
+      "level": 272,
+      "mapName": "ベスティエ山",
+      "sourceMonsterId": 1843,
+      "sourceItemId": 11605,
+      "url": "https://irunawiki.com/ja_JP/monster/Glew_1843",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B6",
+      "coveredAuditRows": [
+        "MON001694",
+        "MON001695",
+        "MON001697"
+      ]
+    },
+    {
+      "dropId": "DROP011851",
+      "itemId": "JP000020",
+      "name": "◇AGI+7",
+      "monsterId": "MON001861",
+      "monsterName": "メーヴェ",
+      "level": 296,
+      "mapName": "ﾌｫﾙﾃｨﾅ祭壇前",
+      "sourceMonsterId": 2069,
+      "sourceItemId": 11606,
+      "url": "https://irunawiki.com/ja_JP/monster/Mowe_2069",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B7",
+      "coveredAuditRows": [
+        "MON001861"
+      ]
+    },
+    {
+      "dropId": "DROP011852",
+      "itemId": "JP000021",
+      "name": "ティルアルコ",
+      "monsterId": "MON002255",
+      "monsterName": "ロイ",
+      "level": 392,
+      "mapName": "紫雲の森",
+      "sourceMonsterId": 2545,
+      "sourceItemId": 10135,
+      "url": "https://irunawiki.com/ja_JP/monster/Roy_2545",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Tail%20Arco",
+      "coveredAuditRows": [
+        "MON002255"
+      ]
+    },
+    {
+      "dropId": "DROP011853",
+      "itemId": "JP000022",
+      "name": "テンペスクロー",
+      "monsterId": "MON001026",
+      "monsterName": "マリキータ",
+      "level": 153,
+      "mapName": "永久の迷宮",
+      "sourceMonsterId": 859,
+      "sourceItemId": 10646,
+      "url": "https://irunawiki.com/ja_JP/monster/Mariquita_859",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Tempest%20Claw",
+      "coveredAuditRows": [
+        "MON001026",
+        "MON001029",
+        "MON001032"
+      ]
+    },
+    {
+      "dropId": "DROP011854",
+      "itemId": "JP000023",
+      "name": "ドクロ",
+      "monsterId": "MON000230",
+      "monsterName": "クリジス",
+      "level": 200,
+      "mapName": "メザルーナ宮",
+      "sourceMonsterId": 1174,
+      "sourceItemId": 11562,
+      "url": "https://irunawiki.com/ja_JP/monster/Crysis_1174",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/Skull",
+      "coveredAuditRows": [
+        "MON000230",
+        "MON000285"
+      ]
+    },
+    {
+      "dropId": "DROP011855",
+      "itemId": "JP000024",
+      "name": "正月飾り",
+      "monsterId": "MON002891",
+      "monsterName": "めでタイ",
+      "level": 100,
+      "mapName": "イベント会場",
+      "sourceMonsterId": 3240,
+      "sourceItemId": 11543,
+      "url": "https://irunawiki.com/ja_JP/monster/Medetai_3240",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/New%20Year%20Deco.",
+      "coveredAuditRows": [
+        "MON002891",
+        "MON002892"
+      ]
+    },
+    {
+      "dropId": "DROP011856",
+      "itemId": "JP000025",
+      "name": "七福コロン宝船",
+      "monsterId": "MON002889",
+      "monsterName": "曙アイゼン",
+      "level": 50,
+      "mapName": "イベント会場",
+      "sourceMonsterId": 3238,
+      "sourceItemId": 13304,
+      "url": "https://irunawiki.com/ja_JP/monster/Akebono%20Eisen_3238",
+      "itemUrl": "https://irunawiki.com/ja_JP/item/7-Colons%20Treasure%20Ship",
+      "coveredAuditRows": [
+        "MON002889"
+      ]
+    }
+  ],
+  "coveredOldAuditRows": [
+    {
+      "monsterId": "MON000978",
+      "name": "◇AGI・DEX+1"
+    },
+    {
+      "monsterId": "MON000984",
+      "name": "◇AGI・DEX+1"
+    },
+    {
+      "monsterId": "MON000987",
+      "name": "◇AGI・DEX+1"
+    },
+    {
+      "monsterId": "MON000898",
+      "name": "◇AGI・DEX+2"
+    },
+    {
+      "monsterId": "MON000900",
+      "name": "◇AGI・DEX+2"
+    },
+    {
+      "monsterId": "MON000902",
+      "name": "◇AGI・DEX+2"
+    },
+    {
+      "monsterId": "MON000312",
+      "name": "◇AGI・DEX+3"
+    },
+    {
+      "monsterId": "MON001218",
+      "name": "◇AGI・DEX+4"
+    },
+    {
+      "monsterId": "MON001222",
+      "name": "◇AGI・DEX+4"
+    },
+    {
+      "monsterId": "MON001226",
+      "name": "◇AGI・DEX+4"
+    },
+    {
+      "monsterId": "MON001230",
+      "name": "◇AGI・DEX+4"
+    },
+    {
+      "monsterId": "MON001684",
+      "name": "◇AGI・DEX+4"
+    },
+    {
+      "monsterId": "MON001933",
+      "name": "◇AGI・DEX+5"
+    },
+    {
+      "monsterId": "MON001937",
+      "name": "◇AGI・DEX+5"
+    },
+    {
+      "monsterId": "MON001249",
+      "name": "◇ＡＧＩ＋４"
+    },
+    {
+      "monsterId": "MON001250",
+      "name": "◇ＡＧＩ＋４"
+    },
+    {
+      "monsterId": "MON001360",
+      "name": "◇ＡＧＩ＋５"
+    },
+    {
+      "monsterId": "MON000664",
+      "name": "◇ＡＧＩ＋５"
+    },
+    {
+      "monsterId": "MON000665",
+      "name": "◇ＡＧＩ＋５"
+    },
+    {
+      "monsterId": "MON001694",
+      "name": "◇ＡＧＩ＋６"
+    },
+    {
+      "monsterId": "MON001695",
+      "name": "◇ＡＧＩ＋６"
+    },
+    {
+      "monsterId": "MON001697",
+      "name": "◇ＡＧＩ＋６"
+    },
+    {
+      "monsterId": "MON001861",
+      "name": "◇ＡＧＩ＋７"
+    },
+    {
+      "monsterId": "MON002255",
+      "name": "ティルアルコ"
+    },
+    {
+      "monsterId": "MON001026",
+      "name": "テンペスクロー"
+    },
+    {
+      "monsterId": "MON001029",
+      "name": "テンペスクロー"
+    },
+    {
+      "monsterId": "MON001032",
+      "name": "テンペスクロー"
+    },
+    {
+      "monsterId": "MON000230",
+      "name": "ドクロ"
+    },
+    {
+      "monsterId": "MON000285",
+      "name": "ドクロ"
+    },
+    {
+      "monsterId": "MON002891",
+      "name": "正月飾り"
+    },
+    {
+      "monsterId": "MON002892",
+      "name": "正月飾り"
+    },
+    {
+      "monsterId": "MON002889",
+      "name": "七福コロン宝船"
+    }
+  ],
+  "sources": [
+    {
+      "file": "item-0",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B1",
+      "sha256": "e301d0944006d3d7ff7ec2aec95fdedd57061fc044798753aa9ebc42ea23e9e4"
+    },
+    {
+      "file": "item-1",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B2",
+      "sha256": "bd30f1ed963e9c65f6d7fd2e6991771173bca25bf5138fc8b9fecdef5d970037"
+    },
+    {
+      "file": "item-2",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B3",
+      "sha256": "3466dc036f7170f34d7871b00e9afdf454a9ae05ce4df9aa29b1fc568b666513"
+    },
+    {
+      "file": "item-3",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B4",
+      "sha256": "9a110f3a5f5f837939f500c60f87c9d066306c7ae174dcb084972f58e6f1f098"
+    },
+    {
+      "file": "item-4",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%26DEX%2B5",
+      "sha256": "9d81a8518560f894548f48aa60af7f8b0c469589dcc4a8e54ba37d8445f641b0"
+    },
+    {
+      "file": "item-5",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B4",
+      "sha256": "1c54ec3f069bc9f20ce4845020939f44066524d9a1f118405d09adff8eac6bdf"
+    },
+    {
+      "file": "item-6",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B5",
+      "sha256": "c42852a93eb80b69a03e4cb899f0a6f47bd22bd74ce589f7bc46f33ec1d2a117"
+    },
+    {
+      "file": "item-7",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B6",
+      "sha256": "b84f28784b9ebf48ea43ac389cf575f3940cdf1c51ac1a86fb6aa66cb756ffca"
+    },
+    {
+      "file": "item-8",
+      "url": "https://irunawiki.com/ja_JP/item/%E2%97%87AGI%2B7",
+      "sha256": "895d86aa9dd959037e346c5fbe5e9c360eb88716bd19ad73bb2a8af6549dc778"
+    },
+    {
+      "file": "item-9",
+      "url": "https://irunawiki.com/ja_JP/item/Tail%20Arco",
+      "sha256": "8402e350c85a02db96b24c36d6cb61b410c85cccc8192bcb639ff5d521a73580"
+    },
+    {
+      "file": "item-10",
+      "url": "https://irunawiki.com/ja_JP/item/Tempest%20Claw",
+      "sha256": "6818991c8f203e2520f8d59a9ecc611cf28e86fcfab7b5a7ca256bdb41a379a2"
+    },
+    {
+      "file": "item-11",
+      "url": "https://irunawiki.com/ja_JP/item/Skull",
+      "sha256": "85d73f9c3ff0d6eced2183120ed6c8e139d34e7f6583dbf1628e69d0b5f4feff"
+    },
+    {
+      "file": "item-12",
+      "url": "https://irunawiki.com/ja_JP/item/New%20Year%20Deco.",
+      "sha256": "a844395df868a41c8e13980f6351752a51095546a9fdb8d2037ec611bbe9b5b4"
+    },
+    {
+      "file": "item-13",
+      "url": "https://irunawiki.com/ja_JP/item/7-Colons%20Treasure%20Ship",
+      "sha256": "4ad35b45d9faefea6beafc369c0c8379110fadef94951512f6baa4088b2d8bc1"
+    },
+    {
+      "file": "monster-803",
+      "url": "https://irunawiki.com/ja_JP/monster/Lioik_803",
+      "sha256": "603f2e63ad44c81ffede7a1f83e82f375c846320692af16c35cf5cd66e9f0827"
+    },
+    {
+      "file": "monster-809",
+      "url": "https://irunawiki.com/ja_JP/monster/Lioik_809",
+      "sha256": "821214ed6dfe890ab5ad24885d23390ca8dda9245f269e2103a1f508e2f0c069"
+    },
+    {
+      "file": "monster-812",
+      "url": "https://irunawiki.com/ja_JP/monster/Lioik_812",
+      "sha256": "9c93df5def8fc54551e342f9b72ae21a66cb0c0655f83c835d52774df351c647"
+    },
+    {
+      "file": "monster-714",
+      "url": "https://irunawiki.com/ja_JP/monster/Guardian%20Statue_714",
+      "sha256": "19f20374dd63c86f631bdc879139b3b6a00698d9e569420d45810086d9c6fac3"
+    },
+    {
+      "file": "monster-717",
+      "url": "https://irunawiki.com/ja_JP/monster/Guardian%20Statue_717",
+      "sha256": "e02d8ca0dde72ec5075cdcaa1bc5f81f19779943e91ffe8e81d2150d83978d49"
+    },
+    {
+      "file": "monster-720",
+      "url": "https://irunawiki.com/ja_JP/monster/Guardian%20Statue_720",
+      "sha256": "bc1adeb6a684717ff01a22fe90f093240181b6da97599cc98891f0259a84edb6"
+    },
+    {
+      "file": "monster-659",
+      "url": "https://irunawiki.com/ja_JP/monster/Plant%20Man_659",
+      "sha256": "5425d818fd39d5d72eb4d1f6a3978e082c18f0f4b2ce52321fca11750bf6a833"
+    },
+    {
+      "file": "monster-1056",
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1056",
+      "sha256": "fab9b0dde88d10d14ed5fd03e6d859720c8e9dda160fbf1728e3e894c3fe422d"
+    },
+    {
+      "file": "monster-1060",
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1060",
+      "sha256": "c41ce519455163b6d984e77dd77de28484e98999471693096bc7f65eecce9c53"
+    },
+    {
+      "file": "monster-1064",
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1064",
+      "sha256": "4b0b4feccfe2dac1c6034b22cbb000b4513315238569454f189505d2c1820d84"
+    },
+    {
+      "file": "monster-1068",
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1068",
+      "sha256": "85e1c32f19e07e76e2c731223eb03a20963f923a31e48866ee2922451ebc5bf5"
+    },
+    {
+      "file": "monster-1831",
+      "url": "https://irunawiki.com/ja_JP/monster/Polyps_1831",
+      "sha256": "8c13a2f8f679cf0086d73dfba96a839b787f6fbdcc84168816decb67c96d8870"
+    },
+    {
+      "file": "monster-2155",
+      "url": "https://irunawiki.com/ja_JP/monster/Tigrat_2155",
+      "sha256": "c36799844535e36275244956d8841754d5c08d7ce82c36b663031296ca0a740d"
+    },
+    {
+      "file": "monster-2160",
+      "url": "https://irunawiki.com/ja_JP/monster/Tigrat_2160",
+      "sha256": "0223a0d64dc76f636bf98aea6191fb226a6a902a0ac6933989208a697ae7ec53"
+    },
+    {
+      "file": "monster-1097",
+      "url": "https://irunawiki.com/ja_JP/monster/Crow%20Samurai_1097",
+      "sha256": "5e8a9a07af92d08abf31873e7153d6f756f4bcf30d4649b386dba349f3988da2"
+    },
+    {
+      "file": "monster-1292",
+      "url": "https://irunawiki.com/ja_JP/monster/Snowrata_1292",
+      "sha256": "a7d7e276a926a9ff5d0c68df9be1efbe3d72095c44359fb5896c098f652c39ed"
+    },
+    {
+      "file": "monster-284",
+      "url": "https://irunawiki.com/ja_JP/monster/Wind%20Spirit_284",
+      "sha256": "0e1ec6d5d5d0c79b752dc598ee4a2b9b251431f9d917604abe3e9b50e87d52fd"
+    },
+    {
+      "file": "monster-1843",
+      "url": "https://irunawiki.com/ja_JP/monster/Glew_1843",
+      "sha256": "3271a6b6fc31c9763d3c3eb3bde85cf93304648cb70371ced6918c749bd548ed"
+    },
+    {
+      "file": "monster-1846",
+      "url": "https://irunawiki.com/ja_JP/monster/Glew_1846",
+      "sha256": "0e3f7ca3fdbb9311141cad641fd6945db45985cc37095b6797a04a9f332a6df0"
+    },
+    {
+      "file": "monster-2069",
+      "url": "https://irunawiki.com/ja_JP/monster/Mowe_2069",
+      "sha256": "b5d716ef3f5d3f6d666dbd561bc7eed045470b1f4c673e548fa00e1a0864d8f9"
+    },
+    {
+      "file": "monster-2545",
+      "url": "https://irunawiki.com/ja_JP/monster/Roy_2545",
+      "sha256": "15792b919b301111709be1b8ad01e6defff101ab639ce699a48deaeaeea1876d"
+    },
+    {
+      "file": "monster-859",
+      "url": "https://irunawiki.com/ja_JP/monster/Mariquita_859",
+      "sha256": "01522619b87ead46de266b126c98cfc525b925abe6b2593d00582a48a8212281"
+    },
+    {
+      "file": "monster-862",
+      "url": "https://irunawiki.com/ja_JP/monster/Mariquita_862",
+      "sha256": "5ab4c54fbe3623c46fa6f8a619c0db42cafd92baa81042cf33d79dd17ec230ca"
+    },
+    {
+      "file": "monster-865",
+      "url": "https://irunawiki.com/ja_JP/monster/Mariquita_865",
+      "sha256": "3295741fa566047766d133c03c9fd970c1d5500983dbd50daf4d819215199dd3"
+    },
+    {
+      "file": "monster-1174",
+      "url": "https://irunawiki.com/ja_JP/monster/Crysis_1174",
+      "sha256": "9609df0cb622900f93105947f43292f98f1766eb4a4fd397e857ccaa4f3ae4ea"
+    },
+    {
+      "file": "monster-1178",
+      "url": "https://irunawiki.com/ja_JP/monster/Crysis_1178",
+      "sha256": "2c3b67168afe4778b8610598c46f1754b67b9110ca7ed11baf98d4c5b7eb6a40"
+    },
+    {
+      "file": "monster-3240",
+      "url": "https://irunawiki.com/ja_JP/monster/Medetai_3240",
+      "sha256": "f00979154268898b897bac473103528b351cf546cf7a1ed8a6251be68ef6b026"
+    },
+    {
+      "file": "monster-3238",
+      "url": "https://irunawiki.com/ja_JP/monster/Akebono%20Eisen_3238",
+      "sha256": "f82a1f4047980cdbf4c619d51e436095242bacf49a32d84f42240c730c1b2f31"
+    }
+  ],
+  "limitations": [
+    "武器2種は説明登録のみで計算選択から除外",
+    "島・変身アイテムは収集品・消費として登録。能力を創作しない",
+    "旧監査100件は個体別、今回32行を最低Lv代表16入手先として整理。残68行は今回対象外"
+  ]
+}

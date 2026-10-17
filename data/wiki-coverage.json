@@ -2006,12 +2006,12 @@
   "counts": {
     "sourceItems": 7535,
     "matchedExisting": 5048,
-    "newItems": 1255,
-    "newEffects": 3,
+    "newItems": 1269,
+    "newEffects": 17,
     "sourceMonsters": 3706,
     "verifiedMonsterGroups": 3065,
     "bossGroups": 481,
-    "verifiedDrops": 11164,
+    "verifiedDrops": 11180,
     "itemsWithDrops": 3171,
     "bossCrystalDrops": 229,
     "bossCrystalItems": 194
@@ -2020,14 +2020,14 @@
     "maps": 628,
     "monsters": 3227,
     "spawns": 3435,
-    "drops": 11839,
-    "items": 5803
+    "drops": 11855,
+    "items": 5817
   },
   "added": {
     "maps": 265,
     "monsters": 2680,
     "spawns": 2888,
-    "drops": 10035
+    "drops": 10051
   },
   "updated": {
     "maps": 0,
@@ -2335,20 +2335,8 @@
     },
     {
       "kind": "item",
-      "id": 10135,
-      "name": "ティルアルコ",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
       "id": 14162,
       "name": "ヘリファルテⅢ",
-      "reason": "強化段階・条件付き能力の個別照合待ち"
-    },
-    {
-      "kind": "item",
-      "id": 10646,
-      "name": "テンペスクロー",
       "reason": "強化段階・条件付き能力の個別照合待ち"
     },
     {
@@ -11123,31 +11111,6 @@
       "type": "IslandObject"
     },
     {
-      "monster": 859,
-      "name": "テンペスクロー",
-      "type": "Claws"
-    },
-    {
-      "monster": 862,
-      "name": "テンペスクロー",
-      "type": "Claws"
-    },
-    {
-      "monster": 865,
-      "name": "テンペスクロー",
-      "type": "Claws"
-    },
-    {
-      "monster": 1174,
-      "name": "ドクロ",
-      "type": "IslandObject"
-    },
-    {
-      "monster": 1178,
-      "name": "ドクロ",
-      "type": "IslandObject"
-    },
-    {
       "monster": 1325,
       "name": "ブルーメギフト",
       "type": "Additional"
@@ -11201,21 +11164,6 @@
       "monster": 2302,
       "name": "頭乗りバード",
       "type": "Additional"
-    },
-    {
-      "monster": 2545,
-      "name": "ティルアルコ",
-      "type": "Bows"
-    },
-    {
-      "monster": 3238,
-      "name": "七福コロン宝船",
-      "type": "Transformation"
-    },
-    {
-      "monster": 3240,
-      "name": "正月飾り",
-      "type": "IslandObject"
     },
     {
       "monster": 3484,
@@ -12689,5 +12637,219 @@
       "fullAuditMissingLinks": 100
     },
     "scope": "既存14装備へ個別照合。12組の同一装備IDを入手先表示のみ関連付け。能力・効果・条件・参照専用IDは保持。"
+  },
+  "followUpV3072": {
+    "checkedAt": "2026-10-18",
+    "newItems": [
+      "JP000012",
+      "JP000013",
+      "JP000014",
+      "JP000015",
+      "JP000016",
+      "JP000017",
+      "JP000018",
+      "JP000019",
+      "JP000020",
+      "JP000021",
+      "JP000022",
+      "JP000023",
+      "JP000024",
+      "JP000025"
+    ],
+    "newEffects": [
+      "JPEFF000012_AGI",
+      "JPEFF000012_DEX",
+      "JPEFF000013_AGI",
+      "JPEFF000013_DEX",
+      "JPEFF000014_AGI",
+      "JPEFF000014_DEX",
+      "JPEFF000015_AGI",
+      "JPEFF000015_DEX",
+      "JPEFF000016_AGI",
+      "JPEFF000016_DEX",
+      "JPEFF000017_AGI",
+      "JPEFF000018_AGI",
+      "JPEFF000019_AGI",
+      "JPEFF000020_AGI"
+    ],
+    "addedDrops": [
+      "DROP011841",
+      "DROP011842",
+      "DROP011843",
+      "DROP011844",
+      "DROP011845",
+      "DROP011846",
+      "DROP011847",
+      "DROP011848",
+      "DROP011849",
+      "DROP011850",
+      "DROP011851",
+      "DROP011852",
+      "DROP011853",
+      "DROP011854",
+      "DROP011855",
+      "DROP011856"
+    ],
+    "representativeMonsters": [
+      "MON000978",
+      "MON000898",
+      "MON000312",
+      "MON001218",
+      "MON001684",
+      "MON001933",
+      "MON001249",
+      "MON001360",
+      "MON000664",
+      "MON001694",
+      "MON001861",
+      "MON002255",
+      "MON001026",
+      "MON000230",
+      "MON002891",
+      "MON002889"
+    ],
+    "coveredOldAuditRows": [
+      {
+        "monsterId": "MON000978",
+        "name": "◇AGI・DEX+1"
+      },
+      {
+        "monsterId": "MON000984",
+        "name": "◇AGI・DEX+1"
+      },
+      {
+        "monsterId": "MON000987",
+        "name": "◇AGI・DEX+1"
+      },
+      {
+        "monsterId": "MON000898",
+        "name": "◇AGI・DEX+2"
+      },
+      {
+        "monsterId": "MON000900",
+        "name": "◇AGI・DEX+2"
+      },
+      {
+        "monsterId": "MON000902",
+        "name": "◇AGI・DEX+2"
+      },
+      {
+        "monsterId": "MON000312",
+        "name": "◇AGI・DEX+3"
+      },
+      {
+        "monsterId": "MON001218",
+        "name": "◇AGI・DEX+4"
+      },
+      {
+        "monsterId": "MON001222",
+        "name": "◇AGI・DEX+4"
+      },
+      {
+        "monsterId": "MON001226",
+        "name": "◇AGI・DEX+4"
+      },
+      {
+        "monsterId": "MON001230",
+        "name": "◇AGI・DEX+4"
+      },
+      {
+        "monsterId": "MON001684",
+        "name": "◇AGI・DEX+4"
+      },
+      {
+        "monsterId": "MON001933",
+        "name": "◇AGI・DEX+5"
+      },
+      {
+        "monsterId": "MON001937",
+        "name": "◇AGI・DEX+5"
+      },
+      {
+        "monsterId": "MON001249",
+        "name": "◇ＡＧＩ＋４"
+      },
+      {
+        "monsterId": "MON001250",
+        "name": "◇ＡＧＩ＋４"
+      },
+      {
+        "monsterId": "MON001360",
+        "name": "◇ＡＧＩ＋５"
+      },
+      {
+        "monsterId": "MON000664",
+        "name": "◇ＡＧＩ＋５"
+      },
+      {
+        "monsterId": "MON000665",
+        "name": "◇ＡＧＩ＋５"
+      },
+      {
+        "monsterId": "MON001694",
+        "name": "◇ＡＧＩ＋６"
+      },
+      {
+        "monsterId": "MON001695",
+        "name": "◇ＡＧＩ＋６"
+      },
+      {
+        "monsterId": "MON001697",
+        "name": "◇ＡＧＩ＋６"
+      },
+      {
+        "monsterId": "MON001861",
+        "name": "◇ＡＧＩ＋７"
+      },
+      {
+        "monsterId": "MON002255",
+        "name": "ティルアルコ"
+      },
+      {
+        "monsterId": "MON001026",
+        "name": "テンペスクロー"
+      },
+      {
+        "monsterId": "MON001029",
+        "name": "テンペスクロー"
+      },
+      {
+        "monsterId": "MON001032",
+        "name": "テンペスクロー"
+      },
+      {
+        "monsterId": "MON000230",
+        "name": "ドクロ"
+      },
+      {
+        "monsterId": "MON000285",
+        "name": "ドクロ"
+      },
+      {
+        "monsterId": "MON002891",
+        "name": "正月飾り"
+      },
+      {
+        "monsterId": "MON002892",
+        "name": "正月飾り"
+      },
+      {
+        "monsterId": "MON002889",
+        "name": "七福コロン宝船"
+      }
+    ],
+    "oldAuditRowsCovered": 32,
+    "representativeDropLinks": 16,
+    "policy": "同名・同じマップは日本語Wikiでドロップを確認できる最低Lvを代表として登録。元の上位Lv個体は保持。別マップは分離。",
+    "remainingOldAuditRows": 68,
+    "legacyUnmatchedBefore": 30,
+    "legacyUnmatchedAfter": 22,
+    "legacyHeldBefore": 584,
+    "legacyHeldAfter": 582,
+    "limitations": [
+      "武器2種は説明登録のみで計算選択から除外",
+      "島・変身アイテムは収集品・消費として登録。能力を創作しない",
+      "旧監査100件は個体別、今回32行を最低Lv代表16入手先として整理。残68行は今回対象外"
+    ]
   }
 }
