@@ -1,0 +1,7839 @@
+{
+  "checkedAt": "2026-10-17",
+  "scope": "既存IDと日本語名・分類・モンスター個体ID・Lv・マップの一意照合。能力は再検証・変更していない。",
+  "rows": [
+    {
+      "monsterId": "MON000016",
+      "monsterName": "ムーター",
+      "level": [
+        168,
+        169
+      ],
+      "itemId": "CR000285",
+      "name": "◇ＭＰ＋１２０",
+      "type": "Crysta",
+      "sourceIds": [
+        255
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Muta_255"
+      ],
+      "mapNames": [
+        "イフモルト集落"
+      ],
+      "dropId": "DROP011408"
+    },
+    {
+      "monsterId": "MON000042",
+      "monsterName": "アルド",
+      "level": [
+        252,
+        253
+      ],
+      "itemId": "AL000117",
+      "name": "▲ＭＰ＋６０",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1633
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Aldo_1633"
+      ],
+      "mapNames": [
+        "エリウム地区"
+      ],
+      "dropId": "DROP011409"
+    },
+    {
+      "monsterId": "MON000098",
+      "monsterName": "プレタージ",
+      "level": [
+        179,
+        179
+      ],
+      "itemId": "CR000280",
+      "name": "◇ＨＰ＋５００",
+      "type": "Crysta",
+      "sourceIds": [
+        4
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pretage_4"
+      ],
+      "mapNames": [
+        "マレル爆心地"
+      ],
+      "dropId": "DROP011410"
+    },
+    {
+      "monsterId": "MON000132",
+      "monsterName": "ハイエント",
+      "level": [
+        201,
+        201
+      ],
+      "itemId": "CR000276",
+      "name": "◇ＨＰ＋２０％",
+      "type": "Crysta",
+      "sourceIds": [
+        1368
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/High%20Ent_1368"
+      ],
+      "mapNames": [
+        "マゴンジャ砦",
+        "マゴンジャ砦"
+      ],
+      "dropId": "DROP011411"
+    },
+    {
+      "monsterId": "MON000146",
+      "monsterName": "八咫烏",
+      "level": [
+        179,
+        179
+      ],
+      "itemId": "CR000213",
+      "name": "◇INT・CRT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        727
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yatagarasu_727"
+      ],
+      "mapNames": [
+        "チクスイの森",
+        "チクスイの森"
+      ],
+      "dropId": "DROP011412"
+    },
+    {
+      "monsterId": "MON000188",
+      "monsterName": "八咫烏",
+      "level": [
+        179,
+        180
+      ],
+      "itemId": "CR000213",
+      "name": "◇INT・CRT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        729
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yatagarasu_729"
+      ],
+      "mapNames": [
+        "チクスイの森",
+        "チクスイの森"
+      ],
+      "dropId": "DROP011413"
+    },
+    {
+      "monsterId": "MON000189",
+      "monsterName": "ズローヴァ",
+      "level": [
+        204,
+        204
+      ],
+      "itemId": "CR000225",
+      "name": "◇ＩＮＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1185
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Zlova_1185"
+      ],
+      "mapNames": [
+        "メザルーナ宮",
+        "メザルーナ宮"
+      ],
+      "dropId": "DROP011414"
+    },
+    {
+      "monsterId": "MON000223",
+      "monsterName": "アーテン",
+      "level": [
+        191,
+        192
+      ],
+      "itemId": "CR000447",
+      "name": "◇STR・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1144
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Arten_1144"
+      ],
+      "mapNames": [
+        "工場都市レグス",
+        "工場都市レグス"
+      ],
+      "dropId": "DROP011415"
+    },
+    {
+      "monsterId": "MON000252",
+      "monsterName": "クルン",
+      "level": [
+        178,
+        179
+      ],
+      "itemId": "CR000081",
+      "name": "◇ＣＲＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        269
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Kurun_269"
+      ],
+      "mapNames": [
+        "ログラス郊外"
+      ],
+      "dropId": "DROP011416"
+    },
+    {
+      "monsterId": "MON000253",
+      "monsterName": "ラングロン",
+      "level": [
+        173,
+        173
+      ],
+      "itemId": "CR000284",
+      "name": "◇ＭＰ＋１１％",
+      "type": "Crysta",
+      "sourceIds": [
+        265
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Langron_265"
+      ],
+      "mapNames": [
+        "ノトゥル平野"
+      ],
+      "dropId": "DROP011417"
+    },
+    {
+      "monsterId": "MON000263",
+      "monsterName": "ペコラ",
+      "level": [
+        225,
+        225
+      ],
+      "itemId": "CR000487",
+      "name": "◇VIT・AGI+2",
+      "type": "Crysta",
+      "sourceIds": [
+        1328
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pekollar_1328"
+      ],
+      "mapNames": [
+        "列石の門廊"
+      ],
+      "dropId": "DROP011418"
+    },
+    {
+      "monsterId": "MON000268",
+      "monsterName": "スケリット",
+      "level": [
+        175,
+        176
+      ],
+      "itemId": "CR000279",
+      "name": "◇ＨＰ＋４００",
+      "type": "Crysta",
+      "sourceIds": [
+        642
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skelit_642"
+      ],
+      "mapNames": [
+        "ハーデス迷界",
+        "ハーデス迷界"
+      ],
+      "dropId": "DROP011419"
+    },
+    {
+      "monsterId": "MON000274",
+      "monsterName": "ティブロン",
+      "level": [
+        197,
+        197
+      ],
+      "itemId": "CR000454",
+      "name": "◇ＳＴＲ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1156
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Tiburon_1156"
+      ],
+      "mapNames": [
+        "グローグ山脈",
+        "グローグ山脈"
+      ],
+      "dropId": "DROP011420"
+    },
+    {
+      "monsterId": "MON000276",
+      "monsterName": "ヴォーガ",
+      "level": [
+        241,
+        241
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1612
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Voga_1612"
+      ],
+      "mapNames": [
+        "レグス山峡"
+      ],
+      "dropId": "DROP011421"
+    },
+    {
+      "monsterId": "MON000277",
+      "monsterName": "ヴォーガ",
+      "level": [
+        243,
+        243
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1613
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Voga_1613"
+      ],
+      "mapNames": [
+        "レグス山峡"
+      ],
+      "dropId": "DROP011422"
+    },
+    {
+      "monsterId": "MON000282",
+      "monsterName": "アーテン",
+      "level": [
+        194,
+        194
+      ],
+      "itemId": "CR000447",
+      "name": "◇STR・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1147
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Arten_1147"
+      ],
+      "mapNames": [
+        "工場都市レグス",
+        "工場都市レグス"
+      ],
+      "dropId": "DROP011423"
+    },
+    {
+      "monsterId": "MON000298",
+      "monsterName": "スケリット",
+      "level": [
+        178,
+        178
+      ],
+      "itemId": "CR000279",
+      "name": "◇ＨＰ＋４００",
+      "type": "Crysta",
+      "sourceIds": [
+        647
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skelit_647"
+      ],
+      "mapNames": [
+        "ハーデス迷界",
+        "ハーデス迷界"
+      ],
+      "dropId": "DROP011424"
+    },
+    {
+      "monsterId": "MON000300",
+      "monsterName": "ティブロン",
+      "level": [
+        196,
+        197
+      ],
+      "itemId": "CR000454",
+      "name": "◇ＳＴＲ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1158
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Tiburon_1158"
+      ],
+      "mapNames": [
+        "グローグ山脈",
+        "グローグ山脈"
+      ],
+      "dropId": "DROP011425"
+    },
+    {
+      "monsterId": "MON000315",
+      "monsterName": "スケリット",
+      "level": [
+        183,
+        183
+      ],
+      "itemId": "CR000279",
+      "name": "◇ＨＰ＋４００",
+      "type": "Crysta",
+      "sourceIds": [
+        651
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skelit_651"
+      ],
+      "mapNames": [
+        "ハーデス迷界",
+        "ハーデス迷界"
+      ],
+      "dropId": "DROP011426"
+    },
+    {
+      "monsterId": "MON000342",
+      "monsterName": "ポリグナ",
+      "level": [
+        244,
+        244
+      ],
+      "itemId": "AL000032",
+      "name": "▲ＣＲＴ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1618
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Poligna_1618"
+      ],
+      "mapNames": [
+        "スパーガス緑地"
+      ],
+      "dropId": "DROP011427"
+    },
+    {
+      "monsterId": "MON000359",
+      "monsterName": "アバサー",
+      "level": [
+        145,
+        146
+      ],
+      "itemId": "CR000294",
+      "name": "◇ＭＰ＋９％",
+      "type": "Crysta",
+      "sourceIds": [
+        222
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Avather_222"
+      ],
+      "mapNames": [
+        "ハウフェン港"
+      ],
+      "dropId": "DROP011428"
+    },
+    {
+      "monsterId": "MON000361",
+      "monsterName": "ダークゴーレム",
+      "level": [
+        62,
+        62
+      ],
+      "itemId": "CR000095",
+      "name": "◇ＤＥＦ＋２％",
+      "type": "Crysta",
+      "sourceIds": [
+        458
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Golem_458"
+      ],
+      "mapNames": [
+        "闇の城"
+      ],
+      "dropId": "DROP011429"
+    },
+    {
+      "monsterId": "MON000371",
+      "monsterName": "平家蟹",
+      "level": [
+        148,
+        148
+      ],
+      "itemId": "CR000499",
+      "name": "◇ＶＩＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        227
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Heike%20Crab_227"
+      ],
+      "mapNames": [
+        "ガナジの浜"
+      ],
+      "dropId": "DROP011430"
+    },
+    {
+      "monsterId": "MON000372",
+      "monsterName": "平家蟹",
+      "level": [
+        150,
+        150
+      ],
+      "itemId": "CR000499",
+      "name": "◇ＶＩＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        228
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Heike%20Crab_228"
+      ],
+      "mapNames": [
+        "ガナジの浜"
+      ],
+      "dropId": "DROP011431"
+    },
+    {
+      "monsterId": "MON000376",
+      "monsterName": "ルピオス",
+      "level": [
+        121,
+        121
+      ],
+      "itemId": "CR000445",
+      "name": "◇STR・VIT+1",
+      "type": "Crysta",
+      "sourceIds": [
+        165
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lupios_165"
+      ],
+      "mapNames": [
+        "ターナス砂漠"
+      ],
+      "dropId": "DROP011432"
+    },
+    {
+      "monsterId": "MON000400",
+      "monsterName": "タラン",
+      "level": [
+        147,
+        148
+      ],
+      "itemId": "CR000193",
+      "name": "◇ＨＩＴ＋３０",
+      "type": "Crysta",
+      "sourceIds": [
+        636
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Taran_636"
+      ],
+      "mapNames": [
+        "ラビランス地区",
+        "ラビランス地区"
+      ],
+      "dropId": "DROP011433"
+    },
+    {
+      "monsterId": "MON000408",
+      "monsterName": "ダークゴーレム",
+      "level": [
+        63,
+        63
+      ],
+      "itemId": "CR000095",
+      "name": "◇ＤＥＦ＋２％",
+      "type": "Crysta",
+      "sourceIds": [
+        462
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Golem_462"
+      ],
+      "mapNames": [
+        "闇の城",
+        "闇の城"
+      ],
+      "dropId": "DROP011434"
+    },
+    {
+      "monsterId": "MON000449",
+      "monsterName": "ガークン",
+      "level": [
+        246,
+        246
+      ],
+      "itemId": "CR000269",
+      "name": "◇ＭＡＴＫ＋３０",
+      "type": "Crysta",
+      "sourceIds": [
+        1414
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Garkin_1414"
+      ],
+      "mapNames": [
+        "カブリ地峡",
+        "カブリ地峡"
+      ],
+      "dropId": "DROP011435"
+    },
+    {
+      "monsterId": "MON000450",
+      "monsterName": "ジエンダオ",
+      "level": [
+        204,
+        204
+      ],
+      "itemId": "CR000268",
+      "name": "◇ＭＡＴＫ＋２０",
+      "type": "Crysta",
+      "sourceIds": [
+        1309
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jiendao_1309"
+      ],
+      "mapNames": [
+        "イサワヶ森"
+      ],
+      "dropId": "DROP011436"
+    },
+    {
+      "monsterId": "MON000456",
+      "monsterName": "ガークン",
+      "level": [
+        247,
+        247
+      ],
+      "itemId": "CR000269",
+      "name": "◇ＭＡＴＫ＋３０",
+      "type": "Crysta",
+      "sourceIds": [
+        1417
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Garkin_1417"
+      ],
+      "mapNames": [
+        "カブリ地峡",
+        "カブリ地峡"
+      ],
+      "dropId": "DROP011437"
+    },
+    {
+      "monsterId": "MON000462",
+      "monsterName": "ガークン",
+      "level": [
+        248,
+        248
+      ],
+      "itemId": "CR000269",
+      "name": "◇ＭＡＴＫ＋３０",
+      "type": "Crysta",
+      "sourceIds": [
+        1420
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Garkin_1420"
+      ],
+      "mapNames": [
+        "カブリ地峡",
+        "カブリ地峡"
+      ],
+      "dropId": "DROP011438"
+    },
+    {
+      "monsterId": "MON000481",
+      "monsterName": "ファイアミット",
+      "level": [
+        134,
+        135
+      ],
+      "itemId": "CR000211",
+      "name": "◇INT・CRT+1",
+      "type": "Crysta",
+      "sourceIds": [
+        199
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Firemitt_199"
+      ],
+      "mapNames": [
+        "ザルシムの野"
+      ],
+      "dropId": "DROP011439"
+    },
+    {
+      "monsterId": "MON000495",
+      "monsterName": "パローネ",
+      "level": [
+        42,
+        42
+      ],
+      "itemId": "CR000296",
+      "name": "◇ＭＤＥＦ＋１％",
+      "type": "Crysta",
+      "sourceIds": [
+        69
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pallone_69"
+      ],
+      "mapNames": [
+        "ソフィア郊外"
+      ],
+      "dropId": "DROP011440"
+    },
+    {
+      "monsterId": "MON000503",
+      "monsterName": "タルパ",
+      "level": [
+        183,
+        184
+      ],
+      "itemId": "CR000194",
+      "name": "◇ＨＩＴ＋３５",
+      "type": "Crysta",
+      "sourceIds": [
+        1125
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Talpa_1125"
+      ],
+      "mapNames": [
+        "ディーロルト",
+        "ディーロルト"
+      ],
+      "dropId": "DROP011441"
+    },
+    {
+      "monsterId": "MON000514",
+      "monsterName": "タルパ",
+      "level": [
+        185,
+        185
+      ],
+      "itemId": "CR000194",
+      "name": "◇ＨＩＴ＋３５",
+      "type": "Crysta",
+      "sourceIds": [
+        1131
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Talpa_1131"
+      ],
+      "mapNames": [
+        "ディーロルト",
+        "ディーロルト"
+      ],
+      "dropId": "DROP011442"
+    },
+    {
+      "monsterId": "MON000567",
+      "monsterName": "炎の闘士リプカ",
+      "level": [
+        65,
+        65
+      ],
+      "itemId": "CR000283",
+      "name": "◇ＨＰ＋８％",
+      "type": "Crysta",
+      "sourceIds": [
+        45
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Fire%20Warrior%20Lipka_45"
+      ],
+      "mapNames": [
+        "テリートの森"
+      ],
+      "dropId": "DROP011443"
+    },
+    {
+      "monsterId": "MON000568",
+      "monsterName": "氷の闘士バラフ",
+      "level": [
+        65,
+        65
+      ],
+      "itemId": "CR000283",
+      "name": "◇ＨＰ＋８％",
+      "type": "Crysta",
+      "sourceIds": [
+        46
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Warrior%20Barafu_46"
+      ],
+      "mapNames": [
+        "テリートの森"
+      ],
+      "dropId": "DROP011444"
+    },
+    {
+      "monsterId": "MON000569",
+      "monsterName": "ロア",
+      "level": [
+        44,
+        44
+      ],
+      "itemId": "CR000221",
+      "name": "◇ＩＮＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        47
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Roar_47"
+      ],
+      "mapNames": [
+        "テリートの森"
+      ],
+      "dropId": "DROP011445"
+    },
+    {
+      "monsterId": "MON000571",
+      "monsterName": "ピエニー",
+      "level": [
+        34,
+        35
+      ],
+      "itemId": "CR000191",
+      "name": "◇ＨＩＴ＋２０",
+      "type": "Crysta",
+      "sourceIds": [
+        52
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pieny_52"
+      ],
+      "mapNames": [
+        "ネジム湿原"
+      ],
+      "dropId": "DROP011446"
+    },
+    {
+      "monsterId": "MON000580",
+      "monsterName": "シール",
+      "level": [
+        47,
+        48
+      ],
+      "itemId": "CR000450",
+      "name": "◇ＳＴＲ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        75
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sele_75"
+      ],
+      "mapNames": [
+        "コルダ峠"
+      ],
+      "dropId": "DROP011447"
+    },
+    {
+      "monsterId": "MON000594",
+      "monsterName": "ルイーン",
+      "level": [
+        58,
+        58
+      ],
+      "itemId": "CR000497",
+      "name": "◇ＶＩＴ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        101
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Luine_101"
+      ],
+      "mapNames": [
+        "カルエ湖"
+      ],
+      "dropId": "DROP011448"
+    },
+    {
+      "monsterId": "MON000596",
+      "monsterName": "サンドスネーク",
+      "level": [
+        63,
+        64
+      ],
+      "itemId": "CR000078",
+      "name": "◇ＣＲＴ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        107
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sand%20Snake_107"
+      ],
+      "mapNames": [
+        "ザルム砂漠"
+      ],
+      "dropId": "DROP011449"
+    },
+    {
+      "monsterId": "MON000612",
+      "monsterName": "ラッテ",
+      "level": [
+        104,
+        104
+      ],
+      "itemId": "CR000278",
+      "name": "◇ＨＰ＋３００",
+      "type": "Crysta",
+      "sourceIds": [
+        149
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Latte_149"
+      ],
+      "mapNames": [
+        "トルバス郊外"
+      ],
+      "dropId": "DROP011450"
+    },
+    {
+      "monsterId": "MON000615",
+      "monsterName": "カルカース",
+      "level": [
+        108,
+        108
+      ],
+      "itemId": "CR000295",
+      "name": "◇ＭＰ＋９０",
+      "type": "Crysta",
+      "sourceIds": [
+        155
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Kalchas_155"
+      ],
+      "mapNames": [
+        "クローヌ街道"
+      ],
+      "dropId": "DROP011451"
+    },
+    {
+      "monsterId": "MON000623",
+      "monsterName": "プラエス",
+      "level": [
+        125,
+        126
+      ],
+      "itemId": "CR000079",
+      "name": "◇ＣＲＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        175
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Petauris_175"
+      ],
+      "mapNames": [
+        "エリウム遺跡"
+      ],
+      "dropId": "DROP011452"
+    },
+    {
+      "monsterId": "MON000631",
+      "monsterName": "リリィ",
+      "level": [
+        137,
+        137
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        208
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lily_208"
+      ],
+      "mapNames": [
+        "アインの森"
+      ],
+      "dropId": "DROP011453"
+    },
+    {
+      "monsterId": "MON000637",
+      "monsterName": "ポルポ",
+      "level": [
+        146,
+        147
+      ],
+      "itemId": "CR000212",
+      "name": "◇INT・CRT+2",
+      "type": "Crysta",
+      "sourceIds": [
+        224
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Polpo_224"
+      ],
+      "mapNames": [
+        "ハウフェン港"
+      ],
+      "dropId": "DROP011455"
+    },
+    {
+      "monsterId": "MON000638",
+      "monsterName": "カワウソ",
+      "level": [
+        150,
+        151
+      ],
+      "itemId": "CR000453",
+      "name": "◇ＳＴＲ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        233
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Kawauso_233"
+      ],
+      "mapNames": [
+        "ミクマリヶ原"
+      ],
+      "dropId": "DROP011456"
+    },
+    {
+      "monsterId": "MON000640",
+      "monsterName": "ダルマ",
+      "level": [
+        155,
+        155
+      ],
+      "itemId": "CR000080",
+      "name": "◇ＣＲＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        236
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Daruma_236"
+      ],
+      "mapNames": [
+        "ヤマバチの里"
+      ],
+      "dropId": "DROP011457"
+    },
+    {
+      "monsterId": "MON000642",
+      "monsterName": "レプス",
+      "level": [
+        158,
+        159
+      ],
+      "itemId": "CR000224",
+      "name": "◇ＩＮＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        242
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lepus_242"
+      ],
+      "mapNames": [
+        "ウーフ平原"
+      ],
+      "dropId": "DROP011458"
+    },
+    {
+      "monsterId": "MON000670",
+      "monsterName": "地の精霊",
+      "level": [
+        199,
+        199
+      ],
+      "itemId": "CR000500",
+      "name": "◇ＶＩＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        290
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Earth%20Spirit_290"
+      ],
+      "mapNames": [
+        "神々の塔"
+      ],
+      "dropId": "DROP011459"
+    },
+    {
+      "monsterId": "MON000678",
+      "monsterName": "闇の精霊",
+      "level": [
+        202,
+        202
+      ],
+      "itemId": "CR000096",
+      "name": "◇ＤＥＦ＋３％",
+      "type": "Crysta",
+      "sourceIds": [
+        298
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Spirit_298"
+      ],
+      "mapNames": [
+        "神々の塔"
+      ],
+      "dropId": "DROP011460"
+    },
+    {
+      "monsterId": "MON000682",
+      "monsterName": "デュンケリス",
+      "level": [
+        242,
+        242
+      ],
+      "itemId": "AD000036",
+      "name": "アルマレステカ",
+      "type": "Additional",
+      "sourceIds": [
+        302
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dunkelis_302"
+      ],
+      "mapNames": [
+        "神々の塔"
+      ],
+      "dropId": "DROP011461"
+    },
+    {
+      "monsterId": "MON000692",
+      "monsterName": "ゴブリンライダー",
+      "level": [
+        30,
+        30
+      ],
+      "itemId": "AD000067",
+      "name": "バンダナ",
+      "type": "Additional",
+      "sourceIds": [
+        358
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Goblin%20Rider_358"
+      ],
+      "mapNames": [
+        "ロココ坑道"
+      ],
+      "dropId": "DROP011462"
+    },
+    {
+      "monsterId": "MON000695",
+      "monsterName": "ドラギスト",
+      "level": [
+        35,
+        35
+      ],
+      "itemId": "CR000450",
+      "name": "◇ＳＴＲ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        361
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragist_361"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011463"
+    },
+    {
+      "monsterId": "MON000698",
+      "monsterName": "ドラギストリーダ",
+      "level": [
+        40,
+        40
+      ],
+      "itemId": "CR000450",
+      "name": "◇ＳＴＲ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        364
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragist%20Leader_364"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011464"
+    },
+    {
+      "monsterId": "MON000699",
+      "monsterName": "ドラメイジ",
+      "level": [
+        50,
+        50
+      ],
+      "itemId": "CR000221",
+      "name": "◇ＩＮＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        365
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragist%20Mage_365"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011465"
+    },
+    {
+      "monsterId": "MON000700",
+      "monsterName": "ドラシーフ",
+      "level": [
+        49,
+        49
+      ],
+      "itemId": "CR000105",
+      "name": "◇ＤＥＸ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        366
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragist%20Thief_366"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011466"
+    },
+    {
+      "monsterId": "MON000701",
+      "monsterName": "ドラウォリア",
+      "level": [
+        52,
+        52
+      ],
+      "itemId": "CR000450",
+      "name": "◇ＳＴＲ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        367
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragist%20Warrior_367"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011467"
+    },
+    {
+      "monsterId": "MON000706",
+      "monsterName": "スコルピア",
+      "level": [
+        62,
+        62
+      ],
+      "itemId": "CR000450",
+      "name": "◇ＳＴＲ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        372
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Scorpia_372"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011468"
+    },
+    {
+      "monsterId": "MON000706",
+      "monsterName": "スコルピア",
+      "level": [
+        62,
+        62
+      ],
+      "itemId": "CR000105",
+      "name": "◇ＤＥＸ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        372
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Scorpia_372"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011469"
+    },
+    {
+      "monsterId": "MON000706",
+      "monsterName": "スコルピア",
+      "level": [
+        62,
+        62
+      ],
+      "itemId": "CR000221",
+      "name": "◇ＩＮＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        372
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Scorpia_372"
+      ],
+      "mapNames": [
+        "ロココ風穴・下層"
+      ],
+      "dropId": "DROP011470"
+    },
+    {
+      "monsterId": "MON000725",
+      "monsterName": "スケルトン",
+      "level": [
+        30,
+        30
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        393
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_393"
+      ],
+      "mapNames": [
+        "忘れられた洞窟B2"
+      ],
+      "dropId": "DROP011471"
+    },
+    {
+      "monsterId": "MON000733",
+      "monsterName": "ドラギスタ",
+      "level": [
+        52,
+        52
+      ],
+      "itemId": "CR000094",
+      "name": "◇ＤＥＦ＋１％",
+      "type": "Crysta",
+      "sourceIds": [
+        403
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragista_403"
+      ],
+      "mapNames": [
+        "王竜の浮島・謁見の間"
+      ],
+      "dropId": "DROP011472"
+    },
+    {
+      "monsterId": "MON000735",
+      "monsterName": "キジムー",
+      "level": [
+        50,
+        51
+      ],
+      "itemId": "CR000290",
+      "name": "◇ＭＰ＋３０",
+      "type": "Crysta",
+      "sourceIds": [
+        405
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Kijimu_405"
+      ],
+      "mapNames": [
+        "王竜の浮島・謁見の間"
+      ],
+      "dropId": "DROP011473"
+    },
+    {
+      "monsterId": "MON000738",
+      "monsterName": "ドラギスタ",
+      "level": [
+        54,
+        54
+      ],
+      "itemId": "CR000094",
+      "name": "◇ＤＥＦ＋１％",
+      "type": "Crysta",
+      "sourceIds": [
+        409
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragista_409"
+      ],
+      "mapNames": [
+        "王竜の浮島・謁見の間"
+      ],
+      "dropId": "DROP011474"
+    },
+    {
+      "monsterId": "MON000749",
+      "monsterName": "ダークメーバ",
+      "level": [
+        60,
+        60
+      ],
+      "itemId": "CR000077",
+      "name": "◇ＣＲＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        421
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Darkmoeba_421"
+      ],
+      "mapNames": [
+        "灼熱の隧道"
+      ],
+      "dropId": "DROP011475"
+    },
+    {
+      "monsterId": "MON000750",
+      "monsterName": "タール",
+      "level": [
+        50,
+        50
+      ],
+      "itemId": "CR000077",
+      "name": "◇ＣＲＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        423
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Tahl_423"
+      ],
+      "mapNames": [
+        "灼熱の隧道"
+      ],
+      "dropId": "DROP011476"
+    },
+    {
+      "monsterId": "MON000754",
+      "monsterName": "ラヴァ",
+      "level": [
+        54,
+        54
+      ],
+      "itemId": "CR000105",
+      "name": "◇ＤＥＸ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        429
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lava_429"
+      ],
+      "mapNames": [
+        "灼熱の隧道"
+      ],
+      "dropId": "DROP011477"
+    },
+    {
+      "monsterId": "MON000762",
+      "monsterName": "闇の闘士",
+      "level": [
+        55,
+        55
+      ],
+      "itemId": "CR000283",
+      "name": "◇ＨＰ＋８％",
+      "type": "Crysta",
+      "sourceIds": [
+        443
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Warrior_443"
+      ],
+      "mapNames": [
+        "闇の館"
+      ],
+      "dropId": "DROP011478"
+    },
+    {
+      "monsterId": "MON000766",
+      "monsterName": "闇の闘士",
+      "level": [
+        56,
+        56
+      ],
+      "itemId": "CR000283",
+      "name": "◇ＨＰ＋８％",
+      "type": "Crysta",
+      "sourceIds": [
+        447
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Warrior_447"
+      ],
+      "mapNames": [
+        "闇の館"
+      ],
+      "dropId": "DROP011479"
+    },
+    {
+      "monsterId": "MON000768",
+      "monsterName": "ケルベロス",
+      "level": [
+        59,
+        59
+      ],
+      "itemId": "REF000073",
+      "name": "◇ＡＧＩ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        449
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Cerberus_449"
+      ],
+      "mapNames": [
+        "闇の館"
+      ],
+      "dropId": "DROP011480"
+    },
+    {
+      "monsterId": "MON000771",
+      "monsterName": "闇の闘士",
+      "level": [
+        57,
+        57
+      ],
+      "itemId": "CR000283",
+      "name": "◇ＨＰ＋８％",
+      "type": "Crysta",
+      "sourceIds": [
+        453
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Warrior_453"
+      ],
+      "mapNames": [
+        "闇の館"
+      ],
+      "dropId": "DROP011481"
+    },
+    {
+      "monsterId": "MON000776",
+      "monsterName": "プロクス",
+      "level": [
+        61,
+        62
+      ],
+      "itemId": "CR000292",
+      "name": "◇ＭＰ＋６０",
+      "type": "Crysta",
+      "sourceIds": [
+        460
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Prox_460"
+      ],
+      "mapNames": [
+        "闇の城"
+      ],
+      "dropId": "DROP011482"
+    },
+    {
+      "monsterId": "MON000783",
+      "monsterName": "プロクス",
+      "level": [
+        67,
+        67
+      ],
+      "itemId": "CR000292",
+      "name": "◇ＭＰ＋６０",
+      "type": "Crysta",
+      "sourceIds": [
+        469
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Prox_469"
+      ],
+      "mapNames": [
+        "闇の城"
+      ],
+      "dropId": "DROP011483"
+    },
+    {
+      "monsterId": "MON000785",
+      "monsterName": "ソテ",
+      "level": [
+        64,
+        64
+      ],
+      "itemId": "CR000106",
+      "name": "◇ＤＥＸ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        474
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sotey_474"
+      ],
+      "mapNames": [
+        "風の洞穴"
+      ],
+      "dropId": "DROP011484"
+    },
+    {
+      "monsterId": "MON000790",
+      "monsterName": "ソテ",
+      "level": [
+        67,
+        67
+      ],
+      "itemId": "CR000106",
+      "name": "◇ＤＥＸ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        484
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sotey_484"
+      ],
+      "mapNames": [
+        "風の洞穴"
+      ],
+      "dropId": "DROP011485"
+    },
+    {
+      "monsterId": "MON000806",
+      "monsterName": "ガノーシカ",
+      "level": [
+        82,
+        83
+      ],
+      "itemId": "CR000497",
+      "name": "◇ＶＩＴ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        539
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ganoschka_539"
+      ],
+      "mapNames": [
+        "モルゴレ地下廟"
+      ],
+      "dropId": "DROP011486"
+    },
+    {
+      "monsterId": "MON000834",
+      "monsterName": "フライモール",
+      "level": [
+        130,
+        131
+      ],
+      "itemId": "REF000083",
+      "name": "◇ＡＧＩ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        586
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Flymole_586"
+      ],
+      "mapNames": [
+        "ターナス鉱山"
+      ],
+      "dropId": "DROP011487"
+    },
+    {
+      "monsterId": "MON000838",
+      "monsterName": "地のエレメント",
+      "level": [
+        137,
+        137
+      ],
+      "itemId": "AD000048",
+      "name": "アッティカ",
+      "type": "Additional",
+      "sourceIds": [
+        591
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Earth%20Elemental_591"
+      ],
+      "mapNames": [
+        "砂竜の寝床"
+      ],
+      "dropId": "DROP011488"
+    },
+    {
+      "monsterId": "MON000839",
+      "monsterName": "地のエレメント",
+      "level": [
+        137,
+        137
+      ],
+      "itemId": "AD000048",
+      "name": "アッティカ",
+      "type": "Additional",
+      "sourceIds": [
+        594
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Earth%20Elemental_594"
+      ],
+      "mapNames": [
+        "砂竜の寝床"
+      ],
+      "dropId": "DROP011489"
+    },
+    {
+      "monsterId": "MON000840",
+      "monsterName": "オピス",
+      "level": [
+        137,
+        138
+      ],
+      "itemId": "CR000107",
+      "name": "◇ＤＥＸ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        601
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Opis_601"
+      ],
+      "mapNames": [
+        "ゼブルの塔"
+      ],
+      "dropId": "DROP011490"
+    },
+    {
+      "monsterId": "MON000841",
+      "monsterName": "オピス",
+      "level": [
+        139,
+        139
+      ],
+      "itemId": "CR000107",
+      "name": "◇ＤＥＸ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        603
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Opis_603"
+      ],
+      "mapNames": [
+        "ゼブルの塔"
+      ],
+      "dropId": "DROP011491"
+    },
+    {
+      "monsterId": "MON000842",
+      "monsterName": "オピス",
+      "level": [
+        140,
+        140
+      ],
+      "itemId": "CR000107",
+      "name": "◇ＤＥＸ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        610
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Opis_610"
+      ],
+      "mapNames": [
+        "ゼブルの塔"
+      ],
+      "dropId": "DROP011492"
+    },
+    {
+      "monsterId": "MON000850",
+      "monsterName": "ピュトン",
+      "level": [
+        144,
+        145
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        627
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Puton_627"
+      ],
+      "mapNames": [
+        "モースヘレ瘤界"
+      ],
+      "dropId": "DROP011493"
+    },
+    {
+      "monsterId": "MON000853",
+      "monsterName": "タラン",
+      "level": [
+        149,
+        150
+      ],
+      "itemId": "CR000193",
+      "name": "◇ＨＩＴ＋３０",
+      "type": "Crysta",
+      "sourceIds": [
+        638
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Taran_638"
+      ],
+      "mapNames": [
+        "ラビランス地区"
+      ],
+      "dropId": "DROP011494"
+    },
+    {
+      "monsterId": "MON000865",
+      "monsterName": "マルフィル",
+      "level": [
+        156,
+        156
+      ],
+      "itemId": "CR000446",
+      "name": "◇STR・VIT+2",
+      "type": "Crysta",
+      "sourceIds": [
+        665
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Malfil_665"
+      ],
+      "mapNames": [
+        "ビゼン森林地区"
+      ],
+      "dropId": "DROP011495"
+    },
+    {
+      "monsterId": "MON000874",
+      "monsterName": "アウルベア",
+      "level": [
+        154,
+        154
+      ],
+      "itemId": "CR000273",
+      "name": "◇ＨＰ＋１１％",
+      "type": "Crysta",
+      "sourceIds": [
+        675
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Owlbear_675"
+      ],
+      "mapNames": [
+        "インネバン遺跡"
+      ],
+      "dropId": "DROP011496"
+    },
+    {
+      "monsterId": "MON000877",
+      "monsterName": "アウルベア",
+      "level": [
+        154,
+        154
+      ],
+      "itemId": "CR000273",
+      "name": "◇ＨＰ＋１１％",
+      "type": "Crysta",
+      "sourceIds": [
+        678
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Owlbear_678"
+      ],
+      "mapNames": [
+        "インネバン遺跡"
+      ],
+      "dropId": "DROP011497"
+    },
+    {
+      "monsterId": "MON000905",
+      "monsterName": "コロン武士",
+      "level": [
+        177,
+        178
+      ],
+      "itemId": "AD000184",
+      "name": "ちょんまげ",
+      "type": "Additional",
+      "sourceIds": [
+        725
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Colon%20Samurai_725"
+      ],
+      "mapNames": [
+        "チクスイの森"
+      ],
+      "dropId": "DROP011498"
+    },
+    {
+      "monsterId": "MON000906",
+      "monsterName": "コロン武士",
+      "level": [
+        178,
+        178
+      ],
+      "itemId": "AD000184",
+      "name": "ちょんまげ",
+      "type": "Additional",
+      "sourceIds": [
+        728
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Colon%20Samurai_728"
+      ],
+      "mapNames": [
+        "チクスイの森"
+      ],
+      "dropId": "DROP011499"
+    },
+    {
+      "monsterId": "MON000909",
+      "monsterName": "スケルトン",
+      "level": [
+        35,
+        35
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        733
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_733"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011500"
+    },
+    {
+      "monsterId": "MON000911",
+      "monsterName": "ヘルハウンド",
+      "level": [
+        38,
+        38
+      ],
+      "itemId": "REF000057",
+      "name": "◇ＡＧＩ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        735
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Hell%20Hound_735"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011501"
+    },
+    {
+      "monsterId": "MON000912",
+      "monsterName": "スケルトン",
+      "level": [
+        37,
+        37
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        736
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_736"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011502"
+    },
+    {
+      "monsterId": "MON000915",
+      "monsterName": "スケルトン",
+      "level": [
+        40,
+        40
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        739
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_739"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011503"
+    },
+    {
+      "monsterId": "MON000917",
+      "monsterName": "ヘルハウンド",
+      "level": [
+        45,
+        45
+      ],
+      "itemId": "REF000057",
+      "name": "◇ＡＧＩ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        741
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Hell%20Hound_741"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011504"
+    },
+    {
+      "monsterId": "MON000919",
+      "monsterName": "スケルトン",
+      "level": [
+        42,
+        42
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        743
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_743"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011505"
+    },
+    {
+      "monsterId": "MON000924",
+      "monsterName": "スケルトン",
+      "level": [
+        46,
+        46
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        748
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_748"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011506"
+    },
+    {
+      "monsterId": "MON000927",
+      "monsterName": "スケルトン",
+      "level": [
+        46,
+        46
+      ],
+      "itemId": "AD000021",
+      "name": "古びた兜",
+      "type": "Additional",
+      "sourceIds": [
+        751
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skeleton_751"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011507"
+    },
+    {
+      "monsterId": "MON000964",
+      "monsterName": "フランブロッシュ",
+      "level": [
+        94,
+        94
+      ],
+      "itemId": "CR000017",
+      "name": "◇ＡＴＫ＋１０",
+      "type": "Crysta",
+      "sourceIds": [
+        789
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Flame%20Brosch_789"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011508"
+    },
+    {
+      "monsterId": "MON000965",
+      "monsterName": "モルブロッシュ",
+      "level": [
+        92,
+        92
+      ],
+      "itemId": "CR000192",
+      "name": "◇ＨＩＴ＋２５",
+      "type": "Crysta",
+      "sourceIds": [
+        790
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Molbrosch_790"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011509"
+    },
+    {
+      "monsterId": "MON000968",
+      "monsterName": "モルブロッシュ",
+      "level": [
+        93,
+        93
+      ],
+      "itemId": "CR000192",
+      "name": "◇ＨＩＴ＋２５",
+      "type": "Crysta",
+      "sourceIds": [
+        793
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Molbrosch_793"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011510"
+    },
+    {
+      "monsterId": "MON000970",
+      "monsterName": "モルブロッシュ",
+      "level": [
+        102,
+        102
+      ],
+      "itemId": "CR000192",
+      "name": "◇ＨＩＴ＋２５",
+      "type": "Crysta",
+      "sourceIds": [
+        795
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Molbrosch_795"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011511"
+    },
+    {
+      "monsterId": "MON000971",
+      "monsterName": "バニラブロッシュ",
+      "level": [
+        98,
+        98
+      ],
+      "itemId": "CR000267",
+      "name": "◇ＭＡＴＫ＋１０",
+      "type": "Crysta",
+      "sourceIds": [
+        796
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Vanilla%20Brosch_796"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011512"
+    },
+    {
+      "monsterId": "MON000973",
+      "monsterName": "フランブロッシュ",
+      "level": [
+        103,
+        103
+      ],
+      "itemId": "CR000017",
+      "name": "◇ＡＴＫ＋１０",
+      "type": "Crysta",
+      "sourceIds": [
+        798
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Flame%20Brosch_798"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011513"
+    },
+    {
+      "monsterId": "MON000974",
+      "monsterName": "バニラブロッシュ",
+      "level": [
+        104,
+        104
+      ],
+      "itemId": "CR000267",
+      "name": "◇ＭＡＴＫ＋１０",
+      "type": "Crysta",
+      "sourceIds": [
+        799
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Vanilla%20Brosch_799"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011514"
+    },
+    {
+      "monsterId": "MON000975",
+      "monsterName": "ブロッシーズ",
+      "level": [
+        125,
+        125
+      ],
+      "itemId": "AD000096",
+      "name": "黒い髪留めＣ",
+      "type": "Additional",
+      "sourceIds": [
+        800
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Frosches_800"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011515"
+    },
+    {
+      "monsterId": "MON000977",
+      "monsterName": "ハウンド",
+      "level": [
+        108,
+        108
+      ],
+      "itemId": "CR000278",
+      "name": "◇ＨＰ＋３００",
+      "type": "Crysta",
+      "sourceIds": [
+        802
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Hound_802"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011516"
+    },
+    {
+      "monsterId": "MON000981",
+      "monsterName": "ハウンド",
+      "level": [
+        114,
+        114
+      ],
+      "itemId": "CR000278",
+      "name": "◇ＨＰ＋３００",
+      "type": "Crysta",
+      "sourceIds": [
+        806
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Hound_806"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011517"
+    },
+    {
+      "monsterId": "MON000983",
+      "monsterName": "ハウンド",
+      "level": [
+        118,
+        118
+      ],
+      "itemId": "CR000278",
+      "name": "◇ＨＰ＋３００",
+      "type": "Crysta",
+      "sourceIds": [
+        808
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Hound_808"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011518"
+    },
+    {
+      "monsterId": "MON000990",
+      "monsterName": "リリィ",
+      "level": [
+        123,
+        123
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        816
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lily_816"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011519"
+    },
+    {
+      "monsterId": "MON000992",
+      "monsterName": "リリィ",
+      "level": [
+        122,
+        122
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        818
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lily_818"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011520"
+    },
+    {
+      "monsterId": "MON000993",
+      "monsterName": "ウツーボ",
+      "level": [
+        125,
+        125
+      ],
+      "itemId": "CR000107",
+      "name": "◇ＤＥＸ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        819
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Moray_819"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011521"
+    },
+    {
+      "monsterId": "MON000994",
+      "monsterName": "リリィ",
+      "level": [
+        125,
+        125
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        820
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lily_820"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011522"
+    },
+    {
+      "monsterId": "MON000995",
+      "monsterName": "ウツーボ",
+      "level": [
+        127,
+        127
+      ],
+      "itemId": "CR000107",
+      "name": "◇ＤＥＸ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        821
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Moray_821"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011523"
+    },
+    {
+      "monsterId": "MON000997",
+      "monsterName": "ウツーボ",
+      "level": [
+        128,
+        128
+      ],
+      "itemId": "CR000107",
+      "name": "◇ＤＥＸ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        823
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Moray_823"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011524"
+    },
+    {
+      "monsterId": "MON001002",
+      "monsterName": "イービルソード",
+      "level": [
+        132,
+        132
+      ],
+      "itemId": "CR000452",
+      "name": "◇ＳＴＲ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        829
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Evil%20Sword_829"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011525"
+    },
+    {
+      "monsterId": "MON001004",
+      "monsterName": "イービルソード",
+      "level": [
+        133,
+        134
+      ],
+      "itemId": "CR000452",
+      "name": "◇ＳＴＲ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        831
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Evil%20Sword_831"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011526"
+    },
+    {
+      "monsterId": "MON001011",
+      "monsterName": "ダエモン",
+      "level": [
+        158,
+        158
+      ],
+      "itemId": "AD000007",
+      "name": "アーデルマスク",
+      "type": "Additional",
+      "sourceIds": [
+        840
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Daemon_840"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011527"
+    },
+    {
+      "monsterId": "MON001018",
+      "monsterName": "古代闘士",
+      "level": [
+        146,
+        147
+      ],
+      "itemId": "CR000498",
+      "name": "◇ＶＩＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        850
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ancient%20Gladiator_850"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011528"
+    },
+    {
+      "monsterId": "MON001053",
+      "monsterName": "サンドスネーク",
+      "level": [
+        172,
+        172
+      ],
+      "itemId": "CR000081",
+      "name": "◇ＣＲＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        886
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sand%20Snake_886"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011529"
+    },
+    {
+      "monsterId": "MON001056",
+      "monsterName": "サンドスネーク",
+      "level": [
+        178,
+        178
+      ],
+      "itemId": "CR000081",
+      "name": "◇ＣＲＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        889
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sand%20Snake_889"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011530"
+    },
+    {
+      "monsterId": "MON001079",
+      "monsterName": "ルイーン",
+      "level": [
+        192,
+        192
+      ],
+      "itemId": "CR000501",
+      "name": "◇ＶＩＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        913
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Luine_913"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011531"
+    },
+    {
+      "monsterId": "MON001080",
+      "monsterName": "ルイーン",
+      "level": [
+        193,
+        193
+      ],
+      "itemId": "CR000501",
+      "name": "◇ＶＩＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        914
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Luine_914"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011532"
+    },
+    {
+      "monsterId": "MON001154",
+      "monsterName": "ドラギヒト",
+      "level": [
+        234,
+        234
+      ],
+      "itemId": "CR000195",
+      "name": "◇ＨＩＴ＋４０",
+      "type": "Crysta",
+      "sourceIds": [
+        989
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Draghit_989"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011533"
+    },
+    {
+      "monsterId": "MON001160",
+      "monsterName": "ドラギヒト",
+      "level": [
+        236,
+        236
+      ],
+      "itemId": "CR000195",
+      "name": "◇ＨＩＴ＋４０",
+      "type": "Crysta",
+      "sourceIds": [
+        996
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Draghit_996"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011534"
+    },
+    {
+      "monsterId": "MON001163",
+      "monsterName": "ドラギヒト",
+      "level": [
+        239,
+        239
+      ],
+      "itemId": "CR000195",
+      "name": "◇ＨＩＴ＋４０",
+      "type": "Crysta",
+      "sourceIds": [
+        1000
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Draghit_1000"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011535"
+    },
+    {
+      "monsterId": "MON001182",
+      "monsterName": "ドラグノフ",
+      "level": [
+        250,
+        250
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1020
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragnof_1020"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011536"
+    },
+    {
+      "monsterId": "MON001186",
+      "monsterName": "ドラグノフ",
+      "level": [
+        254,
+        254
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1024
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragnof_1024"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011537"
+    },
+    {
+      "monsterId": "MON001190",
+      "monsterName": "ドラグノフ",
+      "level": [
+        254,
+        254
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1028
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragnof_1028"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011538"
+    },
+    {
+      "monsterId": "MON001194",
+      "monsterName": "ドラグノフ",
+      "level": [
+        256,
+        256
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1032
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dragnof_1032"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011539"
+    },
+    {
+      "monsterId": "MON001200",
+      "monsterName": "アイスナイト",
+      "level": [
+        262,
+        262
+      ],
+      "itemId": "CR000449",
+      "name": "◇STR・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1038
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Knight_1038"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011540"
+    },
+    {
+      "monsterId": "MON001204",
+      "monsterName": "アイスナイト",
+      "level": [
+        264,
+        264
+      ],
+      "itemId": "CR000449",
+      "name": "◇STR・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1042
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Knight_1042"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011541"
+    },
+    {
+      "monsterId": "MON001208",
+      "monsterName": "アイスナイト",
+      "level": [
+        266,
+        266
+      ],
+      "itemId": "CR000449",
+      "name": "◇STR・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1046
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Knight_1046"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011542"
+    },
+    {
+      "monsterId": "MON001212",
+      "monsterName": "アイスナイト",
+      "level": [
+        268,
+        268
+      ],
+      "itemId": "CR000449",
+      "name": "◇STR・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1050
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Knight_1050"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011543"
+    },
+    {
+      "monsterId": "MON001217",
+      "monsterName": "ナイトトレント",
+      "level": [
+        272,
+        272
+      ],
+      "itemId": "CR000495",
+      "name": "◇VIT・DEX+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1055
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Night%20Treant_1055"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011544"
+    },
+    {
+      "monsterId": "MON001221",
+      "monsterName": "ナイトトレント",
+      "level": [
+        274,
+        274
+      ],
+      "itemId": "CR000495",
+      "name": "◇VIT・DEX+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1059
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Night%20Treant_1059"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011545"
+    },
+    {
+      "monsterId": "MON001225",
+      "monsterName": "ナイトトレント",
+      "level": [
+        276,
+        276
+      ],
+      "itemId": "CR000495",
+      "name": "◇VIT・DEX+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1063
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Night%20Treant_1063"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011546"
+    },
+    {
+      "monsterId": "MON001229",
+      "monsterName": "ナイトトレント",
+      "level": [
+        278,
+        278
+      ],
+      "itemId": "CR000495",
+      "name": "◇VIT・DEX+5",
+      "type": "Crysta",
+      "sourceIds": [
+        1067
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Night%20Treant_1067"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011547"
+    },
+    {
+      "monsterId": "MON001232",
+      "monsterName": "下忍",
+      "level": [
+        165,
+        166
+      ],
+      "itemId": "CR000298",
+      "name": "◇ＭＤＥＦ＋３％",
+      "type": "Crysta",
+      "sourceIds": [
+        1070
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lower%20Ninja_1070"
+      ],
+      "mapNames": [
+        "イスルギ寺"
+      ],
+      "dropId": "DROP011548"
+    },
+    {
+      "monsterId": "MON001233",
+      "monsterName": "中忍",
+      "level": [
+        168,
+        168
+      ],
+      "itemId": "AD000100",
+      "name": "黒猫頭巾",
+      "type": "Additional",
+      "sourceIds": [
+        1072
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Middle%20Ninja_1072"
+      ],
+      "mapNames": [
+        "イスルギ寺"
+      ],
+      "dropId": "DROP011549"
+    },
+    {
+      "monsterId": "MON001234",
+      "monsterName": "下忍",
+      "level": [
+        166,
+        166
+      ],
+      "itemId": "CR000298",
+      "name": "◇ＭＤＥＦ＋３％",
+      "type": "Crysta",
+      "sourceIds": [
+        1073
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lower%20Ninja_1073"
+      ],
+      "mapNames": [
+        "イスルギ寺"
+      ],
+      "dropId": "DROP011550"
+    },
+    {
+      "monsterId": "MON001235",
+      "monsterName": "中忍",
+      "level": [
+        167,
+        167
+      ],
+      "itemId": "AD000100",
+      "name": "黒猫頭巾",
+      "type": "Additional",
+      "sourceIds": [
+        1074
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Middle%20Ninja_1074"
+      ],
+      "mapNames": [
+        "イスルギ寺"
+      ],
+      "dropId": "DROP011551"
+    },
+    {
+      "monsterId": "MON001237",
+      "monsterName": "中忍",
+      "level": [
+        167,
+        167
+      ],
+      "itemId": "AD000100",
+      "name": "黒猫頭巾",
+      "type": "Additional",
+      "sourceIds": [
+        1076
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Middle%20Ninja_1076"
+      ],
+      "mapNames": [
+        "イスルギ寺"
+      ],
+      "dropId": "DROP011552"
+    },
+    {
+      "monsterId": "MON001238",
+      "monsterName": "火吹き猫",
+      "level": [
+        169,
+        169
+      ],
+      "itemId": "CR000279",
+      "name": "◇ＨＰ＋４００",
+      "type": "Crysta",
+      "sourceIds": [
+        1083
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Fire%20Cat_1083"
+      ],
+      "mapNames": [
+        "偏屈職人の館"
+      ],
+      "dropId": "DROP011553"
+    },
+    {
+      "monsterId": "MON001254",
+      "monsterName": "リプレーザ",
+      "level": [
+        175,
+        176
+      ],
+      "itemId": "CR000108",
+      "name": "◇ＤＥＸ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        1105
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ripreza_1105"
+      ],
+      "mapNames": [
+        "アルガオット監獄"
+      ],
+      "dropId": "DROP011554"
+    },
+    {
+      "monsterId": "MON001257",
+      "monsterName": "リプレーザ",
+      "level": [
+        177,
+        177
+      ],
+      "itemId": "CR000108",
+      "name": "◇ＤＥＸ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        1112
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ripreza_1112"
+      ],
+      "mapNames": [
+        "アルガオット監獄"
+      ],
+      "dropId": "DROP011555"
+    },
+    {
+      "monsterId": "MON001266",
+      "monsterName": "ドーザ",
+      "level": [
+        184,
+        185
+      ],
+      "itemId": "CR000279",
+      "name": "◇ＨＰ＋４００",
+      "type": "Crysta",
+      "sourceIds": [
+        1128
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dozer_1128"
+      ],
+      "mapNames": [
+        "ディーロルト"
+      ],
+      "dropId": "DROP011556"
+    },
+    {
+      "monsterId": "MON001271",
+      "monsterName": "マドネス",
+      "level": [
+        190,
+        190
+      ],
+      "itemId": "CR000275",
+      "name": "◇ＨＰ＋１７％",
+      "type": "Crysta",
+      "sourceIds": [
+        1138
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Madness_1138"
+      ],
+      "mapNames": [
+        "ホルトン山"
+      ],
+      "dropId": "DROP011557"
+    },
+    {
+      "monsterId": "MON001272",
+      "monsterName": "マドネス",
+      "level": [
+        191,
+        191
+      ],
+      "itemId": "CR000275",
+      "name": "◇ＨＰ＋１７％",
+      "type": "Crysta",
+      "sourceIds": [
+        1140
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Madness_1140"
+      ],
+      "mapNames": [
+        "ホルトン山"
+      ],
+      "dropId": "DROP011558"
+    },
+    {
+      "monsterId": "MON001282",
+      "monsterName": "メカエル",
+      "level": [
+        196,
+        197
+      ],
+      "itemId": "CR000109",
+      "name": "◇ＤＥＸ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1164
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mechafrog_1164"
+      ],
+      "mapNames": [
+        "帝都ログラス"
+      ],
+      "dropId": "DROP011559"
+    },
+    {
+      "monsterId": "MON001285",
+      "monsterName": "メカエル",
+      "level": [
+        197,
+        197
+      ],
+      "itemId": "CR000109",
+      "name": "◇ＤＥＸ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1168
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mechafrog_1168"
+      ],
+      "mapNames": [
+        "帝都ログラス"
+      ],
+      "dropId": "DROP011560"
+    },
+    {
+      "monsterId": "MON001291",
+      "monsterName": "ズローヴァ",
+      "level": [
+        203,
+        203
+      ],
+      "itemId": "CR000225",
+      "name": "◇ＩＮＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1177
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Zlova_1177"
+      ],
+      "mapNames": [
+        "メザルーナ宮"
+      ],
+      "dropId": "DROP011561"
+    },
+    {
+      "monsterId": "MON001294",
+      "monsterName": "ズローヴァ",
+      "level": [
+        203,
+        203
+      ],
+      "itemId": "CR000225",
+      "name": "◇ＩＮＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1181
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Zlova_1181"
+      ],
+      "mapNames": [
+        "メザルーナ宮"
+      ],
+      "dropId": "DROP011562"
+    },
+    {
+      "monsterId": "MON001298",
+      "monsterName": "アイアンテウス",
+      "level": [
+        198,
+        198
+      ],
+      "itemId": "CR000499",
+      "name": "◇ＶＩＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        1189
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Iron%20Theus_1189"
+      ],
+      "mapNames": [
+        "スルビヌス砦"
+      ],
+      "dropId": "DROP011563"
+    },
+    {
+      "monsterId": "MON001299",
+      "monsterName": "アイアンテウス",
+      "level": [
+        198,
+        199
+      ],
+      "itemId": "CR000499",
+      "name": "◇ＶＩＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        1191
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Iron%20Theus_1191"
+      ],
+      "mapNames": [
+        "スルビヌス砦"
+      ],
+      "dropId": "DROP011564"
+    },
+    {
+      "monsterId": "MON001301",
+      "monsterName": "アイアンテウス",
+      "level": [
+        198,
+        199
+      ],
+      "itemId": "CR000499",
+      "name": "◇ＶＩＴ＋４",
+      "type": "Crysta",
+      "sourceIds": [
+        1194
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Iron%20Theus_1194"
+      ],
+      "mapNames": [
+        "スルビヌス砦"
+      ],
+      "dropId": "DROP011565"
+    },
+    {
+      "monsterId": "MON001327",
+      "monsterName": "ジロ",
+      "level": [
+        179,
+        179
+      ],
+      "itemId": "CR000287",
+      "name": "◇ＭＰ＋１５０",
+      "type": "Crysta",
+      "sourceIds": [
+        1232
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jiro_1232"
+      ],
+      "mapNames": [
+        "エクンドゥ街道"
+      ],
+      "dropId": "DROP011566"
+    },
+    {
+      "monsterId": "MON001331",
+      "monsterName": "ラゴス",
+      "level": [
+        182,
+        183
+      ],
+      "itemId": "CR000100",
+      "name": "◇DEX・CRT+1",
+      "type": "Crysta",
+      "sourceIds": [
+        1236
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lagos_1236"
+      ],
+      "mapNames": [
+        "マネノ村"
+      ],
+      "dropId": "DROP011567"
+    },
+    {
+      "monsterId": "MON001337",
+      "monsterName": "マルゴ",
+      "level": [
+        210,
+        210
+      ],
+      "itemId": "CR000486",
+      "name": "◇VIT・AGI+1",
+      "type": "Crysta",
+      "sourceIds": [
+        1253
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Margot_1253"
+      ],
+      "mapNames": [
+        "バリキの森"
+      ],
+      "dropId": "DROP011568"
+    },
+    {
+      "monsterId": "MON001340",
+      "monsterName": "ミミクリ",
+      "level": [
+        215,
+        215
+      ],
+      "itemId": "CR000491",
+      "name": "◇VIT・DEX+1",
+      "type": "Crysta",
+      "sourceIds": [
+        1258
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mimicry_1258"
+      ],
+      "mapNames": [
+        "アシーリ特別区"
+      ],
+      "dropId": "DROP011569"
+    },
+    {
+      "monsterId": "MON001341",
+      "monsterName": "ロンオルール",
+      "level": [
+        216,
+        217
+      ],
+      "itemId": "CR000299",
+      "name": "◇ＭＤＥＦ＋４％",
+      "type": "Crysta",
+      "sourceIds": [
+        1259
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ronoroule_1259"
+      ],
+      "mapNames": [
+        "アシーリ特別区"
+      ],
+      "dropId": "DROP011570"
+    },
+    {
+      "monsterId": "MON001350",
+      "monsterName": "テスタ",
+      "level": [
+        184,
+        185
+      ],
+      "itemId": "CR000216",
+      "name": "◇INT・VIT+1",
+      "type": "Crysta",
+      "sourceIds": [
+        1274
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Testa_1274"
+      ],
+      "mapNames": [
+        "ドゥーフ集落"
+      ],
+      "dropId": "DROP011571"
+    },
+    {
+      "monsterId": "MON001352",
+      "monsterName": "プテルス",
+      "level": [
+        224,
+        225
+      ],
+      "itemId": "CR000441",
+      "name": "◇STR・INT+2",
+      "type": "Crysta",
+      "sourceIds": [
+        1278
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pterus_1278"
+      ],
+      "mapNames": [
+        "キジコ圏谷"
+      ],
+      "dropId": "DROP011572"
+    },
+    {
+      "monsterId": "MON001368",
+      "monsterName": "バトン",
+      "level": [
+        196,
+        196
+      ],
+      "itemId": "CR000440",
+      "name": "◇STR・INT+1",
+      "type": "Crysta",
+      "sourceIds": [
+        1304
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Vaton_1304"
+      ],
+      "mapNames": [
+        "ウンベルト迷界"
+      ],
+      "dropId": "DROP011573"
+    },
+    {
+      "monsterId": "MON001369",
+      "monsterName": "豆狸",
+      "level": [
+        199,
+        199
+      ],
+      "itemId": "CR000217",
+      "name": "◇INT・VIT+2",
+      "type": "Crysta",
+      "sourceIds": [
+        1307
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mame%20Danuki_1307"
+      ],
+      "mapNames": [
+        "カケウラ断層"
+      ],
+      "dropId": "DROP011574"
+    },
+    {
+      "monsterId": "MON001370",
+      "monsterName": "塗壁",
+      "level": [
+        198,
+        198
+      ],
+      "itemId": "CR000097",
+      "name": "◇ＤＥＦ＋４％",
+      "type": "Crysta",
+      "sourceIds": [
+        1308
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Nurikabe_1308"
+      ],
+      "mapNames": [
+        "カケウラ断層"
+      ],
+      "dropId": "DROP011575"
+    },
+    {
+      "monsterId": "MON001371",
+      "monsterName": "クルーシェ",
+      "level": [
+        200,
+        200
+      ],
+      "itemId": "CR000101",
+      "name": "◇DEX・CRT+2",
+      "type": "Crysta",
+      "sourceIds": [
+        1310
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Kurche_1310"
+      ],
+      "mapNames": [
+        "イサワヶ森"
+      ],
+      "dropId": "DROP011576"
+    },
+    {
+      "monsterId": "MON001375",
+      "monsterName": "ソーオッター",
+      "level": [
+        192,
+        193
+      ],
+      "itemId": "CR000436",
+      "name": "◇STR・AGI+2",
+      "type": "Crysta",
+      "sourceIds": [
+        1317
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Saw%20Otter_1317"
+      ],
+      "mapNames": [
+        "ブレエンノ山地"
+      ],
+      "dropId": "DROP011577"
+    },
+    {
+      "monsterId": "MON001378",
+      "monsterName": "ガミノ",
+      "level": [
+        223,
+        224
+      ],
+      "itemId": "CR000492",
+      "name": "◇VIT・DEX+2",
+      "type": "Crysta",
+      "sourceIds": [
+        1323
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gamino_1323"
+      ],
+      "mapNames": [
+        "キルーア荒原"
+      ],
+      "dropId": "DROP011578"
+    },
+    {
+      "monsterId": "MON001384",
+      "monsterName": "スタームナ",
+      "level": [
+        231,
+        231
+      ],
+      "itemId": "CR000442",
+      "name": "◇STR・INT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1334
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Starmuna_1334"
+      ],
+      "mapNames": [
+        "第２宮前庭"
+      ],
+      "dropId": "DROP011579"
+    },
+    {
+      "monsterId": "MON001387",
+      "monsterName": "グラント",
+      "level": [
+        236,
+        236
+      ],
+      "itemId": "CR000493",
+      "name": "◇VIT・DEX+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1337
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Glant_1337"
+      ],
+      "mapNames": [
+        "最上宮前庭"
+      ],
+      "dropId": "DROP011580"
+    },
+    {
+      "monsterId": "MON001390",
+      "monsterName": "フォノグラフ",
+      "level": [
+        234,
+        234
+      ],
+      "itemId": "AD000125",
+      "name": "ブルーグラス",
+      "type": "Additional",
+      "sourceIds": [
+        1341
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Phonograph_1341"
+      ],
+      "mapNames": [
+        "最上宮前庭"
+      ],
+      "dropId": "DROP011581"
+    },
+    {
+      "monsterId": "MON001406",
+      "monsterName": "ルートル",
+      "level": [
+        197,
+        197
+      ],
+      "itemId": "CR000286",
+      "name": "◇ＭＰ＋１３％",
+      "type": "Crysta",
+      "sourceIds": [
+        1372
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lutor_1372"
+      ],
+      "mapNames": [
+        "前線基地"
+      ],
+      "dropId": "DROP011582"
+    },
+    {
+      "monsterId": "MON001408",
+      "monsterName": "ルートル",
+      "level": [
+        196,
+        196
+      ],
+      "itemId": "CR000286",
+      "name": "◇ＭＰ＋１３％",
+      "type": "Crysta",
+      "sourceIds": [
+        1376
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lutor_1376"
+      ],
+      "mapNames": [
+        "前線基地"
+      ],
+      "dropId": "DROP011583"
+    },
+    {
+      "monsterId": "MON001420",
+      "monsterName": "レド",
+      "level": [
+        243,
+        244
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1404
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ledo_1404"
+      ],
+      "mapNames": [
+        "ハリブ湿地"
+      ],
+      "dropId": "DROP011584"
+    },
+    {
+      "monsterId": "MON001423",
+      "monsterName": "レド",
+      "level": [
+        244,
+        244
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1408
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ledo_1408"
+      ],
+      "mapNames": [
+        "ハリブ湿地"
+      ],
+      "dropId": "DROP011585"
+    },
+    {
+      "monsterId": "MON001437",
+      "monsterName": "仮面兵士",
+      "level": [
+        238,
+        238
+      ],
+      "itemId": "CR000437",
+      "name": "◇STR・AGI+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1433
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Masked%20Soldier_1433"
+      ],
+      "mapNames": [
+        "竜帝神殿"
+      ],
+      "dropId": "DROP011586"
+    },
+    {
+      "monsterId": "MON001440",
+      "monsterName": "仮面兵士",
+      "level": [
+        239,
+        240
+      ],
+      "itemId": "CR000102",
+      "name": "◇DEX・CRT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1435
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Masked%20Soldier_1435"
+      ],
+      "mapNames": [
+        "竜帝神殿"
+      ],
+      "dropId": "DROP011587"
+    },
+    {
+      "monsterId": "MON001443",
+      "monsterName": "ドラギヒト",
+      "level": [
+        201,
+        201
+      ],
+      "itemId": "CR000195",
+      "name": "◇ＨＩＴ＋４０",
+      "type": "Crysta",
+      "sourceIds": [
+        1441
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Draghit_1441"
+      ],
+      "mapNames": [
+        "ムベレ峠"
+      ],
+      "dropId": "DROP011588"
+    },
+    {
+      "monsterId": "MON001457",
+      "monsterName": "ドンキーヘッド",
+      "level": [
+        204,
+        205
+      ],
+      "itemId": "CR000500",
+      "name": "◇ＶＩＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1461
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Donkeyhead_1461"
+      ],
+      "mapNames": [
+        "ドラグノフ肥育場"
+      ],
+      "dropId": "DROP011589"
+    },
+    {
+      "monsterId": "MON001459",
+      "monsterName": "ドンキーヘッド",
+      "level": [
+        205,
+        206
+      ],
+      "itemId": "CR000500",
+      "name": "◇ＶＩＴ＋５",
+      "type": "Crysta",
+      "sourceIds": [
+        1465
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Donkeyhead_1465"
+      ],
+      "mapNames": [
+        "ドラグノフ肥育場"
+      ],
+      "dropId": "DROP011590"
+    },
+    {
+      "monsterId": "MON001485",
+      "monsterName": "式鬼",
+      "level": [
+        225,
+        225
+      ],
+      "itemId": "AD000075",
+      "name": "陣羽織",
+      "type": "Additional",
+      "sourceIds": [
+        1499
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shiki-Oni_1499"
+      ],
+      "mapNames": [
+        "オチクボヶ岳"
+      ],
+      "dropId": "DROP011591"
+    },
+    {
+      "monsterId": "MON001486",
+      "monsterName": "式鬼",
+      "level": [
+        225,
+        225
+      ],
+      "itemId": "AD000075",
+      "name": "陣羽織",
+      "type": "Additional",
+      "sourceIds": [
+        1501
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shiki-Oni_1501"
+      ],
+      "mapNames": [
+        "オチクボヶ岳"
+      ],
+      "dropId": "DROP011592"
+    },
+    {
+      "monsterId": "MON001492",
+      "monsterName": "スハール",
+      "level": [
+        208,
+        208
+      ],
+      "itemId": "CR000019",
+      "name": "◇ＡＴＫ＋２０",
+      "type": "Crysta",
+      "sourceIds": [
+        1512
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Suhar_1512"
+      ],
+      "mapNames": [
+        "グボルの砦"
+      ],
+      "dropId": "DROP011593"
+    },
+    {
+      "monsterId": "MON001497",
+      "monsterName": "スハール",
+      "level": [
+        208,
+        208
+      ],
+      "itemId": "CR000019",
+      "name": "◇ＡＴＫ＋２０",
+      "type": "Crysta",
+      "sourceIds": [
+        1520
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Suhar_1520"
+      ],
+      "mapNames": [
+        "グボルの砦"
+      ],
+      "dropId": "DROP011594"
+    },
+    {
+      "monsterId": "MON001500",
+      "monsterName": "ノムマール",
+      "level": [
+        247,
+        247
+      ],
+      "itemId": "AD000042",
+      "name": "アズラストール",
+      "type": "Additional",
+      "sourceIds": [
+        1528
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Nommar_1528"
+      ],
+      "mapNames": [
+        "原初の地"
+      ],
+      "dropId": "DROP011595"
+    },
+    {
+      "monsterId": "MON001501",
+      "monsterName": "ノムマール",
+      "level": [
+        248,
+        249
+      ],
+      "itemId": "AD000042",
+      "name": "アズラストール",
+      "type": "Additional",
+      "sourceIds": [
+        1530
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Nommar_1530"
+      ],
+      "mapNames": [
+        "原初の地"
+      ],
+      "dropId": "DROP011596"
+    },
+    {
+      "monsterId": "MON001506",
+      "monsterName": "スフィアテット",
+      "level": [
+        250,
+        251
+      ],
+      "itemId": "AD000144",
+      "name": "ブレイブシルト",
+      "type": "Additional",
+      "sourceIds": [
+        1537
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Spheretet_1537"
+      ],
+      "mapNames": [
+        "門殿"
+      ],
+      "dropId": "DROP011597"
+    },
+    {
+      "monsterId": "MON001507",
+      "monsterName": "スフィアテット",
+      "level": [
+        251,
+        251
+      ],
+      "itemId": "AD000144",
+      "name": "ブレイブシルト",
+      "type": "Additional",
+      "sourceIds": [
+        1539
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Spheretet_1539"
+      ],
+      "mapNames": [
+        "門殿"
+      ],
+      "dropId": "DROP011598"
+    },
+    {
+      "monsterId": "MON001530",
+      "monsterName": "ペリレミオ",
+      "level": [
+        259,
+        259
+      ],
+      "itemId": "AD000179",
+      "name": "チェイスキャップ",
+      "type": "Additional",
+      "sourceIds": [
+        1567
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Perilemio_1567"
+      ],
+      "mapNames": [
+        "第３宮"
+      ],
+      "dropId": "DROP011599"
+    },
+    {
+      "monsterId": "MON001532",
+      "monsterName": "ペリレミオ",
+      "level": [
+        259,
+        260
+      ],
+      "itemId": "AD000179",
+      "name": "チェイスキャップ",
+      "type": "Additional",
+      "sourceIds": [
+        1569
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Perilemio_1569"
+      ],
+      "mapNames": [
+        "第３宮"
+      ],
+      "dropId": "DROP011600"
+    },
+    {
+      "monsterId": "MON001536",
+      "monsterName": "ペリレミオ",
+      "level": [
+        261,
+        261
+      ],
+      "itemId": "AD000179",
+      "name": "チェイスキャップ",
+      "type": "Additional",
+      "sourceIds": [
+        1574
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Perilemio_1574"
+      ],
+      "mapNames": [
+        "第３宮"
+      ],
+      "dropId": "DROP011601"
+    },
+    {
+      "monsterId": "MON001547",
+      "monsterName": "ボワット",
+      "level": [
+        285,
+        285
+      ],
+      "itemId": "AL000037",
+      "name": "▲DEF+100",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1590
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Boitte_1590"
+      ],
+      "mapNames": [
+        "異変ノイエヴェル"
+      ],
+      "dropId": "DROP011602"
+    },
+    {
+      "monsterId": "MON001551",
+      "monsterName": "モノ",
+      "level": [
+        233,
+        233
+      ],
+      "itemId": "CR000098",
+      "name": "◇ＤＥＦ＋５％",
+      "type": "Crysta",
+      "sourceIds": [
+        1599
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mono_1599"
+      ],
+      "mapNames": [
+        "イレーヴ遺構地帯"
+      ],
+      "dropId": "DROP011603"
+    },
+    {
+      "monsterId": "MON001555",
+      "monsterName": "マニタリ",
+      "level": [
+        241,
+        241
+      ],
+      "itemId": "AD000166",
+      "name": "カルモフート",
+      "type": "Additional",
+      "sourceIds": [
+        1608
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Manitari_1608"
+      ],
+      "mapNames": [
+        "ユピヒ樹海"
+      ],
+      "dropId": "DROP011604"
+    },
+    {
+      "monsterId": "MON001557",
+      "monsterName": "サスピシ",
+      "level": [
+        244,
+        244
+      ],
+      "itemId": "CR000300",
+      "name": "◇ＭＤＥＦ＋５％",
+      "type": "Crysta",
+      "sourceIds": [
+        1611
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Suspice_1611"
+      ],
+      "mapNames": [
+        "レグス山峡"
+      ],
+      "dropId": "DROP011605"
+    },
+    {
+      "monsterId": "MON001558",
+      "monsterName": "エルガス",
+      "level": [
+        246,
+        247
+      ],
+      "itemId": "CR000110",
+      "name": "◇ＤＥＸ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1614
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Elgas_1614"
+      ],
+      "mapNames": [
+        "スパーガス緑地"
+      ],
+      "dropId": "DROP011606"
+    },
+    {
+      "monsterId": "MON001564",
+      "monsterName": "バウムウォリア",
+      "level": [
+        250,
+        250
+      ],
+      "itemId": "CR000501",
+      "name": "◇ＶＩＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1627
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Baum%20Warrior_1627"
+      ],
+      "mapNames": [
+        "キルフ石化地帯"
+      ],
+      "dropId": "DROP011607"
+    },
+    {
+      "monsterId": "MON001565",
+      "monsterName": "バウムウォリア",
+      "level": [
+        251,
+        251
+      ],
+      "itemId": "CR000501",
+      "name": "◇ＶＩＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1628
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Baum%20Warrior_1628"
+      ],
+      "mapNames": [
+        "キルフ石化地帯"
+      ],
+      "dropId": "DROP011608"
+    },
+    {
+      "monsterId": "MON001567",
+      "monsterName": "ミニョン",
+      "level": [
+        250,
+        251
+      ],
+      "itemId": "AL000102",
+      "name": "▲MDEF+100",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1630
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mignon_1630"
+      ],
+      "mapNames": [
+        "キルフ石化地帯"
+      ],
+      "dropId": "DROP011609"
+    },
+    {
+      "monsterId": "MON001569",
+      "monsterName": "ジャグワール",
+      "level": [
+        254,
+        254
+      ],
+      "itemId": "AD000141",
+      "name": "ブレイブケープ",
+      "type": "Additional",
+      "sourceIds": [
+        1635
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jagwar_1635"
+      ],
+      "mapNames": [
+        "エリウム地区"
+      ],
+      "dropId": "DROP011610"
+    },
+    {
+      "monsterId": "MON001571",
+      "monsterName": "ベスヤク",
+      "level": [
+        253,
+        253
+      ],
+      "itemId": "AL000075",
+      "name": "▲ＨＰ＋２００",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1638
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Besyak_1638"
+      ],
+      "mapNames": [
+        "トルバス緑区"
+      ],
+      "dropId": "DROP011611"
+    },
+    {
+      "monsterId": "MON001579",
+      "monsterName": "ラオピア",
+      "level": [
+        259,
+        260
+      ],
+      "itemId": "CR000288",
+      "name": "◇ＭＰ＋１８０",
+      "type": "Crysta",
+      "sourceIds": [
+        1651
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Raopia_1651"
+      ],
+      "mapNames": [
+        "アイン荒原"
+      ],
+      "dropId": "DROP011612"
+    },
+    {
+      "monsterId": "MON001599",
+      "monsterName": "シダーツ",
+      "level": [
+        273,
+        274
+      ],
+      "itemId": "AL000008",
+      "name": "▲ＡＧＩ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1694
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sidatz_1694"
+      ],
+      "mapNames": [
+        "ザルムス平原"
+      ],
+      "dropId": "DROP011613"
+    },
+    {
+      "monsterId": "MON001600",
+      "monsterName": "ヤーデ",
+      "level": [
+        275,
+        276
+      ],
+      "itemId": "CR000494",
+      "name": "◇VIT・DEX+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1696
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yarde_1696"
+      ],
+      "mapNames": [
+        "ザルムス平原"
+      ],
+      "dropId": "DROP011614"
+    },
+    {
+      "monsterId": "MON001601",
+      "monsterName": "ボムゴブ",
+      "level": [
+        278,
+        279
+      ],
+      "itemId": "AL000167",
+      "name": "▲ＳＴＲ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1698
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Bombgob_1698"
+      ],
+      "mapNames": [
+        "サウロ集落"
+      ],
+      "dropId": "DROP011615"
+    },
+    {
+      "monsterId": "MON001604",
+      "monsterName": "ペルゴブ",
+      "level": [
+        277,
+        277
+      ],
+      "itemId": "CR000451",
+      "name": "◇ＳＴＲ＋２",
+      "type": "Crysta",
+      "sourceIds": [
+        1703
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pelgob_1703"
+      ],
+      "mapNames": [
+        "サウロ集落"
+      ],
+      "dropId": "DROP011616"
+    },
+    {
+      "monsterId": "MON001605",
+      "monsterName": "ペルゴブ",
+      "level": [
+        277,
+        278
+      ],
+      "itemId": "CR000438",
+      "name": "◇STR・AGI+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1704
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pelgob_1704"
+      ],
+      "mapNames": [
+        "サウロ集落"
+      ],
+      "dropId": "DROP011617"
+    },
+    {
+      "monsterId": "MON001606",
+      "monsterName": "ハイオーク",
+      "level": [
+        280,
+        282
+      ],
+      "itemId": "CR000448",
+      "name": "◇STR・VIT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1706
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/High%20Orc_1706"
+      ],
+      "mapNames": [
+        "ﾈｵ･ｸﾞｰﾘｱ予定地"
+      ],
+      "dropId": "DROP011618"
+    },
+    {
+      "monsterId": "MON001612",
+      "monsterName": "蝿騎士",
+      "level": [
+        283,
+        284
+      ],
+      "itemId": "AL000041",
+      "name": "▲ＤＥＸ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1720
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Fly%20Knight_1720"
+      ],
+      "mapNames": [
+        "蝿騎士の谷"
+      ],
+      "dropId": "DROP011619"
+    },
+    {
+      "monsterId": "MON001615",
+      "monsterName": "エキーポ",
+      "level": [
+        286,
+        288
+      ],
+      "itemId": "CR000227",
+      "name": "◇ＩＮＴ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        1726
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Echipo_1726"
+      ],
+      "mapNames": [
+        "堕天使の陣"
+      ],
+      "dropId": "DROP011620"
+    },
+    {
+      "monsterId": "MON001620",
+      "monsterName": "ガルガリオ",
+      "level": [
+        290,
+        291
+      ],
+      "itemId": "CR000282",
+      "name": "◇ＨＰ＋７００",
+      "type": "Crysta",
+      "sourceIds": [
+        1734
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gargalio_1734"
+      ],
+      "mapNames": [
+        "原動儀の空間"
+      ],
+      "dropId": "DROP011621"
+    },
+    {
+      "monsterId": "MON001622",
+      "monsterName": "ソロニオ",
+      "level": [
+        291,
+        292
+      ],
+      "itemId": "AL000083",
+      "name": "▲ＩＮＴ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1738
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Solonia_1738"
+      ],
+      "mapNames": [
+        "原動儀の空間"
+      ],
+      "dropId": "DROP011622"
+    },
+    {
+      "monsterId": "MON001628",
+      "monsterName": "ジュラル",
+      "level": [
+        295,
+        295
+      ],
+      "itemId": "CR000111",
+      "name": "◇ＤＥＸ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        1745
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dural_1745"
+      ],
+      "mapNames": [
+        "謎の構造物空間"
+      ],
+      "dropId": "DROP011623"
+    },
+    {
+      "monsterId": "MON001631",
+      "monsterName": "ジュラル",
+      "level": [
+        296,
+        296
+      ],
+      "itemId": "CR000111",
+      "name": "◇ＤＥＸ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        1748
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dural_1748"
+      ],
+      "mapNames": [
+        "謎の構造物空間"
+      ],
+      "dropId": "DROP011624"
+    },
+    {
+      "monsterId": "MON001637",
+      "monsterName": "ペルタ",
+      "level": [
+        248,
+        248
+      ],
+      "itemId": "AL000182",
+      "name": "▲ＶＩＴ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1754
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pelta_1754"
+      ],
+      "mapNames": [
+        "重装騎兵砦"
+      ],
+      "dropId": "DROP011625"
+    },
+    {
+      "monsterId": "MON001640",
+      "monsterName": "ペルタ",
+      "level": [
+        250,
+        250
+      ],
+      "itemId": "AL000182",
+      "name": "▲ＶＩＴ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1757
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pelta_1757"
+      ],
+      "mapNames": [
+        "重装騎兵砦"
+      ],
+      "dropId": "DROP011626"
+    },
+    {
+      "monsterId": "MON001644",
+      "monsterName": "ウートカ",
+      "level": [
+        253,
+        253
+      ],
+      "itemId": "AL000166",
+      "name": "▲ＳＴＲ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1765
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Utka_1765"
+      ],
+      "mapNames": [
+        "ジェヌン人造洞"
+      ],
+      "dropId": "DROP011627"
+    },
+    {
+      "monsterId": "MON001646",
+      "monsterName": "ウートカ",
+      "level": [
+        254,
+        254
+      ],
+      "itemId": "AL000166",
+      "name": "▲ＳＴＲ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1768
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Utka_1768"
+      ],
+      "mapNames": [
+        "ジェヌン人造洞"
+      ],
+      "dropId": "DROP011628"
+    },
+    {
+      "monsterId": "MON001648",
+      "monsterName": "ウートカ",
+      "level": [
+        255,
+        255
+      ],
+      "itemId": "AL000166",
+      "name": "▲ＳＴＲ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1771
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Utka_1771"
+      ],
+      "mapNames": [
+        "ジェヌン人造洞"
+      ],
+      "dropId": "DROP011629"
+    },
+    {
+      "monsterId": "MON001650",
+      "monsterName": "ゴリエペ",
+      "level": [
+        256,
+        256
+      ],
+      "itemId": "AD000038",
+      "name": "アサドプレート",
+      "type": "Additional",
+      "sourceIds": [
+        1773
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Goriape_1773"
+      ],
+      "mapNames": [
+        "アルカド山"
+      ],
+      "dropId": "DROP011630"
+    },
+    {
+      "monsterId": "MON001651",
+      "monsterName": "ゴリエペ",
+      "level": [
+        257,
+        257
+      ],
+      "itemId": "AD000038",
+      "name": "アサドプレート",
+      "type": "Additional",
+      "sourceIds": [
+        1776
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Goriape_1776"
+      ],
+      "mapNames": [
+        "アルカド山"
+      ],
+      "dropId": "DROP011631"
+    },
+    {
+      "monsterId": "MON001653",
+      "monsterName": "ゴリエペ",
+      "level": [
+        258,
+        258
+      ],
+      "itemId": "AD000038",
+      "name": "アサドプレート",
+      "type": "Additional",
+      "sourceIds": [
+        1779
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Goriape_1779"
+      ],
+      "mapNames": [
+        "アルカド山"
+      ],
+      "dropId": "DROP011632"
+    },
+    {
+      "monsterId": "MON001657",
+      "monsterName": "ヨンゴ",
+      "level": [
+        262,
+        262
+      ],
+      "itemId": "CR000488",
+      "name": "◇VIT・AGI+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1786
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yongo_1786"
+      ],
+      "mapNames": [
+        "旧き竜の神殿"
+      ],
+      "dropId": "DROP011633"
+    },
+    {
+      "monsterId": "MON001658",
+      "monsterName": "グラメル",
+      "level": [
+        263,
+        263
+      ],
+      "itemId": "AL000040",
+      "name": "▲ＤＥＸ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1787
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gramel_1787"
+      ],
+      "mapNames": [
+        "旧き竜の神殿"
+      ],
+      "dropId": "DROP011634"
+    },
+    {
+      "monsterId": "MON001659",
+      "monsterName": "ヨンゴ",
+      "level": [
+        262,
+        262
+      ],
+      "itemId": "CR000488",
+      "name": "◇VIT・AGI+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1789
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yongo_1789"
+      ],
+      "mapNames": [
+        "旧き竜の神殿"
+      ],
+      "dropId": "DROP011635"
+    },
+    {
+      "monsterId": "MON001660",
+      "monsterName": "グラメル",
+      "level": [
+        263,
+        264
+      ],
+      "itemId": "AL000040",
+      "name": "▲ＤＥＸ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1790
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gramel_1790"
+      ],
+      "mapNames": [
+        "旧き竜の神殿"
+      ],
+      "dropId": "DROP011636"
+    },
+    {
+      "monsterId": "MON001661",
+      "monsterName": "ヨンゴ",
+      "level": [
+        262,
+        262
+      ],
+      "itemId": "CR000488",
+      "name": "◇VIT・AGI+3",
+      "type": "Crysta",
+      "sourceIds": [
+        1792
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yongo_1792"
+      ],
+      "mapNames": [
+        "旧き竜の神殿"
+      ],
+      "dropId": "DROP011637"
+    },
+    {
+      "monsterId": "MON001663",
+      "monsterName": "ジェクト",
+      "level": [
+        264,
+        264
+      ],
+      "itemId": "AL000007",
+      "name": "▲ＡＧＩ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1794
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jekto_1794"
+      ],
+      "mapNames": [
+        "ヘクセヤグの森"
+      ],
+      "dropId": "DROP011638"
+    },
+    {
+      "monsterId": "MON001665",
+      "monsterName": "ジェクト",
+      "level": [
+        265,
+        265
+      ],
+      "itemId": "AL000007",
+      "name": "▲ＡＧＩ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1797
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jekto_1797"
+      ],
+      "mapNames": [
+        "ヘクセヤグの森"
+      ],
+      "dropId": "DROP011639"
+    },
+    {
+      "monsterId": "MON001667",
+      "monsterName": "ジェクト",
+      "level": [
+        266,
+        266
+      ],
+      "itemId": "AL000007",
+      "name": "▲ＡＧＩ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1800
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jekto_1800"
+      ],
+      "mapNames": [
+        "ヘクセヤグの森"
+      ],
+      "dropId": "DROP011640"
+    },
+    {
+      "monsterId": "MON001675",
+      "monsterName": "ソレムニティ",
+      "level": [
+        269,
+        270
+      ],
+      "itemId": "AL000082",
+      "name": "▲ＩＮＴ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1819
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Solemnity_1819"
+      ],
+      "mapNames": [
+        "シグミ区画"
+      ],
+      "dropId": "DROP011641"
+    },
+    {
+      "monsterId": "MON001677",
+      "monsterName": "ソレムニティ",
+      "level": [
+        271,
+        271
+      ],
+      "itemId": "AL000082",
+      "name": "▲ＩＮＴ＋１",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1824
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Solemnity_1824"
+      ],
+      "mapNames": [
+        "シグミ区画"
+      ],
+      "dropId": "DROP011642"
+    },
+    {
+      "monsterId": "MON001699",
+      "monsterName": "プリュー",
+      "level": [
+        275,
+        275
+      ],
+      "itemId": "AD000073",
+      "name": "バルドリック",
+      "type": "Additional",
+      "sourceIds": [
+        1848
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Plue_1848"
+      ],
+      "mapNames": [
+        "ベスティエ山"
+      ],
+      "dropId": "DROP011643"
+    },
+    {
+      "monsterId": "MON001701",
+      "monsterName": "プリュー",
+      "level": [
+        273,
+        274
+      ],
+      "itemId": "AD000073",
+      "name": "バルドリック",
+      "type": "Additional",
+      "sourceIds": [
+        1850
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Plue_1850"
+      ],
+      "mapNames": [
+        "ベスティエ山"
+      ],
+      "dropId": "DROP011644"
+    },
+    {
+      "monsterId": "MON001705",
+      "monsterName": "ジムヌラ",
+      "level": [
+        276,
+        276
+      ],
+      "itemId": "CR000082",
+      "name": "◇ＣＲＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1856
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gimnula_1856"
+      ],
+      "mapNames": [
+        "バウリア木洞"
+      ],
+      "dropId": "DROP011645"
+    },
+    {
+      "monsterId": "MON001707",
+      "monsterName": "ジムヌラ",
+      "level": [
+        277,
+        278
+      ],
+      "itemId": "CR000082",
+      "name": "◇ＣＲＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1859
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gimnula_1859"
+      ],
+      "mapNames": [
+        "バウリア木洞"
+      ],
+      "dropId": "DROP011646"
+    },
+    {
+      "monsterId": "MON001718",
+      "monsterName": "アルマスの彫像",
+      "level": [
+        278,
+        278
+      ],
+      "itemId": "CR000226",
+      "name": "◇ＩＮＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1877
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Almas%20Statue_1877"
+      ],
+      "mapNames": [
+        "ロフェシ寺院"
+      ],
+      "dropId": "DROP011647"
+    },
+    {
+      "monsterId": "MON001721",
+      "monsterName": "アルマスの彫像",
+      "level": [
+        279,
+        280
+      ],
+      "itemId": "CR000226",
+      "name": "◇ＩＮＴ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        1880
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Almas%20Statue_1880"
+      ],
+      "mapNames": [
+        "ロフェシ寺院"
+      ],
+      "dropId": "DROP011648"
+    },
+    {
+      "monsterId": "MON001727",
+      "monsterName": "影槍士",
+      "level": [
+        277,
+        277
+      ],
+      "itemId": "AL000039",
+      "name": "▲DEF+50",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1887
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shadow%20Lancer_1887"
+      ],
+      "mapNames": [
+        "試練の会堂"
+      ],
+      "dropId": "DROP011649"
+    },
+    {
+      "monsterId": "MON001731",
+      "monsterName": "影槍士",
+      "level": [
+        278,
+        278
+      ],
+      "itemId": "AL000039",
+      "name": "▲DEF+50",
+      "type": "AL Crysta",
+      "sourceIds": [
+        1891
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shadow%20Lancer_1891"
+      ],
+      "mapNames": [
+        "試練の会堂"
+      ],
+      "dropId": "DROP011650"
+    },
+    {
+      "monsterId": "MON001743",
+      "monsterName": "ピンシャー",
+      "level": [
+        278,
+        278
+      ],
+      "itemId": "CR000489",
+      "name": "◇VIT・AGI+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1905
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pincer_1905"
+      ],
+      "mapNames": [
+        "アルマス神殿"
+      ],
+      "dropId": "DROP011651"
+    },
+    {
+      "monsterId": "MON001744",
+      "monsterName": "ピンシャー",
+      "level": [
+        279,
+        279
+      ],
+      "itemId": "CR000489",
+      "name": "◇VIT・AGI+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1906
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pincer_1906"
+      ],
+      "mapNames": [
+        "アルマス神殿"
+      ],
+      "dropId": "DROP011652"
+    },
+    {
+      "monsterId": "MON001747",
+      "monsterName": "ピンシャー",
+      "level": [
+        281,
+        281
+      ],
+      "itemId": "CR000489",
+      "name": "◇VIT・AGI+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1909
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pincer_1909"
+      ],
+      "mapNames": [
+        "アルマス神殿"
+      ],
+      "dropId": "DROP011653"
+    },
+    {
+      "monsterId": "MON001757",
+      "monsterName": "アイマギ",
+      "level": [
+        279,
+        279
+      ],
+      "itemId": "CR000219",
+      "name": "◇INT・VIT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1922
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_1922"
+      ],
+      "mapNames": [
+        "クシュタ祠堂"
+      ],
+      "dropId": "DROP011654"
+    },
+    {
+      "monsterId": "MON001759",
+      "monsterName": "アイマギ",
+      "level": [
+        280,
+        281
+      ],
+      "itemId": "CR000219",
+      "name": "◇INT・VIT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1924
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_1924"
+      ],
+      "mapNames": [
+        "クシュタ祠堂"
+      ],
+      "dropId": "DROP011655"
+    },
+    {
+      "monsterId": "MON001764",
+      "monsterName": "アイヴィーコロン",
+      "level": [
+        281,
+        281
+      ],
+      "itemId": "CR000281",
+      "name": "◇ＨＰ＋６００",
+      "type": "Crysta",
+      "sourceIds": [
+        1931
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ivy%20Colon_1931"
+      ],
+      "mapNames": [
+        "ウルスロ聖原"
+      ],
+      "dropId": "DROP011656"
+    },
+    {
+      "monsterId": "MON001769",
+      "monsterName": "アイヴィーコロン",
+      "level": [
+        282,
+        282
+      ],
+      "itemId": "CR000281",
+      "name": "◇ＨＰ＋６００",
+      "type": "Crysta",
+      "sourceIds": [
+        1937
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ivy%20Colon_1937"
+      ],
+      "mapNames": [
+        "ウルスロ聖原"
+      ],
+      "dropId": "DROP011657"
+    },
+    {
+      "monsterId": "MON001773",
+      "monsterName": "アイヴィーコロン",
+      "level": [
+        283,
+        283
+      ],
+      "itemId": "CR000281",
+      "name": "◇ＨＰ＋６００",
+      "type": "Crysta",
+      "sourceIds": [
+        1942
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ivy%20Colon_1942"
+      ],
+      "mapNames": [
+        "ウルスロ聖原"
+      ],
+      "dropId": "DROP011658"
+    },
+    {
+      "monsterId": "MON001777",
+      "monsterName": "ボックス",
+      "level": [
+        264,
+        265
+      ],
+      "itemId": "CR000443",
+      "name": "◇STR・INT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1946
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Box_1946"
+      ],
+      "mapNames": [
+        "ロココ鉱山跡"
+      ],
+      "dropId": "DROP011659"
+    },
+    {
+      "monsterId": "MON001790",
+      "monsterName": "アクロ",
+      "level": [
+        283,
+        283
+      ],
+      "itemId": "CR000214",
+      "name": "◇INT・CRT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1962
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Acro_1962"
+      ],
+      "mapNames": [
+        "ロンファ鍾乳洞"
+      ],
+      "dropId": "DROP011660"
+    },
+    {
+      "monsterId": "MON001792",
+      "monsterName": "アクロ",
+      "level": [
+        282,
+        282
+      ],
+      "itemId": "CR000214",
+      "name": "◇INT・CRT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1965
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Acro_1965"
+      ],
+      "mapNames": [
+        "ロンファ鍾乳洞"
+      ],
+      "dropId": "DROP011661"
+    },
+    {
+      "monsterId": "MON001794",
+      "monsterName": "アクロ",
+      "level": [
+        281,
+        281
+      ],
+      "itemId": "CR000214",
+      "name": "◇INT・CRT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        1968
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Acro_1968"
+      ],
+      "mapNames": [
+        "ロンファ鍾乳洞"
+      ],
+      "dropId": "DROP011662"
+    },
+    {
+      "monsterId": "MON001805",
+      "monsterName": "ユキノドウ",
+      "level": [
+        283,
+        284
+      ],
+      "itemId": "AD000083",
+      "name": "ベネフィース",
+      "type": "Additional",
+      "sourceIds": [
+        1987
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Yukinodo_1987"
+      ],
+      "mapNames": [
+        "熱竜の棲む山"
+      ],
+      "dropId": "DROP011663"
+    },
+    {
+      "monsterId": "MON001809",
+      "monsterName": "シェルゴブ",
+      "level": [
+        283,
+        283
+      ],
+      "itemId": "AD000028",
+      "name": "アルブスシルト",
+      "type": "Additional",
+      "sourceIds": [
+        1995
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shellgob_1995"
+      ],
+      "mapNames": [
+        "カルエ闘技場"
+      ],
+      "dropId": "DROP011664"
+    },
+    {
+      "monsterId": "MON001811",
+      "monsterName": "シェルゴブ",
+      "level": [
+        284,
+        284
+      ],
+      "itemId": "AD000028",
+      "name": "アルブスシルト",
+      "type": "Additional",
+      "sourceIds": [
+        1998
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shellgob_1998"
+      ],
+      "mapNames": [
+        "カルエ闘技場"
+      ],
+      "dropId": "DROP011665"
+    },
+    {
+      "monsterId": "MON001813",
+      "monsterName": "シェルゴブ",
+      "level": [
+        285,
+        285
+      ],
+      "itemId": "AD000028",
+      "name": "アルブスシルト",
+      "type": "Additional",
+      "sourceIds": [
+        2001
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Shellgob_2001"
+      ],
+      "mapNames": [
+        "カルエ闘技場"
+      ],
+      "dropId": "DROP011666"
+    },
+    {
+      "monsterId": "MON001816",
+      "monsterName": "スリンガー",
+      "level": [
+        286,
+        286
+      ],
+      "itemId": "AL000033",
+      "name": "▲ＣＲＴ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2005
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Slinger_2005"
+      ],
+      "mapNames": [
+        "皇帝府"
+      ],
+      "dropId": "DROP011667"
+    },
+    {
+      "monsterId": "MON001819",
+      "monsterName": "スリンガー",
+      "level": [
+        288,
+        288
+      ],
+      "itemId": "AL000033",
+      "name": "▲ＣＲＴ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2008
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Slinger_2008"
+      ],
+      "mapNames": [
+        "皇帝府"
+      ],
+      "dropId": "DROP011668"
+    },
+    {
+      "monsterId": "MON001821",
+      "monsterName": "スリンガー",
+      "level": [
+        289,
+        289
+      ],
+      "itemId": "AL000033",
+      "name": "▲ＣＲＴ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2011
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Slinger_2011"
+      ],
+      "mapNames": [
+        "皇帝府"
+      ],
+      "dropId": "DROP011669"
+    },
+    {
+      "monsterId": "MON001824",
+      "monsterName": "カポクオ",
+      "level": [
+        293,
+        294
+      ],
+      "itemId": "AL000183",
+      "name": "▲ＶＩＴ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2014
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Capocuo_2014"
+      ],
+      "mapNames": [
+        "エニナ宮"
+      ],
+      "dropId": "DROP011670"
+    },
+    {
+      "monsterId": "MON001826",
+      "monsterName": "マブロス",
+      "level": [
+        294,
+        295
+      ],
+      "itemId": "CR000103",
+      "name": "◇DEX・CRT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        2017
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mabros_2017"
+      ],
+      "mapNames": [
+        "エニナ宮"
+      ],
+      "dropId": "DROP011671"
+    },
+    {
+      "monsterId": "MON001828",
+      "monsterName": "カポクオ",
+      "level": [
+        296,
+        296
+      ],
+      "itemId": "AL000183",
+      "name": "▲ＶＩＴ＋２",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2020
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Capocuo_2020"
+      ],
+      "mapNames": [
+        "エニナ宮"
+      ],
+      "dropId": "DROP011672"
+    },
+    {
+      "monsterId": "MON001829",
+      "monsterName": "マブロス",
+      "level": [
+        296,
+        296
+      ],
+      "itemId": "CR000103",
+      "name": "◇DEX・CRT+4",
+      "type": "Crysta",
+      "sourceIds": [
+        2021
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Mabros_2021"
+      ],
+      "mapNames": [
+        "エニナ宮"
+      ],
+      "dropId": "DROP011673"
+    },
+    {
+      "monsterId": "MON001833",
+      "monsterName": "ビゾン",
+      "level": [
+        297,
+        297
+      ],
+      "itemId": "AD000105",
+      "name": "ブラックダリア",
+      "type": "Additional",
+      "sourceIds": [
+        2025
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Bizon_2025"
+      ],
+      "mapNames": [
+        "イブリエ宮"
+      ],
+      "dropId": "DROP011674"
+    },
+    {
+      "monsterId": "MON001836",
+      "monsterName": "ビゾン",
+      "level": [
+        297,
+        299
+      ],
+      "itemId": "AD000105",
+      "name": "ブラックダリア",
+      "type": "Additional",
+      "sourceIds": [
+        2029
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Bizon_2029"
+      ],
+      "mapNames": [
+        "イブリエ宮"
+      ],
+      "dropId": "DROP011675"
+    },
+    {
+      "monsterId": "MON001837",
+      "monsterName": "ファザン",
+      "level": [
+        296,
+        296
+      ],
+      "itemId": "CR000456",
+      "name": "◇ＳＴＲ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        2032
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Farzan_2032"
+      ],
+      "mapNames": [
+        "イブリエ宮"
+      ],
+      "dropId": "DROP011676"
+    },
+    {
+      "monsterId": "MON001838",
+      "monsterName": "ファザン",
+      "level": [
+        296,
+        298
+      ],
+      "itemId": "CR000456",
+      "name": "◇ＳＴＲ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        2033
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Farzan_2033"
+      ],
+      "mapNames": [
+        "イブリエ宮"
+      ],
+      "dropId": "DROP011677"
+    },
+    {
+      "monsterId": "MON001848",
+      "monsterName": "智天使ケルビア",
+      "level": [
+        302,
+        303
+      ],
+      "itemId": "CR000502",
+      "name": "◇ＶＩＴ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        2049
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Cherub%20Xerubia_2049"
+      ],
+      "mapNames": [
+        "至高殿"
+      ],
+      "dropId": "DROP011678"
+    },
+    {
+      "monsterId": "MON001850",
+      "monsterName": "智天使ケルビア",
+      "level": [
+        302,
+        302
+      ],
+      "itemId": "CR000502",
+      "name": "◇ＶＩＴ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        2052
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Cherub%20Xerubia_2052"
+      ],
+      "mapNames": [
+        "至高殿"
+      ],
+      "dropId": "DROP011679"
+    },
+    {
+      "monsterId": "MON001853",
+      "monsterName": "智天使ケルビア",
+      "level": [
+        303,
+        303
+      ],
+      "itemId": "CR000502",
+      "name": "◇ＶＩＴ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        2055
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Cherub%20Xerubia_2055"
+      ],
+      "mapNames": [
+        "至高殿"
+      ],
+      "dropId": "DROP011680"
+    },
+    {
+      "monsterId": "MON001858",
+      "monsterName": "キジムー",
+      "level": [
+        295,
+        295
+      ],
+      "itemId": "AL000076",
+      "name": "▲ＨＰ＋４００",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2065
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Kijimu_2065"
+      ],
+      "mapNames": [
+        "ﾌｫﾙﾃｨﾅ祭壇前"
+      ],
+      "dropId": "DROP011681"
+    },
+    {
+      "monsterId": "MON001862",
+      "monsterName": "ヤシガニ",
+      "level": [
+        318,
+        318
+      ],
+      "itemId": "AL000038",
+      "name": "▲DEF+150",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2071
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Cococrab_2071"
+      ],
+      "mapNames": [
+        "フォリスコ平原・北"
+      ],
+      "dropId": "DROP011682"
+    },
+    {
+      "monsterId": "MON001865",
+      "monsterName": "モルフィ",
+      "level": [
+        319,
+        319
+      ],
+      "itemId": "CR000215",
+      "name": "◇INT・CRT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2074
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Molphy_2074"
+      ],
+      "mapNames": [
+        "フォリスコ平原・北"
+      ],
+      "dropId": "DROP011683"
+    },
+    {
+      "monsterId": "MON001872",
+      "monsterName": "クラープ",
+      "level": [
+        304,
+        304
+      ],
+      "itemId": "CR000083",
+      "name": "◇ＣＲＴ＋７",
+      "type": "Crysta",
+      "sourceIds": [
+        2082
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Krabo_2082"
+      ],
+      "mapNames": [
+        "ルカオ海岸"
+      ],
+      "dropId": "DROP011684"
+    },
+    {
+      "monsterId": "MON001881",
+      "monsterName": "ルソーグ",
+      "level": [
+        316,
+        318
+      ],
+      "itemId": "CR000289",
+      "name": "◇ＭＰ＋２１０",
+      "type": "Crysta",
+      "sourceIds": [
+        2091
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lux%20Mushroom_2091"
+      ],
+      "mapNames": [
+        "魔女の家 室内"
+      ],
+      "dropId": "DROP011685"
+    },
+    {
+      "monsterId": "MON001892",
+      "monsterName": "ラムッカ",
+      "level": [
+        316,
+        316
+      ],
+      "itemId": "AL000168",
+      "name": "▲ＳＴＲ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2107
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lamucca_2107"
+      ],
+      "mapNames": [
+        "フォリスコ平原・南"
+      ],
+      "dropId": "DROP011686"
+    },
+    {
+      "monsterId": "MON001897",
+      "monsterName": "シュトラウス",
+      "level": [
+        314,
+        314
+      ],
+      "itemId": "AL000009",
+      "name": "▲ＡＧＩ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2114
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Strauss_2114"
+      ],
+      "mapNames": [
+        "フォリスコ平原・西"
+      ],
+      "dropId": "DROP011687"
+    },
+    {
+      "monsterId": "MON001901",
+      "monsterName": "スイカコロン",
+      "level": [
+        305,
+        305
+      ],
+      "itemId": "AL000103",
+      "name": "▲MDEF+150",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2118
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Watermelon%20colon_2118"
+      ],
+      "mapNames": [
+        "食料庫"
+      ],
+      "dropId": "DROP011688"
+    },
+    {
+      "monsterId": "MON001905",
+      "monsterName": "スイカコロン",
+      "level": [
+        306,
+        306
+      ],
+      "itemId": "AL000103",
+      "name": "▲MDEF+150",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2123
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Watermelon%20colon_2123"
+      ],
+      "mapNames": [
+        "食料庫"
+      ],
+      "dropId": "DROP011689"
+    },
+    {
+      "monsterId": "MON001920",
+      "monsterName": "フロラビィ",
+      "level": [
+        306,
+        306
+      ],
+      "itemId": "AD000052",
+      "name": "オードラス",
+      "type": "Additional",
+      "sourceIds": [
+        2141
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Florabby_2141"
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "dropId": "DROP011690"
+    },
+    {
+      "monsterId": "MON001921",
+      "monsterName": "ヤークト",
+      "level": [
+        303,
+        303
+      ],
+      "itemId": "AL000115",
+      "name": "▲ＭＰ＋１２０",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2142
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jagd_2142"
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "dropId": "DROP011691"
+    },
+    {
+      "monsterId": "MON001923",
+      "monsterName": "フロラビィ",
+      "level": [
+        308,
+        308
+      ],
+      "itemId": "AD000052",
+      "name": "オードラス",
+      "type": "Additional",
+      "sourceIds": [
+        2144
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Florabby_2144"
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "dropId": "DROP011692"
+    },
+    {
+      "monsterId": "MON001925",
+      "monsterName": "ヤークト",
+      "level": [
+        310,
+        311
+      ],
+      "itemId": "AL000115",
+      "name": "▲ＭＰ＋１２０",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2146
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jagd_2146"
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "dropId": "DROP011693"
+    },
+    {
+      "monsterId": "MON001928",
+      "monsterName": "ヤークト",
+      "level": [
+        315,
+        315
+      ],
+      "itemId": "AL000115",
+      "name": "▲ＭＰ＋１２０",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2150
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jagd_2150"
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "dropId": "DROP011694"
+    },
+    {
+      "monsterId": "MON001932",
+      "monsterName": "アインハージャ",
+      "level": [
+        328,
+        328
+      ],
+      "itemId": "AL000042",
+      "name": "▲ＤＥＸ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2154
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Herja_2154"
+      ],
+      "mapNames": [
+        "ティモア回廊"
+      ],
+      "dropId": "DROP011695"
+    },
+    {
+      "monsterId": "MON001935",
+      "monsterName": "アインハージャ",
+      "level": [
+        329,
+        329
+      ],
+      "itemId": "AL000042",
+      "name": "▲ＤＥＸ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2158
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Herja_2158"
+      ],
+      "mapNames": [
+        "ティモア回廊"
+      ],
+      "dropId": "DROP011696"
+    },
+    {
+      "monsterId": "MON001943",
+      "monsterName": "ルソーグ",
+      "level": [
+        317,
+        317
+      ],
+      "itemId": "CR000289",
+      "name": "◇ＭＰ＋２１０",
+      "type": "Crysta",
+      "sourceIds": [
+        2166
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lux%20Mushroom_2166"
+      ],
+      "mapNames": [
+        "ルプス樹林"
+      ],
+      "dropId": "DROP011697"
+    },
+    {
+      "monsterId": "MON001945",
+      "monsterName": "ルソーグ",
+      "level": [
+        316,
+        316
+      ],
+      "itemId": "CR000289",
+      "name": "◇ＭＰ＋２１０",
+      "type": "Crysta",
+      "sourceIds": [
+        2168
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lux%20Mushroom_2168"
+      ],
+      "mapNames": [
+        "ルプス樹林"
+      ],
+      "dropId": "DROP011698"
+    },
+    {
+      "monsterId": "MON001949",
+      "monsterName": "ルソーグ",
+      "level": [
+        318,
+        318
+      ],
+      "itemId": "CR000289",
+      "name": "◇ＭＰ＋２１０",
+      "type": "Crysta",
+      "sourceIds": [
+        2172
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lux%20Mushroom_2172"
+      ],
+      "mapNames": [
+        "ルプス樹林"
+      ],
+      "dropId": "DROP011699"
+    },
+    {
+      "monsterId": "MON001985",
+      "monsterName": "フラッポーク",
+      "level": [
+        328,
+        328
+      ],
+      "itemId": "AL000034",
+      "name": "▲ＣＲＴ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2211
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Flappig_2211"
+      ],
+      "mapNames": [
+        "氷の洞窟グラカルブ"
+      ],
+      "dropId": "DROP011700"
+    },
+    {
+      "monsterId": "MON001987",
+      "monsterName": "カチコロン",
+      "level": [
+        327,
+        327
+      ],
+      "itemId": "CR000104",
+      "name": "◇DEX・CRT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2213
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Colon_2213"
+      ],
+      "mapNames": [
+        "氷の洞窟グラカルブ"
+      ],
+      "dropId": "DROP011701"
+    },
+    {
+      "monsterId": "MON001990",
+      "monsterName": "カチコロン",
+      "level": [
+        329,
+        329
+      ],
+      "itemId": "CR000104",
+      "name": "◇DEX・CRT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2217
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Colon_2217"
+      ],
+      "mapNames": [
+        "氷の洞窟グラカルブ"
+      ],
+      "dropId": "DROP011702"
+    },
+    {
+      "monsterId": "MON001992",
+      "monsterName": "フラッポーク",
+      "level": [
+        332,
+        332
+      ],
+      "itemId": "AL000034",
+      "name": "▲ＣＲＴ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2219
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Flappig_2219"
+      ],
+      "mapNames": [
+        "氷の洞窟グラカルブ"
+      ],
+      "dropId": "DROP011703"
+    },
+    {
+      "monsterId": "MON001993",
+      "monsterName": "カチコロン",
+      "level": [
+        330,
+        330
+      ],
+      "itemId": "CR000104",
+      "name": "◇DEX・CRT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2220
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Colon_2220"
+      ],
+      "mapNames": [
+        "氷の洞窟グラカルブ"
+      ],
+      "dropId": "DROP011704"
+    },
+    {
+      "monsterId": "MON001995",
+      "monsterName": "シヴーチ",
+      "level": [
+        325,
+        326
+      ],
+      "itemId": "AL000184",
+      "name": "▲ＶＩＴ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2222
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Civooch_2222"
+      ],
+      "mapNames": [
+        "蒼氷の城ｾﾗｽﾏﾊﾟﾃｨ"
+      ],
+      "dropId": "DROP011705"
+    },
+    {
+      "monsterId": "MON001996",
+      "monsterName": "シヴーチ",
+      "level": [
+        327,
+        328
+      ],
+      "itemId": "AL000184",
+      "name": "▲ＶＩＴ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2224
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Civooch_2224"
+      ],
+      "mapNames": [
+        "蒼氷の城ｾﾗｽﾏﾊﾟﾃｨ"
+      ],
+      "dropId": "DROP011706"
+    },
+    {
+      "monsterId": "MON001997",
+      "monsterName": "ジュサル",
+      "level": [
+        326,
+        326
+      ],
+      "itemId": "AD000191",
+      "name": "クレマチス",
+      "type": "Additional",
+      "sourceIds": [
+        2226
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Jusal_2226"
+      ],
+      "mapNames": [
+        "蒼氷の城ｾﾗｽﾏﾊﾟﾃｨ"
+      ],
+      "dropId": "DROP011707"
+    },
+    {
+      "monsterId": "MON001998",
+      "monsterName": "アイスナイト",
+      "level": [
+        328,
+        330
+      ],
+      "itemId": "CR000449",
+      "name": "◇STR・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2227
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ice%20Knight_2227"
+      ],
+      "mapNames": [
+        "蒼氷の城ｾﾗｽﾏﾊﾟﾃｨ"
+      ],
+      "dropId": "DROP011708"
+    },
+    {
+      "monsterId": "MON002012",
+      "monsterName": "スケイクルエー",
+      "level": [
+        340,
+        341
+      ],
+      "itemId": "AL000084",
+      "name": "▲ＩＮＴ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2252
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Scale%20Queen_2252"
+      ],
+      "mapNames": [
+        "時の迷宮カーブベル"
+      ],
+      "dropId": "DROP011709"
+    },
+    {
+      "monsterId": "MON002013",
+      "monsterName": "カーカドラス",
+      "level": [
+        341,
+        341
+      ],
+      "itemId": "CR000439",
+      "name": "◇STR・AGI+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2254
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Karkadras_2254"
+      ],
+      "mapNames": [
+        "時の迷宮カーブベル"
+      ],
+      "dropId": "DROP011710"
+    },
+    {
+      "monsterId": "MON002015",
+      "monsterName": "スケイクルエー",
+      "level": [
+        344,
+        344
+      ],
+      "itemId": "AL000084",
+      "name": "▲ＩＮＴ＋３",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2256
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Scale%20Queen_2256"
+      ],
+      "mapNames": [
+        "時の迷宮カーブベル"
+      ],
+      "dropId": "DROP011711"
+    },
+    {
+      "monsterId": "MON002018",
+      "monsterName": "カーカドラス",
+      "level": [
+        345,
+        345
+      ],
+      "itemId": "CR000439",
+      "name": "◇STR・AGI+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2259
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Karkadras_2259"
+      ],
+      "mapNames": [
+        "時の迷宮カーブベル"
+      ],
+      "dropId": "DROP011712"
+    },
+    {
+      "monsterId": "MON002031",
+      "monsterName": "ナイトトレント",
+      "level": [
+        341,
+        341
+      ],
+      "itemId": "CR000495",
+      "name": "◇VIT・DEX+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2275
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Night%20Treant_2275"
+      ],
+      "mapNames": [
+        "テルトの森"
+      ],
+      "dropId": "DROP011713"
+    },
+    {
+      "monsterId": "MON002042",
+      "monsterName": "チェシャー",
+      "level": [
+        342,
+        342
+      ],
+      "itemId": "AL000116",
+      "name": "▲ＭＰ＋１８０",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2289
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Flametongue_2289"
+      ],
+      "mapNames": [
+        "フライガル小道"
+      ],
+      "dropId": "DROP011714"
+    },
+    {
+      "monsterId": "MON002070",
+      "monsterName": "コクレア",
+      "level": [
+        346,
+        347
+      ],
+      "itemId": "CR000220",
+      "name": "◇INT・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2322
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Arcarp_2322"
+      ],
+      "mapNames": [
+        "ナーハベルグ山"
+      ],
+      "dropId": "DROP011715"
+    },
+    {
+      "monsterId": "MON002072",
+      "monsterName": "コクレア",
+      "level": [
+        351,
+        351
+      ],
+      "itemId": "CR000220",
+      "name": "◇INT・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2325
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Arcarp_2325"
+      ],
+      "mapNames": [
+        "ナーハベルグ山"
+      ],
+      "dropId": "DROP011716"
+    },
+    {
+      "monsterId": "MON002073",
+      "monsterName": "コクレア",
+      "level": [
+        351,
+        351
+      ],
+      "itemId": "CR000220",
+      "name": "◇INT・VIT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2326
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Arcarp_2326"
+      ],
+      "mapNames": [
+        "ナーハベルグ山"
+      ],
+      "dropId": "DROP011717"
+    },
+    {
+      "monsterId": "MON002079",
+      "monsterName": "ラウトハーン",
+      "level": [
+        344,
+        344
+      ],
+      "itemId": "AL000104",
+      "name": "▲MDEF+200",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2333
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/War%20Rooster_2333"
+      ],
+      "mapNames": [
+        "シュペリオ廃村"
+      ],
+      "dropId": "DROP011718"
+    },
+    {
+      "monsterId": "MON002083",
+      "monsterName": "ラウトハーン",
+      "level": [
+        348,
+        348
+      ],
+      "itemId": "AL000104",
+      "name": "▲MDEF+200",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2340
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/War%20Rooster_2340"
+      ],
+      "mapNames": [
+        "シュペリオ廃村"
+      ],
+      "dropId": "DROP011719"
+    },
+    {
+      "monsterId": "MON002085",
+      "monsterName": "スカロプス",
+      "level": [
+        370,
+        370
+      ],
+      "itemId": "AD000139",
+      "name": "三編みバンド",
+      "type": "Additional",
+      "sourceIds": [
+        2342
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Skarops_2342"
+      ],
+      "mapNames": [
+        "ドリゾラ荒野地下"
+      ],
+      "dropId": "DROP011720"
+    },
+    {
+      "monsterId": "MON002110",
+      "monsterName": "スカシバ",
+      "level": [
+        351,
+        352
+      ],
+      "itemId": "AL000077",
+      "name": "▲ＨＰ＋６００",
+      "type": "AL Crysta",
+      "sourceIds": [
+        2369
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Winged%20Scarab_2369"
+      ],
+      "mapNames": [
+        "キッファルト森林"
+      ],
+      "dropId": "DROP011721"
+    },
+    {
+      "monsterId": "MON002120",
+      "monsterName": "パーン",
+      "level": [
+        356,
+        357
+      ],
+      "itemId": "CR000444",
+      "name": "◇STR・INT+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2380
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Pavo_2380"
+      ],
+      "mapNames": [
+        "モンタルト樹林"
+      ],
+      "dropId": "DROP011722"
+    },
+    {
+      "monsterId": "MON002124",
+      "monsterName": "シュガードール",
+      "level": [
+        353,
+        354
+      ],
+      "itemId": "CR000490",
+      "name": "◇VIT・AGI+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2385
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sugar%20Doll_2385"
+      ],
+      "mapNames": [
+        "ヒルハオス館"
+      ],
+      "dropId": "DROP011723"
+    },
+    {
+      "monsterId": "MON002127",
+      "monsterName": "シュガードール",
+      "level": [
+        356,
+        356
+      ],
+      "itemId": "CR000490",
+      "name": "◇VIT・AGI+5",
+      "type": "Crysta",
+      "sourceIds": [
+        2392
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sugar%20Doll_2392"
+      ],
+      "mapNames": [
+        "ヒルハオス館"
+      ],
+      "dropId": "DROP011724"
+    },
+    {
+      "monsterId": "MON002129",
+      "monsterName": "ジェムアント",
+      "level": [
+        356,
+        356
+      ],
+      "itemId": "MAT001078",
+      "name": "綺麗な原石",
+      "type": "Collectible",
+      "sourceIds": [
+        2394
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gem%20Ant_2394"
+      ],
+      "mapNames": [
+        "アメスベルグ連峰"
+      ],
+      "dropId": "DROP011725"
+    },
+    {
+      "monsterId": "MON002132",
+      "monsterName": "ジェムアント",
+      "level": [
+        359,
+        359
+      ],
+      "itemId": "MAT001078",
+      "name": "綺麗な原石",
+      "type": "Collectible",
+      "sourceIds": [
+        2397
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gem%20Ant_2397"
+      ],
+      "mapNames": [
+        "アメスベルグ連峰"
+      ],
+      "dropId": "DROP011726"
+    },
+    {
+      "monsterId": "MON002135",
+      "monsterName": "ジェムアント",
+      "level": [
+        362,
+        362
+      ],
+      "itemId": "MAT001078",
+      "name": "綺麗な原石",
+      "type": "Collectible",
+      "sourceIds": [
+        2400
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Gem%20Ant_2400"
+      ],
+      "mapNames": [
+        "アメスベルグ連峰"
+      ],
+      "dropId": "DROP011727"
+    },
+    {
+      "monsterId": "MON002141",
+      "monsterName": "コドリーロ",
+      "level": [
+        361,
+        362
+      ],
+      "itemId": "CR000332",
+      "name": "◇ＭＰ＋２４０",
+      "type": "Crysta",
+      "sourceIds": [
+        2407
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Codoriro_2407"
+      ],
+      "mapNames": [
+        "ヤーデルト林地"
+      ],
+      "dropId": "DROP011728"
+    },
+    {
+      "monsterId": "MON002144",
+      "monsterName": "コドリーロ",
+      "level": [
+        367,
+        367
+      ],
+      "itemId": "CR000332",
+      "name": "◇ＭＰ＋２４０",
+      "type": "Crysta",
+      "sourceIds": [
+        2412
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Codoriro_2412"
+      ],
+      "mapNames": [
+        "ヤーデルト林地"
+      ],
+      "dropId": "DROP011729"
+    },
+    {
+      "monsterId": "MON002146",
+      "monsterName": "アーマートループ",
+      "level": [
+        360,
+        360
+      ],
+      "itemId": "AD000004",
+      "name": "アビサルマスク",
+      "type": "Additional",
+      "sourceIds": [
+        2414
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Armor%20Trooper_2414"
+      ],
+      "mapNames": [
+        "ラッツブルグ城"
+      ],
+      "dropId": "DROP011730"
+    },
+    {
+      "monsterId": "MON002150",
+      "monsterName": "アーマートループ",
+      "level": [
+        368,
+        368
+      ],
+      "itemId": "AD000004",
+      "name": "アビサルマスク",
+      "type": "Additional",
+      "sourceIds": [
+        2418
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Armor%20Trooper_2418"
+      ],
+      "mapNames": [
+        "ラッツブルグ城"
+      ],
+      "dropId": "DROP011731"
+    },
+    {
+      "monsterId": "MON002156",
+      "monsterName": "フロスピスキス",
+      "level": [
+        358,
+        358
+      ],
+      "itemId": "AD000137",
+      "name": "ボトムギフト",
+      "type": "Additional",
+      "sourceIds": [
+        2426
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Frost%20Pisky_2426"
+      ],
+      "mapNames": [
+        "ゴルトーク山道"
+      ],
+      "dropId": "DROP011732"
+    },
+    {
+      "monsterId": "MON002159",
+      "monsterName": "フロスピスキス",
+      "level": [
+        359,
+        359
+      ],
+      "itemId": "AD000137",
+      "name": "ボトムギフト",
+      "type": "Additional",
+      "sourceIds": [
+        2429
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Frost%20Pisky_2429"
+      ],
+      "mapNames": [
+        "ゴルトーク山道"
+      ],
+      "dropId": "DROP011733"
+    },
+    {
+      "monsterId": "MON002162",
+      "monsterName": "フロスピスキス",
+      "level": [
+        362,
+        362
+      ],
+      "itemId": "AD000137",
+      "name": "ボトムギフト",
+      "type": "Additional",
+      "sourceIds": [
+        2432
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Frost%20Pisky_2432"
+      ],
+      "mapNames": [
+        "ゴルトーク山道"
+      ],
+      "dropId": "DROP011734"
+    },
+    {
+      "monsterId": "MON002166",
+      "monsterName": "御神岩",
+      "level": [
+        355,
+        355
+      ],
+      "itemId": "CR000503",
+      "name": "◇ＶＩＴ＋８",
+      "type": "Crysta",
+      "sourceIds": [
+        2437
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sacred%20Rock_2437"
+      ],
+      "mapNames": [
+        "アヒテム修練階段"
+      ],
+      "dropId": "DROP011735"
+    },
+    {
+      "monsterId": "MON002167",
+      "monsterName": "御神岩",
+      "level": [
+        356,
+        357
+      ],
+      "itemId": "CR000503",
+      "name": "◇ＶＩＴ＋８",
+      "type": "Crysta",
+      "sourceIds": [
+        2438
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Sacred%20Rock_2438"
+      ],
+      "mapNames": [
+        "アヒテム修練階段"
+      ],
+      "dropId": "DROP011736"
+    },
+    {
+      "monsterId": "MON002173",
+      "monsterName": "闇の剣士",
+      "level": [
+        361,
+        361
+      ],
+      "itemId": "CR000020",
+      "name": "◇ＡＴＫ＋２５",
+      "type": "Crysta",
+      "sourceIds": [
+        2447
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Swordsman_2447"
+      ],
+      "mapNames": [
+        "ゲシュライオ廊"
+      ],
+      "dropId": "DROP011737"
+    },
+    {
+      "monsterId": "MON002176",
+      "monsterName": "闇の剣士",
+      "level": [
+        365,
+        365
+      ],
+      "itemId": "CR000020",
+      "name": "◇ＡＴＫ＋２５",
+      "type": "Crysta",
+      "sourceIds": [
+        2450
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Swordsman_2450"
+      ],
+      "mapNames": [
+        "ゲシュライオ廊"
+      ],
+      "dropId": "DROP011738"
+    },
+    {
+      "monsterId": "MON002179",
+      "monsterName": "闇の剣士",
+      "level": [
+        367,
+        367
+      ],
+      "itemId": "CR000020",
+      "name": "◇ＡＴＫ＋２５",
+      "type": "Crysta",
+      "sourceIds": [
+        2453
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dark%20Swordsman_2453"
+      ],
+      "mapNames": [
+        "ゲシュライオ廊"
+      ],
+      "dropId": "DROP011739"
+    },
+    {
+      "monsterId": "MON002182",
+      "monsterName": "ゲムシ",
+      "level": [
+        354,
+        354
+      ],
+      "itemId": "AD000062",
+      "name": "綾蘭笠",
+      "type": "Additional",
+      "sourceIds": [
+        2456
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ghemsh_2456"
+      ],
+      "mapNames": [
+        "タウシェラ空洞"
+      ],
+      "dropId": "DROP011740"
+    },
+    {
+      "monsterId": "MON002185",
+      "monsterName": "ゲムシ",
+      "level": [
+        358,
+        358
+      ],
+      "itemId": "AD000062",
+      "name": "綾蘭笠",
+      "type": "Additional",
+      "sourceIds": [
+        2459
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ghemsh_2459"
+      ],
+      "mapNames": [
+        "タウシェラ空洞"
+      ],
+      "dropId": "DROP011741"
+    },
+    {
+      "monsterId": "MON002188",
+      "monsterName": "ゲムシ",
+      "level": [
+        360,
+        360
+      ],
+      "itemId": "AD000062",
+      "name": "綾蘭笠",
+      "type": "Additional",
+      "sourceIds": [
+        2462
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Ghemsh_2462"
+      ],
+      "mapNames": [
+        "タウシェラ空洞"
+      ],
+      "dropId": "DROP011742"
+    },
+    {
+      "monsterId": "MON002190",
+      "monsterName": "カメレオン",
+      "level": [
+        370,
+        370
+      ],
+      "itemId": "AD000060",
+      "name": "黎明の光背",
+      "type": "Additional",
+      "sourceIds": [
+        2464
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Spikeleon_2464"
+      ],
+      "mapNames": [
+        "アプリーデ村"
+      ],
+      "dropId": "DROP011743"
+    },
+    {
+      "monsterId": "MON002208",
+      "monsterName": "コンテナ",
+      "level": [
+        353,
+        353
+      ],
+      "itemId": "CR000434",
+      "name": "◇STR・INT+6",
+      "type": "Crysta",
+      "sourceIds": [
+        2485
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Container_2485"
+      ],
+      "mapNames": [
+        "ロイエ地下聖堂"
+      ],
+      "dropId": "DROP011744"
+    },
+    {
+      "monsterId": "MON002209",
+      "monsterName": "コンテナ",
+      "level": [
+        354,
+        355
+      ],
+      "itemId": "CR000434",
+      "name": "◇STR・INT+6",
+      "type": "Crysta",
+      "sourceIds": [
+        2486
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Container_2486"
+      ],
+      "mapNames": [
+        "ロイエ地下聖堂"
+      ],
+      "dropId": "DROP011745"
+    },
+    {
+      "monsterId": "MON002211",
+      "monsterName": "コンテナ",
+      "level": [
+        356,
+        356
+      ],
+      "itemId": "CR000434",
+      "name": "◇STR・INT+6",
+      "type": "Crysta",
+      "sourceIds": [
+        2489
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Container_2489"
+      ],
+      "mapNames": [
+        "ロイエ地下聖堂"
+      ],
+      "dropId": "DROP011746"
+    },
+    {
+      "monsterId": "MON002338",
+      "monsterName": "アノスピカリス",
+      "level": [
+        375,
+        375
+      ],
+      "itemId": "AD000025",
+      "name": "アノステイル",
+      "type": "Additional",
+      "sourceIds": [
+        2643
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Anothpicaris_2643"
+      ],
+      "mapNames": [
+        "シグミ地下廃坑道"
+      ],
+      "dropId": "DROP011747"
+    },
+    {
+      "monsterId": "MON002341",
+      "monsterName": "アノスピカリス",
+      "level": [
+        378,
+        378
+      ],
+      "itemId": "AD000025",
+      "name": "アノステイル",
+      "type": "Additional",
+      "sourceIds": [
+        2646
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Anothpicaris_2646"
+      ],
+      "mapNames": [
+        "シグミ地下廃坑道"
+      ],
+      "dropId": "DROP011748"
+    },
+    {
+      "monsterId": "MON002344",
+      "monsterName": "アノスピカリス",
+      "level": [
+        381,
+        381
+      ],
+      "itemId": "AD000025",
+      "name": "アノステイル",
+      "type": "Additional",
+      "sourceIds": [
+        2649
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Anothpicaris_2649"
+      ],
+      "mapNames": [
+        "シグミ地下廃坑道"
+      ],
+      "dropId": "DROP011749"
+    },
+    {
+      "monsterId": "MON002349",
+      "monsterName": "サボボボ",
+      "level": [
+        376,
+        376
+      ],
+      "itemId": "AD000047",
+      "name": "くっつきさぼぼん",
+      "type": "Additional",
+      "sourceIds": [
+        2654
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Cactatata_2654"
+      ],
+      "mapNames": [
+        "強欲の黄砂"
+      ],
+      "dropId": "DROP011750"
+    },
+    {
+      "monsterId": "MON002378",
+      "monsterName": "アーティアリー",
+      "level": [
+        386,
+        386
+      ],
+      "itemId": "AD000037",
+      "name": "アートマン",
+      "type": "Additional",
+      "sourceIds": [
+        2683
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Artiary_2683"
+      ],
+      "mapNames": [
+        "バール神殿"
+      ],
+      "dropId": "DROP011751"
+    },
+    {
+      "monsterId": "MON002390",
+      "monsterName": "アルマポット",
+      "level": [
+        381,
+        381
+      ],
+      "itemId": "AD000014",
+      "name": "アルマルマ",
+      "type": "Additional",
+      "sourceIds": [
+        2696
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Almapot_2696"
+      ],
+      "mapNames": [
+        "異空間・中心部"
+      ],
+      "dropId": "DROP011752"
+    },
+    {
+      "monsterId": "MON002393",
+      "monsterName": "アルマポット",
+      "level": [
+        385,
+        385
+      ],
+      "itemId": "AD000014",
+      "name": "アルマルマ",
+      "type": "Additional",
+      "sourceIds": [
+        2699
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Almapot_2699"
+      ],
+      "mapNames": [
+        "異空間・中心部"
+      ],
+      "dropId": "DROP011753"
+    },
+    {
+      "monsterId": "MON002396",
+      "monsterName": "アルマポット",
+      "level": [
+        386,
+        386
+      ],
+      "itemId": "AD000014",
+      "name": "アルマルマ",
+      "type": "Additional",
+      "sourceIds": [
+        2702
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Almapot_2702"
+      ],
+      "mapNames": [
+        "異空間・中心部"
+      ],
+      "dropId": "DROP011754"
+    },
+    {
+      "monsterId": "MON002409",
+      "monsterName": "リュシオル",
+      "level": [
+        51,
+        51
+      ],
+      "itemId": "CR000221",
+      "name": "◇ＩＮＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        2715
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Luciole_2715"
+      ],
+      "mapNames": [
+        "霧雨の苑"
+      ],
+      "dropId": "DROP011755"
+    },
+    {
+      "monsterId": "MON002422",
+      "monsterName": "リュシオル",
+      "level": [
+        50,
+        50
+      ],
+      "itemId": "CR000221",
+      "name": "◇ＩＮＴ＋１",
+      "type": "Crysta",
+      "sourceIds": [
+        2728
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Luciole_2728"
+      ],
+      "mapNames": [
+        "霧雨の苑"
+      ],
+      "dropId": "DROP011756"
+    },
+    {
+      "monsterId": "MON002458",
+      "monsterName": "ラテルネ",
+      "level": [
+        147,
+        148
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        2787
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Laterne_2787"
+      ],
+      "mapNames": [
+        "ガイランツェ号"
+      ],
+      "dropId": "DROP011757"
+    },
+    {
+      "monsterId": "MON002460",
+      "monsterName": "ラテルネ",
+      "level": [
+        149,
+        149
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        2790
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Laterne_2790"
+      ],
+      "mapNames": [
+        "ガイランツェ号"
+      ],
+      "dropId": "DROP011758"
+    },
+    {
+      "monsterId": "MON002557",
+      "monsterName": "ヴォーガ",
+      "level": [
+        282,
+        282
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        2893
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Voga_2893"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011759"
+    },
+    {
+      "monsterId": "MON002561",
+      "monsterName": "ヴォーガ",
+      "level": [
+        284,
+        284
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        2897
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Voga_2897"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011760"
+    },
+    {
+      "monsterId": "MON002565",
+      "monsterName": "ヴォーガ",
+      "level": [
+        286,
+        286
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        2901
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Voga_2901"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011761"
+    },
+    {
+      "monsterId": "MON002569",
+      "monsterName": "ヴォーガ",
+      "level": [
+        288,
+        288
+      ],
+      "itemId": "CR000455",
+      "name": "◇ＳＴＲ＋６",
+      "type": "Crysta",
+      "sourceIds": [
+        2905
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Voga_2905"
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "dropId": "DROP011762"
+    },
+    {
+      "monsterId": "MON002689",
+      "monsterName": "アイマギ",
+      "level": [
+        260,
+        260
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        3025
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_3025"
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "dropId": "DROP011763"
+    },
+    {
+      "monsterId": "MON002693",
+      "monsterName": "アイマギ",
+      "level": [
+        254,
+        254
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        3029
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_3029"
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "dropId": "DROP011764"
+    },
+    {
+      "monsterId": "MON002694",
+      "monsterName": "アイマギ",
+      "level": [
+        255,
+        255
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        3030
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_3030"
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "dropId": "DROP011765"
+    },
+    {
+      "monsterId": "MON002701",
+      "monsterName": "アイマギ",
+      "level": [
+        261,
+        261
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        3038
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_3038"
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "dropId": "DROP011766"
+    },
+    {
+      "monsterId": "MON002703",
+      "monsterName": "アイマギ",
+      "level": [
+        269,
+        269
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        3040
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_3040"
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "dropId": "DROP011767"
+    },
+    {
+      "monsterId": "MON002706",
+      "monsterName": "アイマギ",
+      "level": [
+        268,
+        268
+      ],
+      "itemId": "CR000218",
+      "name": "◇INT・VIT+3",
+      "type": "Crysta",
+      "sourceIds": [
+        3043
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Eye%20Magi_3043"
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "dropId": "DROP011768"
+    },
+    {
+      "monsterId": "MON002799",
+      "monsterName": "ポーカ",
+      "level": [
+        125,
+        125
+      ],
+      "itemId": "CR000278",
+      "name": "◇ＨＰ＋３００",
+      "type": "Crysta",
+      "sourceIds": [
+        3148
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Phoca_3148"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011769"
+    },
+    {
+      "monsterId": "MON002807",
+      "monsterName": "ポーカ",
+      "level": [
+        132,
+        132
+      ],
+      "itemId": "CR000278",
+      "name": "◇ＨＰ＋３００",
+      "type": "Crysta",
+      "sourceIds": [
+        3156
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Phoca_3156"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011770"
+    },
+    {
+      "monsterId": "MON002809",
+      "monsterName": "スノウキッド",
+      "level": [
+        142,
+        142
+      ],
+      "itemId": "MAT000835",
+      "name": "雪精の布片",
+      "type": "Collectible",
+      "sourceIds": [
+        3158
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Snow%20Kid_3158"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011771"
+    },
+    {
+      "monsterId": "MON002809",
+      "monsterName": "スノウキッド",
+      "level": [
+        142,
+        142
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        3158
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Snow%20Kid_3158"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011772"
+    },
+    {
+      "monsterId": "MON002812",
+      "monsterName": "スノウキッド",
+      "level": [
+        148,
+        148
+      ],
+      "itemId": "MAT000835",
+      "name": "雪精の布片",
+      "type": "Collectible",
+      "sourceIds": [
+        3161
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Snow%20Kid_3161"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011773"
+    },
+    {
+      "monsterId": "MON002812",
+      "monsterName": "スノウキッド",
+      "level": [
+        148,
+        148
+      ],
+      "itemId": "CR000223",
+      "name": "◇ＩＮＴ＋３",
+      "type": "Crysta",
+      "sourceIds": [
+        3161
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Snow%20Kid_3161"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011774"
+    },
+    {
+      "monsterId": "MON002816",
+      "monsterName": "リューディア",
+      "level": [
+        150,
+        150
+      ],
+      "itemId": "MAT000121",
+      "name": "銀雪の結晶",
+      "type": "Collectible",
+      "sourceIds": [
+        3165
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lydia_3165"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011775"
+    },
+    {
+      "monsterId": "MON002817",
+      "monsterName": "リューディア",
+      "level": [
+        300,
+        300
+      ],
+      "itemId": "MAT000121",
+      "name": "銀雪の結晶",
+      "type": "Collectible",
+      "sourceIds": [
+        3166
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Lydia_3166"
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "dropId": "DROP011776"
+    },
+    {
+      "monsterId": "MON002958",
+      "monsterName": "デュンケリス",
+      "level": [
+        400,
+        400
+      ],
+      "itemId": "AD000015",
+      "name": "アルマスブリマス",
+      "type": "Additional",
+      "sourceIds": [
+        3318
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Dunkelis_3318"
+      ],
+      "mapNames": [
+        "ログラスの街_室内"
+      ],
+      "dropId": "DROP011777"
+    },
+    {
+      "monsterId": "MON002964",
+      "monsterName": "ストーミア",
+      "level": [
+        400,
+        400
+      ],
+      "itemId": "AD000058",
+      "name": "アウリスブラスト",
+      "type": "Additional",
+      "sourceIds": [
+        3324
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Stormia_3324"
+      ],
+      "mapNames": [
+        "ログラスの街_室内"
+      ],
+      "dropId": "DROP011778"
+    },
+    {
+      "monsterId": "MON003054",
+      "monsterName": "ゾルバン",
+      "level": [
+        140,
+        140
+      ],
+      "itemId": "AD000055",
+      "name": "アウラー",
+      "type": "Additional",
+      "sourceIds": [
+        3414
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Zolban_3414"
+      ],
+      "mapNames": [
+        "首都ソフィア"
+      ],
+      "dropId": "DROP011779"
+    }
+  ],
+  "excluded": [
+    {
+      "monsterId": "MON000632",
+      "monsterName": "ピークス",
+      "level": [
+        139,
+        140
+      ],
+      "itemId": "AD000170",
+      "name": "キャスケット",
+      "type": "Additional",
+      "sourceIds": [
+        209
+      ],
+      "urls": [
+        "https://irunawiki.com/ja_JP/monster/Picus_209"
+      ],
+      "mapNames": [
+        "アインの森"
+      ],
+      "dropId": "DROP011454",
+      "reason": "v3.0.64から継続保留。資料Lv139と既存Lv139～140の差を未解消。最終検証で採用から除外。"
+    }
+  ]
+}

@@ -4915,8 +4915,8 @@
   "conditionIdsMissingInApp": 0,
   "relicPatternIdsMissingInApp": 0,
   "remaining": {
-    "heldItems": 599,
-    "unmatchedDrops": 131
+    "heldItems": 598,
+    "unmatchedDrops": 56
   },
   "referenceOnly": {
     "count": 122,

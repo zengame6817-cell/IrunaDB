@@ -65,10 +65,12 @@ window.IrunaLocationsBrowser = (() => {
     }
     function monsterDrops(id){
       const rows=window.IrunaCatalogModel.groupDrops(data,drops.filter(d=>d['モンスターID']===id));
-      const links=groups=>groups.map(g=>button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))).join(' / ');
-      const slot=d=>/^[1-4]$/.test(String(d['ドロップ枠']))?Number(d['ドロップ枠']):null;
-      const unknown=rows.filter(g=>!slot(g[0]));
-      return `<dl class="location-facts location-drop-slots">${[1,2,3,4].map(n=>`<dt>第${n}ドロップ</dt><dd>${links(rows.filter(g=>slot(g[0])===n))||'未確認'}</dd>`).join('')}</dl>${unknown.length?`<p class="catalog-note">枠未確認</p><p>${links(unknown)}</p>`:''}`;
+      const rank=g=>{
+        const kind=items.get(g[0]['アイテムID'])?.['分類'];
+        return ['クリスタ','アルクリスタ','レリック'].includes(kind)?2:['武器','防具','体','追加','特殊','装飾'].includes(kind)?1:0;
+      };
+      rows.sort((a,b)=>rank(a)-rank(b));
+      return `<ul class="location-drops">${rows.map(g=>`<li>${button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))}</li>`).join('')||'<li>ドロップ情報は未登録です。</li>'}</ul>`;
     }
     function render(){
       syncMapSelection(route.kind==='map'?route.id:route.kind==='monster'?spawnRows(route.id)[0]?.['マップID']:null);

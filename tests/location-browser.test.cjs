@@ -5,17 +5,17 @@ function setup(){
  const document={getElementById:lookup,createElement:tag=>node(tag+nodes.size),addEventListener(){}};
  const ctx={document,window:{scrollY:0,scrollTo(){},IrunaModal:{close(){}},IrunaCatalogBridge:{show(){}},IrunaCatalogModel:require('../js/catalog-model.js')}};
  vm.runInNewContext(fs.readFileSync(path.join(root,'js/utils.js'),'utf8'),ctx);vm.runInNewContext(fs.readFileSync(path.join(root,'js/location-browser.js'),'utf8'),ctx);
- const items=['いし','◇クリスタ','未知'].map((n,i)=>({'アイテムID':'I'+i,'名前':n,'分類':'素材'}));
+ const items=['いし','◇クリスタ','未知','ぼうし'].map((n,i)=>({'アイテムID':'I'+i,'名前':n,'分類':i===1?'クリスタ':i===3?'追加':'素材'}));
  const maps=[{'マップID':'M1','マップ名':'テスト平原','階層':'エリア1'},{'マップID':'M2','マップ名':'テスト平原','階層':'エリア2'}];
  const monsters=[{'モンスターID':'A','名前':'コロン','Lv下限':1,'Lv上限':2,'備考':'表示しない調査メモ','難易度':'未確認'},{'モンスターID':'B','名前':'コロン','Lv下限':10,'Lv上限':10}];
  const spawns=[{'マップID':'M1','モンスターID':'A'},{'マップID':'M2','モンスターID':'B'}];
- const drops=[['D1','A','I0',1],['D2','A','I1',4],['D3','A','I2',''],['D4','B','I0',2]].map(([id,m,i,s])=>({'ドロップID':id,'モンスターID':m,'アイテムID':i,'ドロップ枠':s,'備考':'日本語名で照合。枠番号・確率・難易度別条件・現在の開催状況は未確認。','確認日':'2026-10-16'}));
+ const drops=[['D1','A','I0',1],['D2','A','I1',4],['D3','A','I2',''],['D4','B','I0',2],['D5','A','I3','']].map(([id,m,i,s])=>({'ドロップID':id,'モンスターID':m,'アイテムID':i,'ドロップ枠':s,'備考':'日本語名で照合。枠番号・確率・難易度別条件・現在の開催状況は未確認。','確認日':'2026-10-16'}));
  const browser=ctx.window.IrunaLocationsBrowser.create({items,maps,monsters,spawns,drops,recipes:[],results:[]});return{browser,node:lookup};
 }
-test('map and area selection show only corresponding monsters and linked slot drops without audit text',()=>{
+test('map and area selection show only corresponding monsters and linked drop lists without audit text',()=>{
  const {browser,node}=setup();browser.render();node('dropMap').value='テスト平原';node('dropMap').handlers.change();
- let html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv1～2'));assert(!html.includes('コロン Lv10'));assert(html.includes('第1ドロップ'));assert(html.includes('第4ドロップ'));assert(html.includes('data-item="I1"'));assert(html.includes('枠未確認'));assert(!html.includes('確認日'));assert(!html.includes('日本語名で照合'));assert(!html.includes('難易度'));assert.equal(node('dropList').innerHTML,'');
- node('dropArea').value='M2';node('dropArea').handlers.change();html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv10'));assert(!html.includes('コロン Lv1～2'));assert(html.includes('<dt>第2ドロップ</dt><dd><button'));assert.equal(node('dropArea').value,'M2');
+ let html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv1～2'));assert(!html.includes('コロン Lv10'));assert(!html.includes('第1ドロップ'));assert(!html.includes('第4ドロップ'));assert(html.includes('data-item="I1"'));assert(!html.includes('枠未確認'));assert(html.indexOf('data-item="I2"')<html.indexOf('data-item="I3"'));assert(html.indexOf('data-item="I3"')<html.indexOf('data-item="I1"'));assert(html.includes('data-item="I0"'));assert(html.includes('data-item="I2"'));assert(!html.includes('確認日'));assert(!html.includes('日本語名で照合'));assert(!html.includes('難易度'));assert.equal(node('dropList').innerHTML,'');
+ node('dropArea').value='M2';node('dropArea').handlers.change();html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv10'));assert(!html.includes('コロン Lv1～2'));assert(html.includes('data-item="I0"'));assert(!html.includes('data-item="I1"'));assert.equal(node('dropArea').value,'M2');
  browser.navigate('monster','A');assert(!node('locationDetail').innerHTML.includes('表示しない調査メモ'));assert(!node('locationDetail').innerHTML.includes('難易度'));
  browser.search(true);assert.equal(node('dropMap').value,'');assert.equal(node('dropArea').disabled,true);
 });

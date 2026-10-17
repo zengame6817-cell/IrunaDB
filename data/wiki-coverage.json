@@ -2005,14 +2005,14 @@
   ],
   "counts": {
     "sourceItems": 7535,
-    "matchedExisting": 5047,
+    "matchedExisting": 5048,
     "newItems": 1255,
     "newEffects": 3,
     "sourceMonsters": 3706,
     "verifiedMonsterGroups": 3065,
     "bossGroups": 481,
-    "verifiedDrops": 10764,
-    "itemsWithDrops": 2990,
+    "verifiedDrops": 11138,
+    "itemsWithDrops": 3171,
     "bossCrystalDrops": 229,
     "bossCrystalItems": 194
   },
@@ -2020,13 +2020,14 @@
     "maps": 624,
     "monsters": 3217,
     "spawns": 3425,
-    "drops": 11404
+    "drops": 11778,
+    "items": 5756
   },
   "added": {
     "maps": 261,
     "monsters": 2670,
     "spawns": 2878,
-    "drops": 9600
+    "drops": 9974
   },
   "updated": {
     "maps": 0,
@@ -5669,16 +5670,6 @@
       "ids": [
         "SP000494",
         "SP000578"
-      ],
-      "reason": "既存IDが複数候補"
-    },
-    {
-      "kind": "item",
-      "id": 13293,
-      "name": "ダークサイト",
-      "ids": [
-        "SP000110",
-        "SP000585"
       ],
       "reason": "既存IDが複数候補"
     },
@@ -11247,26 +11238,6 @@
       "type": "Additional"
     },
     {
-      "monster": 209,
-      "name": "キャスケット",
-      "type": "Additional"
-    },
-    {
-      "monster": 302,
-      "name": "アルマレステカ",
-      "type": "Additional"
-    },
-    {
-      "monster": 358,
-      "name": "バンダナ",
-      "type": "Additional"
-    },
-    {
-      "monster": 393,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
       "monster": 514,
       "name": "バックラー",
       "type": "Additional"
@@ -11292,66 +11263,6 @@
       "type": "IslandObject"
     },
     {
-      "monster": 591,
-      "name": "アッティカ",
-      "type": "Additional"
-    },
-    {
-      "monster": 594,
-      "name": "アッティカ",
-      "type": "Additional"
-    },
-    {
-      "monster": 725,
-      "name": "ちょんまげ",
-      "type": "Additional"
-    },
-    {
-      "monster": 728,
-      "name": "ちょんまげ",
-      "type": "Additional"
-    },
-    {
-      "monster": 733,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
-      "monster": 736,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
-      "monster": 739,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
-      "monster": 743,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
-      "monster": 748,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
-      "monster": 751,
-      "name": "古びた兜",
-      "type": "Additional"
-    },
-    {
-      "monster": 800,
-      "name": "黒い髪留めＣ",
-      "type": "Additional"
-    },
-    {
-      "monster": 840,
-      "name": "アーデルマスク",
-      "type": "Additional"
-    },
-    {
       "monster": 859,
       "name": "テンペスクロー",
       "type": "Claws"
@@ -11365,21 +11276,6 @@
       "monster": 865,
       "name": "テンペスクロー",
       "type": "Claws"
-    },
-    {
-      "monster": 1072,
-      "name": "黒猫頭巾",
-      "type": "Additional"
-    },
-    {
-      "monster": 1074,
-      "name": "黒猫頭巾",
-      "type": "Additional"
-    },
-    {
-      "monster": 1076,
-      "name": "黒猫頭巾",
-      "type": "Additional"
     },
     {
       "monster": 1174,
@@ -11402,23 +11298,8 @@
       "type": "Additional"
     },
     {
-      "monster": 1341,
-      "name": "ブルーグラス",
-      "type": "Additional"
-    },
-    {
       "monster": 1486,
       "name": "バルバロティタ",
-      "type": "Additional"
-    },
-    {
-      "monster": 1499,
-      "name": "陣羽織",
-      "type": "Additional"
-    },
-    {
-      "monster": 1501,
-      "name": "陣羽織",
       "type": "Additional"
     },
     {
@@ -11432,41 +11313,6 @@
       "type": "Additional"
     },
     {
-      "monster": 1528,
-      "name": "アズラストール",
-      "type": "Additional"
-    },
-    {
-      "monster": 1530,
-      "name": "アズラストール",
-      "type": "Additional"
-    },
-    {
-      "monster": 1537,
-      "name": "ブレイブシルト",
-      "type": "Additional"
-    },
-    {
-      "monster": 1539,
-      "name": "ブレイブシルト",
-      "type": "Additional"
-    },
-    {
-      "monster": 1567,
-      "name": "チェイスキャップ",
-      "type": "Additional"
-    },
-    {
-      "monster": 1569,
-      "name": "チェイスキャップ",
-      "type": "Additional"
-    },
-    {
-      "monster": 1574,
-      "name": "チェイスキャップ",
-      "type": "Additional"
-    },
-    {
       "monster": 1588,
       "name": "うさリボン（青）",
       "type": "Additional"
@@ -11477,33 +11323,8 @@
       "type": "Additional"
     },
     {
-      "monster": 1608,
-      "name": "カルモフート",
-      "type": "Additional"
-    },
-    {
-      "monster": 1635,
-      "name": "ブレイブケープ",
-      "type": "Additional"
-    },
-    {
       "monster": 1758,
       "name": "グラスティアラ",
-      "type": "Additional"
-    },
-    {
-      "monster": 1773,
-      "name": "アサドプレート",
-      "type": "Additional"
-    },
-    {
-      "monster": 1776,
-      "name": "アサドプレート",
-      "type": "Additional"
-    },
-    {
-      "monster": 1779,
-      "name": "アサドプレート",
       "type": "Additional"
     },
     {
@@ -11517,16 +11338,6 @@
       "type": "Additional"
     },
     {
-      "monster": 1848,
-      "name": "バルドリック",
-      "type": "Additional"
-    },
-    {
-      "monster": 1850,
-      "name": "バルドリック",
-      "type": "Additional"
-    },
-    {
       "monster": 1967,
       "name": "ブリムハット",
       "type": "Additional"
@@ -11537,144 +11348,14 @@
       "type": "Additional"
     },
     {
-      "monster": 1987,
-      "name": "ベネフィース",
-      "type": "Additional"
-    },
-    {
-      "monster": 1995,
-      "name": "アルブスシルト",
-      "type": "Additional"
-    },
-    {
-      "monster": 1998,
-      "name": "アルブスシルト",
-      "type": "Additional"
-    },
-    {
-      "monster": 2001,
-      "name": "アルブスシルト",
-      "type": "Additional"
-    },
-    {
-      "monster": 2025,
-      "name": "ブラックダリア",
-      "type": "Additional"
-    },
-    {
-      "monster": 2029,
-      "name": "ブラックダリア",
-      "type": "Additional"
-    },
-    {
-      "monster": 2141,
-      "name": "オードラス",
-      "type": "Additional"
-    },
-    {
-      "monster": 2144,
-      "name": "オードラス",
-      "type": "Additional"
-    },
-    {
-      "monster": 2226,
-      "name": "クレマチス",
-      "type": "Additional"
-    },
-    {
       "monster": 2302,
       "name": "頭乗りバード",
-      "type": "Additional"
-    },
-    {
-      "monster": 2342,
-      "name": "三編みバンド",
-      "type": "Additional"
-    },
-    {
-      "monster": 2394,
-      "name": "綺麗な原石",
-      "type": "Collectible"
-    },
-    {
-      "monster": 2397,
-      "name": "綺麗な原石",
-      "type": "Collectible"
-    },
-    {
-      "monster": 2400,
-      "name": "綺麗な原石",
-      "type": "Collectible"
-    },
-    {
-      "monster": 2414,
-      "name": "アビサルマスク",
-      "type": "Additional"
-    },
-    {
-      "monster": 2418,
-      "name": "アビサルマスク",
-      "type": "Additional"
-    },
-    {
-      "monster": 2426,
-      "name": "ボトムギフト",
-      "type": "Additional"
-    },
-    {
-      "monster": 2429,
-      "name": "ボトムギフト",
-      "type": "Additional"
-    },
-    {
-      "monster": 2432,
-      "name": "ボトムギフト",
-      "type": "Additional"
-    },
-    {
-      "monster": 2456,
-      "name": "綾蘭笠",
-      "type": "Additional"
-    },
-    {
-      "monster": 2459,
-      "name": "綾蘭笠",
-      "type": "Additional"
-    },
-    {
-      "monster": 2462,
-      "name": "綾蘭笠",
-      "type": "Additional"
-    },
-    {
-      "monster": 2464,
-      "name": "黎明の光背",
       "type": "Additional"
     },
     {
       "monster": 2545,
       "name": "ティルアルコ",
       "type": "Bows"
-    },
-    {
-      "monster": 2643,
-      "name": "アノステイル",
-      "type": "Additional"
-    },
-    {
-      "monster": 2646,
-      "name": "アノステイル",
-      "type": "Additional"
-    },
-    {
-      "monster": 2649,
-      "name": "アノステイル",
-      "type": "Additional"
-    },
-    {
-      "monster": 2654,
-      "name": "くっつきさぼぼん",
-      "type": "Additional"
     },
     {
       "monster": 2664,
@@ -11712,11 +11393,6 @@
       "type": "Special"
     },
     {
-      "monster": 2683,
-      "name": "アートマン",
-      "type": "Additional"
-    },
-    {
       "monster": 2686,
       "name": "菫青の石英",
       "type": "Special"
@@ -11747,19 +11423,9 @@
       "type": "Additional"
     },
     {
-      "monster": 2696,
-      "name": "アルマルマ",
-      "type": "Additional"
-    },
-    {
       "monster": 2697,
       "name": "フォーギヴァース",
       "type": "Special"
-    },
-    {
-      "monster": 2699,
-      "name": "アルマルマ",
-      "type": "Additional"
     },
     {
       "monster": 2700,
@@ -11767,34 +11433,9 @@
       "type": "Special"
     },
     {
-      "monster": 2702,
-      "name": "アルマルマ",
-      "type": "Additional"
-    },
-    {
       "monster": 2703,
       "name": "フォーギヴァース",
       "type": "Special"
-    },
-    {
-      "monster": 3158,
-      "name": "雪精の布片",
-      "type": "Collectible"
-    },
-    {
-      "monster": 3161,
-      "name": "雪精の布片",
-      "type": "Collectible"
-    },
-    {
-      "monster": 3165,
-      "name": "銀雪の結晶",
-      "type": "Collectible"
-    },
-    {
-      "monster": 3166,
-      "name": "銀雪の結晶",
-      "type": "Collectible"
     },
     {
       "monster": 3227,
@@ -11802,29 +11443,14 @@
       "type": "Additional"
     },
     {
-      "monster": 3229,
-      "name": "ダークサイト",
-      "type": "Special"
-    },
-    {
       "monster": 3230,
       "name": "ハルピープリュム",
       "type": "Additional"
     },
     {
-      "monster": 3232,
-      "name": "ダークサイト",
-      "type": "Special"
-    },
-    {
       "monster": 3233,
       "name": "ハルピープリュム",
       "type": "Additional"
-    },
-    {
-      "monster": 3235,
-      "name": "ダークサイト",
-      "type": "Special"
     },
     {
       "monster": 3238,
@@ -11847,16 +11473,6 @@
       "type": "Special"
     },
     {
-      "monster": 3318,
-      "name": "アルマスブリマス",
-      "type": "Additional"
-    },
-    {
-      "monster": 3324,
-      "name": "アウリスブラスト",
-      "type": "Additional"
-    },
-    {
       "monster": 3338,
       "name": "愛叫メガホン",
       "type": "Special"
@@ -11867,11 +11483,6 @@
       "type": "Special"
     },
     {
-      "monster": 3414,
-      "name": "アウラー",
-      "type": "Additional"
-    },
-    {
       "monster": 3455,
       "name": "アリックの弓柄",
       "type": "Special"
@@ -11880,6 +11491,11 @@
       "monster": 3484,
       "name": "愛叫マイク",
       "type": "Special"
+    },
+    {
+      "monster": 209,
+      "name": "キャスケット",
+      "type": "Additional"
     }
   ],
   "files": [
@@ -12242,5 +11858,369 @@
         "sha256": "0a7732d0efe6b5c3a8eb29fb187ade33887208f5748db18ec87e7868feaf0555"
       }
     ]
+  },
+  "followUpV3067": {
+    "itemIds": [
+      "SP000110",
+      "SP000585"
+    ],
+    "sourceItem": 13293,
+    "addedDrops": [
+      "DROP011405",
+      "DROP011406",
+      "DROP011407"
+    ],
+    "files": [
+      {
+        "file": "dark67-0.html",
+        "sha256": "a57b40b48e359a18da88e1cdbd6d46ae92e5b7906669b3793f348a9c5f420c4b"
+      },
+      {
+        "file": "dark67-1.html",
+        "sha256": "867844607b138ff4cefee3a20b27ef1a8d6373df98383f69746ac472aae9234b"
+      },
+      {
+        "file": "dark67-2.html",
+        "sha256": "1fd4d5793c3e0e6ddc6eda9127db97b78d05c81c61699ad448b562dd398c6b17"
+      },
+      {
+        "file": "dark67-3.html",
+        "sha256": "0a64ae78885e26b1e5752eef113e75245318c809eae8ed084ef8532909a65d93"
+      }
+    ],
+    "fullDropAudit": {
+      "sourceMonsters": 3706,
+      "addedDrops": 371,
+      "existingItems": 184,
+      "reusedForCatalog": [
+        "CR000285",
+        "AL000117",
+        "CR000280",
+        "CR000276",
+        "CR000213",
+        "CR000225",
+        "CR000447",
+        "CR000081",
+        "CR000284",
+        "CR000487",
+        "CR000279",
+        "CR000454",
+        "CR000455",
+        "AL000032",
+        "CR000294",
+        "CR000095",
+        "CR000499",
+        "CR000445",
+        "CR000193",
+        "CR000269",
+        "CR000268",
+        "CR000211",
+        "CR000296",
+        "CR000194",
+        "CR000283",
+        "CR000221",
+        "CR000191",
+        "CR000450",
+        "CR000497",
+        "CR000078",
+        "CR000278",
+        "CR000295",
+        "CR000079",
+        "CR000223",
+        "CR000212",
+        "CR000453",
+        "CR000080",
+        "CR000224",
+        "CR000500",
+        "CR000096",
+        "CR000105",
+        "CR000094",
+        "CR000290",
+        "CR000077",
+        "CR000292",
+        "CR000106",
+        "CR000107",
+        "CR000446",
+        "CR000273",
+        "CR000017",
+        "CR000192",
+        "CR000267",
+        "CR000452",
+        "CR000498",
+        "CR000501",
+        "CR000195",
+        "CR000449",
+        "CR000495",
+        "CR000298",
+        "CR000108",
+        "CR000275",
+        "CR000109",
+        "CR000287",
+        "CR000100",
+        "CR000486",
+        "CR000491",
+        "CR000299",
+        "CR000216",
+        "CR000441",
+        "CR000440",
+        "CR000217",
+        "CR000097",
+        "CR000101",
+        "CR000436",
+        "CR000492",
+        "CR000442",
+        "CR000493",
+        "CR000286",
+        "CR000218",
+        "CR000437",
+        "CR000102",
+        "CR000019",
+        "AL000037",
+        "CR000098",
+        "CR000300",
+        "CR000110",
+        "AL000102",
+        "AL000075",
+        "CR000288",
+        "AL000008",
+        "CR000494",
+        "AL000167",
+        "CR000451",
+        "CR000438",
+        "CR000448",
+        "AL000041",
+        "CR000227",
+        "CR000282",
+        "AL000083",
+        "CR000111",
+        "AL000182",
+        "AL000166",
+        "CR000488",
+        "AL000040",
+        "AL000007",
+        "AL000082",
+        "CR000082",
+        "CR000226",
+        "AL000039",
+        "CR000489",
+        "CR000219",
+        "CR000281",
+        "CR000443",
+        "CR000214",
+        "AL000033",
+        "AL000183",
+        "CR000103",
+        "CR000456",
+        "CR000502",
+        "AL000076",
+        "AL000038",
+        "CR000215",
+        "CR000083",
+        "CR000289",
+        "AL000168",
+        "AL000009",
+        "AL000103",
+        "AL000115",
+        "AL000042",
+        "AL000034",
+        "CR000104",
+        "AL000184",
+        "AL000084",
+        "CR000439",
+        "AL000116",
+        "CR000220",
+        "AL000104",
+        "AL000077",
+        "CR000444",
+        "CR000490",
+        "CR000332",
+        "CR000503",
+        "CR000020",
+        "CR000434"
+      ],
+      "newEvidence": [
+        "CR000285",
+        "AL000117",
+        "CR000280",
+        "CR000276",
+        "CR000213",
+        "CR000225",
+        "CR000447",
+        "CR000081",
+        "CR000284",
+        "CR000487",
+        "CR000279",
+        "CR000454",
+        "CR000455",
+        "AL000032",
+        "CR000294",
+        "CR000095",
+        "CR000499",
+        "CR000445",
+        "CR000193",
+        "CR000269",
+        "CR000268",
+        "CR000211",
+        "CR000296",
+        "CR000194",
+        "CR000283",
+        "CR000221",
+        "CR000191",
+        "CR000450",
+        "CR000497",
+        "CR000078",
+        "CR000278",
+        "CR000295",
+        "CR000079",
+        "CR000223",
+        "CR000212",
+        "CR000453",
+        "CR000080",
+        "CR000224",
+        "CR000500",
+        "CR000096",
+        "AD000036",
+        "AD000067",
+        "CR000105",
+        "AD000021",
+        "CR000094",
+        "CR000290",
+        "CR000077",
+        "CR000292",
+        "CR000106",
+        "AD000048",
+        "CR000107",
+        "CR000446",
+        "CR000273",
+        "AD000184",
+        "CR000017",
+        "CR000192",
+        "CR000267",
+        "AD000096",
+        "CR000452",
+        "AD000007",
+        "CR000498",
+        "CR000501",
+        "CR000195",
+        "CR000449",
+        "CR000495",
+        "CR000298",
+        "AD000100",
+        "CR000108",
+        "CR000275",
+        "CR000109",
+        "CR000287",
+        "CR000100",
+        "CR000486",
+        "CR000491",
+        "CR000299",
+        "CR000216",
+        "CR000441",
+        "CR000440",
+        "CR000217",
+        "CR000097",
+        "CR000101",
+        "CR000436",
+        "CR000492",
+        "CR000442",
+        "CR000493",
+        "AD000125",
+        "CR000286",
+        "CR000218",
+        "CR000437",
+        "CR000102",
+        "AD000075",
+        "CR000019",
+        "AD000042",
+        "AD000144",
+        "AD000179",
+        "AL000037",
+        "CR000098",
+        "AD000166",
+        "CR000300",
+        "CR000110",
+        "AL000102",
+        "AD000141",
+        "AL000075",
+        "CR000288",
+        "AL000008",
+        "CR000494",
+        "AL000167",
+        "CR000451",
+        "CR000438",
+        "CR000448",
+        "AL000041",
+        "CR000227",
+        "CR000282",
+        "AL000083",
+        "CR000111",
+        "AL000182",
+        "AL000166",
+        "AD000038",
+        "CR000488",
+        "AL000040",
+        "AL000007",
+        "AL000082",
+        "AD000073",
+        "CR000082",
+        "CR000226",
+        "AL000039",
+        "CR000489",
+        "CR000219",
+        "CR000281",
+        "CR000443",
+        "CR000214",
+        "AD000083",
+        "AD000028",
+        "AL000033",
+        "AL000183",
+        "CR000103",
+        "AD000105",
+        "CR000456",
+        "CR000502",
+        "AL000076",
+        "AL000038",
+        "CR000215",
+        "CR000083",
+        "CR000289",
+        "AL000168",
+        "AL000009",
+        "AL000103",
+        "AD000052",
+        "AL000115",
+        "AL000042",
+        "AL000034",
+        "CR000104",
+        "AL000184",
+        "AD000191",
+        "AL000084",
+        "CR000439",
+        "AL000116",
+        "CR000220",
+        "AL000104",
+        "AD000139",
+        "AL000077",
+        "CR000444",
+        "CR000490",
+        "MAT001078",
+        "CR000332",
+        "AD000004",
+        "AD000137",
+        "CR000503",
+        "CR000020",
+        "AD000062",
+        "AD000060",
+        "CR000434",
+        "AD000025",
+        "AD000047",
+        "AD000037",
+        "AD000014",
+        "MAT000835",
+        "MAT000121",
+        "AD000015",
+        "AD000058"
+      ],
+      "unresolvedCandidates": 126
+    }
   }
 }
