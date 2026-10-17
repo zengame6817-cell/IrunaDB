@@ -19,6 +19,9 @@
 .location-facts{display:grid;grid-template-columns:minmax(100px,1fr) 2fr;gap:8px 12px}
 .location-facts dt,.location-facts dd{margin:0;padding:4px 0}
 .location-monsters{display:flex;flex-wrap:wrap;gap:8px 20px;padding-left:20px}
+.location-monster-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.location-drop-slots{grid-template-columns:110px minmax(0,1fr)}
+.catalog-toolbar>label[hidden]{display:none}
 .catalog-toolbar input[type=number]{width:76px;min-width:0;padding:8px}
 .catalog-toolbar label{display:flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:100%}
 .catalog-toolbar select{max-width:100%;padding:7px}
