@@ -2,6 +2,10 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),P=require('../tools/calendar-parser.cjs'),M=require('../js/calendar-model.js'),{collect,dayBeforeYear}=require('../tools/update-calendar.cjs'),root=path.resolve(__dirname,'..');
 const source={url:'https://android.iruna.jp/information',title:'公式イベント',kind:'notice',publishedAt:'2026-10-16'};
 const event=(extra={})=>({id:'test',title:'テストイベント',category:'イベント',startDate:'2026-10-17',startTime:'00:00',startNote:'',endDate:'2026-10-18',endTime:'23:59',endNote:'',kind:'range',sources:[source],...extra});
+test('month overview groups repeat titles and includes periods crossing month boundaries',()=>{
+ const repeat=[event(),event({startDate:'2026-10-24',endDate:'2026-10-25'})],cross=event({title:'長期イベント',startDate:'2026-09-01',endDate:'2026-11-01'}),outside=event({title:'対象外',startDate:'2026-11-01',endDate:'2026-11-02'});
+ const groups=M.monthGroups([...repeat,cross,outside],'2026-10');assert.equal(groups.length,2);assert.equal(groups.find(g=>g.title==='テストイベント').events.length,2);assert(groups.some(g=>g.title==='長期イベント'));assert(!groups.some(g=>g.title==='対象外'));assert.equal(M.monthGroups([event({startDate:'2026-03-01',endDate:null})],'2026-02').length,0);
+});
 test('daily calendar counts continuing events but names only starts and ends on that date',()=>{
  const ongoing=event({startDate:'2026-10-01',endDate:'2026-10-31'}),start=event({endDate:'2026-10-30'}),end=event({startDate:'2026-10-01',endDate:'2026-10-17'}),point=event({kind:'point',endDate:'2026-10-17'});
  const day=M.daySummary([ongoing,start,end,point],'2026-10-17');assert.equal(day.count,4);assert.deepEqual(day.starts,[start,point]);assert.deepEqual(day.ends,[end]);assert(!day.starts.includes(ongoing));assert(!day.ends.includes(ongoing));assert.equal(M.daySummary([ongoing],'2026-11-01').count,0);

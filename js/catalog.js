@@ -37,10 +37,7 @@
   const outputItems = id => resultRows(id).map(r=>items.get(r["完成アイテムID"])).filter(Boolean);
   let visibleRecipes = 50;
   const button = (attr,id,text) => `<button type="button" class="catalog-link" ${attr}="${esc(id)}">${esc(text)}</button>`;
-  function source(row) {
-    return `<p class="catalog-source">確認日：${esc(row["確認日"])} · ${esc(row["確認状態"])}</p>`;
-  }
-  const publicNote = value => esc(String(value || "").replace(/https?:\/\/\S+/g, "").trim());
+  const publicNote = value => esc(String(value || "").replace(/https?:\/\/\S+/g, "").replace(/対象装備の品質強化。別アイテムへの進化ではありません。個別ATK・DEF上限は未登録。|大?成功の未記載区分は未登録。ゲーム内の最新仕様は未検証。/g, "").trim());
   function save(next) {
     try { env.validateValue(model.key,JSON.stringify(next)); localStorage.setItem(model.key,JSON.stringify(next)); settings = next; renderCraft(false); message("生産設定を保存しました。"); return true; }
     catch (e) { message(`保存できませんでした：${e.message}`); return false; }
@@ -76,14 +73,13 @@
       return `<article class="catalog-card" data-recipe-card="${esc(id)}"><h3>${esc(r["レシピ名"])}</h3>
       <p>${esc(r["生産分野"])} Lv${r["レシピLv"]} · ${String(r["確認状態"]||"").startsWith("要確認")?"詳細未確認":model.canCraft(r,settings)?"Lv条件を満たしています":"Lv不足"}</p>
       <p class="catalog-note">${esc(r["生産種別"] || "作成")}${Object.keys(model.requiredLevels(r)).length ? " · 他必要Lv：" + Object.entries(model.requiredLevels(r)).map(([f,n]) => `${esc(f)} Lv${n}`).join(" / ") : ""}</p>
-      <p class="catalog-note">必要道具：${esc(r["必要道具"]||"未確認")}。道具などの追加条件も確認してください。</p>
       <div class="catalog-actions"><button type="button" class="button button-secondary" data-favorite="${esc(id)}" aria-pressed="${favorite}">${favorite?"★ お気に入り解除":"☆ お気に入り登録"}</button>
       ${favorite && $("craftOnlyFavorite").checked?`<button type="button" class="button button-secondary" data-move="${esc(id)}" data-offset="-1" ${index===0?"disabled":""}>↑ 上へ</button><button type="button" class="button button-secondary" data-move="${esc(id)}" data-offset="1" ${index===settings.favorites.length-1?"disabled":""}>↓ 下へ</button>`:""}</div>
       <h4>${r["生産種別"]==="強化"?"強化対象":"必要素材"}</h4><ul>${materialRows(id).map(m => `<li>${button("data-item",m["素材アイテムID"],name(m["素材アイテムID"]))} ×${m["必要個数"]} · ${button("data-drop-item",m["素材アイテムID"],"入手先")} · ${button("data-memo-add",name(m["素材アイテムID"]),"メモに追加")}</li>`).join("") || "<li>未確認</li>"}</ul>
       <h4>完成品</h4><ul>${resultRows(id).map(m => `<li>${esc(m["結果区分"])}：${button("data-item",m["完成アイテムID"],name(m["完成アイテムID"]))} ×${m["完成個数"]}</li>`).join("") || "<li>未確認</li>"}</ul>
       ${[...new Map(outputItems(id).filter(i=>i["分類"]==="消費").map(i=>[i["アイテムID"],i])).values()].map(i=>`<p class="catalog-effect-summary">${esc(i["名前"])}：${esc(itemFilters.textFor(i)||"効能の記載なし")}</p>`).join("")}
-      <p class="catalog-note">${publicNote(r["備考"])}</p>
-      ${source(r)}</article>`;
+      ${publicNote(r["備考"])?`<p class="catalog-note">${publicNote(r["備考"])}</p>`:""}
+      </article>`;
     }).join("") || '<p class="catalog-empty">条件に合うレシピがありません。検索・絞り込みを変更してください。</p>';
     if (rows.length > visibleRecipes) {
       const pager = document.createElement("div"); pager.className = "catalog-pagination";

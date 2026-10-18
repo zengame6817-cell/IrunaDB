@@ -9,5 +9,6 @@
  const range=e=>`${e.startDate?(e.startDate+(e.startTime?' '+e.startTime:e.startNote?' '+e.startNote:'')):'開始日未記載'}${e.kind==='point'?'':(' ～ '+(e.endDate?(e.endDate+(e.endTime?' '+e.endTime:e.endNote?' '+e.endNote:'（時刻未記載）')):'終了日未記載'))}`;
  function monthDays(month){const [y,m]=month.split('-').map(Number),n=new Date(Date.UTC(y,m,0)).getUTCDate(),offset=new Date(Date.UTC(y,m-1,1)).getUTCDay();return [...Array(offset).fill(null),...Array.from({length:n},(_,i)=>`${month}-${String(i+1).padStart(2,'0')}`)];}
  function daySummary(events,date){const rows=events.filter(e=>onDay(e,date));return {count:rows.length,starts:rows.filter(e=>e.startDate===date),ends:rows.filter(e=>e.kind!=='point'&&e.endDate===date)};}
- const api={jstDate,validDate,validate,status,onDay,range,monthDays,daySummary};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.IrunaCalendarModel=api;
+ function monthGroups(events,month){const days=monthDays(month).filter(Boolean),first=days[0],last=days[days.length-1],groups=new Map();for(const e of events){if((e.endDate||e.startDate)<first||(e.startDate||e.endDate)>last)continue;if(!groups.has(e.title))groups.set(e.title,{title:e.title,events:[]});groups.get(e.title).events.push(e);}return [...groups.values()].sort((a,b)=>a.title.localeCompare(b.title,"ja"));}
+ const api={jstDate,validDate,validate,status,onDay,range,monthDays,daySummary,monthGroups};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.IrunaCalendarModel=api;
 })(typeof window==='undefined'?globalThis:window);
