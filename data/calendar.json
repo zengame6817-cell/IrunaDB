@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-18T01:02:41.701Z",
+  "updatedAt": "2026-10-18T05:54:22.354Z",
   "coverageStart": "2025-10-18",
   "coverageEnd": "2026-10-18",
   "monthlyCoverage": [
@@ -27178,6 +27178,13 @@
           "publishedAt": "2026-10-11",
           "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "2時間限定!ドロップ率50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-11",
+          "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週日曜20:00~ / 終了:毎週日曜21:59まで",
@@ -27537,6 +27544,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=3",
+          "title": "精錬失敗時劣化確率1/2キャンペーン開催!10月16日(金)0:00~10月19日(月)23:59",
+          "publishedAt": "2026-10-15",
+          "sha256": "957c2e6389e9f3a69ced537d42691df7cc3f4256e33314070bbc0906bb09f569",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-14",
@@ -27562,6 +27576,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information",
+          "title": "イルーナ12神の闇の結晶イベント開催!10月17日(土)0:00~10月18日(日)23:59",
+          "publishedAt": "2026-10-16",
+          "sha256": "417e776f0834f0bb36a4a8d09cc966ede12535283db420afbc7c7fc9dd71d1c5",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
           "title": "イルーナ12神の闇の結晶イベント開催!10月17日(土)0:00~10月18日(日)23:59",
           "publishedAt": "2026-10-16",
           "sha256": "417e776f0834f0bb36a4a8d09cc966ede12535283db420afbc7c7fc9dd71d1c5",
@@ -27646,6 +27667,13 @@
       "endNote": "",
       "kind": "point",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-18",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information?page=3",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
@@ -27883,9 +27911,9 @@
       "kind": "point",
       "sources": [
         {
-          "url": "https://android.iruna.jp/information?page=3",
+          "url": "https://android.iruna.jp/information",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
-          "publishedAt": "2026-10-15",
+          "publishedAt": "2026-10-18",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
         }
@@ -27893,8 +27921,8 @@
       "scheduledByRule": true,
       "recurrence": {
         "weekdays": [
-          4,
-          0
+          0,
+          4
         ],
         "startTime": "21:00",
         "endTime": null
