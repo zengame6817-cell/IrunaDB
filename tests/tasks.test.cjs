@@ -22,3 +22,19 @@ test('task settings join existing environment backup validation without changing
  const html=fs.readFileSync('index.html','utf8'),sw=fs.readFileSync('service-worker.js','utf8');for(const p of ['js/tasks-model.js','js/tasks.js','css/tasks.css']){assert(html.includes(p));assert(sw.includes(p));}new vm.Script(fs.readFileSync('js/tasks.js','utf8'));
 });
 
+
+test('daily pace estimates round up, handle zero/missing pace and retain old saved task format',()=>{
+ const s=M.defaults(),t=s.tasks[0];t.quantity=1666;t.target=2000;
+ assert.equal(M.validate(JSON.parse(JSON.stringify(s))).tasks[0].pace,undefined);
+ assert.equal(M.estimate(t),null);t.pace=59;assert.equal(M.estimate(t),6);
+ t.quantity=1941;assert.equal(M.estimate(t),1);t.quantity=2000;assert.equal(M.estimate(t),0);
+ t.quantity=2001;assert.equal(M.estimate(t),0);t.quantity=0;t.pace=0;assert.equal(M.estimate(t),null);
+ t.pace=2.5;t.target=6;assert.equal(M.estimate(t),3);t.target=null;assert.equal(M.estimate(t),null);
+ for(const pace of [-1,Infinity,NaN,'59',1000000000]){t.pace=pace;assert.throws(()=>M.validate(s));}
+ t.pace=null;M.validate(s);t.pace=0;M.validate(s);
+});
+test('pace and counts survive daily completion rollover and environment export validation',()=>{
+ let s=M.defaults();Object.assign(s.tasks[0],{track:true,quantity:10,target:100,pace:7.5});
+ s=M.toggle(s,s.tasks[0].id,'2026-10-18');assert(!M.done(s,s.tasks[0],'2026-10-19'));assert.equal(s.tasks[0].pace,7.5);assert.equal(M.estimate(s.tasks[0]),12);
+ const c={window:{},localStorage:{getItem:()=>null},structuredClone};vm.createContext(c);for(const f of ['js/tasks-model.js','js/environment.js'])vm.runInContext(fs.readFileSync(f,'utf8'),c);c.window.IrunaEnvironment.validateValue(M.key,JSON.stringify(s));
+});
