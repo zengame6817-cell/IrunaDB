@@ -38,3 +38,18 @@ test('pace and counts survive daily completion rollover and environment export v
  s=M.toggle(s,s.tasks[0].id,'2026-10-18');assert(!M.done(s,s.tasks[0],'2026-10-19'));assert.equal(s.tasks[0].pace,7.5);assert.equal(M.estimate(s.tasks[0]),12);
  const c={window:{},localStorage:{getItem:()=>null},structuredClone};vm.createContext(c);for(const f of ['js/tasks-model.js','js/environment.js'])vm.runInContext(fs.readFileSync(f,'utf8'),c);c.window.IrunaEnvironment.validateValue(M.key,JSON.stringify(s));
 });
+
+test('seven tower choices remain separate from notes and optional for old saved tasks',()=>{
+ const s=M.defaults();assert.equal(M.towers.length,7);assert(M.towers.includes('白日の閃塔'));M.validate(s);
+ for(const tower of M.towers){s.tasks[0].tower=tower;M.validate(s);}
+ s.tasks[0].note='既存のメモは保持';s.tasks[0].tower='白日の閃塔';const next=M.toggle(s,s.tasks[0].id,'2026-10-19');assert.equal(next.tasks[0].tower,'白日の閃塔');assert.equal(next.tasks[0].note,'既存のメモは保持');
+ s.tasks[0].tower='存在しない塔';assert.throws(()=>M.validate(s));s.tasks[0].tower='';M.validate(s);
+});
+
+test('batch count saves keep distinct paces and reject all changes if one draft is invalid',()=>{
+ const s=M.defaults(),a=s.tasks[0];Object.assign(a,{track:true,quantity:10,target:100});s.tasks.push({...a,id:'second',quantity:20});
+ const changes=new Map([[a.id,{quantity:'30',pace:'5'}],['second',{quantity:'40',pace:'7.5'}]]);
+ const next=M.applyCounts(s,changes);assert.equal(next.tasks[0].pace,5);assert.equal(next.tasks[1].pace,7.5);assert.equal(next.tasks[0].quantity,30);assert.equal(s.tasks[0].quantity,10);
+ changes.set('second',{quantity:'bad',pace:'9'});assert.throws(()=>M.applyCounts(s,changes));assert.equal(s.tasks[0].quantity,10);
+ changes.set('second',{quantity:'40',pace:''});assert.equal(M.applyCounts(s,changes).tasks[1].pace,null);
+});

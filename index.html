@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./css/catalog.css?v=3.0.72">
   <link rel="stylesheet" href="./css/navigation.css?v=3.0.72">
   <link rel="stylesheet" href="./css/item-memo.css?v=3.0.72">
-  <link rel="stylesheet" href="./css/calendar.css?v=3.0.76">
+  <link rel="stylesheet" href="./css/calendar.css?v=3.0.77">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -278,7 +278,7 @@ body.light-mode .calculation-card {
   border-color:#d5deea !important;
 }
 </style>
-  <link rel="stylesheet" href="./css/tasks.css?v=3.0.76">
+  <link rel="stylesheet" href="./css/tasks.css?v=3.0.77">
 </head>
 <body>
   <div class="app-shell">
@@ -946,18 +946,18 @@ body.light-mode .calculation-card {
             <label>タスク名<input id="task-title" maxlength="200" required placeholder="例：水やり、イグナイト"></label>
             <label>グループ<input id="task-group" maxlength="100" value="日課" placeholder="例：日課、妄世の塔"></label>
             <label>キャラ・対象<input id="task-character" maxlength="100" placeholder="例：ハイザ、サブ1"></label>
-            <label>繰り返し<select id="task-repeat"><option value="daily">毎日</option><option value="weekly">毎週（月曜にリセット）</option><option value="once">1回だけ</option></select></label>
+            <label id="task-tower-field" hidden>挑戦する塔<select id="task-tower"><option value="">塔を選択</option></select></label><label>繰り返し<select id="task-repeat"><option value="daily">毎日</option><option value="weekly">毎週（月曜にリセット）</option><option value="once">1回だけ</option></select></label>
             <label>時刻（表示用）<input id="task-time" type="time"></label>
             <fieldset class="task-wide task-days"><legend>表示する曜日</legend><div id="taskDays" class="task-days"></div></fieldset>
             <label class="task-wide">関連イベント<select id="task-eventTitle"><option value="">関連イベントなし</option></select></label>
-            <label class="task-wide">メモ<textarea id="task-note" maxlength="2000" rows="2" placeholder="例：白日の閃塔 ／ 妄世の輝剣"></textarea></label>
+            <label class="task-wide">メモ<textarea id="task-note" maxlength="2000" rows="2" placeholder="例：交換したい装備や挑戦階層"></textarea></label>
             <label class="task-wide task-inline"><input id="task-track" type="checkbox">個数を管理する</label>
             <label>現在数<input id="task-quantity" type="number" min="0" max="999999999" step="1" value="0" required></label>
             <label>1日平均の獲得ペース（個／日）<input id="task-pace" type="number" min="0" max="999999999" step="any" placeholder="例：59"></label><p class="task-muted">休みの日も含む1日平均で計算した目安です。0・空欄の場合は日数を計算しません。</p><label>目標数（任意）<input id="task-target" type="number" min="0" max="999999999" step="1"></label>
             <div class="task-wide task-actions"><button id="taskSave" type="submit" class="button">追加する</button><button id="taskCancel" type="button" class="button button-secondary">キャンセル</button></div>
           </form>
         </details>
-        <div class="tasks-toolbar"><label>表示 <select id="taskScope"><option value="today">今日のタスク</option><option value="all">すべてのタスク</option></select></label><strong id="taskTodayCount"></strong></div>
+        <div class="tasks-toolbar"><label>表示 <select id="taskScope"><option value="today">今日のタスク</option><option value="all">すべてのタスク</option></select></label><div class="task-actions"><span id="taskCountPending" class="task-muted" role="status"></span><button id="taskSaveAllCounts" class="button" type="button" disabled>個数・ペースをまとめて保存</button><strong id="taskTodayCount"></strong></div></div>
         <div id="taskList"></div>
         <details class="tasks-section"><summary>リセット</summary><p class="task-muted">必要なものだけリセットできます。</p><div class="task-actions"><button id="taskResetToday" type="button" class="button button-secondary">今日のチェックを戻す</button><button id="taskResetHistory" type="button" class="button button-secondary">達成履歴をリセット</button><button id="taskResetQuantity" type="button" class="button button-secondary">個数を0にする</button></div></details>
         <section id="taskConfirm" class="tasks-confirm" hidden role="alert"><p id="taskConfirmText"></p><button id="taskConfirmYes" type="button" class="button">実行する</button> <button id="taskConfirmNo" type="button" class="button button-secondary">やめる</button></section>
@@ -1103,9 +1103,9 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.76.js?v=3.0.72"></script>
-  <script src="./js/tasks-model.js?v=3.0.76"></script>
-  <script src="./js/environment.js?v=3.0.76"></script>
+  <script src="./js/config-v3.0.77.js?v=3.0.72"></script>
+  <script src="./js/tasks-model.js?v=3.0.77"></script>
+  <script src="./js/environment.js?v=3.0.77"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
@@ -1116,7 +1116,7 @@ body.light-mode .calculation-card {
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./data/catalog.js?v=3.0.76"></script>
+  <script src="./data/catalog.js?v=3.0.77"></script>
   <script src="./data/locations.js?v=3.0.72"></script>
   <script src="./data/wiki.js?v=3.0.72"></script>
   <script src="./data/item-effects.js?v=3.0.72"></script>
@@ -1128,8 +1128,8 @@ body.light-mode .calculation-card {
   <script src="./js/catalog.js?v=3.0.72"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>
   <script src="./js/environment-ui.js?v=3.0.72"></script>
-  <script src="./js/calendar-model.js?v=3.0.76"></script>
-  <script src="./js/calendar.js?v=3.0.76"></script>
+  <script src="./js/calendar-model.js?v=3.0.77"></script>
+  <script src="./js/calendar.js?v=3.0.77"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">
@@ -1142,6 +1142,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script src="./js/tasks.js?v=3.0.76"></script>
+  <script src="./js/tasks.js?v=3.0.77"></script>
 </body>
 </html>
