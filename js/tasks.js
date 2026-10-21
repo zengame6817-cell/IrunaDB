@@ -31,6 +31,7 @@
  $('taskResetToday').addEventListener('click',()=>confirmAction('今日付けた完了チェックを戻します。個数は保持します。',()=>{const next=structuredClone(state);next.history=next.history.filter(h=>h.day!==M.date());save(next);}));
  $('taskResetHistory').addEventListener('click',()=>confirmAction('達成履歴をすべて消し、完了チェックを戻します。登録タスクと個数は保持します。',()=>{const next=structuredClone(state);next.history=[];save(next);}));
  $('taskResetQuantity').addEventListener('click',()=>confirmAction('すべてのタスクの現在数を0にします。目標数・登録タスク・達成履歴は保持します。',()=>{const next=structuredClone(state);next.tasks.forEach(t=>t.quantity=0);if(save(next)){countDrafts.clear();render();}}));
+ window.IrunaTasksBridge={capture(){if(blocked)throw Error('保存タスクを読み込めないため書き出せません');return M.applyCounts(state,countDrafts);},refresh(){countDrafts.clear();editing=null;$('taskFormPanel').open=false;$('taskConfirm').hidden=true;read();render();}};
  read();render();function route(){if(location.hash==='#tasks')window.IrunaCatalogBridge?.show('tasks');}window.addEventListener('load',route);window.addEventListener('hashchange',route);route();fetch('./data/calendar.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{events=window.IrunaCalendarModel.validate(d).events;eventOptions();render();}).catch(()=>{});
  document.addEventListener('visibilitychange',()=>{if(!document.hidden){read();render();}});window.addEventListener('storage',e=>{if(e.key===M.key){read();render();}});setInterval(()=>{if(!document.hidden)render();},60000);
 })();

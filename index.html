@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./css/catalog.css?v=3.0.72">
   <link rel="stylesheet" href="./css/navigation.css?v=3.0.72">
   <link rel="stylesheet" href="./css/item-memo.css?v=3.0.72">
-  <link rel="stylesheet" href="./css/calendar.css?v=3.0.77">
+  <link rel="stylesheet" href="./css/calendar.css?v=3.0.78">
 
 <style id="v26-theme-refactor">
 /* =========================================================
@@ -278,7 +278,7 @@ body.light-mode .calculation-card {
   border-color:#d5deea !important;
 }
 </style>
-  <link rel="stylesheet" href="./css/tasks.css?v=3.0.77">
+  <link rel="stylesheet" href="./css/tasks.css?v=3.0.78">
 </head>
 <body>
   <div class="app-shell">
@@ -960,6 +960,17 @@ body.light-mode .calculation-card {
         <div class="tasks-toolbar"><label>表示 <select id="taskScope"><option value="today">今日のタスク</option><option value="all">すべてのタスク</option></select></label><div class="task-actions"><span id="taskCountPending" class="task-muted" role="status"></span><button id="taskSaveAllCounts" class="button" type="button" disabled>個数・ペースをまとめて保存</button><strong id="taskTodayCount"></strong></div></div>
         <div id="taskList"></div>
         <details class="tasks-section"><summary>リセット</summary><p class="task-muted">必要なものだけリセットできます。</p><div class="task-actions"><button id="taskResetToday" type="button" class="button button-secondary">今日のチェックを戻す</button><button id="taskResetHistory" type="button" class="button button-secondary">達成履歴をリセット</button><button id="taskResetQuantity" type="button" class="button button-secondary">個数を0にする</button></div></details>
+        <details id="taskTransferPanel" class="tasks-section"><summary>別のPCへタスクを移す</summary>
+          <p class="task-muted">① このPCでファイルに保存 → ② 別のPCで同じタスク画面を開く → ③ ファイルを選んで取り込む。</p>
+          <p class="task-muted">登録タスク・曜日・キャラ・塔・個数・目標・ペース・達成履歴を移します。未保存の個数・ペースも保存ファイルに含めます。編集中で未登録のタスクは含みません。</p>
+          <button id="taskTransferExport" class="button" type="button">タスクをファイルに保存</button>
+          <label class="task-transfer-file">別のPCのタスクファイルを選ぶ<input id="taskTransferFile" type="file" accept=".json,application/json"></label>
+          <p id="taskTransferPreview" class="task-transfer-preview"></p>
+          <button id="taskTransferImport" class="button" type="button" disabled>この内容でタスクを入れ替える</button>
+          <p id="taskTransferMessage" class="task-muted" role="status"></p>
+          <button id="taskTransferRestore" class="button button-secondary" type="button" disabled>取り込み前のタスクに戻す</button>
+          <div id="taskTransferRestoreConfirm" class="tasks-confirm" hidden><p>取り込み前のタスクに戻します。現在のタスクと未保存の入力は入れ替わります。</p><button id="taskTransferRestoreYes" class="button" type="button">取り込み前に戻す</button> <button id="taskTransferRestoreNo" class="button button-secondary" type="button">やめる</button></div>
+        </details>
         <section id="taskConfirm" class="tasks-confirm" hidden role="alert"><p id="taskConfirmText"></p><button id="taskConfirmYes" type="button" class="button">実行する</button> <button id="taskConfirmNo" type="button" class="button button-secondary">やめる</button></section>
       </section>
       <section id="view-calendar" class="app-view">
@@ -1103,9 +1114,9 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.77.js?v=3.0.72"></script>
-  <script src="./js/tasks-model.js?v=3.0.77"></script>
-  <script src="./js/environment.js?v=3.0.77"></script>
+  <script src="./js/config-v3.0.78.js?v=3.0.72"></script>
+  <script src="./js/tasks-model.js?v=3.0.78"></script>
+  <script src="./js/environment.js?v=3.0.78"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
   <script src="./js/utils.js?v=3.0.37"></script>
   <script src="./js/api.js?v=3.0.38"></script>
@@ -1116,7 +1127,7 @@ body.light-mode .calculation-card {
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./data/catalog.js?v=3.0.77"></script>
+  <script src="./data/catalog.js?v=3.0.78"></script>
   <script src="./data/locations.js?v=3.0.72"></script>
   <script src="./data/wiki.js?v=3.0.72"></script>
   <script src="./data/item-effects.js?v=3.0.72"></script>
@@ -1128,8 +1139,8 @@ body.light-mode .calculation-card {
   <script src="./js/catalog.js?v=3.0.72"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>
   <script src="./js/environment-ui.js?v=3.0.72"></script>
-  <script src="./js/calendar-model.js?v=3.0.77"></script>
-  <script src="./js/calendar.js?v=3.0.77"></script>
+  <script src="./js/calendar-model.js?v=3.0.78"></script>
+  <script src="./js/calendar.js?v=3.0.78"></script>
   <script src="./js/theme.js?v=3.0.37"></script>
 
 <script id="mission-data-guard">
@@ -1142,6 +1153,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script src="./js/tasks.js?v=3.0.77"></script>
+  <script src="./js/tasks.js?v=3.0.78"></script>
+  <script src="./js/tasks-transfer-model.js?v=3.0.78"></script>
+  <script src="./js/tasks-transfer.js?v=3.0.78"></script>
 </body>
 </html>

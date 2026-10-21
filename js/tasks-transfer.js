@@ -1,0 +1,14 @@
+'use strict';
+(()=>{
+ const T=window.IrunaTasksTransfer,$=id=>document.getElementById(id),B=window.IrunaTasksBridge;let pending=null,sequence=0;
+ const message=text=>{$('taskTransferMessage').textContent=text;};
+ function refreshBackup(){try{$('taskTransferRestore').disabled=!T.backup(localStorage);}catch(error){$('taskTransferRestore').disabled=true;message(error.message);}}
+ $('taskTransferExport').addEventListener('click',()=>{try{const file=T.pack(B.capture(),window.IRUNA_CONFIG.APP_VERSION),blob=new Blob([JSON.stringify(file,null,2)],{type:'application/json'});if(blob.size>T.maxBytes)throw Error('ファイルが20MBを超えています');const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='IrunaDB-tasks-'+window.IrunaTasksModel.date()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message('タスク専用ファイルを保存しました。別のPCへ渡して「ファイルを選ぶ」から読み込んでください。');}catch(error){message('保存できませんでした：'+error.message);}});
+ $('taskTransferFile').addEventListener('change',async e=>{const number=++sequence;pending=null;$('taskTransferImport').disabled=true;$('taskTransferPreview').textContent='';const file=e.target.files[0];if(!file)return;try{if(file.size>T.maxBytes)throw Error('ファイルは20MB以内にしてください');const parsed=T.parse(await file.text());if(number!==sequence)return;pending=parsed;$('taskTransferPreview').textContent='ファイル：'+file.name+'\n保存日時：'+new Date(parsed.createdAt).toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'})+'（日本時間）\nタスク '+parsed.data.tasks.length+'件 ／ 達成履歴 '+parsed.data.history.length+'件\nこのPCのタスクを丸ごと入れ替えます。未保存の入力は破棄され、取り込み前のタスクは自動バックアップに残ります。';$('taskTransferImport').disabled=false;message('内容を確認して、下の「タスクを入れ替える」を押してください。');}catch(error){if(number===sequence)message('読み込めませんでした：'+error.message+'。現在のタスクは変更していません。');}});
+ $('taskTransferImport').addEventListener('click',()=>{if(!pending)return;try{T.replace(pending,localStorage);pending=null;$('taskTransferFile').value='';$('taskTransferImport').disabled=true;$('taskTransferPreview').textContent='';B.refresh();refreshBackup();message('タスクを取り込みました。個数・ペース・設定・達成履歴を引き継いでいます。');}catch(error){refreshBackup();message('取り込めませんでした：'+error.message+'。元のタスクは保持しています。');}});
+ $('taskTransferRestore').addEventListener('click',()=>{$('taskTransferRestoreConfirm').hidden=false;});
+ $('taskTransferRestoreNo').addEventListener('click',()=>{$('taskTransferRestoreConfirm').hidden=true;});
+ $('taskTransferRestoreYes').addEventListener('click',()=>{try{T.restore(localStorage);pending=null;$('taskTransferFile').value='';$('taskTransferImport').disabled=true;$('taskTransferPreview').textContent='';B.refresh();$('taskTransferRestoreConfirm').hidden=true;message('取り込み前のタスクに戻しました。');}catch(error){message('戻せませんでした：'+error.message);}});
+ window.addEventListener('storage',e=>{if(e.key===T.backupKey)refreshBackup();});refreshBackup();
+})();
+

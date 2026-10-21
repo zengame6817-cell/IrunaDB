@@ -30,8 +30,8 @@ test('monster level gaps and unknown values cannot become an invented range',()=
  const daz=merged.monsters.filter(m=>m['名前']==='ダズル');assert(daz.some(m=>m['Lv下限']===113&&m['Lv上限']===113));assert(daz.some(m=>m['Lv下限']===116));
 });
 test('current scripts and service worker point to one release version',()=>{
- for(const f of ['data/locations.js','js/location-browser.js','js/config-v3.0.77.js','js/catalog.js','js/catalog-model.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,f),'utf8'),{filename:f});
+ for(const f of ['data/locations.js','js/location-browser.js','js/config-v3.0.78.js','js/catalog.js','js/catalog-model.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,f),'utf8'),{filename:f});
  const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
- assert(html.includes('config-v3.0.77.js'));assert(sw.includes('config-v3.0.77.js'));assert(html.includes('data/locations.js'));assert(sw.includes('data/locations.js'));
+ assert(html.includes('config-v3.0.78.js'));assert(sw.includes('config-v3.0.78.js'));assert(html.includes('data/locations.js'));assert(sw.includes('data/locations.js'));
  for(const f of JSON.parse(sw.match(/const APP_SHELL = (\[[\s\S]*?\]);/)[1]))assert(fs.existsSync(path.join(root,f)),f);
 });

@@ -9,3 +9,5 @@
 @media(max-width:600px){#taskList .tasks-section{padding:12px;gap:10px}#taskList .task-row{padding:12px}}
 .task-count-save{grid-column:1/-1;justify-self:start;padding:5px 8px;font-size:.7rem}
 #task-tower-field[hidden]{display:none}.task-row .task-tower-name{font-weight:600;color:var(--v26-text,#172033)}
+
+.task-transfer-file{display:flex;flex-direction:column;gap:8px;margin:18px 0}.task-transfer-preview{white-space:pre-line;line-height:1.8;overflow-wrap:anywhere}#taskTransferRestoreConfirm[hidden]{display:none}#taskTransferPanel>summary{cursor:pointer;font-weight:600}
