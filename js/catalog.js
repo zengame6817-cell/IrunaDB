@@ -7,6 +7,7 @@
   try {
     data = model.validate(model.mergeLocations(window.IRUNA_CATALOG_DATA,window.IRUNA_LOCATION_DATA));
     if(window.IrunaWikiData)data=window.IrunaWikiData.mergeCatalog(data);
+    data=window.IrunaMonsterAttributes.apply(data);
     const saved = localStorage.getItem(model.key);
     if (saved !== null) { env.validateValue(model.key,saved); settings = JSON.parse(saved); }
   } catch (e) {
@@ -97,6 +98,7 @@
     }
   }
   const locations = window.IrunaLocationsBrowser.create(data);
+  window.IrunaMonsterBrowser.create(data);
   function renderDrops() { locations.render(); }
   const show = view => window.IrunaCatalogBridge.show(view);
   function navigateDrop(id) { locations.navigate("item",id); }
