@@ -4424,6 +4424,7 @@ function collectTotalData() {
     mergeJobMaster();
     buildIndexes();
     window.IrunaItemFilters.setContext(context);
+    window.IrunaCatalog?.setEquipmentData(state.items,state.attributes);
     initializeSkillData();
     populateDatabaseFilters();
     const hasUrlBuild=new URL(location.href).searchParams.has("build");
