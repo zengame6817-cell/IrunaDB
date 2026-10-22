@@ -132,7 +132,7 @@
     $("craftOnlyPossible").checked=$("craftOnlyFavorite").checked=false;$("craftSort").value="levelAsc";renderCraft();
   });
   $("dropSearch").addEventListener("input",()=>locations.search());
-  window.IrunaCatalog = {decorateModal(item) {
+  window.IrunaCatalog = {setEquipmentData:locations.setEquipmentData,decorateModal(item) {
     const id=item["アイテムID"], uses=data.materials.filter(m => active(m) && m["素材アイテムID"]===id);
     const outputs=data.results.filter(m => active(m) && m["完成アイテムID"]===id);
     const wiki=window.IrunaWikiData?.evidence.get(id);

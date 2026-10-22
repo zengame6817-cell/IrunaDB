@@ -3,7 +3,7 @@ function setup(empty=false){
  const nodes=new Map();function node(id){if(!nodes.has(id))nodes.set(id,{value:'',innerHTML:'',textContent:'',dataset:{},handlers:{},addEventListener(k,f){this.handlers[k]=f;},insertAdjacentHTML(_,s){this.innerHTML+=s;},before(){},setAttribute(){},focus(){},replaceChildren(){this.innerHTML='';},closest(){return node(id+'-parent');},append(){}});return nodes.get(id);}
  const lookup=id=>[...nodes.values()].find(n=>n.id===id)||node(id);
  const document={getElementById:lookup,createElement:tag=>node(tag+nodes.size),addEventListener(){}};
- const ctx={document,window:{scrollY:0,scrollTo(){},IrunaModal:{close(){}},IrunaCatalogBridge:{show(){}},IrunaCatalogModel:require('../js/catalog-model.js')}};
+ const ctx={document,window:{scrollY:0,scrollTo(){},IrunaModal:{close(){}},IrunaCatalogBridge:{show(){}},IrunaCatalogModel:require('../js/catalog-model.js'),IrunaLocationElements:require('../js/location-elements.js')}};
  vm.runInNewContext(fs.readFileSync(path.join(root,'js/utils.js'),'utf8'),ctx);vm.runInNewContext(fs.readFileSync(path.join(root,'js/location-browser.js'),'utf8'),ctx);
  const items=['いし','◇クリスタ','未知','ぼうし'].map((n,i)=>({'アイテムID':'I'+i,'名前':n,'分類':i===1?'クリスタ':i===3?'追加':'素材'}));
  const maps=[{'マップID':'M1','マップ名':'テスト平原','階層':'エリア1'},{'マップID':'M2','マップ名':'テスト平原','階層':'エリア2'}];
@@ -14,9 +14,9 @@ function setup(empty=false){
  const browser=ctx.window.IrunaLocationsBrowser.create({items,maps,monsters,spawns,drops,recipes:[],results:[]});return{browser,node:lookup};
 }
 test('map and area selection show only corresponding monsters and linked drop lists without audit text',()=>{
- const {browser,node}=setup();browser.render();node('dropMap').value='テスト平原';node('dropMap').handlers.change();
+ const {browser,node}=setup();browser.render();browser.navigate('map','M1');
  let html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv1～2'));assert(!html.includes('コロン Lv10'));assert(!html.includes('第1ドロップ'));assert(!html.includes('第4ドロップ'));assert(html.includes('data-item="I1"'));assert(!html.includes('枠未確認'));assert(html.indexOf('data-item="I2"')<html.indexOf('data-item="I3"'));assert(html.indexOf('data-item="I3"')<html.indexOf('data-item="I1"'));assert(html.includes('data-item="I0"'));assert(html.includes('data-item="I2"'));assert(!html.includes('確認日'));assert(!html.includes('日本語名で照合'));assert(!html.includes('難易度'));assert.equal(node('dropList').innerHTML,'');
- node('dropArea').value='M2';node('dropArea').handlers.change();html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv10'));assert(!html.includes('コロン Lv1～2'));assert(html.includes('data-item="I0"'));assert(!html.includes('data-item="I1"'));assert.equal(node('dropArea').value,'M2');
+ browser.navigate('map','M2');html=node('locationDetail').innerHTML;assert(html.includes('コロン Lv10'));assert(!html.includes('コロン Lv1～2'));assert(html.includes('data-item="I0"'));assert(!html.includes('data-item="I1"'));assert.equal(node('dropArea').value,'M2');
  browser.navigate('monster','A');assert(!node('locationDetail').innerHTML.includes('表示しない調査メモ'));assert(!node('locationDetail').innerHTML.includes('難易度'));
  browser.search(true);assert.equal(node('dropMap').value,'');assert.equal(node('dropArea').disabled,true);
 });
@@ -24,3 +24,5 @@ test('source-confirmed no drops is distinct from an unregistered empty list',()=
  const {browser,node}=setup(true);browser.navigate('monster','A');assert(node('locationDetail').innerHTML.includes('<li>ドロップなし</li>'));assert(!node('locationDetail').innerHTML.includes('ドロップ情報は未登録'));
  browser.navigate('monster','B');assert(node('locationDetail').innerHTML.includes('ドロップ情報は未登録です。'));
 });
+
+test('map filters keep all areas until a specific area is selected',()=>{const {browser,node}=setup();browser.render();node('dropMap').value='テスト平原';node('dropMap').handlers.change();assert(node('dropCount').textContent.includes('ドロップ5件'));node('dropArea').value='M2';node('dropArea').handlers.change();assert(node('dropCount').textContent.includes('ドロップ1件'));assert(node('dropList').innerHTML.includes('data-monster="B"'));assert(!node('dropList').innerHTML.includes('data-monster="A"'));});

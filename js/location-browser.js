@@ -14,42 +14,43 @@ window.IrunaLocationsBrowser = (() => {
     const spawnRows=id=>spawnsByMonster.get(id)||[];
     const mapLinks=id=>spawnRows(id).map(s=>button('data-map',s['マップID'],mapName(maps.get(s['マップID'])))).join(' / ')||'出現場所は未登録です';
     const searchText=new Map(drops.map(r=>[r['ドロップID'],normalize([name(r['アイテムID']),monsters.get(r['モンスターID'])['名前'],...spawnRows(r['モンスターID']).map(s=>mapName(maps.get(s['マップID'])))].join(' '))]));
+    const elements=window.IrunaLocationElements;
+    let equipmentElements=elements.equipmentIndex(data.items,[]);
     const toolbar=$('dropSearch').closest('.catalog-toolbar');
     toolbar.insertAdjacentHTML('beforeend','<label>マップ<select id="dropMap"><option value="">マップを選択</option></select></label><label>エリア・階層<select id="dropArea" disabled><option value="">エリアを選択</option></select></label>');
     const mapGroups=new Map();for(const map of maps.values()){const key=map['マップ名'];if(!mapGroups.has(key))mapGroups.set(key,[]);mapGroups.get(key).push(map);}
     const option=(value,label)=>`<option value="${esc(value)}">${esc(label)}</option>`;
     $('dropMap').insertAdjacentHTML('beforeend',[...mapGroups.keys()].sort((a,b)=>a.localeCompare(b,'ja',{numeric:true})).map(n=>option(n,n)).join(''));
-    function syncMapSelection(id){
-      const map=maps.get(id);$('dropMap').value=map?.['マップ名']||'';
-      const rows=map?mapGroups.get(map['マップ名']):[];
+    function syncMapSelection(id,name=''){
+      const map=maps.get(id);$('dropMap').value=map?.['マップ名']||name;
+      const rows=mapGroups.get($('dropMap').value)||[];
       $('dropArea').innerHTML=option('','エリアを選択')+rows.map(m=>option(m['マップID'],[m['エリア'],m['階層'],m['エピソード']].filter(Boolean).join(' / ')||'全域')).join('');
       $('dropArea').disabled=!rows.length;$('dropArea').value=id||'';
     }
-    $('dropMap').addEventListener('change',()=>{const rows=mapGroups.get($('dropMap').value);if(!rows){search(true);return;}syncMapSelection(rows[0]['マップID']);navigate('map',rows[0]['マップID']);});
-    $('dropArea').addEventListener('change',()=>{if($('dropArea').value)navigate('map',$('dropArea').value);});
+    $('dropMap').addEventListener('change',()=>{syncMapSelection('', $('dropMap').value);search();});
+    $('dropArea').addEventListener('change',()=>search());
     toolbar.insertAdjacentHTML('beforeend','<label>モンスター種別<select id="dropMonsterType"><option value="">すべて</option><option>ボス</option><option>ミニボス</option><option>通常</option><option value="unknown">種別未確認</option></select></label><label>ドロップ区分<select id="dropItemType"><option value="">すべて</option><option>クリスタ</option><option>アルクリスタ</option><option>レリック</option><option value="equipment">装備</option><option value="material">素材・収集品</option><option>消費</option></select></label>');
-    toolbar.insertAdjacentHTML('beforeend','<label>属性<select id="dropElement"><option value="">すべて</option><option>無</option><option>火</option><option>水</option><option>風</option><option>地</option><option>光</option><option>闇</option><option value="unknown">未確認</option></select></label><label>属性対象<select id="dropElementScope"><option value="both">モンスター・装備</option><option value="monster">モンスターのみ</option><option value="equipment">装備のみ</option></select></label>');
+    toolbar.insertAdjacentHTML('beforeend','<label>属性<select id="dropElement"><option value="">すべて</option><option>無</option><option>火</option><option>水</option><option>風</option><option>地</option><option>光</option><option>闇</option><option>炎</option><option>氷</option><option>雷</option><option>岩</option><option>四元</option><option>万能</option><option value="unknown">未確認</option></select></label><label>属性対象<select id="dropElementScope"><option value="both">モンスター・装備</option><option value="monster">モンスターのみ</option><option value="equipment">装備のみ</option></select></label>');
     const filterIds=['dropMonsterType','dropItemType','dropElement','dropElementScope'];
-    const equipmentCategories=new Set(['武器','防具','体','追加','特殊']);
-    const attribute=value=>{const v=String(value||'').trim().replace(/属性$/,'');return ['無','火','水','風','地','光','闇'].includes(v)?v:'';};
-    const matchesElement=(row,element)=>element==='unknown'?!attribute(row?.['属性']):attribute(row?.['属性'])===element;
+    const attribute=value=>elements.values(value).join('・');
+    function clearFilters(){filterIds.forEach(id=>$(id).value=id==='dropElementScope'?'both':'');syncMapSelection('');}
     filterIds.forEach(id=>$(id).addEventListener('change',()=>search()));
     const nav=document.createElement('nav');nav.className='location-navigation';nav.setAttribute('aria-label','入手先の移動');
     const panel=document.createElement('section');panel.id='locationDetail';panel.className='location-detail';panel.tabIndex=-1;panel.hidden=true;
     $('dropSearch').closest('.catalog-toolbar').before(nav);$('dropCount').before(panel);
     let route={kind:'list'},visible=50;const history=[];
-    function snapshot(){return {route:{...route},query:$('dropSearch').value,filters:filterIds.map(id=>$(id).value),visible,scroll:window.scrollY};}
+    function snapshot(){return {route:{...route},query:$('dropSearch').value,filters:filterIds.map(id=>$(id).value),map:$('dropMap').value,area:$('dropArea').value,visible,scroll:window.scrollY};}
     function valid(kind,id){return kind==='item'?items.has(id):kind==='monster'?monsters.has(id):kind==='map'?maps.has(id):false;}
     function navigate(kind,id){
       if(!valid(kind,id))return false;
       if(route.kind!==kind||route.id!==id)history.push(snapshot());
       window.IrunaModal.close();route={kind,id};visible=50;
-      filterIds.forEach(id=>$(id).value='');
+      clearFilters();
       $('dropSearch').value=kind==='item'?name(id):kind==='monster'?monsters.get(id)['名前']:mapName(maps.get(id));
       render();window.IrunaCatalogBridge.show('drops');panel.focus({preventScroll:true});return true;
     }
-    function back(){const prev=history.pop();if(!prev){search(true);return;}route=prev.route;visible=prev.visible;$('dropSearch').value=prev.query;filterIds.forEach((id,i)=>$(id).value=prev.filters[i]);render();window.scrollTo({top:prev.scroll});$('dropSearch').focus({preventScroll:true});}
-    function search(clear=false){route={kind:'list'};visible=50;history.length=0;if(clear){$('dropSearch').value='';filterIds.forEach(id=>$(id).value='');}render();}
+    function back(){const prev=history.pop();if(!prev){search(true);return;}route=prev.route;visible=prev.visible;$('dropSearch').value=prev.query;filterIds.forEach((id,i)=>$(id).value=prev.filters[i]);syncMapSelection(prev.area,prev.map);render();window.scrollTo({top:prev.scroll});$('dropSearch').focus({preventScroll:true});}
+    function search(clear=false){route={kind:'list'};visible=50;history.length=0;if(clear){$('dropSearch').value='';clearFilters();}render();}
     function detail(){
       nav.innerHTML=route.kind==='list'?'':`<button type="button" class="button button-secondary" data-location-back>← 戻る</button><button type="button" class="button button-secondary" data-location-list>一覧・全体検索へ</button>`;
       panel.hidden=route.kind==='list';panel.dataset.kind=route.kind;panel.dataset.id=route.id||'';
@@ -78,15 +79,15 @@ window.IrunaLocationsBrowser = (() => {
       return `<ul class="location-drops">${rows.map(g=>`<li>${button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))}</li>`).join('')||`<li>${empty}</li>`}</ul>`;
     }
     function render(){
-      syncMapSelection(route.kind==='map'?route.id:route.kind==='monster'?spawnRows(route.id)[0]?.['マップID']:null);
+      if(route.kind==='map')syncMapSelection(route.id);
       filterIds.forEach(id=>{$(id).closest('label').hidden=['map','monster'].includes(route.kind);});
       detail();const q=normalize($('dropSearch').value),symbol=$('dropSearch').value.trim().match(/^[◇◆▲]/)?.[0],related=route.kind==='item'?window.IrunaCatalogModel.relatedItemIds(data,route.id):null,mapMobs=new Set(route.kind==='map'?spawns.filter(s=>s['マップID']===route.id).map(s=>s['モンスターID']):[]);
       const matching=drops.filter(r=>{
         const type=$('dropMonsterType').value,kind=$('dropItemType').value,mob=monsters.get(r['モンスターID']),category=items.get(r['アイテムID'])?.['分類'];
         const el=$('dropElement').value,scope=$('dropElementScope').value,item=items.get(r['アイテムID']);
-        const mobMatch=matchesElement(mob,el),itemMatch=equipmentCategories.has(category)&&matchesElement(item,el);
-        if(el&&!(scope==='monster'?mobMatch:scope==='equipment'?itemMatch:mobMatch||itemMatch))return false;
-        if(type&&(type==='unknown'?Boolean(mob['種別']):mob['種別']!==type))return false;
+        if(!elements.matchesDrop(mob,String(r['アイテムID']),el,scope,equipmentElements))return false;
+        if(route.kind==='list'&&$('dropMap').value&&!spawnRows(r['モンスターID']).some(s=>$('dropArea').value?s['マップID']===$('dropArea').value:maps.get(s['マップID'])['マップ名']===$('dropMap').value))return false;
+        if(type&&(type==='unknown'?!['','未確認'].includes(String(mob['種別']||'').trim()):mob['種別']!==type))return false;
         if(kind&&(kind==='equipment'?!['武器','防具','体','追加','特殊'].includes(category):kind==='material'?!['素材','収集品'].includes(category):category!==kind))return false;
         if(route.kind==='item')return related.has(r['アイテムID']);
         if(route.kind==='monster')return r['モンスターID']===route.id;
@@ -96,7 +97,7 @@ window.IrunaLocationsBrowser = (() => {
       const grouped=window.IrunaCatalogModel.groupDrops(data,matching);
       if(route.kind==='map'||route.kind==='monster'){$('dropCount').textContent=`ドロップ${grouped.length}件`;$('dropList').replaceChildren();return;}
       const entries=grouped.map(rows=>({kind:'drop',row:rows[0],rows}));
-      if(route.kind==='item'||(route.kind==='list'&&q&&!$('dropMonsterType').value&&!$('dropItemType').value&&!$('dropElement').value)){
+      if(route.kind==='item'||(route.kind==='list'&&q&&!$('dropMonsterType').value&&!$('dropItemType').value&&!$('dropElement').value&&!$('dropMap').value)){
         const purchases=data.items.filter(r=>r['入手区分']==='購入'&&(route.kind==='item'?r['アイテムID']===route.id:normalize([r['名前'],r['入手先'],r['マップ']].join(' ')).includes(q)));
         entries.push(...purchases.map(row=>({kind:'purchase',row})));
         const recipeIds=new Set(data.results.filter(active).filter(r=>route.kind==='item'?r['完成アイテムID']===route.id:normalize(name(r['完成アイテムID'])).includes(q)).map(r=>r['レシピID']));
@@ -126,7 +127,7 @@ window.IrunaLocationsBrowser = (() => {
       const b=event.target.closest('[data-monster],[data-map],[data-location-back],[data-location-list]');if(!b)return;
       if(b.hasAttribute('data-location-back'))back();else if(b.hasAttribute('data-location-list')){search(true);$('dropSearch').focus();}else if(b.dataset.monster)navigate('monster',b.dataset.monster);else navigate('map',b.dataset.map);
     });
-    return {render,navigate,search};
+    return {render,navigate,search,setEquipmentData(items,attributes){equipmentElements=elements.equipmentIndex(items,attributes);render();}};
   }
   return {create};
 })();
