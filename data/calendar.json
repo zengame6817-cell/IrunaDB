@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-22T04:45:06.642Z",
+  "updatedAt": "2026-10-22T10:10:49.650Z",
   "coverageStart": "2025-10-22",
   "coverageEnd": "2026-10-22",
   "monthlyCoverage": [
@@ -27310,6 +27310,13 @@
           "publishedAt": "2026-10-15",
           "sha256": "957c2e6389e9f3a69ced537d42691df7cc3f4256e33314070bbc0906bb09f569",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "精錬失敗時劣化確率1/2キャンペーン開催!10月16日(金)0:00~10月19日(月)23:59",
+          "publishedAt": "2026-10-15",
+          "sha256": "957c2e6389e9f3a69ced537d42691df7cc3f4256e33314070bbc0906bb09f569",
+          "kind": "notice"
         }
       ],
       "dateLabel": "10月16日(金)0:00~10月19日(月)23:59まで",
@@ -27330,6 +27337,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=6",
+          "title": "イルーナ12神の闇の結晶イベント開催!10月17日(土)0:00~10月18日(日)23:59",
+          "publishedAt": "2026-10-16",
+          "sha256": "417e776f0834f0bb36a4a8d09cc966ede12535283db420afbc7c7fc9dd71d1c5",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
           "title": "イルーナ12神の闇の結晶イベント開催!10月17日(土)0:00~10月18日(日)23:59",
           "publishedAt": "2026-10-16",
           "sha256": "417e776f0834f0bb36a4a8d09cc966ede12535283db420afbc7c7fc9dd71d1c5",
@@ -27427,6 +27441,13 @@
           "publishedAt": "2026-10-18",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-18",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27490,6 +27511,13 @@
           "publishedAt": "2026-10-19",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-10-19",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週月曜20:00~ / 終了:毎週月曜21:59まで",
@@ -27517,6 +27545,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=4",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-19",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-19",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27553,6 +27588,13 @@
           "publishedAt": "2026-10-20",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-20",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27585,6 +27627,13 @@
           "publishedAt": "2026-10-20",
           "sha256": "e589bd37dc3a696f963d28d3b18c851114db538370a828d93011b1d64761c1be",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
+          "title": "イルーナ12神の天啓イベント開催!10月21日(水)0:00~10月22日(木)23:59",
+          "publishedAt": "2026-10-20",
+          "sha256": "e589bd37dc3a696f963d28d3b18c851114db538370a828d93011b1d64761c1be",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年10月21日(水) 0:00~ / 終了:2026年10月22日(木)23:59まで",
@@ -27604,6 +27653,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=2",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-21",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-21",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27891,6 +27947,13 @@
           "publishedAt": "2026-10-17",
           "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-17",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週土曜20:00~ / 終了:毎週土曜21:59まで",
@@ -27922,13 +27985,20 @@
           "publishedAt": "2026-10-22",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-18",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
       "recurrence": {
         "weekdays": [
-          4,
-          0
+          0,
+          4
         ],
         "startTime": "21:00",
         "endTime": null
@@ -28471,7 +28541,7 @@
   "scan": {
     "pages": 8,
     "notices": 40,
-    "oldestNotice": "2026-10-14",
+    "oldestNotice": "2026-10-15",
     "mode": "incremental",
     "lastFullScan": "2026-10-21T19:19:27.147Z",
     "lastFullScanDetails": {
