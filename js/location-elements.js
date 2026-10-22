@@ -7,7 +7,7 @@
   function values(value,attributes=new Map()) {
     const raw=String(value??'').normalize('NFKC').trim();
     const resolved=attributes.get(raw)??raw;
-    return [...new Set(String(resolved).split(/[・、,／/]/).map(v=>v.trim().replace(/属性$/,'')).filter(v=>labels.includes(v)))];
+    return [...new Set(String(resolved).split(/[・、,／/→]/).map(v=>v.trim().replace(/属性$/,'')).filter(v=>labels.includes(v)))];
   }
   function equipmentIndex(items,attributes) {
     const names=new Map(attributes.filter(active).map(a=>[String(a['属性ID']),a['属性名']]));

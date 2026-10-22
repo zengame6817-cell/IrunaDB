@@ -305,6 +305,7 @@ body.light-mode .calculation-card {
       <button class="main-tab" data-view="skill" type="button"><span>SK</span>スキル</button>
       <button class="main-tab" data-view="relic" type="button"><span>RG</span>レリック<em id="rgNavNew" class="rg-nav-new">NEW</em></button>
       <button class="main-tab" data-view="craft" type="button"><span>製</span>生産</button>
+      <button class="main-tab" data-view="monsters" type="button"><span>魔</span>モンスター</button>
       <button class="main-tab" data-view="drops" type="button"><span>入</span>ドロップ情報</button>
       <button class="main-tab" data-view="tasks" type="button"><span>✓</span>タスク</button>
       <button class="main-tab" data-view="calendar" type="button"><span>暦</span>カレンダー</button>
@@ -1005,6 +1006,12 @@ body.light-mode .calculation-card {
         <div id="craftList" class="catalog-list"></div>
         <p id="catalogUpdated" class="catalog-note"></p>
       </section>
+      <section id="view-monsters" class="app-view">
+        <h2>モンスター</h2><p>通常・ボス・レアモブを探せます。同名でもLvや出現場所が異なる個体は別に表示します。</p>
+        <div class="catalog-toolbar"><input id="monsterSearch" type="search" aria-label="モンスター名で検索" placeholder="モンスター名で検索"><label>属性<select id="monsterElement"></select></label><label>種別<select id="monsterType"><option value="">すべて</option><option>通常</option><option>ボス</option><option value="ミニボス">レアモブ（ミニボス）</option><option value="unknown">種別未確認</option></select></label><label>マップ<select id="monsterMap"></select></label><label>並び順<select id="monsterSort"><option value="name">名前順</option><option value="levelAsc">Lvの低い順</option><option value="levelDesc">Lvの高い順</option></select></label><button id="monsterClear" type="button" class="button button-secondary">絞り込みを解除</button></div>
+        <p id="monsterCount" aria-live="polite"></p><section id="monsterDetail" class="location-detail" hidden tabindex="-1"></section><div id="monsterList" class="catalog-list"></div>
+        <p class="catalog-note">属性の空欄は未確認です。ドロップが未登録のモンスターも含みます。</p>
+      </section>
       <section id="view-drops" class="app-view">
         <h2>ドロップ情報・入手先</h2>
         <p>マップとエリアを選ぶと、出現モンスターとドロップを表示します。名前からも検索できます。</p>
@@ -1114,7 +1121,7 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.79.js?v=3.0.79"></script>
+  <script src="./js/config-v3.0.80.js?v=3.0.80"></script>
   <script src="./js/tasks-model.js?v=3.0.78"></script>
   <script src="./js/environment.js?v=3.0.78"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
@@ -1127,17 +1134,19 @@ body.light-mode .calculation-card {
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.37"></script>
   <script src="./js/skill-quests.js?v=3.0.37"></script>
-  <script src="./data/catalog.js?v=3.0.79"></script>
+  <script src="./data/catalog.js?v=3.0.80"></script>
   <script src="./data/locations.js?v=3.0.72"></script>
   <script src="./data/wiki.js?v=3.0.72"></script>
   <script src="./data/item-effects.js?v=3.0.72"></script>
   <script src="./js/item-filters.js?v=3.0.72"></script>
   <script src="./js/catalog-model.js?v=3.0.72"></script>
   <script src="./js/wiki-data.js?v=3.0.72"></script>
-  <script src="./js/location-elements.js?v=3.0.79"></script>
+  <script src="./js/location-elements.js?v=3.0.80"></script>
+  <script src="./js/monster-attributes.js?v=3.0.80"></script>
+  <script src="./js/monster-browser.js?v=3.0.80"></script>
   <script src="./js/location-browser.js?v=3.0.79"></script>
-  <script src="./js/app-v3.0.55.js?v=3.0.79"></script>
-  <script src="./js/catalog.js?v=3.0.79"></script>
+  <script src="./js/app-v3.0.55.js?v=3.0.80"></script>
+  <script src="./js/catalog.js?v=3.0.80"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>
   <script src="./js/environment-ui.js?v=3.0.72"></script>
   <script src="./js/calendar-model.js?v=3.0.78"></script>
