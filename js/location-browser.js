@@ -63,7 +63,7 @@ window.IrunaLocationsBrowser = (() => {
         const map=maps.get(route.id),ids=[...new Set(spawns.filter(s=>s['マップID']===route.id).map(s=>s['モンスターID']))];
         ids.sort((a,b)=>(monsters.get(a)['Lv下限']||0)-(monsters.get(b)['Lv下限']||0)||monsters.get(a)['名前'].localeCompare(monsters.get(b)['名前'],'ja'));
         panel.innerHTML=`<p class="catalog-note">マップ詳細</p><h3>${esc(mapName(map))}</h3>
-          <h4>出現モンスター ${ids.length}件</h4><div class="location-monster-cards">${ids.map(id=>`<article class="catalog-card"><h3>${button('data-monster',id,monsters.get(id)['名前']+' '+lv(monsters.get(id)))}</h3>${monsterDrops(id)}</article>`).join('')||'<p>出現モンスターは未登録です。</p>'}</div>`;
+          <h4>出現モンスター ${ids.length}件</h4><div class="location-monster-cards">${ids.map(id=>`<article class="catalog-card"><h3>${button('data-monster',id,monsters.get(id)['名前']+' '+lv(monsters.get(id)))}</h3><p>属性：${esc(monsters.get(id)['属性']||'未確認')}</p>${monsterDrops(id)}</article>`).join('')||'<p>出現モンスターは未登録です。</p>'}</div>`;
       } else if(route.kind==='item'){
         panel.innerHTML=`<p class="catalog-note">アイテムの入手先</p><h3>${button('data-item',route.id,name(route.id))}</h3><p>登録済みのドロップ・購入先・生産レシピを表示しています。</p>`;
       } else panel.replaceChildren();
