@@ -41,15 +41,15 @@ window.IrunaLocationsBrowser = (() => {
     let route={kind:'list'},visible=50;const history=[];
     function snapshot(){return {route:{...route},query:$('dropSearch').value,filters:filterIds.map(id=>$(id).value),map:$('dropMap').value,area:$('dropArea').value,visible,scroll:window.scrollY};}
     function valid(kind,id){return kind==='item'?items.has(id):kind==='monster'?monsters.has(id):kind==='map'?maps.has(id):false;}
-    function navigate(kind,id){
+    function navigate(kind,id,origin=null){
       if(!valid(kind,id))return false;
-      if(route.kind!==kind||route.id!==id)history.push(snapshot());
+      if(origin||route.kind!==kind||route.id!==id)history.push({...snapshot(),origin});
       window.IrunaModal.close();route={kind,id};visible=50;
       clearFilters();
       $('dropSearch').value=kind==='item'?name(id):kind==='monster'?monsters.get(id)['名前']:mapName(maps.get(id));
       render();window.IrunaCatalogBridge.show('drops');panel.focus({preventScroll:true});return true;
     }
-    function back(){const prev=history.pop();if(!prev){search(true);return;}route=prev.route;visible=prev.visible;$('dropSearch').value=prev.query;filterIds.forEach((id,i)=>$(id).value=prev.filters[i]);syncMapSelection(prev.area,prev.map);render();window.scrollTo({top:prev.scroll});$('dropSearch').focus({preventScroll:true});}
+    function back(){const prev=history.pop();if(!prev){search(true);return;}route=prev.route;visible=prev.visible;$('dropSearch').value=prev.query;filterIds.forEach((id,i)=>$(id).value=prev.filters[i]);syncMapSelection(prev.area,prev.map);render();if(prev.origin){window.IrunaCatalogBridge.show(prev.origin.view);requestAnimationFrame(()=>{window.scrollTo({top:prev.origin.scroll,behavior:'instant'});if(prev.origin.focus?.isConnected)prev.origin.focus.focus({preventScroll:true});});return;}window.scrollTo({top:prev.scroll});$('dropSearch').focus({preventScroll:true});}
     function search(clear=false){route={kind:'list'};visible=50;history.length=0;if(clear){$('dropSearch').value='';clearFilters();}render();}
     function detail(){
       nav.innerHTML=route.kind==='list'?'':`<button type="button" class="button button-secondary" data-location-back>← 戻る</button><button type="button" class="button button-secondary" data-location-list>一覧・全体検索へ</button>`;
@@ -125,7 +125,7 @@ window.IrunaLocationsBrowser = (() => {
     }
     document.addEventListener('click',event=>{
       const b=event.target.closest('[data-monster],[data-map],[data-location-back],[data-location-list]');if(!b)return;
-      if(b.hasAttribute('data-location-back'))back();else if(b.hasAttribute('data-location-list')){search(true);$('dropSearch').focus();}else if(b.dataset.monster)navigate('monster',b.dataset.monster);else navigate('map',b.dataset.map);
+      if(b.hasAttribute('data-location-back'))back();else if(b.hasAttribute('data-location-list')){search(true);$('dropSearch').focus();}else if(b.dataset.monster)navigate('monster',b.dataset.monster);else navigate('map',b.dataset.map,b.closest('#view-monsters')?{view:'monsters',scroll:window.scrollY,focus:b}:null);
     });
     return {render,navigate,search,setEquipmentData(items,attributes){equipmentElements=elements.equipmentIndex(items,attributes);render();}};
   }
