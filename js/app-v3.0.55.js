@@ -1109,7 +1109,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   }
 
   function allSelectedIds() {
-    return allSelectedSourceEntries().map(entry => entry.id);
+    return allSelectedSourceEntries().map(entry => entry.originalId || entry.id);
   }
 
   function renderMiniSlot(token, label, disabled = false) {
