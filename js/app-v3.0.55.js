@@ -1069,6 +1069,42 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     (state.build.buildRelics || []).forEach((itemId, index) =>
       pushEntry(itemId, `レリック${index + 1}`, "レリック")
     );
+    // Same-name ☆能力: each repeated level steps down to the next available lower level.
+    // At Lv1 the effects (including penalties) continue to stack. Never rewrite saved selections.
+    const starIndex = new Map();
+    for (const item of context.itemsById.values()) {
+      if (item["分類"] !== "☆能力") continue;
+      const match = /^(.+?)\\s*Lv\\s*([1-5])$/i.exec(String(item["名前"] || "").normalize("NFKC").trim());
+      if (!match) continue;
+      const key = match[1].replace(/\\s+/g, "");
+      if (!starIndex.has(key)) starIndex.set(key, new Map());
+      starIndex.get(key).set(Number(match[2]), item);
+    }
+    const groups = new Map();
+    entries.forEach((entry, index) => {
+      if (entry.kind !== "☆能力") return;
+      const match = /^(.+?)\\s*Lv\\s*([1-5])$/i.exec(entry.name.normalize("NFKC").trim());
+      if (!match) return;
+      const key = match[1].replace(/\\s+/g, "");
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push({ index, level: Number(match[2]) });
+    });
+    for (const [key, group] of groups) {
+      group.sort((a,b) => b.level-a.level || a.index-b.index);
+      let previous = 6;
+      for (const row of group) {
+        const effective = Math.max(1, Math.min(row.level, previous-1));
+        previous = effective;
+        if (effective === row.level) continue;
+        const item = starIndex.get(key)?.get(effective);
+        if (!item) { console.warn("☆能力の低下後Lvが未登録:", key, effective); continue; }
+        const entry = entries[row.index];
+        entry.originalId = entry.id;
+        entry.id = String(item["アイテムID"]);
+        entry.name = String(item["名前"]);
+        entry.label += `（実効Lv${effective}）`;
+      }
+    }
     return entries;
   }
 
@@ -3388,6 +3424,8 @@ function collectTotalData() {
     selectedEntries.forEach(sourceEntry => {
       const seenEffectSignatures = new Set();
       (context.effectsByItem.get(sourceEntry.id) || []).filter(effect => {
+        // SPコーダル: 既存の体/追加条件と意味が同じ後追い差分を二重計上しない。
+        if (sourceEntry.id === "CR000045" && ["CREFF001551","CREFF001552"].includes(String(effect["効果ID"]))) return false;
         if (isFormulaEffect(effect)) return false;
         const groupId = effect["条件グループID"];
         if (!effectMatchesEquipmentSlot(effect, sourceEntry)) { inactiveConditional.push(effect); return false; }
