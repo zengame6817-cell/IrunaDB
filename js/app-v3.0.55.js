@@ -437,7 +437,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
       ]).sort((a,b) => JSON.stringify(a).localeCompare(JSON.stringify(b))));
     };
     const abilitySignature = value => {
-      const v = String(value || "").normalize("NFKC").replace(/[\\s　]+/g, "").replace(/^更に/, "");
+      const v = String(value || "").normalize("NFKC").replace(/[\s　]+/g, "").replace(/^更に/, "");
       return ["オートスキル発動", "オートスキル発"].includes(v) ? "オートスキル発動率" : v;
     };
     const effectSignature = effect => JSON.stringify([
