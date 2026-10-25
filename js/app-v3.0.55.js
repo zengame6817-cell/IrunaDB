@@ -1074,18 +1074,18 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     const starIndex = new Map();
     for (const item of context.itemsById.values()) {
       if (item["分類"] !== "☆能力") continue;
-      const match = /^(.+?)\\s*Lv\\s*([1-5])$/i.exec(String(item["名前"] || "").normalize("NFKC").trim());
+      const match = /^(.+?)\s*Lv\s*([1-5])$/i.exec(String(item["名前"] || "").normalize("NFKC").trim());
       if (!match) continue;
-      const key = match[1].replace(/\\s+/g, "");
+      const key = match[1].replace(/\s+/g, "");
       if (!starIndex.has(key)) starIndex.set(key, new Map());
       starIndex.get(key).set(Number(match[2]), item);
     }
     const groups = new Map();
     entries.forEach((entry, index) => {
       if (entry.kind !== "☆能力") return;
-      const match = /^(.+?)\\s*Lv\\s*([1-5])$/i.exec(entry.name.normalize("NFKC").trim());
+      const match = /^(.+?)\s*Lv\s*([1-5])$/i.exec(entry.name.normalize("NFKC").trim());
       if (!match) return;
-      const key = match[1].replace(/\\s+/g, "");
+      const key = match[1].replace(/\s+/g, "");
       if (!groups.has(key)) groups.set(key, []);
       groups.get(key).push({ index, level: Number(match[2]) });
     });
