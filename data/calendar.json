@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-25T19:37:05.491Z",
+  "updatedAt": "2026-10-25T22:33:13.070Z",
   "coverageStart": "2025-10-26",
   "coverageEnd": "2026-10-26",
   "monthlyCoverage": [
@@ -18940,13 +18940,13 @@
       "dateLabel": "開始:2026年7月 1日(水) 0:00~ / 終了:2026年8月19日(水)13:59まで"
     },
     {
-      "id": "CALd853958f9001fbe0",
+      "id": "CAL72f034a67ffd3e4a",
       "title": "七夕イベント",
       "category": "イベント",
       "startDate": "2026-07-01",
       "startTime": "00:00",
       "startNote": "",
-      "endDate": "2026-07-31",
+      "endDate": "2026-07-07",
       "endTime": "23:59",
       "endNote": "",
       "kind": "range",
@@ -28332,10 +28332,10 @@
     }
   ],
   "scan": {
-    "pages": 407,
-    "notices": 2035,
-    "oldestNotice": "2025-10-25",
-    "mode": "full",
+    "pages": 8,
+    "notices": 40,
+    "oldestNotice": "2026-10-18",
+    "mode": "incremental",
     "lastFullScan": "2026-10-25T19:37:05.491Z",
     "lastFullScanDetails": {
       "pages": 407,
