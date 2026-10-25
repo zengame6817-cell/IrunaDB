@@ -423,8 +423,39 @@ function formatDisplayNumber(value, maxDecimals = 2) {
   function buildIndexes() {
     Object.values(context).forEach(value => value instanceof Map && value.clear());
     state.items.forEach(item => context.itemsById.set(String(item["アイテムID"]), item));
-    state.effects.forEach(effect => { const id = String(effect["アイテムID"]); if (!context.effectsByItem.has(id)) context.effectsByItem.set(id, []); context.effectsByItem.get(id).push(effect); });
     state.conditions.forEach(condition => { const id = String(condition["条件グループID"]); if (!context.conditionMap.has(id)) context.conditionMap.set(id, []); context.conditionMap.get(id).push(condition); });
+    // 有効=falseはスプシ/API/静的DBのどの経路でも合計に含めない。
+    // 同じ意味の条件を別IDで後追い登録したStudio差分だけは、
+    // 元データを優先して重複を除く（別条件・別効果は保持）。
+    const conditionSignature = groupId => {
+      if (!groupId) return "";
+      const rows = context.conditionMap.get(String(groupId)) || [];
+      if (!rows.length) return "unknown:" + groupId;
+      return JSON.stringify(rows.map(row => [
+        row["条件項目"] ?? "", row["演算子"] ?? "", row["比較値"] ?? "",
+        row["比較値ID"] ?? "", row["論理結合"] ?? ""
+      ]).sort((a,b) => JSON.stringify(a).localeCompare(JSON.stringify(b))));
+    };
+    const abilitySignature = value => {
+      const v = String(value || "").normalize("NFKC").replace(/[\\s　]+/g, "").replace(/^更に/, "");
+      return ["オートスキル発動", "オートスキル発"].includes(v) ? "オートスキル発動率" : v;
+    };
+    const effectSignature = effect => JSON.stringify([
+      String(effect["アイテムID"]), abilitySignature(effect["能力ID"]),
+      String(effect["値"] ?? ""), String(effect["単位"] ?? ""),
+      String(effect["効果種類"] ?? ""), String(effect["数式"] ?? ""),
+      conditionSignature(effect["条件グループID"])
+    ]);
+    const enabled = effect => String(effect["有効"] ?? "TRUE").toUpperCase() !== "FALSE";
+    const originals = new Set(state.effects.filter(effect => enabled(effect) &&
+      !String(effect["備考"] || "").includes("Studio能力差分修正")).map(effectSignature));
+    state.effects.forEach(effect => {
+      if (!enabled(effect)) return;
+      if (String(effect["備考"] || "").includes("Studio能力差分修正") && originals.has(effectSignature(effect))) return;
+      const id = String(effect["アイテムID"]);
+      if (!context.effectsByItem.has(id)) context.effectsByItem.set(id, []);
+      context.effectsByItem.get(id).push(effect);
+    });
     state.stats.forEach(stat => context.statMap.set(String(stat["能力ID"]), stat));
     state.attributes.forEach(attribute => context.attributeMap.set(String(attribute["属性ID"]), attribute));
     state.jobs.forEach(job => context.jobMap.set(String(job["職業ID"]), job));
