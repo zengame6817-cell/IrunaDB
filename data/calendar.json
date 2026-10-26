@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-26T01:10:13.391Z",
+  "updatedAt": "2026-10-26T06:13:21.178Z",
   "coverageStart": "2025-10-26",
   "coverageEnd": "2026-10-26",
   "monthlyCoverage": [
@@ -27160,6 +27160,13 @@
           "publishedAt": "2026-10-19",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-10-19",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週月曜20:00~ / 終了:毎週月曜21:59まで",
@@ -27274,6 +27281,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=5",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-21",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-21",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27481,6 +27495,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "4日間限定!精錬成功確率1.5倍キャンペーン開催!10月23日(金)0:00~10月26日(月)23:59",
+          "publishedAt": "2026-10-22",
+          "sha256": "f990b4ae14887e150efe10f99801885c1f68855f6701f365413f0344eb6f8982",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=5",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-21",
@@ -27506,6 +27527,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=2",
+          "title": "イルーナ12神の闇の結晶イベント開催!10月24日(土)0:00~10月25日(日)23:59",
+          "publishedAt": "2026-10-23",
+          "sha256": "2fce144dba01d4423937b612844fb156daf39f7184b8505803025b8d79b2bdc9",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
           "title": "イルーナ12神の闇の結晶イベント開催!10月24日(土)0:00~10月25日(日)23:59",
           "publishedAt": "2026-10-23",
           "sha256": "2fce144dba01d4423937b612844fb156daf39f7184b8505803025b8d79b2bdc9",
@@ -27596,6 +27624,13 @@
           "publishedAt": "2026-10-25",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-25",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27654,6 +27689,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "https://android.iruna.jp/information",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=7",
           "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
           "publishedAt": "2026-10-19",
@@ -27684,6 +27726,13 @@
       "endNote": "",
       "kind": "point",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information?page=5",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
@@ -27772,9 +27821,9 @@
       "kind": "point",
       "sources": [
         {
-          "url": "https://android.iruna.jp/information?page=5",
+          "url": "https://android.iruna.jp/information",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
-          "publishedAt": "2026-10-21",
+          "publishedAt": "2026-10-26",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
           "kind": "notice"
         }
@@ -27782,8 +27831,8 @@
       "scheduledByRule": true,
       "recurrence": {
         "weekdays": [
-          3,
-          1
+          1,
+          3
         ],
         "startTime": "21:00",
         "endTime": null
