@@ -26,6 +26,7 @@
   };
 
   const normalize = s => String(s || "").toLowerCase().replace(/\s+/g, "");
+  const ref=(v,kinds)=>window.IrunaReferences?.html(v,kinds)||esc(v);
 
   function renderEpTabs() {
     const el = document.getElementById("missionEpTabs");
@@ -59,9 +60,9 @@
       <label class="mission-item ${state.owned.has(x.id) ? "is-owned" : ""}">
         <input type="checkbox" data-item-owned="${esc(x.id)}" ${state.owned.has(x.id) ? "checked" : ""}>
         <span class="mission-item-main">
-          <strong>${esc(x.name)} <b>×${esc(x.qty)}</b></strong>
-          <small>${esc(x.region)} / ${esc(x.usedIn)}</small>
-          <em>${esc(x.note)}</em>
+          <strong>${ref(x.name,["item"])} <b>×${esc(x.qty)}</b></strong>
+          <small>${ref(x.region,["map"])} / ${esc(x.usedIn)}</small>
+          <em>${ref(x.note,["item","monster","map"])}</em>
         </span>
       </label>
     `).join("") : `<div class="mission-empty">表示するアイテムはありません。</div>`;
@@ -132,7 +133,7 @@
               <div><span>進行</span><strong>${m.steps?.length||0}ステップ</strong></div>
             </div>
             <div class="mission-route-label">進行詳細</div>
-            ${m.steps.map((step, idx) => { const sm=stepMeta(step); return `<div class="mission-step"><i>${idx+1}</i><p><span class="mission-step-type">${esc(sm.type)}</span>${esc(sm.text)}</p></div>`; }).join("")}
+            ${m.steps.map((step, idx) => { const sm=stepMeta(step); return `<div class="mission-step"><i>${idx+1}</i><p><span class="mission-step-type">${esc(sm.type)}</span>${window.IrunaReferences?.step(sm.text)||esc(sm.text)}</p></div>`; }).join("")}
           </div>
         </details>
       `);

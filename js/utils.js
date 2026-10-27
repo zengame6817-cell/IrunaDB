@@ -5,6 +5,14 @@ window.IrunaUtils = (() => {
   }
   function normalizeSearchText(value) { return String(value ?? "").toLowerCase().replace(/\s+/g, ""); }
   function isBlank(value) { return value === "" || value === null || value === undefined; }
+  function isPublicSourceUrl(value) {
+    try {
+      const u = new URL(value);
+      if (!['http:', 'https:'].includes(u.protocol) || u.username || u.password || u.port) return false;
+      if (['android.iruna.jp', 'iphone.iruna.jp', 'irunablog.iruna.jp', 'www.iruna.jp', 'iruna.jp', 'irunawiki.com'].includes(u.hostname)) return true;
+      return u.hostname === 'wikiwiki.jp' && /^\/iruna-online(?:\/|$)/.test(u.pathname);
+    } catch { return false; }
+  }
 
   function formatFormulaText(value) {
     let text = String(value ?? "").trim();
@@ -89,5 +97,5 @@ window.IrunaUtils = (() => {
     const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
     return JSON.parse(new TextDecoder().decode(bytes));
   }
-  return { escapeHtml, normalizeSearchText, isBlank, formatFormulaText, createAbortSignal, encodeBuild, decodeBuild };
+  return { escapeHtml, normalizeSearchText, isBlank, isPublicSourceUrl, formatFormulaText, createAbortSignal, encodeBuild, decodeBuild };
 })();

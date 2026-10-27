@@ -16,7 +16,7 @@ function make(levels){
   for(let i=1;i<=5;i++)items.set("ST"+i,{"アイテムID":"ST"+i,"分類":"☆能力","名前":"☆生命力Lv"+i});
   const state={build:{weapon:null,body:null,additional:null,special:null,stars:Object.fromEntries(keys.map((k,i)=>[k,levels[i]?("ST"+levels[i]):null])),crystals:Object.fromEntries(keys.map(k=>[k,[]])),equipmentSettings:Object.fromEntries(keys.map(k=>[k,{slots:0}])),alCrystas:[],buildRelics:[]}};
   const ctx={state,context:{itemsById:items},SLOT_DEFS:slots,console};
-  return vm.runInNewContext(selectedFn+"\nallSelectedSourceEntries()",ctx).map(e=>({id:e.id,name:e.name,originalId:e.originalId||null}));
+  return Array.from(vm.runInNewContext(selectedFn+"\nallSelectedSourceEntries()",ctx),e=>({id:e.id,name:e.name,originalId:e.originalId||null}));
 }
 test("Five selected Lv5 stars act as Lv5,4,3,2,1 without changing selection",()=>{
   assert.deepEqual(make([5,5,5,5,5]).map(e=>e.id),["ST5","ST4","ST3","ST2","ST1"]);

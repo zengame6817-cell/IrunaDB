@@ -98,6 +98,7 @@
     }
   }
   const locations = window.IrunaLocationsBrowser.create(data);
+  window.IrunaReferences?.init(data,locations);
   window.IrunaMonsterBrowser.create(data);
   function renderDrops() { locations.render(); }
   const show = view => window.IrunaCatalogBridge.show(view);

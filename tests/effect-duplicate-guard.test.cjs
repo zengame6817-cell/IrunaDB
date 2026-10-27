@@ -17,7 +17,7 @@ function apply(effects){
   ];
   const ctx={state:{effects,conditions},context:{conditionMap:new Map(),effectsByItem:new Map()}};
   vm.runInNewContext(snippet,ctx);
-  return ctx.context.effectsByItem.get("CR000234")||[];
+  return Array.from(ctx.context.effectsByItem.get("CR000234")||[]);
 }
 const base={効果ID:"old",アイテムID:"CR000234",能力ID:"オートスキル発動",値:3,単位:"%",効果種類:"加算",数式:"",条件グループID:"old",有効:true};
 test("same condition even under another ID does not stack Studio additions",()=>{

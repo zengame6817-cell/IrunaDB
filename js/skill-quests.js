@@ -13,6 +13,7 @@
   const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const norm=v=>String(v||"").toLowerCase().replace(/[\s　]+/g,"");
   const save=()=>localStorage.setItem(STORE,JSON.stringify([...state.done]));
+  const ref=(v,kinds)=>window.IrunaReferences?.html(v,kinds)||esc(v);
   const acqLabel=t=>({quest:"クエスト",shop:"スキル書購入",drop:"ドロップ・その他",transfer:"転職時入手"}[t]||"その他");
 
   function renderJobs(){
@@ -33,16 +34,17 @@
     if(title) title.textContent=`${state.job} スキル本まとめ`;
     const rows=data.quests.filter(q=>q.job===state.job && q.book && ["shop","drop"].includes(q.acquisitionType)).sort((a,b)=>(a.level-b.level)||a.skill.localeCompare(b.skill,"ja"));
     if(count)count.textContent=`${rows.length}件`;
-    list.innerHTML=rows.length?rows.map(q=>`<div class="sk-book-row"><div><strong>${esc(q.book)}</strong><small>Lv.${esc(q.level||"-")} / ${esc(q.skill)}</small></div><div class="sk-book-meta"><span class="sk-acq-badge sk-${esc(q.acquisitionType)}">${esc(acqLabel(q.acquisitionType))}</span><b>${esc(q.price||q.dropFrom||"")}</b><small>${esc(q.seller||q.location||"")}</small></div></div>`).join(""):`<div class="mission-empty">登録済みのスキル本はありません。</div>`;
+    list.innerHTML=rows.length?rows.map(q=>`<div class="sk-book-row"><div><strong>${ref(q.book,["item"])}</strong><small>Lv.${esc(q.level||"-")} / ${esc(q.skill)}</small></div><div class="sk-book-meta"><span class="sk-acq-badge sk-${esc(q.acquisitionType)}">${esc(acqLabel(q.acquisitionType))}</span><b>${ref(q.price||q.dropFrom||"",["monster"])}</b><small>${ref(q.seller||q.location||"",["map"])}</small></div></div>`).join(""):`<div class="mission-empty">登録済みのスキル本はありません。</div>`;
   }
   function detailBlock(q){
     const t=q.acquisitionType||"quest";
-    if(t==="shop") return `<div class="sk-detail-grid"><div><span>スキル書</span><strong>${esc(q.book||"-")}</strong></div><div><span>販売場所</span><strong>${esc(q.seller||q.location||"-")}</strong></div><div><span>価格</span><strong>${esc(q.price||"-")}</strong></div></div>`;
-    if(t==="drop") return `<div class="sk-detail-grid"><div><span>スキル書</span><strong>${esc(q.book||"-")}</strong></div><div><span>入手場所</span><strong>${esc(q.location||q.seller||"-")}</strong></div><div><span>ドロップ元</span><strong>${esc(q.dropFrom||"-")}</strong></div></div>`;
-    if(t==="transfer") return `<div class="sk-detail-grid"><div><span>入手方法</span><strong>転職時に習得・入手</strong></div>${q.book?`<div><span>スキル書</span><strong>${esc(q.book)}</strong></div>`:""}</div>`;
-    return `${(q.requirements||[]).length?`<div class="sq-requirements">${q.requirements.map((x,i)=>`<div class="mission-step"><i>${i+1}</i><p>${esc(x)}</p></div>`).join("")}</div>`:`<div class="mission-empty">追加の収集・討伐条件はありません。</div>`}`;
+    if(t==="shop") return `<div class="sk-detail-grid"><div><span>スキル書</span><strong>${ref(q.book||"-",["item"])}</strong></div><div><span>販売場所</span><strong>${ref(q.seller||q.location||"-",["map"])}</strong></div><div><span>価格</span><strong>${esc(q.price||"-")}</strong></div></div>`;
+    if(t==="drop") return `<div class="sk-detail-grid"><div><span>スキル書</span><strong>${ref(q.book||"-",["item"])}</strong></div><div><span>入手場所</span><strong>${ref(q.location||q.seller||"-",["map"])}</strong></div><div><span>ドロップ元</span><strong>${ref(q.dropFrom||"-",["monster"])}</strong></div></div>`;
+    if(t==="transfer") return `<div class="sk-detail-grid"><div><span>入手方法</span><strong>転職時に習得・入手</strong></div>${q.book?`<div><span>スキル書</span><strong>${ref(q.book,["item"])}</strong></div>`:""}</div>`;
+    return `${(q.requirements||[]).length?`<div class="sq-requirements">${q.requirements.map((x,i)=>`<div class="mission-step"><i>${i+1}</i><p>${ref(x,/[×xｘ]\s*\d+\s*体/.test(x)?["monster"]:["item","map"])}</p></div>`).join("")}</div>`:`<div class="mission-empty">追加の収集・討伐条件はありません。</div>`}`;
   }
   function renderList(){
+    window.IrunaSkillGuide?.render(state.job,state.query);
     const list=document.getElementById("sqList"), count=document.getElementById("sqCount");
     if(!list)return;
     const rows=data.quests.filter(q=>q.job===state.job && match(q)).sort((a,b)=>(a.level-b.level)||a.skill.localeCompare(b.skill,"ja"));
@@ -58,7 +60,8 @@
           <b class="mission-chevron">＋</b>
         </summary>
         <div class="mission-card-body">
-          ${q.location?`<div class="sk-location"><span>場所</span><strong>${esc(q.location)}</strong></div>`:""}
+          ${q.location?`<div class="sk-location"><span>場所</span><strong>${ref(q.location,['map'])}</strong></div>`:""}
+          ${window.IrunaSkillGuide?.forQuest(q)||''}
           ${detailBlock(q)}
           ${q.note?`<p class="sq-note">${esc(q.note)}</p>`:""}
         </div></details>`);

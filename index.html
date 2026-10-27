@@ -15,6 +15,7 @@
   })(window, document, "clarity", "script", "xwi8zmzhuc");
   </script>
   <link rel="stylesheet" href="./css/style.css?v=3.0.27">
+  <link rel="stylesheet" href="./css/references.css?v=3.0.85">
   <link rel="stylesheet" href="./css/catalog.css?v=3.0.72">
   <link rel="stylesheet" href="./css/navigation.css?v=3.0.72">
   <link rel="stylesheet" href="./css/item-memo.css?v=3.0.72">
@@ -931,6 +932,7 @@ body.light-mode .calculation-card {
           </section>
           <section class="mission-list-panel">
             <div class="mission-section-head"><div><p class="section-kicker">SKILL ROUTE</p><h3>スキル習得一覧</h3></div><span id="sqCount" class="mission-result-count"></span></div>
+            <details class="skill-effect-panel"><summary>スキルの効果・ビルド反映</summary><p>職業の登録済みスキル効果です。ビルドでは効果発動中のスキルを選択してください。</p><div id="sqEffects" class="skill-effect-grid"></div></details>
             <div id="sqList" class="mission-list"></div>
           </section>
         </div>
@@ -1121,19 +1123,23 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.84.js?v=3.0.84"></script>
+  <script src="./js/config-v3.0.85.js?v=3.0.85"></script>
   <script src="./js/tasks-model.js?v=3.0.78"></script>
   <script src="./js/environment.js?v=3.0.78"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
-  <script src="./js/utils.js?v=3.0.37"></script>
+  <script src="./js/utils.js?v=3.0.85"></script>
   <script src="./js/api.js?v=3.0.38"></script>
   <script src="./js/modal.js?v=3.0.72"></script>
   <script src="./js/ui.js?v=3.0.72"></script>
   <script src="./data/skills.js?v=3.0.49"></script>
+  <script src="./data/skill-supplement-v3.0.85.js?v=3.0.85"></script>
+  <script src="./js/reference-links-model.js?v=3.0.85"></script>
+  <script src="./js/reference-links.js?v=3.0.85"></script>
+  <script src="./js/skill-effect-guide.js?v=3.0.85"></script>
 <script src="./data/missions.js?v=3.0.37"></script>
   <script src="./data/skill-quests.js?v=3.0.37"></script>
-<script src="./js/missions.js?v=3.0.37"></script>
-  <script src="./js/skill-quests.js?v=3.0.37"></script>
+<script src="./js/missions.js?v=3.0.85"></script>
+  <script src="./js/skill-quests.js?v=3.0.85"></script>
   <script src="./data/catalog.js?v=3.0.80"></script>
   <script src="./data/locations.js?v=3.0.72"></script>
   <script src="./data/wiki.js?v=3.0.72"></script>
@@ -1146,7 +1152,7 @@ body.light-mode .calculation-card {
   <script src="./js/monster-browser.js?v=3.0.80"></script>
   <script src="./js/location-browser.js?v=3.0.82"></script>
   <script src="./js/app-v3.0.55.js?v=3.0.84"></script>
-  <script src="./js/catalog.js?v=3.0.80"></script>
+  <script src="./js/catalog.js?v=3.0.85"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>
   <script src="./js/environment-ui.js?v=3.0.72"></script>
   <script src="./js/calendar-model.js?v=3.0.78"></script>
