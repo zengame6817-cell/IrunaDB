@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-26T23:53:25.120Z",
+  "updatedAt": "2026-10-27T05:04:37.804Z",
   "coverageStart": "2025-10-27",
   "coverageEnd": "2026-10-27",
   "monthlyCoverage": [
@@ -27192,6 +27192,13 @@
           "publishedAt": "2026-10-21",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-21",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27604,6 +27611,13 @@
           "publishedAt": "2026-10-26",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27630,6 +27644,13 @@
       "endNote": "",
       "kind": "point",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-27",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information?page=3",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
@@ -27668,6 +27689,13 @@
           "publishedAt": "2026-09-29",
           "sha256": "a7edc0036a431fc3d0754c3e5613ea6180751c2b47258fe75cdd0e0a35a4b2c2",
           "kind": "monthly"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-21",
+          "sha256": "2817c2aef5e50739d79febd76f91503a4b16dc0de9ce7029f186f3c351f72f6d",
+          "kind": "notice"
         }
       ],
       "dateLabel": "10月28日(水)メンテナンス後~11月4日(水)13:59まで",
@@ -27723,6 +27751,13 @@
           "publishedAt": "2026-09-29",
           "sha256": "a7edc0036a431fc3d0754c3e5613ea6180751c2b47258fe75cdd0e0a35a4b2c2",
           "kind": "monthly"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-21",
+          "sha256": "2817c2aef5e50739d79febd76f91503a4b16dc0de9ce7029f186f3c351f72f6d",
+          "kind": "notice"
         }
       ],
       "dateLabel": "10月28日(水)メンテナンス後~11月4日(水)13:59まで",
@@ -27809,6 +27844,13 @@
           "publishedAt": "2026-09-29",
           "sha256": "a7edc0036a431fc3d0754c3e5613ea6180751c2b47258fe75cdd0e0a35a4b2c2",
           "kind": "monthly"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-21",
+          "sha256": "2817c2aef5e50739d79febd76f91503a4b16dc0de9ce7029f186f3c351f72f6d",
+          "kind": "notice"
         }
       ],
       "dateLabel": "10月30日(金)0:00~11月2日(月)23:59まで",
@@ -27827,9 +27869,9 @@
       "kind": "point",
       "sources": [
         {
-          "url": "https://android.iruna.jp/information?page=3",
+          "url": "https://android.iruna.jp/information",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
-          "publishedAt": "2026-10-24",
+          "publishedAt": "2026-10-27",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
           "kind": "notice"
         }
@@ -27837,8 +27879,8 @@
       "scheduledByRule": true,
       "recurrence": {
         "weekdays": [
-          6,
-          2
+          2,
+          6
         ],
         "startTime": "21:00",
         "endTime": null
