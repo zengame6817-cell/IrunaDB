@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-30T00:59:22.465Z",
+  "updatedAt": "2026-10-30T07:06:35.917Z",
   "coverageStart": "2025-10-30",
   "coverageEnd": "2026-10-30",
   "monthlyCoverage": [
@@ -17,7 +17,8 @@
     "2026-07",
     "2026-08",
     "2026-09",
-    "2026-10"
+    "2026-10",
+    "2026-11"
   ],
   "automaticUpdate": "hourly",
   "events": [
@@ -23098,6 +23099,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-27",
@@ -25679,6 +25687,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-27",
@@ -25730,6 +25745,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-28",
           "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
@@ -25793,6 +25815,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-27",
@@ -25844,6 +25873,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-28",
           "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
@@ -26784,6 +26820,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-27",
@@ -27580,6 +27623,13 @@
           "publishedAt": "2026-10-23",
           "sha256": "2fce144dba01d4423937b612844fb156daf39f7184b8505803025b8d79b2bdc9",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "イルーナ12神の闇の結晶イベント開催!10月24日(土)0:00~10月25日(日)23:59",
+          "publishedAt": "2026-10-23",
+          "sha256": "2fce144dba01d4423937b612844fb156daf39f7184b8505803025b8d79b2bdc9",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年10月24日(土) 0:00~ / 終了:2026年10月25日(日)23:59まで",
@@ -27620,6 +27670,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=7",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-24",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-10-24",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
@@ -27684,6 +27741,13 @@
           "publishedAt": "2026-10-24",
           "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-24",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週土曜20:00~ / 終了:毎週土曜21:59まで",
@@ -27732,6 +27796,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=6",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-25",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
           "publishedAt": "2026-10-25",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
@@ -27789,6 +27860,13 @@
           "publishedAt": "2026-10-25",
           "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
+          "title": "2時間限定!ドロップ率50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-25",
+          "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週日曜20:00~ / 終了:毎週日曜21:59まで",
@@ -27837,6 +27915,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=5",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
           "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
           "publishedAt": "2026-10-26",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
@@ -27900,6 +27985,13 @@
           "publishedAt": "2026-10-26",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27949,6 +28041,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=4",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-27",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-10-27",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
@@ -28015,6 +28114,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-27",
@@ -28064,6 +28170,13 @@
           "publishedAt": "2026-10-27",
           "sha256": "bd0a60fd26c1bbac33d54f39bc90f825e562170a659a1b61e75746b7413c8cb3",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "イルーナ12神の天啓イベント開催!10月28日(水)0:00~10月29日(木)23:59",
+          "publishedAt": "2026-10-27",
+          "sha256": "bd0a60fd26c1bbac33d54f39bc90f825e562170a659a1b61e75746b7413c8cb3",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年10月28日(水) 0:00~ / 終了:2026年10月29日(木)23:59まで",
@@ -28090,6 +28203,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-28",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-28",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -28170,6 +28290,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-27",
@@ -28208,6 +28335,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=2",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-29",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
           "publishedAt": "2026-10-29",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
@@ -28265,6 +28399,13 @@
           "publishedAt": "2026-10-29",
           "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
+          "publishedAt": "2026-10-29",
+          "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -28305,6 +28446,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "レアドロップ+3キャンペーン開催!10月30日(金)0:00~11月2日(月)23:59",
+          "publishedAt": "2026-10-29",
+          "sha256": "11494249f754204df6b62fa74f78f9d0163bfa2803600c47d4e84ea491119b1f",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-28",
@@ -28320,6 +28468,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-10-28",
+          "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-10-28",
           "sha256": "5e78e0d2c83d2a611171fcbb0a81e9e8cb8df454abbcda128c3c70de2f5d7087",
@@ -28576,6 +28731,37 @@
       "description": "ロココの街のNPC「GMナインツ」に会話すると、ドロップ率が50%増加\nする2時間の継続効果が得られます。\n▼イベント内容\nNPC「GMナインツ」と会話>「スポットUP」>「付与して欲しい」を選択します。\n※付与されてから2時間のスポットアップ効果が得られます。22:00を過ぎても継続効果が終了するまでの時間は効果が継続します。\n※ボス戦のディスペル効果では、スポットアップの継続効果は消えません。\n※再ログイン、ゲームサーバーと接続が切れた場合は効果が消えます。再度「付与して欲しい」を選択してください。\n※ログインのみでは、スポットアップの効果は得られませんのでご注意ください。\n■開催日時\n開始:毎週日曜20:00~\n終了:毎週日曜21:59まで\nぜひ、この機会をご活用ください。"
     },
     {
+      "id": "CAL6ade3456f4eb7cec",
+      "title": "冒険者応援ログインボーナス",
+      "category": "イベント",
+      "startDate": "2026-11-01",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-03",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "冒険者応援ログインボーナス開催! 11月1日(日)0:00~3日(火)23:59",
+          "publishedAt": "2026-10-30",
+          "sha256": "b2196a0ff07bfa8ed6c376832851a3458b6824adf5961a9bd78c535ecb25a9d4",
+          "kind": "notice"
+        }
+      ],
+      "dateLabel": "11月1日(日)0:00~11月3日(火)23:59まで",
+      "referenceMonth": "2026-11",
+      "description": "2026年11月1日(日)0:00より、冒険者応援ログインボーナスを開催!\n通常のログインボーナスに加えて、期間中にログインすると各1日100コインをプレゼント!\n3日間ログインすると合計「300コイン」\nをプレゼント!\nコインは、アイテムショップでご利用いただけます!\n「アレンの書」が替わりに配布される場合は「お客様からよくいただくご質問」をお読みください。\n■重要事項\n・コインには180日の期限があります。貯められない仕様ですので、早めに消費してください。\n・ログインのカウントは、プライベートフィールドではカウントされません。\n・受け取りが更新されない場合、当日受け取り分のアイテムのみ、該当のアイコンをタップするとアイテムを受け取れます。\n・会員登録から7日間は、初心者ログインボーナスが表示されます。7日間経過後に累積ログインボーナスが表示されます。\n・お客様の端末環境下のみで発生した問題については調査が行えません。ログイン数の修正やアイテムの補償は受け付けておりません。予めご了承ください。\n■ログイン数のカウントタイミングについて\n・ログインのカウントは毎日0:00からのログインでカウントします。\n・当日1回目のログインでログインボーナスページが自動で表示されます。\n・ログインボーナスページは、Webサイトを表示するシステムです。端末のOSバージョンによっては、ページの読み込みに時間が掛かります。\n・通信環境と画面を閉じるタイミングによっては、ログインがカウントされない、アイテムが受け取れない場合があります。\n・アイテムを受け取る表示が完了するまで、ログインボーナスページを閉じないようお願い致します。\n・ログインボーナスページに公式サイトが表示される場合は、アプリを再起動いただくとログインボーナスページが表示されます。アイテムショップの最終ログインから24時間経過した場合に表示されます。\n・カウントされない場合は、画面左上のメニュー>コミュニティ>ログインボーナスのページを開くことで景品を受け取ることができます。\n・当日1回目をプライベートフィールドでログインした場合、画面左上のメニュー>コミュニティ>ログインボーナスのページを開いてください。\n■開催期間\n開始:2026年11月1日(日) 0:00~\n終了:2026年11月3日(火)23:59まで\n※通常のログインボーナスは、2026年11月1日(日)から2026年11月30日(月)まで開催されます。\n■プレゼント内容\n2026年11月1日(日)0:00~23:59\n:100コイン(またはアレンの書×1)\n2026年11月2日(月)0:00~23:59\n:100コイン(またはアレンの書×1)\n2026年11月3日(火)0:00~23:59\n:100コイン(またはアレンの書×1)\n※例:2026年11月1日(日)23:59を過ぎると、2026年11月1日(日)の100コインは受け取れなくなります。\n■お客様からよくいただくご質問\nQ.ログインボーナスページに公式サイトが表示されます\nA.アプリを再起動いただくとログインボーナスページが表示されます。アイテムショップの最終ログインから24時間経過した場合に表示されます。\nQ.どうしてコインではなくアレンの書が配布されるのか?\nA.移行元と移行先のデータ移行に使われたアカウント同士でコインの受け取り権利は共有されています。移行元か移行先のアカウントで、その日のコインは受け取っているため、アレンの書が配布されます。\nQ.アレンの書ではなくコインを受け取る方法はあるのか?\nA.移行元や移行先に使われたアカウントの中で、当日最初にログインする1アカウントのみコインを受け取れる権利があります。\nQ.移行元と移行先に使われた2つのアカウントでコインを受け取る方法はあるのか?\nA.2つのアカウントでコインを受け取る方法はございません。\nコインの受け取りは、移行元か移行先のどちらかの端末を、Android端末は新規のGoogleアカウント、iOS端末は端末を初期化した新規会員登録された状態で受け取れます。\n新規会員登録したアカウントに、アカウントは移行しないでください。コインの受け取り権利が共有されてしまいます。\n■コイン付与の条件について\n累積ログインボーナスにご参加される方は、必ずご確認いただきますようお願い致します。\nキャラクターデータの移行に使用済みのアカウントA,Bがあったとして、当日初回にログインしたアカウントがAなら、Aのみにコインが付与されます。\nアカウントB(当日コイン付与受けてないアカウント)でログインした場合は「アレンの書」が配布されます。\nコインの付与先、アイテムの付与先の変更はお受けできません。\n■「アレンの書」配布条件となった場合の各日付の配布個数\n2026年11月1日(日):100コイン → アレンの書×1\n2026年11月2日(月):100コイン → アレンの書×1\n2026年11月3日(火):100コイン → アレンの書×1"
+    },
+    {
       "id": "CAL3752e756b86cacc2",
       "title": "「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン",
       "category": "育成",
@@ -28760,6 +28946,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -28775,7 +28968,7 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CAL3ef0273299603352",
@@ -28790,6 +28983,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -28805,7 +29005,7 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CAL1eb043e69e537916",
@@ -28820,6 +29020,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -28835,7 +29042,7 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CAL536c94999ec97983",
@@ -28910,6 +29117,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -28925,7 +29139,7 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CALceca1e40b1d63ffd",
@@ -28940,6 +29154,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -28955,7 +29176,7 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CAL9ef3c9f750ed1f40",
@@ -28970,6 +29191,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -28985,7 +29213,30 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL9abe5f2663bdb68b",
+      "title": "好敵手経験値アップキャンペーン",
+      "category": "育成",
+      "startDate": "2026-11-04",
+      "startTime": "14:00",
+      "startNote": "メンテナンス前",
+      "endDate": "2026-11-11",
+      "endTime": null,
+      "endNote": "メンテナンス前",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月4日(水)14:00~11月11日(水)メンテナンス前まで",
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CALc6af82615fed040f",
@@ -29000,6 +29251,13 @@
       "kind": "range",
       "sources": [
         {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        },
+        {
           "url": "http://irunablog.iruna.jp/?p=49321",
           "title": "2026年10月アップデート&イベント情報!",
           "publishedAt": "2026-09-29",
@@ -29015,7 +29273,30 @@
         }
       ],
       "dateLabel": "11月4日(水)13:59まで",
-      "referenceMonth": "2026-10"
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALe0a9b6deae94e563",
+      "title": "生産ディレイ-1.5秒短縮キャンペーン",
+      "category": "生産・支援",
+      "startDate": "2026-11-04",
+      "startTime": "14:00",
+      "startNote": "メンテナンス前",
+      "endDate": "2026-11-11",
+      "endTime": null,
+      "endNote": "メンテナンス前",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月4日(水)14:00~11月11日(水)メンテナンス前まで",
+      "referenceMonth": "2026-11"
     },
     {
       "id": "CALb324557e6a1d7dad",
@@ -29076,10 +29357,316 @@
       },
       "dateLabel": "公式告知の週次予定",
       "description": "全サーバーのプレイヤー達が協力して挑む、ボス「ウーベル」とのチャンネルレイドを開催します!\n▼チャンネルレイド「ウーベル」とは?\n■制限時間内に出現するすべてのエフェクトの上に移動しよう!\n前半は、特定のタイミングで強力なフィールド効果で攻撃を仕掛けてくるボスモンスターです。\nフィールド効果の1つに、制限時間内に出現するすべてのエフェクトの上に乗っていないとプレイヤー全員に強力なフィールド効果が襲います。\nすべてのエフェクトの上に乗っていた場合は、乗っていたプレイヤーの人数によってウーベルにダメージが発生します。\nその他にも特殊なフィールド効果がプレイヤー全員を襲ってきます。\n■率先してウーベルの肉芽を討伐しよう!\n後半は、マップ上に「ウーベルの肉芽」が出現します。\nウーベルに直接ダメージを与えられるほか、ウーベルの肉芽を倒すことでウーベルにダメージが発生します。\n■ウーベルの耐性を下げてレイド戦を支援しよう!\nウーベルの残りHPが少なくなると、特定の座標にワープポイントが出現します。\nワープで移動した先には「矛盾の苦痛」が出現し、矛盾の苦痛にダメージを与えるとウーベルの耐性を下げる効果が発動します。\nプレイヤー全員が一致団結して、ウーベルのギミックに挑戦しよう!\n■制限時間と参加報酬\nボス「ウーベル」を制限時間15分\n以内に倒せば、チャンネルレイドに参加したプレイヤー全員が1,000万もの経験値\nを獲得できます。\n※ボスを討伐したタイミングに専用フィールドに居ることで経験値を獲得できます。\n■参加方法\n・「ロココの街」からNPC「スピーシア」と会話で専用のフィールドに入場できます。\n・チャンネルレイド開始30分前から入場できます。\n■チュートリアル終了後からすぐに参加できる!\nチュートリアル終了時に「★ロココの街」が自動で貰えます。\n画面左上の「MENU」をタップ>メインメニュー内のアイテムをタップ>消費欄(袋のアイコン)をタップします。「★ロココの街」を使って瞬時に「ロココの街」に移動できます!\n■ウーベルの出現時間\n・毎週木曜21:00~\n・毎週日曜21:00~\n■ランキングの更新時間\n・ボス討伐が完了した時間帯の40分~50分に更新されます。\n・メニュー内のコミュニティ>ランキングから確認できます。\n・チャンネルレイドが開始すると過去のランキングは確認できません。予めご了承ください。\n▼チャンネルレイドのランキングがリニューアル!\nチャンネルレイドのランキングでは、次のポイントが新しくリニューアルされました。\n・チャンネルレイド「ウーベル」のみだったランキング公開が、リニューアル後は、全てのチャンネルレイド「ラーアトン」「ウーベル」「シアナス」でランキングが確認可能になりました。\n・これまで「全職業」中のランキングが表示されていましたが、リニューアル後は、3次職業や特殊職業のすべての職業を対象に職業別でランキングが確認可能になりました。\n・ランキングに表示されるキャラクター名をタップすると、皆様から好評いただいているプロフィール機能の表示に連動します。ランキング上位の強者がどのような活動をなさっているのかチェックできます。\n・チャンネルレイドのランキング結果で「最大ダメージ」が確認できるようになりました。\n・ランキング情報「TOP30」「自分の周り」に新しく「ギルド」を追加しました。ギルドメンバー同士で競ってみるなど、身近なプレイヤーとチャンネルレイドをお楽しみいただけます。\n※ランキングは「ランクポイント」で決定します。\n▼チャンネルレイド直前の時間帯のログインはお控えください\n事前に開催の告知を行わせていただき、皆さまに開催時刻の周知を行わせていただいておりますが、チャンネルレイド開始直前にログイン数の大幅な増加が見られ、チャンネルレイド直前にログインできない事象を確認しております。\nチャンネルレイド開始30分前を目安にログインいただきますようご理解ご協力のほどお願いいたします。\nチャンネルレイド開始直前は、ゲームサーバーへの接続が大変混み合い繋がりにくくなります。時間に余裕をもってログインしてください。\n▼ゲームサーバーへのアクセス集中の緩和にご協力ください\n1つのゲームサーバーにログインが集中しますと戦闘中の処理に負荷が掛かる傾向を確認しております。\nチャンネルレイドに参加する際は、ログイン人数が少ないゲームサーバーにログインいただきますようご協力お願いいたします。\nゲーム画面の更新が遅れる場合は、システム設定で次の項目を変更することで、不要な通信が無くなり、動作が緩和いたします。\n・PTのみ表示で他人の表示を減らす。\n・表示人数を可変して表示人数を減らす。\n▼チャンネルレイドで使用したコインアイテムについて\n当日は参加者も多く接続が不安定になることが予想されます。\nウーベル討伐直前に接続不良となり、経験値が取得できなかった場合は、取得経験値を補償できません。\nまた直前に使用されたコインアイテムも補償できません。予めご了承ください。\n▼ゲームサーバーとの接続不良で復旧が困難な項目一覧\n・消費、回復、収集アイテムの取得、アイテム操作した情報。\n・レベルアップしていない間の取得経験値。\n・ステータス解放レベルの取得経験値。\n・キャラクターの所持スピナ。\n・ミッション、クエストの進行情報。\n・転職情報。\n・生産レベルアップ、経験値。\n・イグナイトの蓄積時間。"
+    },
+    {
+      "id": "CAL30b55362af54f5e9",
+      "title": "精錬成功確率1.5倍キャンペーン",
+      "category": "精錬",
+      "startDate": "2026-11-06",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-09",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月6日(金)0:00~11月9日(月)23:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL8989915ae14b74fc",
+      "title": "ドロップ率+50%アップキャンペーン",
+      "category": "ドロップ",
+      "startDate": "2026-11-11",
+      "startTime": null,
+      "startNote": "メンテナンス後",
+      "endDate": "2026-11-18",
+      "endTime": "13:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月11日(水)メンテナンス後~11月18日(水)13:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL31e90e64f468c2f0",
+      "title": "移動速度+20%アップキャンペーン",
+      "category": "育成",
+      "startDate": "2026-11-11",
+      "startTime": null,
+      "startNote": "メンテナンス後",
+      "endDate": "2026-11-18",
+      "endTime": "13:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月11日(水)メンテナンス後~11月18日(水)13:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALe51ce368a4a29e66",
+      "title": "ゴールドラッシュキャンペーン",
+      "category": "精錬",
+      "startDate": "2026-11-13",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-15",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月13日(金)0:00~11月15日(日)23:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALcaf8d64e902dfaf4",
+      "title": "精錬劣化確率1/2キャンペーン",
+      "category": "精錬",
+      "startDate": "2026-11-13",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-16",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月13日(金)0:00~11月16日(月)23:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALeec09a8202a167a9",
+      "title": "好敵手経験値アップキャンペーン",
+      "category": "育成",
+      "startDate": "2026-11-18",
+      "startTime": "14:00",
+      "startNote": "メンテナンス前",
+      "endDate": "2026-11-25",
+      "endTime": null,
+      "endNote": "メンテナンス前",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月18日(水)14:00~11月25日(水)メンテナンス前まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL1c02e98f9f63af43",
+      "title": "占い結果☆5固定キャンペーン",
+      "category": "イベント",
+      "startDate": "2026-11-18",
+      "startTime": "14:00",
+      "startNote": "メンテナンス前",
+      "endDate": "2026-11-25",
+      "endTime": null,
+      "endNote": "メンテナンス前",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月18日(水)14:00~11月25日(水)メンテナンス前まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL23ea3515e9fa23b9",
+      "title": "精錬成功確率1.5倍キャンペーン",
+      "category": "精錬",
+      "startDate": "2026-11-20",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-23",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月20日(金)0:00~11月23日(月)23:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALa2e6c5198a3fd2e9",
+      "title": "ボスを追加(ウィークリーレイド)",
+      "category": "レイド",
+      "startDate": "2026-11-25",
+      "startTime": null,
+      "startNote": "",
+      "endDate": null,
+      "endTime": null,
+      "endNote": "",
+      "kind": "point",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月25日(水)",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL22c98055ddca91ee",
+      "title": "取得経験値+50%アップキャンペーン",
+      "category": "育成",
+      "startDate": "2026-11-25",
+      "startTime": null,
+      "startNote": "メンテナンス後",
+      "endDate": "2026-12-02",
+      "endTime": "13:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月25日(水)メンテナンス後~12月2日(水)13:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL17a9187da0877a7f",
+      "title": "生産効率+20%アップキャンペーン",
+      "category": "生産・支援",
+      "startDate": "2026-11-25",
+      "startTime": null,
+      "startNote": "メンテナンス後",
+      "endDate": "2026-12-02",
+      "endTime": "13:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月25日(水)メンテナンス後~12月2日(水)13:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALddad7a1266cc98a3",
+      "title": "ハンマーラッシュキャンペーン",
+      "category": "精錬",
+      "startDate": "2026-11-27",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-29",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月27日(金)0:00~11月29日(日)23:59まで",
+      "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CAL28c9dd6820f77c4f",
+      "title": "レアドロップ+3キャンペーン",
+      "category": "ドロップ",
+      "startDate": "2026-11-27",
+      "startTime": "00:00",
+      "startNote": "",
+      "endDate": "2026-11-30",
+      "endTime": "23:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "http://irunablog.iruna.jp/?p=49332",
+          "title": "2026年11月アップデート&イベント情報!",
+          "publishedAt": "2026-10-30",
+          "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+          "kind": "monthly"
+        }
+      ],
+      "dateLabel": "11月27日(金)0:00~11月30日(月)23:59まで",
+      "referenceMonth": "2026-11"
     }
   ],
   "review": [],
   "sources": [
+    {
+      "url": "http://irunablog.iruna.jp/?p=49332",
+      "title": "2026年11月アップデート&イベント情報!",
+      "publishedAt": "2026-10-30",
+      "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
+      "kind": "monthly"
+    },
     {
       "url": "http://irunablog.iruna.jp/?p=49321",
       "title": "2026年10月アップデート&イベント情報!",
@@ -29175,7 +29762,7 @@
   "scan": {
     "pages": 8,
     "notices": 40,
-    "oldestNotice": "2026-10-22",
+    "oldestNotice": "2026-10-23",
     "mode": "incremental",
     "lastFullScan": "2026-10-26T19:19:24.646Z",
     "lastFullScanDetails": {
