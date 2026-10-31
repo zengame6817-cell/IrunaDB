@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-30T23:46:39.359Z",
+  "updatedAt": "2026-10-31T05:40:29.004Z",
   "coverageStart": "2025-10-31",
   "coverageEnd": "2026-10-31",
   "monthlyCoverage": [
@@ -27349,6 +27349,13 @@
           "publishedAt": "2026-10-26",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27377,6 +27384,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=5",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-27",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-10-27",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
@@ -27462,6 +27476,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=4",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-28",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-28",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27646,6 +27667,13 @@
       "endNote": "",
       "kind": "point",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-31",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information?page=5",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
@@ -27867,9 +27895,9 @@
       "kind": "point",
       "sources": [
         {
-          "url": "https://android.iruna.jp/information?page=5",
+          "url": "https://android.iruna.jp/information",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
-          "publishedAt": "2026-10-27",
+          "publishedAt": "2026-10-31",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
           "kind": "notice"
         }
@@ -27877,8 +27905,8 @@
       "scheduledByRule": true,
       "recurrence": {
         "weekdays": [
-          2,
-          6
+          6,
+          2
         ],
         "startTime": "21:00",
         "endTime": null
