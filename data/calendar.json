@@ -1,11 +1,10 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-10-31T12:29:10.766Z",
-  "coverageStart": "2025-10-31",
-  "coverageEnd": "2026-10-31",
+  "updatedAt": "2026-10-31T17:44:09.140Z",
+  "coverageStart": "2025-11-01",
+  "coverageEnd": "2026-11-01",
   "monthlyCoverage": [
-    "2025-10",
     "2025-11",
     "2025-12",
     "2026-01",
@@ -22,152 +21,6 @@
   ],
   "automaticUpdate": "hourly",
   "events": [
-    {
-      "id": "CALfcd8a3aa477afba6",
-      "title": "スペシャル累積ログインボーナス",
-      "category": "イベント",
-      "startDate": "2025-10-01",
-      "startTime": "00:00",
-      "startNote": "",
-      "endDate": "2025-10-31",
-      "endTime": "23:59",
-      "endNote": "",
-      "kind": "range",
-      "sources": [
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
-        }
-      ],
-      "dateLabel": "10月1日(水)0:00~10月31日(金)23:59まで",
-      "referenceMonth": "2025-10"
-    },
-    {
-      "id": "CALf5619db9f69d5e8e",
-      "title": "ハロウィンイベント",
-      "category": "イベント",
-      "startDate": "2025-10-01",
-      "startTime": "00:00",
-      "startNote": "",
-      "endDate": "2025-11-19",
-      "endTime": null,
-      "endNote": "",
-      "kind": "range",
-      "sources": [
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
-        }
-      ],
-      "dateLabel": "10月1日(水)0:00~",
-      "referenceMonth": "2025-10"
-    },
-    {
-      "id": "CALab32f1851eb1d662",
-      "title": "新ハロウィンイベント",
-      "category": "イベント",
-      "startDate": "2025-10-22",
-      "startTime": null,
-      "startNote": "",
-      "endDate": "2025-11-19",
-      "endTime": null,
-      "endNote": "",
-      "kind": "range",
-      "sources": [
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
-        }
-      ],
-      "dateLabel": "10月22日(水)",
-      "referenceMonth": "2025-10"
-    },
-    {
-      "id": "CALd80e838dc97e81a9",
-      "title": "クエスト報酬経験値+50%アップキャンペーン",
-      "category": "育成",
-      "startDate": "2025-10-29",
-      "startTime": null,
-      "startNote": "メンテナンス後",
-      "endDate": "2025-11-05",
-      "endTime": "13:59",
-      "endNote": "",
-      "kind": "range",
-      "sources": [
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
-        }
-      ],
-      "dateLabel": "10月29日(水)メンテナンス後~11月5日(水)13:59まで",
-      "referenceMonth": "2025-10"
-    },
-    {
-      "id": "CAL21469290a3aab535",
-      "title": "生産効率+20%アップキャンペーン",
-      "category": "生産・支援",
-      "startDate": "2025-10-29",
-      "startTime": null,
-      "startNote": "メンテナンス後",
-      "endDate": "2025-11-05",
-      "endTime": "13:59",
-      "endNote": "",
-      "kind": "range",
-      "sources": [
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
-        }
-      ],
-      "dateLabel": "10月29日(水)メンテナンス後~11月5日(水)13:59まで",
-      "referenceMonth": "2025-10"
-    },
-    {
-      "id": "CALa7d3277a1a37a83f",
-      "title": "ツチノコ・ブレイク",
-      "category": "レイド",
-      "startDate": "2025-10-31",
-      "startTime": "00:00",
-      "startNote": "",
-      "endDate": "2025-10-31",
-      "endTime": "23:59",
-      "endNote": "",
-      "kind": "range",
-      "sources": [
-        {
-          "url": "https://android.iruna.jp/information?page=406",
-          "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
-          "publishedAt": "2025-10-30",
-          "sha256": "6ce4963b3eac621243089571017c1f65363cc3b9fb4880a01906e03d7556b6df",
-          "kind": "notice"
-        }
-      ],
-      "scheduledByRule": true,
-      "recurrence": {
-        "weekdays": [
-          5
-        ],
-        "startTime": "00:00",
-        "endTime": "23:59"
-      },
-      "dateLabel": "公式告知の週次予定",
-      "description": "▼レイドバトル「ツチノコ・ブレイク」とは?\n毎週金曜に24時間限定で出現する、ボスモンスター「ツチノコキング」を倒すと、極まれにアルクリスタや島で育成できるペットが生まれる「ツチノコキングの卵」が手に入ります。\n▼ツチノコ・ブレイク参加方法\nイベント期間中、「ロココの街」のNPC「アレン」よりギルド・グループレイドとしてレイドバトルへ参加できます。\n▼入手可能なアイテム\n■ペットの卵「ツチノコキングの卵」\nツチノコキングが生まれる卵。島で育ててみましょう。\n■アルクリスタ 「▲ツチノコキング」\n全ステータス+5 MaxHP・MP+5% ATK・MATK+5% ディレイ-0.5秒 物理・魔法耐性+5%\n■「ツチノコ・ブレイク」開催日時\n毎週金曜日0:00~23:59\n毎週金曜日24時間限定のイベントでございますので奮ってご参加ください!"
-    },
     {
       "id": "CALdba84d1b42c25e0e",
       "title": "レアドロップ+3キャンペーン",
@@ -506,13 +359,6 @@
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
           "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
         }
       ],
       "dateLabel": "11月5日(水)13:59まで",
@@ -536,13 +382,6 @@
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
           "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
         }
       ],
       "dateLabel": "11月5日(水)13:59まで",
@@ -565,13 +404,6 @@
           "title": "2025年11月アップデート&イベント情報!",
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
-          "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
           "kind": "monthly"
         }
       ],
@@ -651,13 +483,6 @@
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
           "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-          "kind": "monthly"
         }
       ],
       "dateLabel": "11月5日(水)13:59まで",
@@ -680,13 +505,6 @@
           "title": "2025年11月アップデート&イベント情報!",
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
-          "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
           "kind": "monthly"
         }
       ],
@@ -733,13 +551,6 @@
           "title": "2025年11月アップデート&イベント情報!",
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
-          "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
           "kind": "monthly"
         }
       ],
@@ -794,13 +605,6 @@
           "title": "2025年11月アップデート&イベント情報!",
           "publishedAt": "2025-10-30",
           "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
-          "kind": "monthly"
-        },
-        {
-          "url": "http://irunablog.iruna.jp/?p=49188",
-          "title": "2025年10月アップデート&イベント情報!",
-          "publishedAt": "2025-09-26",
-          "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
           "kind": "monthly"
         }
       ],
@@ -27381,6 +27185,13 @@
           "publishedAt": "2026-10-26",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週月曜20:00~ / 終了:毎週月曜21:59まで",
@@ -27415,6 +27226,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=7",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-26",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27454,6 +27272,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=6",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-27",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-10-27",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
@@ -27527,6 +27352,13 @@
           "publishedAt": "2026-10-27",
           "sha256": "bd0a60fd26c1bbac33d54f39bc90f825e562170a659a1b61e75746b7413c8cb3",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "イルーナ12神の天啓イベント開催!10月28日(水)0:00~10月29日(木)23:59",
+          "publishedAt": "2026-10-27",
+          "sha256": "bd0a60fd26c1bbac33d54f39bc90f825e562170a659a1b61e75746b7413c8cb3",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年10月28日(水) 0:00~ / 終了:2026年10月29日(木)23:59まで",
@@ -27553,6 +27385,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=5",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-10-28",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-10-28",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27755,6 +27594,13 @@
           "publishedAt": "2026-10-30",
           "sha256": "18542634ba073be09158a44254dc8239736393e1d5e5cb93ccf16b069640f8df",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "イルーナ12神の闇の結晶イベント開催!10月31日(土)0:00~11月1日(日)23:59",
+          "publishedAt": "2026-10-30",
+          "sha256": "18542634ba073be09158a44254dc8239736393e1d5e5cb93ccf16b069640f8df",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年10月31日(土) 0:00~ / 終了:2026年11月 1日(日)23:59まで",
@@ -27774,6 +27620,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-31",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-10-31",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
@@ -27819,6 +27672,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-31",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=8",
           "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
           "publishedAt": "2026-10-24",
@@ -27855,6 +27715,13 @@
           "publishedAt": "2026-10-29",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-29",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27883,6 +27750,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=7",
+          "title": "2時間限定!ドロップ率50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-25",
+          "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
           "title": "2時間限定!ドロップ率50%アップキャンペーン開催!",
           "publishedAt": "2026-10-25",
           "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
@@ -27925,6 +27799,13 @@
           "publishedAt": "2026-10-30",
           "sha256": "b2196a0ff07bfa8ed6c376832851a3458b6824adf5961a9bd78c535ecb25a9d4",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
+          "title": "冒険者応援ログインボーナス開催! 11月1日(日)0:00~3日(火)23:59",
+          "publishedAt": "2026-10-30",
+          "sha256": "b2196a0ff07bfa8ed6c376832851a3458b6824adf5961a9bd78c535ecb25a9d4",
+          "kind": "notice"
         }
       ],
       "dateLabel": "11月1日(日)0:00~11月3日(火)23:59まで",
@@ -27945,6 +27826,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=6",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-10-26",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
           "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
           "publishedAt": "2026-10-26",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
@@ -28402,6 +28290,13 @@
           "publishedAt": "2026-10-29",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-10-29",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -28430,6 +28325,13 @@
       "sources": [
         {
           "url": "https://android.iruna.jp/information?page=2",
+          "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
+          "publishedAt": "2026-10-29",
+          "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
           "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
           "publishedAt": "2026-10-29",
           "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
@@ -28469,6 +28371,83 @@
       ],
       "dateLabel": "11月6日(金)0:00~11月9日(月)23:59まで",
       "referenceMonth": "2026-11"
+    },
+    {
+      "id": "CALbab3e670bcae652e",
+      "title": "チャンネルレイド「ラーアトン」",
+      "category": "レイド",
+      "startDate": "2026-11-07",
+      "startTime": "21:00",
+      "startNote": "",
+      "endDate": null,
+      "endTime": null,
+      "endNote": "",
+      "kind": "point",
+      "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-31",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-10-27",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        }
+      ],
+      "scheduledByRule": true,
+      "recurrence": {
+        "weekdays": [
+          2,
+          6
+        ],
+        "startTime": "21:00",
+        "endTime": null
+      },
+      "dateLabel": "公式告知の週次予定",
+      "description": "全サーバーのプレイヤー達が協力して挑む、ボス「ラーアトン」とのチャンネルレイドを開催します!\n▼チャンネルレイド「ラーアトン」とは?\n迫りくる脅威、ボス「ラーアトン」からイルーナの世界を護る特別仕様のレイドです!\n■制限時間と参加報酬\nボス「ラーアトン」を制限時間15分\n以内に倒せば、チャンネルレイドに参加したプレイヤー全員が1,000万もの経験値\nを獲得できます。\n低いレベルのキャラクターでも専用フィールドのギミックを駆使して戦闘に参加できます!全員で協力して迫りくる「ラーアトン」を倒しましょう!\n※ボスを討伐したタイミングに専用フィールドに居ることで経験値を獲得できます。\n■参加方法\n・「ロココの街」からNPC「スピーシア」と会話で専用のフィールドに入場\n※チャンネルレイド開始30分前から入場できます。\n■チュートリアル終了後からすぐに参加できる!\nチュートリアル終了時に「★ロココの街」が自動で貰えます。\n画面左上の「MENU」をタップ>メインメニュー内のアイテムをタップ>消費欄(袋のアイコン)をタップします。「★ロココの街」を使って瞬時に「ロココの街」に移動できます!\n■ラーアトンの出現時間\n・毎週火曜21:00~\n・毎週土曜21:00~\n■ランキングの更新時間\n・ボス討伐が完了した時間帯の40分~50分に更新されます。\n・メニュー内のコミュニティ>ランキングから確認できます。\n・チャンネルレイドが開始すると過去のランキングは確認できません。予めご了承ください。\n■チャンネルレイドのギミックとは?\nチャンネルレイドの専用フィールドには、魔法陣が設置されており、様々な特性を持ってます。\n南東、北東、南西、北東、南、北に存在する各属性の力場にキャラクターが入ると、中央の魔法陣から強大な力が発生します。\nラーアトンが中央に来た時に魔法陣を発動させることで、大ダメージを与えられます。\nラーアトンが中央にいない状態で魔法陣を発動させた場合、各属性の力場の復活に1分ほどの時間が必要になりますのでご注意ください。\n▼チャンネルレイドのランキングがリニューアル!\nチャンネルレイドのランキングでは、次のポイントが新しくリニューアルされました。\n・チャンネルレイド「ウーベル」のみだったランキング公開が、リニューアル後は、全てのチャンネルレイド「ラーアトン」「ウーベル」「シアナス」でランキングが確認可能になりました。\n・これまで「全職業」中のランキングが表示されていましたが、リニューアル後は、3次職業や特殊職業のすべての職業を対象に職業別でランキングが確認可能になりました。\n・ランキングに表示されるキャラクター名をタップすると、皆様から好評いただいているプロフィール機能の表示に連動します。ランキング上位の強者がどのような活動をなさっているのかチェックできます。\n・チャンネルレイドのランキング結果で「最大ダメージ」が確認できるようになりました。\n・ランキング情報「TOP30」「自分の周り」に新しく「ギルド」を追加しました。ギルドメンバー同士で競ってみるなど、身近なプレイヤーとチャンネルレイドをお楽しみいただけます。\n※ランキングは「ランクポイント」で決定します。\n▼チャンネルレイド直前の時間帯のログインはお控えください\n日頃からチャンネルレイドにご参加いただきまして、ありがとうございます。\n現在、事前に開催の告知を行わせていただき、皆さまに開催時刻の周知を行わせていただいておりますが、チャンネルレイド開催直前にログイン数の大幅な増加が見られ、チャンネルレイド直前にログインできない事象を確認しております。\nチャンネルレイド開始30分前を目安にログインいただきますようご理解ご協力のほどお願いいたします。\nレイド開始直前は、ゲームサーバーへの接続が大変混み合い繋がりにくくなります。時間に余裕をもってログインしてください。\n▼ゲームサーバーへのアクセス集中の緩和にご協力ください\n1つのゲームサーバーにログインが集中しますと戦闘中の処理に負荷が掛かる傾向を確認しております。\nチャンネルレイドに参加する際は、ログイン人数が少ないゲームサーバーにログインいただきますようご協力お願いいたします。\nゲーム画面の更新が遅れる場合は、システム設定で次の項目を変更することで、不要な通信が無くなり、動作が緩和いたします。\n・PTのみ表示で他人の表示を減らす。\n・表示人数を可変して表示人数を減らす。\n通信が遅いと感じられる場合は空いているゲームサーバーにログインすることをお勧めいたします。\n▼チャンネルレイドで使用したコインアイテムについて\n当日は参加者も多く接続が不安定になることが予想されます。\n取得経験値について、戦闘終了前に接続不良となり、討伐時の経験値が取得できなかった場合でも、取得経験値の補償ができません。\nこれに関連して直前に使用されたコインアイテムも補償できません。予めご了承ください。\n※予期せぬ不具合が発生した場合は、ボスの出現を終了とさせていただく場合があります。\n※不具合が発生した場合などに関しましては、各種修正適用をさせていただく場合があります。\n▼ゲームサーバーとの接続不良で復旧が困難な項目一覧\n・消費、回復、収集アイテムの取得、アイテム操作した情報。\n・レベルアップしていない間の取得経験値。\n・ステータス解放レベルの取得経験値。\n・キャラクターの所持スピナ。\n・ミッション、クエストの進行情報。\n・転職情報。\n・生産レベルアップ、経験値。\n・イグナイトの蓄積時間。"
+    },
+    {
+      "id": "CAL4472aede99775e50",
+      "title": "取得経験値50%アップキャンペーン",
+      "category": "育成",
+      "startDate": "2026-11-07",
+      "startTime": "20:00",
+      "startNote": "",
+      "endDate": "2026-11-07",
+      "endTime": "21:59",
+      "endNote": "",
+      "kind": "range",
+      "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-31",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-10-24",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
+        }
+      ],
+      "dateLabel": "開始:毎週土曜20:00~ / 終了:毎週土曜21:59まで",
+      "scheduledByRule": true,
+      "recurrence": {
+        "weekdays": [
+          6
+        ],
+        "startTime": "20:00",
+        "endTime": "21:59"
+      },
+      "description": "ロココの街のNPC「GMナインツ」に会話すると、取得経験値が50%増加\nする2時間の継続効果が得られます。\n▼イベント内容\nNPC「GMナインツ」と会話>「スポットUP」>「付与して欲しい」を選択します。\n※付与されてから2時間のスポットアップ効果が得られます。22:00を過ぎても継続効果が終了するまでの時間は効果が継続します。\n※ボス戦のディスペル効果では、スポットアップの継続効果は消えません。\n※再ログイン、ゲームサーバーと接続が切れた場合は効果が消えます。再度「付与して欲しい」を選択してください。\n※ログインのみでは、スポットアップの効果は得られませんのでご注意ください。\n■開催日時\n開始:毎週土曜20:00~\n終了:毎週土曜21:59まで\nぜひ、この機会をご活用ください。"
     },
     {
       "id": "CAL8989915ae14b74fc",
@@ -28839,19 +28818,12 @@
       "publishedAt": "2025-10-30",
       "sha256": "c3dd83530c2e3d9417891466195a8ff34dcf7b3f92a7bd278c2fc4dd8722404c",
       "kind": "monthly"
-    },
-    {
-      "url": "http://irunablog.iruna.jp/?p=49188",
-      "title": "2025年10月アップデート&イベント情報!",
-      "publishedAt": "2025-09-26",
-      "sha256": "8b1e9cccbcbbab0e976135756f177f6ca1d24f807acb64f599c8cbc7f8e7773f",
-      "kind": "monthly"
     }
   ],
   "scan": {
     "pages": 8,
     "notices": 40,
-    "oldestNotice": "2026-10-24",
+    "oldestNotice": "2026-10-25",
     "mode": "incremental",
     "lastFullScan": "2026-10-30T19:22:27.894Z",
     "lastFullScanDetails": {
