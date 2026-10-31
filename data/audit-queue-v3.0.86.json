@@ -1,0 +1,2104 @@
+{
+  "preparedAt": "2026-10-31",
+  "baseline": "6ba76387bf96bca566e0b2d59fee21c534c65b4e",
+  "scope": "既存監査からの整理。新たな資料照合・残件解消を意味しない。22行と68行は重複しうる別集計。",
+  "legacyHeld": 582,
+  "legacyUnmatched": [
+    {
+      "monster": 135,
+      "name": "ネギ",
+      "type": "Sword",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 135,
+      "name": "ネギ",
+      "type": "Bows",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 135,
+      "name": "ネギ",
+      "type": "Canes",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 144,
+      "name": "ヒゲ",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 514,
+      "name": "バックラー",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 535,
+      "name": "ちび雪ダルマ",
+      "type": "IslandObject",
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monster": 553,
+      "name": "ミニハニワ",
+      "type": "IslandObject",
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monster": 556,
+      "name": "ミニハニワ",
+      "type": "IslandObject",
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monster": 559,
+      "name": "ミニハニワ",
+      "type": "IslandObject",
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monster": 1325,
+      "name": "ブルーメギフト",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1486,
+      "name": "バルバロティタ",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1506,
+      "name": "陣羽織",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1508,
+      "name": "陣羽織",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1588,
+      "name": "うさリボン（青）",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1595,
+      "name": "シニョンリボン",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1799,
+      "name": "シルワクロス",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1801,
+      "name": "シルワクロス",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1967,
+      "name": "ブリムハット",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 1969,
+      "name": "ブリムハット",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 2302,
+      "name": "頭乗りバード",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monster": 3484,
+      "name": "愛叫マイク",
+      "type": "Special",
+      "nextCheck": "日本語能力説明を確認（英語説明から補完しない）",
+      "status": "未照合"
+    },
+    {
+      "monster": 209,
+      "name": "キャスケット",
+      "type": "Additional",
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    }
+  ],
+  "historicalRemaining": [
+    {
+      "monsterId": "MON000219",
+      "monsterName": "アルブレロ",
+      "historicalLv": [
+        117,
+        117
+      ],
+      "sourceMonsterIds": [
+        553
+      ],
+      "mapNames": [
+        "インジェ百穴"
+      ],
+      "name": "ミニハニワ",
+      "sourceType": "IslandObject",
+      "candidates": [
+        {
+          "id": "MAT001288",
+          "name": "ミニハニワ",
+          "type": "収集品"
+        }
+      ],
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000220",
+      "monsterName": "アルブレロ",
+      "historicalLv": [
+        119,
+        119
+      ],
+      "sourceMonsterIds": [
+        553
+      ],
+      "mapNames": [
+        "インジェ百穴"
+      ],
+      "name": "ミニハニワ",
+      "sourceType": "IslandObject",
+      "candidates": [
+        {
+          "id": "MAT001288",
+          "name": "ミニハニワ",
+          "type": "収集品"
+        }
+      ],
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000254",
+      "monsterName": "ラングロン",
+      "historicalLv": [
+        175,
+        175
+      ],
+      "sourceMonsterIds": [
+        265
+      ],
+      "mapNames": [
+        "ノトゥル平野"
+      ],
+      "name": "◇ＭＰ＋１１％",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000284",
+          "name": "◇MP+11%",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000269",
+      "monsterName": "スケリット",
+      "historicalLv": [
+        180,
+        180
+      ],
+      "sourceMonsterIds": [
+        642
+      ],
+      "mapNames": [
+        "ハーデス迷界"
+      ],
+      "name": "◇ＨＰ＋４００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000279",
+          "name": "◇HP+400",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000076",
+          "name": "▲ＨＰ＋４００",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000280",
+      "monsterName": "アルブレロ",
+      "historicalLv": [
+        118,
+        118
+      ],
+      "sourceMonsterIds": [
+        556
+      ],
+      "mapNames": [
+        "インジェ百穴"
+      ],
+      "name": "ミニハニワ",
+      "sourceType": "IslandObject",
+      "candidates": [
+        {
+          "id": "MAT001288",
+          "name": "ミニハニワ",
+          "type": "収集品"
+        }
+      ],
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000304",
+      "monsterName": "アルブレロ",
+      "historicalLv": [
+        121,
+        121
+      ],
+      "sourceMonsterIds": [
+        559
+      ],
+      "mapNames": [
+        "インジェ百穴"
+      ],
+      "name": "ミニハニワ",
+      "sourceType": "IslandObject",
+      "candidates": [
+        {
+          "id": "MAT001288",
+          "name": "ミニハニワ",
+          "type": "収集品"
+        }
+      ],
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000343",
+      "monsterName": "ポリグナ",
+      "historicalLv": [
+        247,
+        247
+      ],
+      "sourceMonsterIds": [
+        1618
+      ],
+      "mapNames": [
+        "スパーガス緑地"
+      ],
+      "name": "▲ＣＲＴ＋１",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000077",
+          "name": "◇CRT+1",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000032",
+          "name": "▲CRT+1",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000097",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000059",
+          "name": "◇CRT+1",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000496",
+      "monsterName": "パローネ",
+      "historicalLv": [
+        44,
+        44
+      ],
+      "sourceMonsterIds": [
+        69
+      ],
+      "mapNames": [
+        "ソフィア郊外"
+      ],
+      "name": "◇ＭＤＥＦ＋１％",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000296",
+          "name": "◇MDEF+1%",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000595",
+      "monsterName": "ルイーン",
+      "historicalLv": [
+        62,
+        62
+      ],
+      "sourceMonsterIds": [
+        101
+      ],
+      "mapNames": [
+        "カルエ湖"
+      ],
+      "name": "◇ＶＩＴ＋２",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000497",
+          "name": "◇VIT+2",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000183",
+          "name": "▲ＶＩＴ＋２",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000227",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000072",
+          "name": "◇VIT+2",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000613",
+      "monsterName": "ラッテ",
+      "historicalLv": [
+        107,
+        107
+      ],
+      "sourceMonsterIds": [
+        149
+      ],
+      "mapNames": [
+        "トルバス郊外"
+      ],
+      "name": "◇ＨＰ＋３００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000278",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000077",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000616",
+      "monsterName": "カルカース",
+      "historicalLv": [
+        111,
+        111
+      ],
+      "sourceMonsterIds": [
+        155
+      ],
+      "mapNames": [
+        "クローヌ街道"
+      ],
+      "name": "◇ＭＰ＋９０",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000295",
+          "name": "◇MP+90",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000076",
+          "name": "◇MP+90",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000632",
+      "monsterName": "ピークス",
+      "historicalLv": [
+        139,
+        140
+      ],
+      "sourceMonsterIds": [
+        209
+      ],
+      "mapNames": [
+        "アインの森"
+      ],
+      "name": "キャスケット",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000170",
+          "name": "キャスケット",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000671",
+      "monsterName": "地の精霊",
+      "historicalLv": [
+        201,
+        201
+      ],
+      "sourceMonsterIds": [
+        290
+      ],
+      "mapNames": [
+        "神々の塔"
+      ],
+      "name": "◇ＶＩＴ＋５",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000500",
+          "name": "◇VIT+5",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000679",
+      "monsterName": "闇の精霊",
+      "historicalLv": [
+        204,
+        204
+      ],
+      "sourceMonsterIds": [
+        298
+      ],
+      "mapNames": [
+        "神々の塔"
+      ],
+      "name": "◇ＤＥＦ＋３％",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000096",
+          "name": "◇DEF+3%",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000726",
+      "monsterName": "スケルトン",
+      "historicalLv": [
+        32,
+        32
+      ],
+      "sourceMonsterIds": [
+        393
+      ],
+      "mapNames": [
+        "忘れられた洞窟B2"
+      ],
+      "name": "古びた兜",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000021",
+          "name": "古びた兜",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000739",
+      "monsterName": "ドラギスタ",
+      "historicalLv": [
+        56,
+        56
+      ],
+      "sourceMonsterIds": [
+        409
+      ],
+      "mapNames": [
+        "王竜の浮島・謁見の間"
+      ],
+      "name": "◇ＤＥＦ＋１％",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000094",
+          "name": "◇DEF+1%",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000804",
+      "monsterName": "ペンギーノ",
+      "historicalLv": [
+        92,
+        92
+      ],
+      "sourceMonsterIds": [
+        535
+      ],
+      "mapNames": [
+        "氷の塔"
+      ],
+      "name": "ちび雪ダルマ",
+      "sourceType": "IslandObject",
+      "candidates": [
+        {
+          "id": "MAT001281",
+          "name": "ちび雪ダルマ",
+          "type": "収集品"
+        }
+      ],
+      "nextCheck": "島オブジェクトの分類・用途を日本語資料で確認",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON000866",
+      "monsterName": "マルフィル",
+      "historicalLv": [
+        158,
+        158
+      ],
+      "sourceMonsterIds": [
+        665
+      ],
+      "mapNames": [
+        "ビゼン森林地区"
+      ],
+      "name": "◇STR・VIT+2",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000446",
+          "name": "◇STR・VIT+2",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001054",
+      "monsterName": "サンドスネーク",
+      "historicalLv": [
+        176,
+        176
+      ],
+      "sourceMonsterIds": [
+        886
+      ],
+      "mapNames": [
+        "永久の迷宮"
+      ],
+      "name": "◇ＣＲＴ＋５",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000081",
+          "name": "◇CRT+5",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001236",
+      "monsterName": "中忍",
+      "historicalLv": [
+        169,
+        169
+      ],
+      "sourceMonsterIds": [
+        1074
+      ],
+      "mapNames": [
+        "イスルギ寺"
+      ],
+      "name": "黒猫頭巾",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000100",
+          "name": "黒猫頭巾",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001239",
+      "monsterName": "火吹き猫",
+      "historicalLv": [
+        171,
+        171
+      ],
+      "sourceMonsterIds": [
+        1083
+      ],
+      "mapNames": [
+        "偏屈職人の館"
+      ],
+      "name": "◇ＨＰ＋４００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000279",
+          "name": "◇HP+400",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000076",
+          "name": "▲ＨＰ＋４００",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001372",
+      "monsterName": "クルーシェ",
+      "historicalLv": [
+        202,
+        202
+      ],
+      "sourceMonsterIds": [
+        1310
+      ],
+      "mapNames": [
+        "イサワヶ森"
+      ],
+      "name": "◇DEX・CRT+2",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000101",
+          "name": "◇DEX・CRT+2",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001385",
+      "monsterName": "スタームナ",
+      "historicalLv": [
+        234,
+        234
+      ],
+      "sourceMonsterIds": [
+        1334
+      ],
+      "mapNames": [
+        "第２宮前庭"
+      ],
+      "name": "◇STR・INT+3",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000442",
+          "name": "◇STR・INT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001391",
+      "monsterName": "フォノグラフ",
+      "historicalLv": [
+        236,
+        236
+      ],
+      "sourceMonsterIds": [
+        1341
+      ],
+      "mapNames": [
+        "最上宮前庭"
+      ],
+      "name": "ブルーグラス",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000125",
+          "name": "ブルーグラス",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001438",
+      "monsterName": "仮面兵士",
+      "historicalLv": [
+        241,
+        241
+      ],
+      "sourceMonsterIds": [
+        1433
+      ],
+      "mapNames": [
+        "竜帝神殿"
+      ],
+      "name": "◇STR・AGI+3",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000437",
+          "name": "◇STR・AGI+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001444",
+      "monsterName": "ドラギヒト",
+      "historicalLv": [
+        203,
+        203
+      ],
+      "sourceMonsterIds": [
+        1441
+      ],
+      "mapNames": [
+        "ムベレ峠"
+      ],
+      "name": "◇ＨＩＴ＋４０",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000195",
+          "name": "◇HIT+40",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001548",
+      "monsterName": "ボワット",
+      "historicalLv": [
+        287,
+        287
+      ],
+      "sourceMonsterIds": [
+        1590
+      ],
+      "mapNames": [
+        "異変ノイエヴェル"
+      ],
+      "name": "▲DEF+100",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "AL000037",
+          "name": "▲DEF+100",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001572",
+      "monsterName": "ベスヤク",
+      "historicalLv": [
+        256,
+        256
+      ],
+      "sourceMonsterIds": [
+        1638
+      ],
+      "mapNames": [
+        "トルバス緑区"
+      ],
+      "name": "▲ＨＰ＋２００",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000277",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "AL000075",
+          "name": "▲ＨＰ＋２００",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "REF000067",
+          "name": "◇HP+200",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001632",
+      "monsterName": "ジュラル",
+      "historicalLv": [
+        298,
+        298
+      ],
+      "sourceMonsterIds": [
+        1748
+      ],
+      "mapNames": [
+        "謎の構造物空間"
+      ],
+      "name": "◇ＤＥＸ＋７",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000111",
+          "name": "◇ＤＥＸ＋７",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001654",
+      "monsterName": "ゴリエペ",
+      "historicalLv": [
+        261,
+        261
+      ],
+      "sourceMonsterIds": [
+        1779
+      ],
+      "mapNames": [
+        "アルカド山"
+      ],
+      "name": "アサドプレート",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000038",
+          "name": "アサドプレート",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001728",
+      "monsterName": "影槍士",
+      "historicalLv": [
+        279,
+        279
+      ],
+      "sourceMonsterIds": [
+        1887
+      ],
+      "mapNames": [
+        "試練の会堂"
+      ],
+      "name": "▲DEF+50",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "AL000039",
+          "name": "▲DEF+50",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001851",
+      "monsterName": "智天使ケルビア",
+      "historicalLv": [
+        304,
+        304
+      ],
+      "sourceMonsterIds": [
+        2052
+      ],
+      "mapNames": [
+        "至高殿"
+      ],
+      "name": "◇ＶＩＴ＋７",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000502",
+          "name": "◇ＶＩＴ＋７",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001859",
+      "monsterName": "キジムー",
+      "historicalLv": [
+        297,
+        297
+      ],
+      "sourceMonsterIds": [
+        2065
+      ],
+      "mapNames": [
+        "ﾌｫﾙﾃｨﾅ祭壇前"
+      ],
+      "name": "▲ＨＰ＋４００",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000279",
+          "name": "◇HP+400",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000076",
+          "name": "▲ＨＰ＋４００",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001863",
+      "monsterName": "ヤシガニ",
+      "historicalLv": [
+        323,
+        323
+      ],
+      "sourceMonsterIds": [
+        2071
+      ],
+      "mapNames": [
+        "フォリスコ平原・北"
+      ],
+      "name": "▲DEF+150",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "AL000038",
+          "name": "▲DEF+150",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001866",
+      "monsterName": "モルフィ",
+      "historicalLv": [
+        322,
+        322
+      ],
+      "sourceMonsterIds": [
+        2074
+      ],
+      "mapNames": [
+        "フォリスコ平原・北"
+      ],
+      "name": "◇INT・CRT+5",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000215",
+          "name": "◇INT・CRT+5",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001873",
+      "monsterName": "クラープ",
+      "historicalLv": [
+        306,
+        306
+      ],
+      "sourceMonsterIds": [
+        2082
+      ],
+      "mapNames": [
+        "ルカオ海岸"
+      ],
+      "name": "◇ＣＲＴ＋７",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000083",
+          "name": "◇ＣＲＴ＋７",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001893",
+      "monsterName": "ラムッカ",
+      "historicalLv": [
+        318,
+        318
+      ],
+      "sourceMonsterIds": [
+        2107
+      ],
+      "mapNames": [
+        "フォリスコ平原・南"
+      ],
+      "name": "▲ＳＴＲ＋３",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000452",
+          "name": "◇STR+3",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000168",
+          "name": "▲ＳＴＲ＋３",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000223",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000080",
+          "name": "◇STR+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001898",
+      "monsterName": "シュトラウス",
+      "historicalLv": [
+        319,
+        319
+      ],
+      "sourceMonsterIds": [
+        2114
+      ],
+      "mapNames": [
+        "フォリスコ平原・西"
+      ],
+      "name": "▲ＡＧＩ＋３",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "AL000009",
+          "name": "▲AGI+3",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000250",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000083",
+          "name": "◇AGI+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001902",
+      "monsterName": "スイカコロン",
+      "historicalLv": [
+        307,
+        307
+      ],
+      "sourceMonsterIds": [
+        2118
+      ],
+      "mapNames": [
+        "食料庫"
+      ],
+      "name": "▲MDEF+150",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "AL000103",
+          "name": "▲MDEF+150",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001922",
+      "monsterName": "ヤークト",
+      "historicalLv": [
+        309,
+        309
+      ],
+      "sourceMonsterIds": [
+        2142
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "name": "▲ＭＰ＋１２０",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000285",
+          "name": "◇MP+120",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000115",
+          "name": "▲ＭＰ＋１２０",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001924",
+      "monsterName": "フロラビィ",
+      "historicalLv": [
+        316,
+        316
+      ],
+      "sourceMonsterIds": [
+        2144
+      ],
+      "mapNames": [
+        "ダフニ野山"
+      ],
+      "name": "オードラス",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000052",
+          "name": "オードラス",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001936",
+      "monsterName": "アインハージャ",
+      "historicalLv": [
+        332,
+        332
+      ],
+      "sourceMonsterIds": [
+        2158
+      ],
+      "mapNames": [
+        "ティモア回廊"
+      ],
+      "name": "▲ＤＥＸ＋３",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000107",
+          "name": "◇DEX+3",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000042",
+          "name": "▲ＤＥＸ＋３",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000105",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000084",
+          "name": "◇DEX+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON001986",
+      "monsterName": "フラッポーク",
+      "historicalLv": [
+        331,
+        331
+      ],
+      "sourceMonsterIds": [
+        2211
+      ],
+      "mapNames": [
+        "氷の洞窟グラカルブ"
+      ],
+      "name": "▲ＣＲＴ＋３",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000079",
+          "name": "◇CRT+3",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000034",
+          "name": "▲CRT+3",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000099",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000085",
+          "name": "◇CRT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002014",
+      "monsterName": "カーカドラス",
+      "historicalLv": [
+        343,
+        343
+      ],
+      "sourceMonsterIds": [
+        2254
+      ],
+      "mapNames": [
+        "時の迷宮カーブベル"
+      ],
+      "name": "◇STR・AGI+5",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000439",
+          "name": "◇STR・AGI+5",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002032",
+      "monsterName": "ナイトトレント",
+      "historicalLv": [
+        345,
+        345
+      ],
+      "sourceMonsterIds": [
+        2275
+      ],
+      "mapNames": [
+        "テルトの森"
+      ],
+      "name": "◇VIT・DEX+5",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000495",
+          "name": "◇VIT・DEX+5",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002043",
+      "monsterName": "チェシャー",
+      "historicalLv": [
+        345,
+        345
+      ],
+      "sourceMonsterIds": [
+        2289
+      ],
+      "mapNames": [
+        "フライガル小道"
+      ],
+      "name": "▲ＭＰ＋１８０",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000288",
+          "name": "◇ＭＰ＋１８０",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000116",
+          "name": "▲ＭＰ＋１８０",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002071",
+      "monsterName": "コクレア",
+      "historicalLv": [
+        350,
+        350
+      ],
+      "sourceMonsterIds": [
+        2322
+      ],
+      "mapNames": [
+        "ナーハベルグ山"
+      ],
+      "name": "◇INT・VIT+5",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000220",
+          "name": "◇INT・VIT+5",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002080",
+      "monsterName": "ラウトハーン",
+      "historicalLv": [
+        346,
+        346
+      ],
+      "sourceMonsterIds": [
+        2333
+      ],
+      "mapNames": [
+        "シュペリオ廃村"
+      ],
+      "name": "▲MDEF+200",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "AL000104",
+          "name": "▲MDEF+200",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002111",
+      "monsterName": "スカシバ",
+      "historicalLv": [
+        354,
+        354
+      ],
+      "sourceMonsterIds": [
+        2369
+      ],
+      "mapNames": [
+        "キッファルト森林"
+      ],
+      "name": "▲ＨＰ＋６００",
+      "sourceType": "AL Crysta",
+      "candidates": [
+        {
+          "id": "CR000281",
+          "name": "◇ＨＰ＋６００",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000077",
+          "name": "▲ＨＰ＋６００",
+          "type": "アルクリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002142",
+      "monsterName": "コドリーロ",
+      "historicalLv": [
+        365,
+        365
+      ],
+      "sourceMonsterIds": [
+        2407
+      ],
+      "mapNames": [
+        "ヤーデルト林地"
+      ],
+      "name": "◇ＭＰ＋２４０",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000332",
+          "name": "◇ＭＰ＋２４０",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002147",
+      "monsterName": "アーマートループ",
+      "historicalLv": [
+        362,
+        362
+      ],
+      "sourceMonsterIds": [
+        2414
+      ],
+      "mapNames": [
+        "ラッツブルグ城"
+      ],
+      "name": "アビサルマスク",
+      "sourceType": "Additional",
+      "candidates": [
+        {
+          "id": "AD000004",
+          "name": "アビサルマスク",
+          "type": "防具"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002168",
+      "monsterName": "御神岩",
+      "historicalLv": [
+        359,
+        359
+      ],
+      "sourceMonsterIds": [
+        2438
+      ],
+      "mapNames": [
+        "アヒテム修練階段"
+      ],
+      "name": "◇ＶＩＴ＋８",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000503",
+          "name": "◇ＶＩＴ＋８",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002410",
+      "monsterName": "リュシオル",
+      "historicalLv": [
+        53,
+        53
+      ],
+      "sourceMonsterIds": [
+        2715
+      ],
+      "mapNames": [
+        "霧雨の苑"
+      ],
+      "name": "◇ＩＮＴ＋１",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000221",
+          "name": "◇INT+1",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000082",
+          "name": "▲ＩＮＴ＋１",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000136",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000055",
+          "name": "◇INT+1",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002423",
+      "monsterName": "リュシオル",
+      "historicalLv": [
+        55,
+        55
+      ],
+      "sourceMonsterIds": [
+        2728
+      ],
+      "mapNames": [
+        "霧雨の苑"
+      ],
+      "name": "◇ＩＮＴ＋１",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000221",
+          "name": "◇INT+1",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000082",
+          "name": "▲ＩＮＴ＋１",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000136",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000055",
+          "name": "◇INT+1",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002695",
+      "monsterName": "アイマギ",
+      "historicalLv": [
+        259,
+        259
+      ],
+      "sourceMonsterIds": [
+        3030
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "name": "◇INT・VIT+3",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000218",
+          "name": "◇INT・VIT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002702",
+      "monsterName": "アイマギ",
+      "historicalLv": [
+        263,
+        263
+      ],
+      "sourceMonsterIds": [
+        3038
+      ],
+      "mapNames": [
+        "ドラキュラ城"
+      ],
+      "name": "◇INT・VIT+3",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000218",
+          "name": "◇INT・VIT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002800",
+      "monsterName": "ポーカ",
+      "historicalLv": [
+        130,
+        130
+      ],
+      "sourceMonsterIds": [
+        3148
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＨＰ＋３００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000278",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000077",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002801",
+      "monsterName": "ポーカ",
+      "historicalLv": [
+        132,
+        132
+      ],
+      "sourceMonsterIds": [
+        3148
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＨＰ＋３００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000278",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000077",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002802",
+      "monsterName": "ポーカ",
+      "historicalLv": [
+        238,
+        238
+      ],
+      "sourceMonsterIds": [
+        3148
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＨＰ＋３００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000278",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000077",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002803",
+      "monsterName": "ポーカ",
+      "historicalLv": [
+        244,
+        244
+      ],
+      "sourceMonsterIds": [
+        3148
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＨＰ＋３００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000278",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000077",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002808",
+      "monsterName": "ポーカ",
+      "historicalLv": [
+        244,
+        244
+      ],
+      "sourceMonsterIds": [
+        3156
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＨＰ＋３００",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000278",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        },
+        {
+          "id": "REF000077",
+          "name": "◇HP+300",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002813",
+      "monsterName": "スノウキッド",
+      "historicalLv": [
+        150,
+        150
+      ],
+      "sourceMonsterIds": [
+        3161
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "雪精の布片",
+      "sourceType": "Collectible",
+      "candidates": [
+        {
+          "id": "MAT000835",
+          "name": "雪精の布片",
+          "type": "素材"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002813",
+      "monsterName": "スノウキッド",
+      "historicalLv": [
+        150,
+        150
+      ],
+      "sourceMonsterIds": [
+        3161
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＩＮＴ＋３",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000223",
+          "name": "◇INT+3",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000084",
+          "name": "▲ＩＮＴ＋３",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000138",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000081",
+          "name": "◇INT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002814",
+      "monsterName": "スノウキッド",
+      "historicalLv": [
+        213,
+        213
+      ],
+      "sourceMonsterIds": [
+        3161
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "雪精の布片",
+      "sourceType": "Collectible",
+      "candidates": [
+        {
+          "id": "MAT000835",
+          "name": "雪精の布片",
+          "type": "素材"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002814",
+      "monsterName": "スノウキッド",
+      "historicalLv": [
+        213,
+        213
+      ],
+      "sourceMonsterIds": [
+        3161
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＩＮＴ＋３",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000223",
+          "name": "◇INT+3",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000084",
+          "name": "▲ＩＮＴ＋３",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000138",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000081",
+          "name": "◇INT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002815",
+      "monsterName": "スノウキッド",
+      "historicalLv": [
+        250,
+        250
+      ],
+      "sourceMonsterIds": [
+        3161
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "雪精の布片",
+      "sourceType": "Collectible",
+      "candidates": [
+        {
+          "id": "MAT000835",
+          "name": "雪精の布片",
+          "type": "素材"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON002815",
+      "monsterName": "スノウキッド",
+      "historicalLv": [
+        250,
+        250
+      ],
+      "sourceMonsterIds": [
+        3161
+      ],
+      "mapNames": [
+        "白銀の雪野原"
+      ],
+      "name": "◇ＩＮＴ＋３",
+      "sourceType": "Crysta",
+      "candidates": [
+        {
+          "id": "CR000223",
+          "name": "◇INT+3",
+          "type": "クリスタ"
+        },
+        {
+          "id": "AL000084",
+          "name": "▲ＩＮＴ＋３",
+          "type": "アルクリスタ"
+        },
+        {
+          "id": "RL000138",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "REF000081",
+          "name": "◇INT+3",
+          "type": "クリスタ"
+        }
+      ],
+      "nextCheck": "分類・強化段階・同名ID・元出典のLvを個別照合",
+      "status": "未照合"
+    },
+    {
+      "monsterId": "MON003118",
+      "monsterName": "アンジュ",
+      "historicalLv": [
+        390,
+        390
+      ],
+      "sourceMonsterIds": [
+        3484
+      ],
+      "mapNames": [
+        "アフェク監獄"
+      ],
+      "name": "愛叫マイク",
+      "sourceType": "Special",
+      "candidates": [
+        {
+          "id": "SP000252",
+          "name": null,
+          "type": null
+        },
+        {
+          "id": "SP000589",
+          "name": null,
+          "type": null
+        }
+      ],
+      "nextCheck": "日本語能力説明を確認（英語説明から補完しない）",
+      "status": "未照合"
+    }
+  ]
+}
