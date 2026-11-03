@@ -1,5 +1,5 @@
 "use strict";
-importScripts("./js/config-v3.0.91.js");
+importScripts("./js/config-v3.0.92.js");
 const CACHE_NAME = `irunadb-v${IRUNA_CONFIG.APP_VERSION.replaceAll(".", "-")}`;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
