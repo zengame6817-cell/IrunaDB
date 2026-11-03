@@ -141,20 +141,43 @@
   $("forgeTown").append(...[...new Set(forgeRows.map(row=>row.place))].map(place=>new Option(place,place)));
   const forgeName=id=>forgeItems.get(id)?.["名前"]||id;
   const forgeItem=id=>button("data-item",id,forgeName(id));
-  const forgeCard=row=>`<article class="catalog-card"><h3>${forgeItem(row.to)}</h3><p>${row.from?"強化元："+forgeItem(row.from):"作成"}</p><p>${esc(row.place)} · 鍛冶屋：${esc(row.npc||"名前未確認")}</p>${row.legacy?`<p class="catalog-note">旧資料の記載（現行スマホ版は未確認）</p>`:""}<p>費用：${row.cost===null?"未確認":row.cost.toLocaleString("ja")+"スピナ"}</p><p>追加素材：${row.materials?row.materials.map(([name,count,id])=>(id&&items.has(id)?button("data-drop-item",id,name):esc(name))+" ×"+count).join("、"):"未確認"}</p></article>`;
+  const forgeCard=row=>{
+    const upgrade=Boolean(row.from),out=forgeItem(row.to);
+    const transition=upgrade
+      ? `<div class="forge-transition"><div><small>強化元</small><strong>${forgeItem(row.from)}</strong></div><span class="forge-arrow" aria-label="強化後へ">→</span><div><small>強化後</small><strong>${out}</strong></div></div>`
+      : `<div class="forge-transition"><div><small>鍛冶屋で作成</small><strong>${out}</strong></div></div>`;
+    const materials=row.materials?.length
+      ?`<ul class="forge-materials">${row.materials.map(([name,count,id])=>`<li>${id&&forgeItems.has(id)?button("data-drop-item",id,name):esc(name)} <strong>×${esc(count)}</strong></li>`).join("")}</ul>`
+      :"<p>必要素材：未確認</p>";
+    return `<article class="catalog-card forge-card">
+      <div class="forge-card-head"><span class="forge-kind">${upgrade?"装備強化":"装備作成"}</span><span>${esc(row.place)}</span></div>
+      ${transition}
+      <p>鍛冶屋：${esc(row.npc||"名前未確認")}　／　費用：<strong>${row.cost===null?"未確認":Number(row.cost).toLocaleString("ja")+"スピナ"}</strong></p>
+      ${row.legacy?'<p class="catalog-note">旧資料の記載（現行スマホ版は未確認）</p>':""}
+      <details class="forge-material-detail"><summary>必要素材を確認（${row.materials?.length??"未確認"}種類）</summary>${materials}</details>
+    </article>`;
+  };
   function renderForge(){
-    const q=model.normalize($("forgeSearch").value),rows=forgeRows.filter(row=>(!forgeTarget||forgeRelated(row,forgeTarget))&&(!$("forgeTown").value||row.place===$("forgeTown").value)&&forgeItems.has(row.to)&&(!row.from||forgeItems.has(row.from))).filter(row=>model.normalize([forgeName(row.from),forgeName(row.to),row.place,row.npc,...(row.materials||[]).map(m=>m[0])].join(" ")).includes(forgeTarget?"":q));
-    $("forgeCount").textContent=`該当${rows.length}件 / 登録${forgeRows.length}件`;
+    const q=model.normalize($("forgeSearch").value),kind=$("forgeKind").value;
+    const rows=forgeRows.filter(row=>(!forgeTarget||forgeRelated(row,forgeTarget)) &&
+      (!kind||(kind==="upgrade"?Boolean(row.from):!row.from)) &&
+      (!$("forgeTown").value||row.place===$("forgeTown").value) &&
+      forgeItems.has(row.to)&&(!row.from||forgeItems.has(row.from)))
+      .filter(row=>model.normalize([forgeName(row.from),forgeName(row.to),row.place,row.npc,...(row.materials||[]).map(m=>m[0])].join(" ")).includes(forgeTarget?"":q));
+    $("forgeCount").textContent=`該当${rows.length}件 / 登録${forgeRows.length}件（強化${rows.filter(row=>row.from).length}件・作成${rows.filter(row=>!row.from).length}件）`;
     $("forgeList").innerHTML=rows.slice(0,forgeLimit).map(forgeCard).join("")||"<p>条件に合う登録はありません。</p>";
     $("forgeMore").hidden=rows.length<=forgeLimit;
   }
   $("forgeSearch").addEventListener("input",()=>{forgeTarget="";forgeLimit=30;renderForge();});
-  $("forgeTown").addEventListener("change",()=>{forgeLimit=30;renderForge();});
+  ["forgeTown","forgeKind"].forEach(id=>$(id).addEventListener("change",()=>{forgeLimit=30;renderForge();}));
+  $("forgeClear").addEventListener("click",()=>{forgeTarget="";forgeLimit=30;$("forgeSearch").value="";$("forgeTown").value="";$("forgeKind").value="";renderForge();});
   $("forgeMore").addEventListener("click",()=>{forgeLimit+=30;renderForge();});
   document.addEventListener("click",event=>{
     const link=event.target.closest("[data-forge-item]");if(!link)return;
-    forgeTarget=link.dataset.forgeItem;forgeLimit=30;$("forgeTown").value="";$("forgeSearch").value=forgeName(forgeTarget);
-    window.IrunaModal.close();show("craft");$("forgePanel").open=true;renderForge();$("forgeSearch").focus({preventScroll:true});$("forgePanel").scrollIntoView({block:"start"});
+    forgeTarget=link.dataset.forgeItem;forgeLimit=30;
+    $("forgeTown").value="";$("forgeKind").value="";
+    $("forgeSearch").value=forgeName(forgeTarget);
+    window.IrunaModal.close();show("forge");renderForge();$("forgeSearch").focus({preventScroll:true});
   });
   renderForge();
   window.IrunaCatalog = {setEquipmentData(rows,attributes){locations.setEquipmentData(rows,attributes);forgeItems=new Map([...items,...rows.map(row=>[row["アイテムID"],row])]);renderForge();},decorateModal(item) {
