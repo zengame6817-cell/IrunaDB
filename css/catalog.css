@@ -31,3 +31,19 @@
 .catalog-wiki-audit{margin-top:16px;padding:12px;border:1px solid var(--v26-border);border-radius:10px}
 .catalog-wiki-audit summary{cursor:pointer;font-weight:700}
 .catalog-wiki-audit p{overflow-wrap:anywhere}
+
+/* Dedicated forge upgrade view */
+.forge-card{display:flex;flex-direction:column;gap:10px}
+.forge-card-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.87rem}
+.forge-kind{padding:4px 10px;border-radius:999px;background:var(--v26-surface,#e7effc);color:var(--v26-text,var(--text-color,inherit));border:1px solid var(--v26-border,var(--border-color,#b9c9dc));font-weight:700}
+.forge-transition{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px;padding:14px 10px;border:1px solid var(--border-color,#b9c9dc);border-radius:12px}
+.forge-transition:has(>div:only-child){grid-template-columns:1fr}
+.forge-transition>div{min-width:0}
+.forge-transition small{display:block;font-size:.8rem;opacity:.75;margin-bottom:6px}
+.forge-transition strong{display:block;font-size:1.05rem;overflow-wrap:anywhere}
+.forge-transition .catalog-link{font-weight:700;font-size:inherit}
+.forge-arrow{font-size:1.6rem;font-weight:800;line-height:1}
+.forge-material-detail{border-top:1px solid var(--border-color,#b9c9dc);padding-top:10px}
+.forge-material-detail summary{cursor:pointer;font-weight:700}
+.forge-materials{margin:10px 0 0;padding-left:20px}
+@media(max-width:540px){.forge-transition{gap:6px;padding:10px 7px}.forge-transition strong{font-size:.95rem}.forge-arrow{font-size:1.25rem}.forge-card-head{align-items:flex-start;flex-wrap:wrap}}
