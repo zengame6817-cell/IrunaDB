@@ -135,14 +135,28 @@
     $("craftOnlyPossible").checked=$("craftOnlyFavorite").checked=false;$("craftSort").value="levelAsc";renderCraft();
   });
   $("dropSearch").addEventListener("input",()=>locations.search());
-  window.IrunaCatalog = {setEquipmentData:locations.setEquipmentData,decorateModal(item) {
+  const forgeRows=window.IRUNA_FORGE||[];
+  let forgeItems=items;
+  const forgeName=id=>forgeItems.get(id)?.["名前"]||id;
+  const forgeItem=id=>button("data-item",id,forgeName(id));
+  const forgeCard=row=>`<article class="catalog-card"><h3>${forgeItem(row.to)}</h3><p>${row.from?"強化元："+forgeItem(row.from):"作成"}</p><p>${esc(row.place)} · 鍛冶屋 ${esc(row.npc)}</p><p>費用：${row.cost===null?"未確認":row.cost.toLocaleString("ja")+"スピナ"}</p><p>追加素材：${row.materials?row.materials.map(([name,count])=>esc(name)+" ×"+count).join("、"):"未確認"}</p></article>`;
+  function renderForge(){
+    const q=model.normalize($("forgeSearch").value),rows=forgeRows.filter(row=>forgeItems.has(row.to)&&(!row.from||forgeItems.has(row.from))).filter(row=>model.normalize([forgeName(row.from),forgeName(row.to),row.place,row.npc,...(row.materials||[]).map(m=>m[0])].join(" ")).includes(q));
+    $("forgeCount").textContent=`該当${rows.length}件 / 登録${forgeRows.length}件`;
+    $("forgeList").innerHTML=rows.map(forgeCard).join("")||"<p>条件に合う登録はありません。</p>";
+  }
+  $("forgeSearch").addEventListener("input",renderForge);
+  renderForge();
+  window.IrunaCatalog = {setEquipmentData(rows,attributes){locations.setEquipmentData(rows,attributes);forgeItems=new Map([...items,...rows.map(row=>[row["アイテムID"],row])]);renderForge();},decorateModal(item) {
     const id=item["アイテムID"], uses=data.materials.filter(m => active(m) && m["素材アイテムID"]===id);
     const outputs=data.results.filter(m => active(m) && m["完成アイテムID"]===id);
     const wiki=window.IrunaWikiData?.evidence.get(id);
-    if(!items.has(id)&&!uses.length&&!outputs.length&&!wiki)return;
+    const forge=forgeRows.filter(row=>row.from===id||row.to===id);
+    if(!items.has(id)&&!uses.length&&!outputs.length&&!wiki&&!forge.length&&!/強化/.test(item["名前"]))return;
     const panel=document.createElement("section");panel.className="catalog-modal-links";
     panel.innerHTML=`<h3>入手先・生産</h3>${button("data-drop-item",id,"入手先を調べる")}<ul>${[...new Set([...uses,...outputs].map(m=>m["レシピID"]))].map(r => `<li>${button("data-recipe",r,data.recipes.find(x=>x["レシピID"]===r)["レシピ名"])}</li>`).join("")}</ul>`;
     $("modalEffectArea").appendChild(panel);
+    if(forge.length||(/強化/.test(item["名前"])&&["武器","体","追加","特殊","防具"].includes(item["分類"]))){const section=document.createElement("section");section.className="catalog-modal-links";section.innerHTML="<h3>鍛冶屋の作成・強化</h3>"+(forge.map(forgeCard).join("")||"<p>強化元・鍛冶屋・素材・費用は未照合です。</p>");$("modalEffectArea").appendChild(section);}
     if(window.IrunaWikiData?.isCatalogOnly(item)){
       const note=document.createElement('p');note.className='catalog-note';
       note.textContent='能力説明のみ登録しています。装備計算への選択は未対応です。';panel.prepend(note);
