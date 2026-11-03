@@ -1844,5 +1844,120 @@ window.IRUNA_FORGE = [
     ],
     "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/ソフィア街",
     "legacy": false
+  },
+  {
+    "from": "CN000072",
+    "to": "CN000202",
+    "place": "カケウラの街",
+    "npc": "",
+    "cost": 2500000,
+    "materials": [
+      [
+        "◇ブリッツ",
+        1
+      ],
+      [
+        "雷鳴の結晶",
+        3
+      ],
+      [
+        "露弾きの革",
+        5
+      ]
+    ],
+    "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/カケウラの街",
+    "legacy": true
+  },
+  {
+    "from": "CL000210",
+    "to": "CL000211",
+    "place": "カケウラの街",
+    "npc": "",
+    "cost": 2000000,
+    "materials": [
+      [
+        "魔力を帯びた地金",
+        4
+      ],
+      [
+        "金剛爪",
+        5
+      ],
+      [
+        "E・タブレット",
+        15
+      ]
+    ],
+    "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/カケウラの街",
+    "legacy": true
+  },
+  {
+    "from": "AD000339",
+    "to": "AD000340",
+    "place": "カケウラの街",
+    "npc": "",
+    "cost": 2000000,
+    "materials": [
+      [
+        "謎の金属",
+        10
+      ],
+      [
+        "金細工の小札",
+        15
+      ],
+      [
+        "良質な土壌",
+        30
+      ]
+    ],
+    "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/カケウラの街",
+    "legacy": true
+  },
+  {
+    "from": "AD000591",
+    "to": "AD000592",
+    "place": "カケウラの街",
+    "npc": "",
+    "cost": 1666666,
+    "materials": [
+      [
+        "穢れた布",
+        6
+      ],
+      [
+        "悪魔の涙",
+        66
+      ],
+      [
+        "大豆",
+        99
+      ]
+    ],
+    "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/カケウラの街",
+    "legacy": true
+  },
+  {
+    "from": "",
+    "to": "CN000072",
+    "place": "カケウラの街",
+    "npc": "",
+    "cost": 800000,
+    "materials": [
+      [
+        "雷魂真珠",
+        5
+      ],
+      [
+        "雷竜の鎖",
+        10
+      ],
+      [
+        "牛革",
+        20
+      ]
+    ],
+    "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/カケウラの街",
+    "legacy": true
   }
 ];
