@@ -136,16 +136,26 @@
   });
   $("dropSearch").addEventListener("input",()=>locations.search());
   const forgeRows=window.IRUNA_FORGE||[];
-  let forgeItems=items;
+  let forgeItems=items, forgeTarget="", forgeLimit=30;
+  const forgeRelated=(row,id)=>row.from===id||row.to===id||(row.materials||[]).some(m=>m[2]===id);
+  $("forgeTown").append(...[...new Set(forgeRows.map(row=>row.place))].map(place=>new Option(place,place)));
   const forgeName=id=>forgeItems.get(id)?.["名前"]||id;
   const forgeItem=id=>button("data-item",id,forgeName(id));
-  const forgeCard=row=>`<article class="catalog-card"><h3>${forgeItem(row.to)}</h3><p>${row.from?"強化元："+forgeItem(row.from):"作成"}</p><p>${esc(row.place)} · 鍛冶屋 ${esc(row.npc)}</p><p>費用：${row.cost===null?"未確認":row.cost.toLocaleString("ja")+"スピナ"}</p><p>追加素材：${row.materials?row.materials.map(([name,count])=>esc(name)+" ×"+count).join("、"):"未確認"}</p></article>`;
+  const forgeCard=row=>`<article class="catalog-card"><h3>${forgeItem(row.to)}</h3><p>${row.from?"強化元："+forgeItem(row.from):"作成"}</p><p>${esc(row.place)} · 鍛冶屋：${esc(row.npc||"名前未確認")}</p>${row.legacy?`<p class="catalog-note">旧資料の記載（現行スマホ版は未確認）</p>`:""}<p>費用：${row.cost===null?"未確認":row.cost.toLocaleString("ja")+"スピナ"}</p><p>追加素材：${row.materials?row.materials.map(([name,count,id])=>(id&&items.has(id)?button("data-drop-item",id,name):esc(name))+" ×"+count).join("、"):"未確認"}</p></article>`;
   function renderForge(){
-    const q=model.normalize($("forgeSearch").value),rows=forgeRows.filter(row=>forgeItems.has(row.to)&&(!row.from||forgeItems.has(row.from))).filter(row=>model.normalize([forgeName(row.from),forgeName(row.to),row.place,row.npc,...(row.materials||[]).map(m=>m[0])].join(" ")).includes(q));
+    const q=model.normalize($("forgeSearch").value),rows=forgeRows.filter(row=>(!forgeTarget||forgeRelated(row,forgeTarget))&&(!$("forgeTown").value||row.place===$("forgeTown").value)&&forgeItems.has(row.to)&&(!row.from||forgeItems.has(row.from))).filter(row=>model.normalize([forgeName(row.from),forgeName(row.to),row.place,row.npc,...(row.materials||[]).map(m=>m[0])].join(" ")).includes(forgeTarget?"":q));
     $("forgeCount").textContent=`該当${rows.length}件 / 登録${forgeRows.length}件`;
-    $("forgeList").innerHTML=rows.map(forgeCard).join("")||"<p>条件に合う登録はありません。</p>";
+    $("forgeList").innerHTML=rows.slice(0,forgeLimit).map(forgeCard).join("")||"<p>条件に合う登録はありません。</p>";
+    $("forgeMore").hidden=rows.length<=forgeLimit;
   }
-  $("forgeSearch").addEventListener("input",renderForge);
+  $("forgeSearch").addEventListener("input",()=>{forgeTarget="";forgeLimit=30;renderForge();});
+  $("forgeTown").addEventListener("change",()=>{forgeLimit=30;renderForge();});
+  $("forgeMore").addEventListener("click",()=>{forgeLimit+=30;renderForge();});
+  document.addEventListener("click",event=>{
+    const link=event.target.closest("[data-forge-item]");if(!link)return;
+    forgeTarget=link.dataset.forgeItem;forgeLimit=30;$("forgeTown").value="";$("forgeSearch").value=forgeName(forgeTarget);
+    window.IrunaModal.close();show("craft");$("forgePanel").open=true;renderForge();$("forgeSearch").focus({preventScroll:true});$("forgePanel").scrollIntoView({block:"start"});
+  });
   renderForge();
   window.IrunaCatalog = {setEquipmentData(rows,attributes){locations.setEquipmentData(rows,attributes);forgeItems=new Map([...items,...rows.map(row=>[row["アイテムID"],row])]);renderForge();},decorateModal(item) {
     const id=item["アイテムID"], uses=data.materials.filter(m => active(m) && m["素材アイテムID"]===id);
