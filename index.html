@@ -16,7 +16,7 @@
   </script>
   <link rel="stylesheet" href="./css/style.css?v=3.0.27">
   <link rel="stylesheet" href="./css/references.css?v=3.0.86">
-  <link rel="stylesheet" href="./css/catalog.css?v=3.0.72">
+  <link rel="stylesheet" href="./css/catalog.css?v=3.0.92">
   <link rel="stylesheet" href="./css/navigation.css?v=3.0.72">
   <link rel="stylesheet" href="./css/item-memo.css?v=3.0.72">
   <link rel="stylesheet" href="./css/calendar.css?v=3.0.78">
@@ -306,6 +306,7 @@ body.light-mode .calculation-card {
       <button class="main-tab" data-view="skill" type="button"><span>SK</span>スキル</button>
       <button class="main-tab" data-view="relic" type="button"><span>RG</span>レリック<em id="rgNavNew" class="rg-nav-new">NEW</em></button>
       <button class="main-tab" data-view="craft" type="button"><span>製</span>生産</button>
+      <button class="main-tab" data-view="forge" type="button"><span>鍛</span>鍛冶屋</button>
       <button class="main-tab" data-view="monsters" type="button"><span>魔</span>モンスター</button>
       <button class="main-tab" data-view="drops" type="button"><span>入</span>ドロップ情報</button>
       <button class="main-tab" data-view="tasks" type="button"><span>✓</span>タスク</button>
@@ -986,8 +987,22 @@ body.light-mode .calculation-card {
         <section id="calendarSelectedDay" class="calendar-section"><label>表示範囲 <select id="calendarScope"><option value="month">表示している月</option><option value="day">選択した日</option><option value="all">過去1年と今後の予定すべて</option></select></label><p class="calendar-status">イベント名を押すと、効果・参加方法などの詳細を開けます。</p><h3><span id="calendarDayLabel">選択した日</span><span id="calendarDayCount" class="calendar-count"></span></h3><div id="calendarDayEvents" class="event-list"></div></section>
       </section>
 
+      <section id="view-forge" class="app-view">
+        <h2>鍛冶屋・装備強化</h2>
+        <p>装備がどう変わるかを「強化元 → 強化後」で表示します。鍛冶屋での作成と装備強化は別々に検索できます。</p>
+        <div class="catalog-toolbar">
+          <input type="search" id="forgeSearch" aria-label="鍛冶屋のレシピを検索" placeholder="強化前・強化後の装備名、素材名、町">
+          <label>種別<select id="forgeKind"><option value="">すべて</option><option value="upgrade">装備強化</option><option value="create">装備作成</option></select></label>
+          <label>町<select id="forgeTown"><option value="">すべて</option></select></label>
+          <button type="button" id="forgeClear" class="button button-secondary">絞り込みを解除</button>
+        </div>
+        <p id="forgeCount" aria-live="polite"></p>
+        <div id="forgeList" class="catalog-list"></div>
+        <button id="forgeMore" type="button" class="button button-secondary" hidden>さらに30件表示</button>
+        <p class="catalog-note">旧資料のレシピは現在のスマホ版で使用できるか未確認です。費用・素材が確認できない場合は「未確認」と表示します。</p>
+      </section>
       <section id="view-craft" class="app-view">
-        <details id="forgePanel" class="catalog-modal-links"><summary>鍛冶屋の作成・強化</summary><p>鍛冶屋で作成・強化できる装備を検索できます。</p><div class="catalog-toolbar"><input type="search" id="forgeSearch" aria-label="鍛冶屋のレシピを検索" placeholder="装備名・街・鍛冶屋・素材"><label>町<select id="forgeTown"><option value="">すべて</option></select></label></div><p id="forgeCount" aria-live="polite"></p><div id="forgeList" class="catalog-list"></div><button id="forgeMore" type="button" class="button button-secondary" hidden>さらに30件表示</button></details>
+        
         <h2>生産</h2>
         <p>生産Lvは1人分を分野ごとに保存します。お気に入りだけ表示すると、上下ボタンで自分用の順番に並べられます。</p>
         <div id="craftLevels" class="catalog-levels"></div>
@@ -1157,7 +1172,7 @@ body.light-mode .calculation-card {
   <script src="./js/location-browser.js?v=3.0.90"></script>
   <script src="./js/app-v3.0.55.js?v=3.0.88"></script>
   <script src="./data/forge.js?v=3.0.91"></script>
-  <script src="./js/catalog.js?v=3.0.90"></script>
+  <script src="./js/catalog.js?v=3.0.92"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>
   <script src="./js/environment-ui.js?v=3.0.72"></script>
   <script src="./js/calendar-model.js?v=3.0.78"></script>
