@@ -1,0 +1,278 @@
+{
+  "registered": 75,
+  "towns": [
+    "ミオレイタ城",
+    "サテリカ城砦",
+    "イオリウ村",
+    "ロココの街",
+    "首都ソフィア",
+    "月の民の集落",
+    "バイルーン陣地",
+    "バイルーンの村",
+    "ソフィア街"
+  ],
+  "checkedPages": [
+    {
+      "path": "/iruna-online/鍛冶屋/ロココの街",
+      "status": 200
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/首都ソフィア",
+      "status": 200
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/月の民の集落",
+      "status": 200
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/バイルーン陣地",
+      "status": 200
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/首都エルバン",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/クレイアの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ウィーボの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/首都サテリカ",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ミナウラの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/スパーガス港",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ピラネザの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ドラフブルグ",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/カケウラの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/クレルダン聖堂街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/オルトガ集落",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ログラスの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/バイルーン地下街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/クレイヤ駅街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/首都エルダン",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/サテリア府街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/イオリウ村",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/マイオス",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/リオクトブ",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ディーオス集落",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ミオレイタ城",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/マルダリーオ繁華街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/アクルフの町",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ヴァラントの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/風の方舟",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/アニバーサリー会場",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/特殊鍛冶屋",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/鍛冶屋/ホワイトデーイベント会場",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/バイルーン陣地",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/首都ソフィア",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ロココの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/首都エルバン",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/スパーガス港",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/カケウラの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ドラフブルグ",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/クレルダン聖堂街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/オルトガ集落",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ログラスの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/サテリア府街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/首都エルダン",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/バイルーン地下街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/イオリウ村",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/マイオス",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ディーオス集落",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/リオクトブ",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ミオレイタ城",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ヴァラントの街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/マルダリーオ繁華街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/アクルフの町",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/ソフィア街",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/エリウムの里",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/バイルーンの村",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/サテリカ城砦",
+      "status": 429
+    },
+    {
+      "path": "/iruna-online/Android版・iOS版/鍛冶屋/アニバーサリー会場",
+      "status": 429
+    }
+  ],
+  "held": [
+    {
+      "fromName": "珊瑚の珠",
+      "toName": "珊瑚の指輪",
+      "place": "首都ソフィア",
+      "source": "https://wikiwiki.jp/iruna-online/鍛冶屋/首都ソフィア",
+      "reason": "装備IDを一意に照合できない"
+    },
+    {
+      "fromName": "",
+      "toName": "ダインスレイヴ",
+      "place": "バイルーン陣地",
+      "source": "https://wikiwiki.jp/iruna-online/鍛冶屋/バイルーン陣地",
+      "reason": "装備IDを一意に照合できない"
+    },
+    {
+      "fromName": "クローク(強化2)",
+      "toName": "クローク(強化3)",
+      "place": "バイルーンの村",
+      "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/バイルーンの村",
+      "reason": "装備IDを一意に照合できない"
+    },
+    {
+      "fromName": "グルート(強化2)",
+      "toName": "グルート(強化3)",
+      "place": "バイルーンの村",
+      "source": "https://wikiwiki.jp/iruna-online/Android版・iOS版/鍛冶屋/バイルーンの村",
+      "reason": "装備IDを一意に照合できない"
+    }
+  ]
+}

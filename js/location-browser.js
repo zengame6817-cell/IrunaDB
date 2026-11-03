@@ -5,6 +5,8 @@ window.IrunaLocationsBrowser = (() => {
     const active=r=>r['有効']!==false&&String(r['有効']).toUpperCase()!=='FALSE';
     const items=new Map(data.items.map(r=>[r['アイテムID'],r])),monsters=new Map(data.monsters.filter(active).map(r=>[r['モンスターID'],r])),maps=new Map(data.maps.filter(active).map(r=>[r['マップID'],r]));
     const spawns=data.spawns.filter(active).filter(s=>monsters.has(s['モンスターID'])&&maps.has(s['マップID'])),drops=data.drops.filter(active).filter(d=>monsters.has(d['モンスターID']));
+    const forgeIds=new Set((window.IRUNA_FORGE||[]).flatMap(row=>[row.from,row.to,...(row.materials||[]).map(m=>m[2])]).filter(Boolean));
+    const forgeLink=id=>forgeIds.has(id)?' '+button('data-forge-item',id,'鍛冶屋の作成・強化'):'';
     const name=id=>items.get(id)?.['名前']||id;
     const button=(attr,id,text)=>`<button type="button" class="catalog-link" ${attr}="${esc(id)}">${esc(text)}</button>`;
     const lv=mob=>mob['Lv下限']===''?'Lv未確認':`Lv${mob['Lv下限']}${mob['Lv上限']!==mob['Lv下限']?'～'+mob['Lv上限']:''}`;
@@ -65,7 +67,7 @@ window.IrunaLocationsBrowser = (() => {
         panel.innerHTML=`<p class="catalog-note">マップ詳細</p><h3>${esc(mapName(map))}</h3>
           <h4>出現モンスター ${ids.length}件</h4><div class="location-monster-cards">${ids.map(id=>`<article class="catalog-card"><h3>${button('data-monster',id,monsters.get(id)['名前']+' '+lv(monsters.get(id)))}</h3><p>属性：${esc(monsters.get(id)['属性']||'未確認')}</p>${monsterDrops(id)}</article>`).join('')||'<p>出現モンスターは未登録です。</p>'}</div>`;
       } else if(route.kind==='item'){
-        panel.innerHTML=`<p class="catalog-note">アイテムの入手先</p><h3>${button('data-item',route.id,name(route.id))}</h3><p>登録済みのドロップ・購入先・生産レシピを表示しています。</p>`;
+        panel.innerHTML=`<p class="catalog-note">アイテムの入手先</p><h3>${button('data-item',route.id,name(route.id))}</h3>${forgeLink(route.id)}<p>登録済みのドロップ・購入先・生産レシピを表示しています。</p>`;
       } else panel.replaceChildren();
     }
     function monsterDrops(id){
@@ -76,7 +78,7 @@ window.IrunaLocationsBrowser = (() => {
       };
       rows.sort((a,b)=>rank(a)-rank(b));
       const empty=monsters.get(id)['確認状態']==='ドロップなし確認'?'ドロップなし':'ドロップ情報は未登録です。';
-      return `<ul class="location-drops">${rows.map(g=>`<li>${button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))}</li>`).join('')||`<li>${empty}</li>`}</ul>`;
+      return `<ul class="location-drops">${rows.map(g=>`<li>${button('data-item',g[0]['アイテムID'],name(g[0]['アイテムID']))}${forgeLink(g[0]['アイテムID'])}</li>`).join('')||`<li>${empty}</li>`}</ul>`;
     }
     function render(){
       if(route.kind==='map')syncMapSelection(route.id);
@@ -111,7 +113,7 @@ window.IrunaLocationsBrowser = (() => {
         }
         if(kind==='recipe')return `<article class="catalog-card" data-location-card><h3>生産で入手</h3>${button('data-recipe',r['レシピID'],r['レシピ名'])}</article>`;
         const mob=monsters.get(r['モンスターID']);
-        return `<article class="catalog-card" data-location-card><h3>${button('data-item',r['アイテムID'],name(r['アイテムID']))}</h3><p>${button('data-monster',r['モンスターID'],mob['名前'])} ${esc(lv(mob))} · 属性：${esc(attribute(mob['属性'])||'未確認')}</p><p>${mapLinks(r['モンスターID'])}</p>
+        return `<article class="catalog-card" data-location-card><h3>${button('data-item',r['アイテムID'],name(r['アイテムID']))}</h3>${forgeLink(r['アイテムID'])}<p>${button('data-monster',r['モンスターID'],mob['名前'])} ${esc(lv(mob))} · 属性：${esc(attribute(mob['属性'])||'未確認')}</p><p>${mapLinks(r['モンスターID'])}</p>
           <p>ドロップ枠：${esc(r['ドロップ枠']||'未確認')} · 確率：${r['ドロップ率(%)']===''?'未確認':esc(r['ドロップ率(%)'])+'%'}</p>
           ${rows.length>1?`<p class="catalog-note">${rows.length}件の資料を照合。同じ入手先として表示しています。</p>`:''}
           ${r['条件']?`<p class="catalog-note">${note(r['条件'])}</p>`:''}</article>`;
