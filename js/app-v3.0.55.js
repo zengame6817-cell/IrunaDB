@@ -3210,7 +3210,7 @@ function formatDisplayNumber(value, maxDecimals = 2) {
     return {boosts,selected,rows};
   }
 
-  const STATUS_POINT_BUDGET = 1722;
+  const STATUS_POINT_BUDGET = 1850;
   const BASE_STATUS_KEYS = ["str","agi","vit","int","dex","crt"];
   const BONUS_STATUS_KEYS = ["rlb","glb","blb"];
 

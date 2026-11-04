@@ -32,6 +32,6 @@ test('monster level gaps and unknown values cannot become an invented range',()=
 test('current scripts and service worker point to one release version',()=>{
  for(const f of ['data/locations.js','js/location-browser.js','js/config-v3.0.90.js','js/catalog.js','js/catalog-model.js','service-worker.js'])new vm.Script(fs.readFileSync(path.join(root,f),'utf8'),{filename:f});
  const html=fs.readFileSync(path.join(root,'index.html'),'utf8'),sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
- assert(html.includes('config-v3.0.90.js'));assert(sw.includes('config-v3.0.90.js'));assert(html.includes('data/locations.js'));assert(sw.includes('data/locations.js'));
+ const configScript = html.match(/\.\/js\/(config-v[\d.]+\.js)\?v=/)[1];assert(sw.includes(configScript));assert(html.includes('data/locations.js'));assert(sw.includes('data/locations.js'));
  for(const f of JSON.parse(sw.match(/const APP_SHELL = (\[[\s\S]*?\]);/)[1]))assert(fs.existsSync(path.join(root,f)),f);
 });
