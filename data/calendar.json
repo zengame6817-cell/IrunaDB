@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-11-10T23:22:01.954Z",
+  "updatedAt": "2026-11-11T06:19:10.443Z",
   "coverageStart": "2025-11-11",
   "coverageEnd": "2026-11-11",
   "monthlyCoverage": [
@@ -24501,6 +24501,13 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-11-10",
           "sha256": "5eb88b2f3cb38a0dee62cb56ca7f4b9fd4eaa02b878eb72aca74e174901dfc18",
           "kind": "notice"
@@ -24548,6 +24555,13 @@
       "endNote": "",
       "kind": "range",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
@@ -24601,6 +24615,13 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-11-10",
           "sha256": "5eb88b2f3cb38a0dee62cb56ca7f4b9fd4eaa02b878eb72aca74e174901dfc18",
           "kind": "notice"
@@ -24648,6 +24669,13 @@
       "endNote": "",
       "kind": "range",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
@@ -25575,6 +25603,13 @@
       "endNote": "",
       "kind": "range",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
@@ -27078,6 +27113,13 @@
           "publishedAt": "2026-11-03",
           "sha256": "e804f3fcbe4645d94bba7f1ea2a11d7a824e9d614a5877d02c17f22d2d0235dd",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "イルーナ12神の天啓イベント開催!11月4日(水)0:00~11月5日(木)23:59",
+          "publishedAt": "2026-11-03",
+          "sha256": "e804f3fcbe4645d94bba7f1ea2a11d7a824e9d614a5877d02c17f22d2d0235dd",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年11月4日(水) 0:00~ / 終了:2026年11月5日(木)23:59まで",
@@ -27111,6 +27153,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=7",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-11-04",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-11-04",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27286,6 +27335,13 @@
           "publishedAt": "2026-11-04",
           "sha256": "622f0293fc152c1375db47caa73dc0945649c35b8c5666937cd5a94141f11f7f",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "アップデート情報 好敵手経験値アップキャンペーンを開催!他",
+          "publishedAt": "2026-11-04",
+          "sha256": "622f0293fc152c1375db47caa73dc0945649c35b8c5666937cd5a94141f11f7f",
+          "kind": "notice"
         }
       ],
       "dateLabel": "11月4日(水)14:00~11月11日(水)メンテナンス前まで",
@@ -27412,6 +27468,13 @@
           "publishedAt": "2026-11-05",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-11-05",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27454,6 +27517,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=5",
+          "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
+          "publishedAt": "2026-11-05",
+          "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
           "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
           "publishedAt": "2026-11-05",
           "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
@@ -27519,6 +27589,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "4日間限定!精錬成功確率1.5倍キャンペーン開催!11月6日(金)0:00~11月9日(月)23:59",
+          "publishedAt": "2026-11-05",
+          "sha256": "2a5097f59d96b6df1fba662555ba2f11ee02bd795aed60320730bf17d87c54f5",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=5",
           "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-11-04",
@@ -27576,6 +27653,13 @@
           "publishedAt": "2026-11-06",
           "sha256": "3e9b38c15eac78aa7d9faa4c5ebb917c07ac00d1834373530d17bae51ab17098",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
+          "title": "イルーナ12神の闇の結晶イベント開催!11月7日(土)0:00~11月8日(日)23:59",
+          "publishedAt": "2026-11-06",
+          "sha256": "3e9b38c15eac78aa7d9faa4c5ebb917c07ac00d1834373530d17bae51ab17098",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年11月7日(土) 0:00~ / 終了:2026年11月8日(日)23:59まで",
@@ -27609,6 +27693,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=4",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-11-07",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-11-07",
           "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
@@ -27659,6 +27750,13 @@
           "publishedAt": "2026-11-07",
           "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
+          "title": "2時間限定!取得経験値50%アップキャンペーン開催!",
+          "publishedAt": "2026-11-07",
+          "sha256": "d2996fff4fcca837e438f31459eec3af97932087e6eec90805a91bbe42d87f33",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週土曜20:00~ / 終了:毎週土曜21:59まで",
@@ -27700,6 +27798,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=3",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-11-08",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
           "publishedAt": "2026-11-08",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
@@ -27750,6 +27855,13 @@
           "publishedAt": "2026-11-08",
           "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=4",
+          "title": "2時間限定!ドロップ率50%アップキャンペーン開催!",
+          "publishedAt": "2026-11-08",
+          "sha256": "21f8847b3bf2d013bb5857cc914d0b90d886624ceca5a1ee92a49bbf45823d4c",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:毎週日曜20:00~ / 終了:毎週日曜21:59まで",
@@ -27784,6 +27896,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=2",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-11-09",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
           "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
           "publishedAt": "2026-11-09",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
@@ -27829,6 +27948,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=2",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-11-09",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=3",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
           "publishedAt": "2026-11-09",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
@@ -27881,6 +28007,13 @@
           "kind": "notice"
         },
         {
+          "url": "https://android.iruna.jp/information?page=3",
+          "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
+          "publishedAt": "2026-11-10",
+          "sha256": "9afc8cd9c8a994cc71d449144952f5362e132888c0fdebbaef2cec3ea5e64460",
+          "kind": "notice"
+        },
+        {
           "url": "https://android.iruna.jp/information?page=2",
           "title": "全サーバーから同時参加!チャンネルレイド「ラーアトン」毎週火曜と土曜開催!",
           "publishedAt": "2026-11-07",
@@ -27925,6 +28058,13 @@
           "publishedAt": "2026-11-10",
           "sha256": "1359c6d9c75df65e4f0a796b5137676808d8e452ff062a455876fd338ac11f6d",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=2",
+          "title": "イルーナ12神の天啓イベント開催!11月11日(水)0:00~11月12日(木)23:59",
+          "publishedAt": "2026-11-10",
+          "sha256": "1359c6d9c75df65e4f0a796b5137676808d8e452ff062a455876fd338ac11f6d",
+          "kind": "notice"
         }
       ],
       "dateLabel": "開始:2026年11月11日(水) 0:00~ / 終了:2026年11月12日(木)23:59まで",
@@ -27942,6 +28082,13 @@
       "endNote": "",
       "kind": "point",
       "sources": [
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
+          "publishedAt": "2026-11-11",
+          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
+          "kind": "notice"
+        },
         {
           "url": "https://android.iruna.jp/information",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
@@ -27998,6 +28145,13 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-11-10",
           "sha256": "5eb88b2f3cb38a0dee62cb56ca7f4b9fd4eaa02b878eb72aca74e174901dfc18",
           "kind": "notice"
@@ -28031,6 +28185,13 @@
           "publishedAt": "2026-10-30",
           "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
           "kind": "monthly"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
         },
         {
           "url": "https://android.iruna.jp/information",
@@ -28118,6 +28279,13 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
           "publishedAt": "2026-11-10",
           "sha256": "5eb88b2f3cb38a0dee62cb56ca7f4b9fd4eaa02b878eb72aca74e174901dfc18",
           "kind": "notice"
@@ -28196,6 +28364,13 @@
           "publishedAt": "2026-10-30",
           "sha256": "08e42b192b81b7b9d0eb38c6ceae0262e269a65f75a2728e67ead5faf0df503e",
           "kind": "monthly"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "お得なイベント・キャンペーン情報!",
+          "publishedAt": "2026-11-11",
+          "sha256": "8ccb7acaa9b0fbd329e2c28423c08d468d8269636455a576d664d9c59c4ced88",
+          "kind": "notice"
         },
         {
           "url": "https://android.iruna.jp/information",
@@ -28464,21 +28639,7 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
-          "publishedAt": "2026-11-09",
-          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
-          "kind": "notice"
-        },
-        {
-          "url": "https://android.iruna.jp/information?page=2",
-          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
-          "publishedAt": "2026-11-09",
-          "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
-          "kind": "notice"
-        },
-        {
-          "url": "https://android.iruna.jp/information?page=5",
-          "title": "1,000万もの経験値を獲得!チャンネルレイド「シアナス」毎週月曜と水曜開催!",
-          "publishedAt": "2026-11-04",
+          "publishedAt": "2026-11-11",
           "sha256": "13738e0b4d41faa3d316da193ef6cb1a743b62655b628d29915c45cb107e1fd2",
           "kind": "notice"
         }
