@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "timezone": "Asia/Tokyo",
-  "updatedAt": "2026-11-11T21:57:43.514Z",
+  "updatedAt": "2026-11-12T02:58:55.883Z",
   "coverageStart": "2025-11-12",
   "coverageEnd": "2026-11-12",
   "monthlyCoverage": [
@@ -27545,6 +27545,13 @@
           "publishedAt": "2026-11-05",
           "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=8",
+          "title": "金曜24時間限定!レイドバトル「ツチノコ・ブレイク」毎週金曜0:00~23:59開催!",
+          "publishedAt": "2026-11-05",
+          "sha256": "a04ae8c777ef03a7eec34630c1f33ca12f222845fd7adb933f2b90dd4c5e97a9",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27687,6 +27694,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=6",
+          "title": "イルーナ12神の闇の結晶イベント開催!11月7日(土)0:00~11月8日(日)23:59",
+          "publishedAt": "2026-11-06",
+          "sha256": "3e9b38c15eac78aa7d9faa4c5ebb917c07ac00d1834373530d17bae51ab17098",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=7",
           "title": "イルーナ12神の闇の結晶イベント開催!11月7日(土)0:00~11月8日(日)23:59",
           "publishedAt": "2026-11-06",
           "sha256": "3e9b38c15eac78aa7d9faa4c5ebb917c07ac00d1834373530d17bae51ab17098",
@@ -27861,6 +27875,13 @@
           "publishedAt": "2026-11-08",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=6",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-11-08",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
         }
       ],
       "scheduledByRule": true,
@@ -27969,6 +27990,13 @@
         },
         {
           "url": "https://android.iruna.jp/information?page=4",
+          "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
+          "publishedAt": "2026-11-09",
+          "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information?page=5",
           "title": "2時間限定!「取得経験値50%アップ」or「ドロップ率50%アップ」キャンペーン開催!",
           "publishedAt": "2026-11-09",
           "sha256": "3a5150a534d0005e351c9b8fb35c4887da9c8dff109ad3c8092d0d30c3345a23",
@@ -28334,6 +28362,13 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
+          "publishedAt": "2026-11-12",
+          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
+          "kind": "notice"
+        },
+        {
+          "url": "https://android.iruna.jp/information",
+          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
           "publishedAt": "2026-11-08",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
@@ -28681,35 +28716,7 @@
         {
           "url": "https://android.iruna.jp/information",
           "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
-          "publishedAt": "2026-11-08",
-          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
-          "kind": "notice"
-        },
-        {
-          "url": "https://android.iruna.jp/information?page=2",
-          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
-          "publishedAt": "2026-11-08",
-          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
-          "kind": "notice"
-        },
-        {
-          "url": "https://android.iruna.jp/information?page=3",
-          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
-          "publishedAt": "2026-11-08",
-          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
-          "kind": "notice"
-        },
-        {
-          "url": "https://android.iruna.jp/information?page=4",
-          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
-          "publishedAt": "2026-11-08",
-          "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
-          "kind": "notice"
-        },
-        {
-          "url": "https://android.iruna.jp/information?page=5",
-          "title": "1,000万もの経験値を獲得!チャンネルレイド「ウーベル」毎週木曜と日曜開催!",
-          "publishedAt": "2026-11-08",
+          "publishedAt": "2026-11-12",
           "sha256": "5f3f3e45a95558dd12ea0f1b083b6c2c71f82f1310d5aab2b5ffeff7c4f1a2fc",
           "kind": "notice"
         }
@@ -28717,8 +28724,8 @@
       "scheduledByRule": true,
       "recurrence": {
         "weekdays": [
-          0,
-          4
+          4,
+          0
         ],
         "startTime": "21:00",
         "endTime": null
