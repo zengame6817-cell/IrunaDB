@@ -2,7 +2,8 @@ name: Update official event calendar
 
 on:
   schedule:
-    - cron: '17 * * * *'
+    # 04:37 Asia/Tokyo. Full scans must not depend on the runner start hour.
+    - cron: '37 19 * * *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -33,8 +34,8 @@ jobs:
           package-manager-cache: false
       - name: Verify date parsing and calendar behavior
         run: node --test tests/calendar.test.cjs
-      - name: Collect official schedules (daily full history, otherwise recent notices)
-        run: node tools/update-calendar.cjs
+      - name: Collect official schedules (full year, including delayed runs)
+        run: node tools/update-calendar.cjs --full
       - name: Verify collected data
         run: node --test tests/calendar.test.cjs
       - name: Save the verified calendar

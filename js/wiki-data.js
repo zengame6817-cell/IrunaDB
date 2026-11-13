@@ -5,7 +5,7 @@ window.IrunaWikiData = (() => {
   const allowed=new Set(['アイテムID','説明文','備考','入手区分','入手先','マップ']);
   const updates=new Map(),evidence=new Map();
   const catalogOnly=new Set(data.items.filter(row=>row['計算対象']===false).map(row=>row['アイテムID']));
-  const supplemental=[...(window.IRUNA_EQUIPMENT_3087||[]),...(window.IRUNA_EVENT_ITEMS_3088||[])];
+  const supplemental=[...(window.IRUNA_EQUIPMENT_3087||[]),...(window.IRUNA_EVENT_ITEMS_3088||[]),...(window.IRUNA_LATEST_ITEMS_3094||[])];
   const isCatalogOnly=item=>catalogOnly.has(item['アイテムID'])||supplemental.some(row=>row['アイテムID']===item['アイテムID']);
   const prefixes=new Map();
   for(const row of data.namePrefixes||[]){if(!row.id||prefixes.has(row.id)||!['◇','◆'].includes(row.prefix)||!row.url)throw new Error('クリスタ記号の照合が不正です');prefixes.set(row.id,row.prefix);}

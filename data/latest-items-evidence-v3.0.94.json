@@ -1,0 +1,151 @@
+{
+  "checkedAt": "2026-11-13T14:12:21.814Z",
+  "policy": "ゲーム内画像を優先。画像・本文は転載しない。個体値を固定仕様や最大値に一般化しない。装備とクリスタは計算未検証のため閲覧用。",
+  "sources": [
+    {
+      "url": "https://ameblo.jp/pepetaisa/entry-12984190854.html",
+      "title": "11/11 EPスキップの書が実装！新ミッション解放！",
+      "sha256": "a606fb5d4d1d3f3a7dbe3524a299e185f20d6b3f2fc31fd74282ba7d7bcc3cf3"
+    },
+    {
+      "url": "https://ameblo.jp/irunaken217/entry-12983985485.html",
+      "title": "EP7ミッション「巡る縁に導かれ」",
+      "sha256": "4a0baf291402a9d56d0767281f7a09d6f62903a49f15eb9715eceef729992663"
+    },
+    {
+      "url": "https://ameblo.jp/wkhr1/entry-12984227025.html",
+      "title": "2026年11月11日 新エリア情報！ ～グランツ水林道～",
+      "sha256": "75a3f8257de0030db064c1614a375424472dcbbfa6f40fb1c0ada5fe88a74ac8"
+    },
+    {
+      "url": "https://android.iruna.jp/information_app?page=3",
+      "title": "アップデート情報(8.5.4)",
+      "publishedAt": "2026-11-11T15:10:00+09:00",
+      "sha256": "4c39ec471c3f017ef0dbcc0e8e6c8eb9fedb61f380626650ec5aefd7b53a82ba"
+    }
+  ],
+  "items": [
+    {
+      "id": "JP000037",
+      "name": "サフィエクラル",
+      "primarySource": "game-image",
+      "imageOrder": 6,
+      "imageSha256": "7f5966cc57034d2cc9e5618c48354ea05a1d215684115e08b6f7d72dbf68e8c9",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000038",
+      "name": "氷晶のブローチ",
+      "primarySource": "game-image",
+      "imageOrder": 5,
+      "imageSha256": "d7011154b3943e0ca617f41063ecf11cca9234514a667c2de60cd27f1feacc52",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000039",
+      "name": "レジストハイド",
+      "primarySource": "game-image",
+      "imageOrder": 7,
+      "imageSha256": "924cf6982c881650eb37bb73c48432963f7d4b365b4c640fa8671b9ce11d6565",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000040",
+      "name": "リーフィピアス",
+      "primarySource": "game-image",
+      "imageOrder": 8,
+      "imageSha256": "72ffbf61fe9b15d58e057a854716947ad8689d1c67fe458aa0d458ff45f92926",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000041",
+      "name": "◇シャープネスⅣ",
+      "primarySource": "game-image",
+      "imageOrder": 9,
+      "imageSha256": "0ab6f89afa67b2a35f4a50c3e5547b7dd2855bc4efe35a5cb15969a324171e4e",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000042",
+      "name": "◇DEX+30",
+      "primarySource": "game-image",
+      "imageOrder": 10,
+      "imageSha256": "209eccc7656ddd82c8904464ce9bfe5ba1226fd3aeadf3d0499bfc76f7a9b5d5",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000043",
+      "name": "EPスキップの書",
+      "primarySource": "official",
+      "imageOrder": null,
+      "imageSha256": null,
+      "corroboration": "公式と大福記事で機能・NPCルネを確認。大福記事内のネズ表記は採用しない。"
+    },
+    {
+      "id": "JP000044",
+      "name": "大きな目玉",
+      "primarySource": "game-image",
+      "imageOrder": 9,
+      "imageSha256": "983dc41e92855adc22f95b12064b5447b5288244e4f796c35aa65c35221cc88f",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。",
+      "imageSource": "https://ameblo.jp/irunaken217/entry-12983985485.html"
+    },
+    {
+      "id": "JP000045",
+      "name": "強靭な尾ヒレ",
+      "primarySource": "game-image",
+      "imageOrder": 12,
+      "imageSha256": "dca7a65b63b1ad81c3f848d1d522f48b40955b890505e599411134f00bb885ba",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。",
+      "imageSource": "https://ameblo.jp/irunaken217/entry-12983985485.html"
+    },
+    {
+      "id": "JP000046",
+      "name": "鋭利な爪ヒレ",
+      "primarySource": "player-text",
+      "imageOrder": null,
+      "imageSha256": null,
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000047",
+      "name": "冷固結晶",
+      "primarySource": "player-text",
+      "imageOrder": null,
+      "imageSha256": null,
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。"
+    },
+    {
+      "id": "JP000048",
+      "name": "蒼く光る液体",
+      "primarySource": "game-image",
+      "imageOrder": 5,
+      "imageSha256": "8fe57cc2c812c64104a87a1f316368dda3f64b6c85cc6609eeb6d9fdebb3a1c2",
+      "corroboration": "ケン・流星群記事で入手モンスターを照合。性能は大福のゲーム内画像を優先。",
+      "imageSource": "https://ameblo.jp/irunaken217/entry-12983985485.html"
+    }
+  ],
+  "unresolved": [
+    {
+      "field": "ドロップ順",
+      "reason": "サフィエクセとアクソランの第3・第4が記事間で不一致。順位を採用しない。"
+    },
+    {
+      "field": "サフィエクラル ATK上限",
+      "reason": "画像の個体340、本文340〜370、公式340〜350。基礎340のみ採用。"
+    },
+    {
+      "field": "特殊・追加装備のDEF範囲、スロット範囲",
+      "reason": "単一個体の画像で全範囲は確定できないため未登録。"
+    }
+  ],
+  "resolved": [
+    {
+      "field": "蒼く光る液体",
+      "decision": "大福本文の青を採用せず、ケンのゲーム内画像の蒼を採用。",
+      "source": "https://ameblo.jp/irunaken217/entry-12983985485.html",
+      "imageOrder": 5,
+      "imageSha256": "8fe57cc2c812c64104a87a1f316368dda3f64b6c85cc6609eeb6d9fdebb3a1c2"
+    }
+  ]
+}

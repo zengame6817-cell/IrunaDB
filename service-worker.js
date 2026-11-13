@@ -1,9 +1,9 @@
 "use strict";
-importScripts("./js/config-v3.0.93.js");
+importScripts("./js/config-v3.0.94.js");
 const CACHE_NAME = `irunadb-v${IRUNA_CONFIG.APP_VERSION.replaceAll(".", "-")}`;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css",
-  "./js/config-v3.0.93.js", "./js/utils.js", "./js/api.js",
+  "./js/config-v3.0.94.js", "./js/utils.js", "./js/api.js",
   "./data/catalog.js", "./js/catalog-model.js", "./js/catalog.js", "./data/forge.js", "./css/catalog.css", "./css/navigation.css", "./js/navigation.js", "./js/environment.js", "./js/environment-ui.js", "./js/ui.js", "./js/modal.js", "./js/app-v3.0.55.js", "./js/theme.js",
   "./css/references.css", "./js/reference-links-model.js", "./js/reference-links.js", "./js/skill-effect-guide.js", "./data/skill-adjustments-v3.0.86.js", "./data/skill-supplement-v3.0.85.js",
   "./data/skills.js", "./data/missions.js", "./data/skill-quests.js",
@@ -11,7 +11,7 @@ const APP_SHELL = [
   "./js/tasks-model.js", "./js/tasks.js", "./css/tasks.css",
   "./js/item-memo.js", "./css/item-memo.css",
   "./data/item-effects.js", "./js/item-filters.js",
-  "./data/locations.js", "./data/wiki.js", "./js/wiki-data.js", "./data/equipment-v3.0.87.js", "./data/event-items-v3.0.88.js",
+  "./data/locations.js", "./data/wiki.js", "./js/wiki-data.js", "./data/equipment-v3.0.87.js", "./data/event-items-v3.0.88.js", "./data/latest-items-v3.0.94.js",
   "./js/monster-attributes.js", "./js/monster-browser.js", "./js/location-elements.js", "./js/location-browser.js",
   "./js/calendar-model.js", "./js/calendar.js", "./css/calendar.css", "./data/calendar.json",
   "./js/skill-quests.js", "./js/missions.js"

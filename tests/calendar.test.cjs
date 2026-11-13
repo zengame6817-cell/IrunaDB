@@ -2,6 +2,25 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),P=require('../tools/calendar-parser.cjs'),M=require('../js/calendar-model.js'),{collect,dayBeforeYear}=require('../tools/update-calendar.cjs'),root=path.resolve(__dirname,'..');
 const source={url:'https://android.iruna.jp/information',title:'公式イベント',kind:'notice',publishedAt:'2026-10-16'};
 const event=(extra={})=>({id:'test',title:'テストイベント',category:'イベント',startDate:'2026-10-17',startTime:'00:00',startNote:'',endDate:'2026-10-18',endTime:'23:59',endNote:'',kind:'range',sources:[source],...extra});
+test('daily full scan survives a delayed runner and unknown previous metadata',()=>{
+ const {needsFullScan}=require('../tools/update-calendar.cjs');
+ assert(needsFullScan(null));assert(needsFullScan({scan:{lastFullScan:'bad'}}));
+ assert(needsFullScan({scan:{lastFullScan:'2026-11-11T19:37:00Z'}},new Date('2026-11-12T21:00:00Z')));
+ assert(!needsFullScan({scan:{lastFullScan:'2026-11-12T19:37:00Z'}},new Date('2026-11-12T21:00:00Z')));
+ const workflow=fs.readFileSync(path.join(root,'.github/workflows/update-calendar.yml'),'utf8');assert.match(workflow,/37 19 \* \* \*/);assert.match(workflow,/node tools\/update-calendar.cjs --full/);
+});
+test('requests allow only the two collection endpoints and refuse redirects',async()=>{
+ const {officialURL,request}=require('../tools/update-calendar.cjs');
+ for(const url of ['https://evil.example/information','https://android.iruna.jp.evil.example/information','https://user:pass@android.iruna.jp/information','https://android.iruna.jp:444/information','file:///etc/passwd','http://android.iruna.jp/information'])assert.throws(()=>officialURL(url));
+ assert.equal(officialURL('https://android.iruna.jp/information?page=3'),'https://android.iruna.jp/information?page=3');
+ const old=global.fetch;try{global.fetch=async(url,options)=>{assert.equal(options.redirect,'error');return {ok:true,text:async()=> 'x'.repeat(501)};};assert.equal((await request('http://irunablog.iruna.jp/?feed=rss2')).length,501);}finally{global.fetch=old;}
+});
+test('invalid dates, duplicate IDs and unsafe sources cannot replace the last saved calendar',()=>{
+ const {saveCalendar}=require('../tools/update-calendar.cjs'),os=require('node:os'),dir=fs.mkdtempSync(path.join(os.tmpdir(),'iruna-calendar-')),file=path.join(dir,'calendar.json');
+ try{const original=fs.readFileSync(path.join(root,'data/calendar.json'));fs.writeFileSync(file,original);
+ for(const mutate of [d=>d.events[0].startDate='2026-02-30',d=>d.events.push(d.events[0]),d=>d.events[0].sources[0].url='https://evil.example']){const data=JSON.parse(original);mutate(data);assert.throws(()=>saveCalendar(file,data));assert.deepEqual(fs.readFileSync(file),original);assert(!fs.existsSync(file+'.tmp'));}
+ }finally{fs.rmSync(dir,{recursive:true});}
+});
 test('month overview groups repeat titles and includes periods crossing month boundaries',()=>{
  const repeat=[event(),event({startDate:'2026-10-24',endDate:'2026-10-25'})],cross=event({title:'長期イベント',startDate:'2026-09-01',endDate:'2026-11-01'}),outside=event({title:'対象外',startDate:'2026-11-01',endDate:'2026-11-02'});
  const groups=M.monthGroups([...repeat,cross,outside],'2026-10');assert.equal(groups.length,2);assert.equal(groups.find(g=>g.title==='テストイベント').events.length,2);assert(groups.some(g=>g.title==='長期イベント'));assert(!groups.some(g=>g.title==='対象外'));assert.equal(M.monthGroups([event({startDate:'2026-03-01',endDate:null})],'2026-02').length,0);
