@@ -3575,6 +3575,7 @@ function collectTotalData() {
       });
     });
     textOnly.push(...skillData.text);
+    textOnly.push(...(window.IrunaNovemberCalculation?.uncalculatedNotes(selectedEntries)||[]));
 
     // 表示名と単位が同じ能力は、元の能力IDが異なっても1行へ統合する。
     const mergedByDisplay = new Map();
@@ -3929,7 +3930,7 @@ function collectTotalData() {
       textOnly.map(text =>
         `<div class="total-row passive-row">
           <span>${escapeHtml(text)}</span>
-          <strong>適用</strong>
+          <strong>${text.startsWith('未計算：')?'未計算':'適用'}</strong>
         </div>`
       ).join("");
 
@@ -4485,11 +4486,12 @@ function collectTotalData() {
       if (!Array.isArray(value)) throw new Error(`${key}のデータ形式が正しくありません`);
     }
     Object.assign(state, data);
-    const catalogItems = [...(window.IRUNA_CATALOG_DATA?.items || []),...(window.IRUNA_LOCATION_DATA?.items || []),...(window.IRUNA_WIKI_DATA?.items || []),...(window.IRUNA_EQUIPMENT_3087 || []),...(window.IRUNA_EVENT_ITEMS_3088 || [])];
+    const catalogItems = [...(window.IRUNA_CATALOG_DATA?.items || []),...(window.IRUNA_LOCATION_DATA?.items || []),...(window.IRUNA_WIKI_DATA?.items || []),...(window.IRUNA_EQUIPMENT_3087 || []),...(window.IRUNA_EVENT_ITEMS_3088 || []),...(window.IRUNA_LATEST_ITEMS_3094 || [])];
     const existingIds = new Set(state.items.map(item => String(item["アイテムID"])));
     state.items = [...state.items, ...catalogItems.filter(item => item["有効"] !== false && !existingIds.has(String(item["アイテムID"])))];
     state.items = state.items.map(window.IrunaItemFilters.overlay);
     if(window.IrunaWikiData){state.items=state.items.map(window.IrunaWikiData.overlayItem);state.effects=window.IrunaWikiData.mergeEffects(state.effects);}
+    if(window.IrunaNovemberCalculation)state.effects=window.IrunaNovemberCalculation.mergeEffects(state.effects);
     mergeJobMaster();
     buildIndexes();
     window.IrunaItemFilters.setContext(context);

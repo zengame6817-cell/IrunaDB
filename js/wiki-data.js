@@ -6,7 +6,7 @@ window.IrunaWikiData = (() => {
   const updates=new Map(),evidence=new Map();
   const catalogOnly=new Set(data.items.filter(row=>row['計算対象']===false).map(row=>row['アイテムID']));
   const supplemental=[...(window.IRUNA_EQUIPMENT_3087||[]),...(window.IRUNA_EVENT_ITEMS_3088||[]),...(window.IRUNA_LATEST_ITEMS_3094||[])];
-  const isCatalogOnly=item=>catalogOnly.has(item['アイテムID'])||supplemental.some(row=>row['アイテムID']===item['アイテムID']);
+  const isCatalogOnly=item=>!window.IrunaNovemberCalculation?.isSupported(item)&&(catalogOnly.has(item['アイテムID'])||supplemental.some(row=>row['アイテムID']===item['アイテムID']));
   const prefixes=new Map();
   for(const row of data.namePrefixes||[]){if(!row.id||prefixes.has(row.id)||!['◇','◆'].includes(row.prefix)||!row.url)throw new Error('クリスタ記号の照合が不正です');prefixes.set(row.id,row.prefix);}
   const itemName=item=>{
@@ -33,6 +33,7 @@ window.IrunaWikiData = (() => {
   };
   const isPlaceholder=value=>!value||/^(?:生産素材|名称参照|参照データ|調理品|回復$|一時強化アイテム$|状態異常回復アイテム$|移動アイテム$)/.test(value);
   const overlayItem=item=>{
+    if(window.IrunaNovemberCalculation?.isSupported(item))return window.IrunaNovemberCalculation.overlayItem(item);
     if(isVerifiedReference(item)){
       const row=verifiedReferences.get(item['アイテムID']);
       return {...item,'名前':row.name,'表示分類':'クリスタ','タグ概要':`AGI+${row.value}`,'説明文':`AGI+${row.value}`,'入手区分':row.acquisitionType,'入手先':row.acquisition,'マップ':row.maps,'備考':row.notes};
