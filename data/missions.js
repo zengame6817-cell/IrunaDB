@@ -1,6 +1,6 @@
 window.IRUNA_MISSION_DATA = {
-  "version": "2.9.1",
-  "sourceNote": "EP1～EP5はAmeblo攻略を基準に、会話・移動・BOSS・収集・報告を追えるナビ表示へ拡張。EP2～EP5は順次座標/階層を詳細化。",
+  "version": "3.0.96",
+  "sourceNote": "EP3・EP4とEP5「過剰王の玉座」までは指定のガルキュリー記事と2026年11月15日に照合。記事にないEP5終盤4件は未照合のまま保持。途中EXPは合算と内訳を明記。",
   "episodes": [
     "EP1",
     "EP2",
@@ -1620,7 +1620,9 @@ window.IRUNA_MISSION_DATA = {
         "【移動】モクス密林(148,70)付近からオルトガ集落へ。",
         "【報告】オルトガ集落(56,52)付近でディゴと会話。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-002",
@@ -1635,7 +1637,9 @@ window.IRUNA_MISSION_DATA = {
         "ザゼルLv267と戦闘。",
         "ディゴへ報告して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-003",
@@ -1650,7 +1654,9 @@ window.IRUNA_MISSION_DATA = {
         "山頂でシアナスLv270・巨大猿人Lv271と戦闘。",
         "魔法燈クリスタ×5を用意しディゴへ報告して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-004",
@@ -1665,7 +1671,9 @@ window.IRUNA_MISSION_DATA = {
         "メダル状の鍵を入手し、旧き竜の神殿へ進む。",
         "旧き竜の神殿・中央で老竜アルターンLv274と戦闘。ログラスの街で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-005",
@@ -1680,7 +1688,9 @@ window.IRUNA_MISSION_DATA = {
         "柔軟性のある甲殻×2、不思議な樹皮×1、熊の牙×3、オリハルコン×1を集める。",
         "奇妙な形の家でリタからギドの小箱を入手し、ログラスの街で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-006",
@@ -1691,11 +1701,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 76000000,
       "rewards": "",
       "steps": [
-        "ログラスの街でデルマと会話して開始。レグス山峡で二つに割れた紋章の鍵を入手。",
-        "スパーガス緑地方面へ進行し、竜の巫女に関するイベントを進める。",
-        "イベント完了後、ログラス側へ戻りミッション終了。"
+        "【開始】ログラスのデルマ。レグス山峡(168,100)で二つに割れた紋章の鍵を回収。",
+        "【収集】スパーガス緑地のイベント後、奇妙な形の家のリタにミスリル×5を渡して紋章の鍵を入手。",
+        "【戦闘】森の宮殿・第3の間(75,117)でアステムLv270、森竜の間(79,105)で森竜ヴァルティアLv276。",
+        "【報告】森竜の間(78,143)のイベント後、ログラスのデルマへ。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-007",
@@ -1710,7 +1723,9 @@ window.IRUNA_MISSION_DATA = {
         "最奥部でデスチルスLv278と戦闘。",
         "大統領府へ戻って終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-008",
@@ -1725,7 +1740,32 @@ window.IRUNA_MISSION_DATA = {
         "山頂で山竜ベルゲンLv279と戦闘。",
         "大統領府へ戻って終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP3-027",
+      "ep": "EP3",
+      "region": "",
+      "chapter": "EP3 第3章 樹上の国",
+      "title": "使えぬ者と暴走する者",
+      "exp": 83200000,
+      "rewards": "",
+      "steps": [
+        "【開始】サテリア府街・大統領府でクローヌと話す。エリウム地区のウィルクへ。",
+        "【収集】古びた書物を1個ずつ、2回渡す。1回目に途中EXP 1,000,000を受け取る。",
+        "【移動】バウリア木洞のエリア1→2→3→最下層。",
+        "【戦闘】最下層(49,116)でガウケルLv280。大統領府へ戻る。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "expNote": "完了82,200,000＋途中1,000,000の合計",
+      "expBreakdown": [
+        82200000,
+        1000000
+      ],
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-009",
@@ -1740,7 +1780,9 @@ window.IRUNA_MISSION_DATA = {
         "レーデ湖沼区を最上部まで進み、湖竜ラーカスLv284と戦闘。",
         "クレイヤ駅街を経由して大統領府で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-010",
@@ -1755,7 +1797,9 @@ window.IRUNA_MISSION_DATA = {
         "寺院を奥の院まで進み、ダジャートLv285と戦闘。",
         "サテリア府街・大統領府へ戻り終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-011",
@@ -1768,9 +1812,12 @@ window.IRUNA_MISSION_DATA = {
       "steps": [
         "大統領府で開始。サテリア地下でムズラクLv262と戦闘。",
         "デンドロア迷界で3か所のアルクリスタを取得して最奥へ。",
-        "最奥・幹の芯でバルバドLv286と戦闘し終了。"
+        "最奥・幹の芯でバルバドLv286と戦闘し終了。",
+        "【注意】バルバド戦でイグナイトを発動すると、メア救出後まで進行が戻る。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-012",
@@ -1785,7 +1832,9 @@ window.IRUNA_MISSION_DATA = {
         "証印の断片×10を収集し、影槍士×20・影剣士×20を討伐。太い弦×3も収集。",
         "第4エリアで原竜ビルネスLv287と戦闘し、アイン荒原で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-013",
@@ -1800,7 +1849,9 @@ window.IRUNA_MISSION_DATA = {
         "バボン渓谷を進み、魔法陣の間で門番Lv288と戦闘。",
         "エイセル平原でエスレムと会話して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-014",
@@ -1815,7 +1866,9 @@ window.IRUNA_MISSION_DATA = {
         "アルマス神殿を最奥部まで進み、番竜オフセアLv289と戦闘。",
         "エイセル平原でエスレムと会話して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-015",
@@ -1830,7 +1883,9 @@ window.IRUNA_MISSION_DATA = {
         "最奥部でマエルリエルLv290と戦闘。",
         "首都エルダンの酒場・天空の水底へ移動して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-016",
@@ -1841,10 +1896,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 103000000,
       "rewards": "",
       "steps": [
-        "天空の水底のフレーネから開始。クラーフ水源、魔法研究院へ。",
-        "魔法研究院でグラボラLv291と戦闘して終了。"
+        "【開始】天空の水底のフレーネ。クラーフ水源(55,30)でビフログLv290。",
+        "【会話】王宮のエルバーノ王。その後、クラーフ水源から魔法研究院へ。",
+        "【移動】実験区画→中心区画。転移装置を(135,79)、(59,150)の順に使い、(80,11)から実験区画へ。",
+        "【戦闘】実験区画(80,125)でグラボラLv291。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-017",
@@ -1859,7 +1918,9 @@ window.IRUNA_MISSION_DATA = {
         "グリッペLv282、中心部でビーモスLv292と戦闘。",
         "王宮へ報告して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-018",
@@ -1874,7 +1935,9 @@ window.IRUNA_MISSION_DATA = {
         "必要ならフローライト×1、赤い角×1を道中で収集。",
         "首都グーリア・議事堂でケルベラLv293と戦闘。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-019",
@@ -1887,9 +1950,12 @@ window.IRUNA_MISSION_DATA = {
       "steps": [
         "ロココ鉱山跡でバルナと会話して開始。",
         "フローライト×1、赤い角×1を集め、デスエント×15・魔導兵士×15を討伐。",
+        "【戦闘】バイルーン地下街からロンファ鍾乳洞へ。エリア3(20,130)でターレットLv283。",
         "ロンファ鍾乳洞・中央でパラザイアLv294と戦闘し、バイルーン地下街で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-020",
@@ -1904,7 +1970,9 @@ window.IRUNA_MISSION_DATA = {
         "レイバス島を山上まで進み、マモネアLv295と戦闘。",
         "レイバス島・エリア1で海竜ミーリスと会話して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-021",
@@ -1915,11 +1983,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 124000000,
       "rewards": "",
       "steps": [
-        "パルル海岸で開始。ザルムス平原から熱竜の棲む山へ。",
-        "洞窟を抜けて山頂部へ進み、イベント・戦闘を進行。",
-        "その後バイルーン地下街方面へ戻りミッションを進める。"
+        "【開始】パルル海岸(91,35)。バイルーン地下街からザルムス平原(141,54)のイベントを経て熱竜の棲む山へ。",
+        "【移動】山麓→洞窟1→洞窟2→山頂部。",
+        "【戦闘】山頂部(75,97)でケルティルLv296。",
+        "【報告】バイルーン地下街(97,96)のローイ。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-022",
@@ -1927,14 +1998,17 @@ window.IRUNA_MISSION_DATA = {
       "region": "",
       "chapter": "EP3 第8章 曝される謎",
       "title": "ゾルテの正体と重装騎兵壊滅",
-      "exp": 0,
+      "exp": 128000000,
       "rewards": "",
       "steps": [
-        "サウロ集落でイベント戦闘を進め、カルエ闘技場へ。",
-        "回廊1～3を進みアリーナへ。",
-        "アリーナでゾルテLv297と戦闘し、サウロ集落で終了。"
+        "【開始】バイルーン地下街(96,96)のローイ。ザルムス平原からサウロ集落へ。",
+        "【戦闘】集落(74,50)でペルゴブLv277・ボムゴブLv278、(80,135)でペルゴブLv277×3。",
+        "【移動】カルエ闘技場の回廊1→2→3→アリーナ。回廊2(35,55)、回廊3(93,115)のイベントを進める。",
+        "【戦闘】アリーナでゾルテLv297。サウロ集落(78,100)で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-023",
@@ -1949,7 +2023,28 @@ window.IRUNA_MISSION_DATA = {
         "皇帝府を皇帝の間まで進む。",
         "竜魔レビアムLv298と戦闘して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP3-028",
+      "ep": "EP3",
+      "region": "",
+      "chapter": "EP3 第9章 ウーベラムへの突入",
+      "title": "怪物畑と欲望の宮殿",
+      "exp": 135000000,
+      "rewards": "",
+      "steps": [
+        "【開始】皇帝の間(79,38)の転送装置を調べる。皇帝府エリア3(143,83)・エリア2(53,99)でアルクリスタを回収。",
+        "【戦闘】転送装置でレビアムの亡霊Lv298と戦う。",
+        "【収集】リーリドの畑でベニトアイト×2、使い魔の羽毛×5、硬い爪×15。収集後は(52,72)のイベントへ。",
+        "【移動】エニナ宮エリア1(121,98)→エリア2(122,97)→エリア3(122,97)のイベントを経てエニナの間。",
+        "【戦闘】エニナの間(42,74)でエニナLv305。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-024",
@@ -1964,7 +2059,9 @@ window.IRUNA_MISSION_DATA = {
         "テタールLv296、ビゾンLv297、ファザンLv296、堕天使イブリエLv307と戦闘。",
         "戦闘後の会話イベントで終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-025",
@@ -1975,11 +2072,33 @@ window.IRUNA_MISSION_DATA = {
       "exp": 142000000,
       "rewards": "",
       "steps": [
-        "イブリエ宮から開始。堕天使の陣で能天使ゲバルトLv300と戦闘。",
-        "メリジア宮を進み、堕天使メリジアと戦闘。",
-        "戦闘後に終了。"
+        "【開始】イブリエの間(50,36)から堕天使の陣へ。(65,130)で能天使ゲバルトLv300。",
+        "【収集】メリジア宮エリア1で紋章を3点回収：両欠け(149,115)、左欠け(124,10)、右欠け(78,57)。",
+        "【進行】エリア2(61,79)の台座に紋章をはめ、奇妙な部品を取得。",
+        "【戦闘】エリア3(149,79)でドミニードLv300、メリジアの間(49,72)で堕天使メリジアLv309。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP3-029",
+      "ep": "EP3",
+      "region": "",
+      "chapter": "EP3 第9章 ウーベラムへの突入",
+      "title": "矛盾と自我",
+      "exp": 146000000,
+      "rewards": "",
+      "steps": [
+        "【開始】メリジアの間(84,64)から原動儀の空間へ。(70,76)で開門儀を取得。",
+        "【移動】原動儀の空間(19,35)→至高殿エリア1→2→3→4。",
+        "【戦闘】至高殿エリア4(34,77)でジャオエルLv312。奇妙な部品3を取得。",
+        "【進行】エニナ宮エリア2(11,143)のイベント後、(26,151)からウーベルの間へ。",
+        "【戦闘】ウーベルの間(42,66)で進行を選び、ウーベルLv330と戦う。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP3-026",
@@ -1994,7 +2113,9 @@ window.IRUNA_MISSION_DATA = {
         "イルーナ各地の人物との会話イベントを進める。",
         "終了後はマレル爆心地へ移動。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-001",
@@ -2012,7 +2133,9 @@ window.IRUNA_MISSION_DATA = {
         "【戦闘】「断る、と言ったら？」を選び魔導士Lv350とイベント戦闘（勝敗不問）。",
         "【終了】戦闘後の会話イベント。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-002",
@@ -2030,7 +2153,9 @@ window.IRUNA_MISSION_DATA = {
         "【BOSS】食料庫・最奥(35,50)付近でイニリバLv315と戦闘。",
         "【報告】イオリウ村(92,86)付近でモアと会話し「渡す」。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-003",
@@ -2045,7 +2170,9 @@ window.IRUNA_MISSION_DATA = {
         "湿窟エリア2でアウルLv311、洞口でミネロLv317と戦闘。",
         "戦闘後の会話イベントで終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-004",
@@ -2056,11 +2183,32 @@ window.IRUNA_MISSION_DATA = {
       "exp": 175000000,
       "rewards": "アエスタ特産品セット",
       "steps": [
-        "タラクスカ湿窟・洞口で開始。ダフニ野山を頂上まで進む。",
-        "巨大な岩イベント後、頂上でミネロLv319と戦闘。",
-        "洞口を経由してイオリウ村で終了。"
+        "【開始】タラクスカ湿窟・洞口(81,42)のアウル。ダフニ野山エリア1→2→3へ。",
+        "【進行】エリア3(66,69)の巨大な岩を調べる→洞口のアウルへ戻る→同じ岩を再調査。",
+        "【戦闘】頂上(62,92)でミネロLv319。",
+        "【報告】洞口のアウル、イオリウ村(92,86)のモア。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP4-013",
+      "ep": "EP4",
+      "region": "",
+      "chapter": "EP4 第2章 悲憤の炎",
+      "title": "実りの約束",
+      "exp": 179000000,
+      "rewards": "特選リバイタ酒×5、ハイミスリル×1",
+      "steps": [
+        "【開始】イオリウ村(81,82)のテロン。フィリザ海岸(141,34)のライドからルェーヴへ。",
+        "【戦闘】ルカオ海岸(65,111)でティフォLv310。イベント戦闘のため勝敗不問。",
+        "【進行】マイオスのシェルク→長の大部屋。ルプス樹林のエリア1→2→3→最奥。",
+        "【戦闘】最奥(63,110)でシェルクLv325。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-005",
@@ -2071,26 +2219,52 @@ window.IRUNA_MISSION_DATA = {
       "exp": 183000000,
       "rewards": "カチュラのお守り",
       "steps": [
-        "長の大部屋のカガンから開始。スティオウフ火山へ。",
-        "石英×5、火鰐の油脂×3、消えない火の粉×1を先行収集可能。",
-        "山頂でメラリオLv328と戦闘して終了。"
+        "【開始】長の大部屋(22,51)のカガン。スティオウフ火山へ。",
+        "【進行】エリア1(74,201)で労働者と話し、山頂へ。",
+        "【戦闘】山頂でメラリオLv328。戦闘後は会話の選択を進める。",
+        "【終了】マイオス(111,62)の会話イベントを進める。",
+        "【準備】石英×5・火鰐の油脂×3・消えない火の粉×1は、後の「慈悲の戯言と魔女の灯」で使う。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP4-014",
+      "ep": "EP4",
+      "region": "",
+      "chapter": "EP4 第2章 悲憤の炎",
+      "title": "後悔の傷跡",
+      "exp": 187000000,
+      "rewards": "",
+      "steps": [
+        "【開始】マイオス(38,93)のカルナ。スティオウフ火山エリア1(70,209)からマキアの通り道へ。",
+        "【戦闘】通り道(60,95)でカガンLv326。",
+        "【移動】(79,28)からヤフーラ尖塔。1階→2階→3階→最上階へ進む。",
+        "【戦闘】最上階(50,57)でカガンLv331。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-006",
       "ep": "EP4",
       "region": "",
       "chapter": "EP4 第3章 崩壊する氷城",
-      "title": "氷城へ続く道",
-      "exp": 0,
-      "rewards": "",
+      "title": "慈悲の戯言と魔女の灯",
+      "exp": 191000000,
+      "rewards": "ワクチン(凍結)×5",
       "steps": [
-        "ディーオス集落周辺から堕落の谷スタロス方面へ進行。",
-        "鋭い角×3、霜精の霜柱×3、細雪×20を必要に応じて収集。",
-        "魔女の家へ進み、次のミッションへつなげる。"
+        "【開始】長の大部屋(32,45)のメア、マイオス(38,93)のカルナ。ネーサラ平野経由で堕落の谷スタロスへ。",
+        "【戦闘】谷のエリア3(27,66)で魔道士Lv333。その後ディーオス集落のマルチへ。",
+        "【収集】マルチに鋭い角×3、霜精の霜柱×3、細雪×20を渡す。",
+        "【進行】谷のエリア3(25,23)でワクチン(凍結)×5を受け取る。ルプス樹林エリア2(28,42)から魔女の家へ。",
+        "【収集】室内のリウドに消えない火の粉×1、火鰐の油脂×3、石英×5を渡す。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-007",
@@ -2105,7 +2279,45 @@ window.IRUNA_MISSION_DATA = {
         "蒼氷の城セラスマパティを進み、2階でジュサルLv326と戦闘。",
         "最上階でマルチLv332と戦闘し、魔女の家で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP4-015",
+      "ep": "EP4",
+      "region": "",
+      "chapter": "EP4 第4章 虚飾の要塞",
+      "title": "ひとときの幸福を願う",
+      "exp": 205000000,
+      "rewards": "マカロン×5、ヒヒイロカネ×3",
+      "steps": [
+        "【開始】ディーオス集落(79,78)。フォリスコ平原・南(105,135)で通行証を取得し、リオクトブへ。",
+        "【探索】東城壁(28,145)のシオンと、鍛冶屋(174,38)の武器ケースにいるクノンを発見。順番は不問。",
+        "【会話】南城壁(165,77)のパトリオ。",
+        "【進行】平原・南(155,95)でアニスを発見。リオクトブへ戻って終了。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP4-016",
+      "ep": "EP4",
+      "region": "",
+      "chapter": "EP4 第4章 虚飾の要塞",
+      "title": "こわれたつちにんぎょう",
+      "exp": 210000000,
+      "rewards": "女神の涙×5",
+      "steps": [
+        "【開始】南城壁(146,58)のアニス。牛肉×10、卵×10、ミルク×10、キノコの柄×10を用意して渡す。",
+        "【進行】ミラ深淵へ。第2層(43,125)の供給炉に光輝物質を合計10個投入する。",
+        "【移動】第2層(139,84)のイベント後、第3層→最下層へ。",
+        "【戦闘】最下層(65,114)でフィンブルLv333・クリスタルLv333。フィンブル撃破で終了。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-008",
@@ -2120,7 +2332,9 @@ window.IRUNA_MISSION_DATA = {
         "当帰×10を収集。",
         "元中央広場でアニスLv334と戦闘して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-009",
@@ -2131,11 +2345,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 220000000,
       "rewards": "魔導士の首飾り",
       "steps": [
-        "リオクトブ・西城壁で開始。マイオス、堕落の谷スタロスを経由。",
-        "氷の洞窟グラカルブを最奥まで進む。",
-        "最奥でグラパゴスLv334と戦闘。"
+        "【開始】西城壁(136,26)のテロン。マイオスでカルナまたはティフォと話す。",
+        "【移動】堕落の谷スタロス頂上→氷の洞窟グラカルブ1階→2階→3階→最奥。",
+        "【戦闘】最奥(100,130)でグラパゴスLv334。",
+        "【収集】パール×5を用意して最奥(100,84)のグラパゴスに渡す。魔導士の首飾りを受け取り、マイオスへ報告。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-010",
@@ -2143,14 +2360,16 @@ window.IRUNA_MISSION_DATA = {
       "region": "",
       "chapter": "EP4 第5章 虚無たる懇願の先に",
       "title": "滅び逝く領域の淵で",
-      "exp": 0,
+      "exp": 226000000,
       "rewards": "",
       "steps": [
         "マイオスからティモア回廊を門前まで進む。",
         "天上門衛兵Lv330、続けてコーダルLv336と戦闘。",
         "戦闘後の会話イベントで終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-011",
@@ -2161,11 +2380,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 232000000,
       "rewards": "",
       "steps": [
-        "フォリスコ平原でコーダルと会話して開始。",
-        "アウル、ジュサル、テラの3人から関連アイテムを回収。",
-        "フォリスコ平原でスピーシアと会話して終了。"
+        "【開始】フォリスコ平原(37,28)のコーダル。",
+        "【回収】タラクスカ湿窟・洞口(81,42)でアウルLv331に勝ち、ミネロの鞭を入手。",
+        "【回収】セラスマパティ2階(97,54)のジュサルからマルチの杖。ミラ深淵最下層(64,37)のテラからフィンブルの人形。回収順は不問。",
+        "【報告】フォリスコ平原(28,26)のスピーシア。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP4-012",
@@ -2176,11 +2398,16 @@ window.IRUNA_MISSION_DATA = {
       "exp": 261000000,
       "rewards": "",
       "steps": [
-        "フォリスコ平原で開始し、時の迷宮カーブベルへ。",
-        "各階の顔岩・スフィアの仕掛けを解いて進行。",
-        "最終イベントを進めてEP4を締める。"
+        "【開始】フォリスコ平原(31,33)のスピーシア。",
+        "【仕掛け】カーブベルの顔岩：エリア1は(17,84)→(45,136)。エリア2は(45,136)で押さない→(17,83)→(45,136)を押す。",
+        "【仕掛け】エリア3は(45,136)の顔岩→(83,61)のスイッチ→同じ顔岩→(23,44)のスイッチ→(17,84)の顔岩を押す。(10,99)から亡霊の間へ。",
+        "【戦闘】亡霊の間アスリーエ(27,55)で会話を進め、テロンLv347と戦う。",
+        "【仕掛け】ヒースタリア1層の木(113,32)・火(140,55)・土(123,126)・金(19,119)・水(25,61)のスフィアを回収する。",
+        "【設置】2層の設置先：木(80,138)、火(17,95)、土(34,34)、金(128,59)、水(142,119)。設置後はイベントを進める。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-001",
@@ -2197,23 +2424,9 @@ window.IRUNA_MISSION_DATA = {
         "【選択】「足を引っ張るなよ」または「行きたくない」→「準備は出来ている」。",
         "【終了】選択後ミッション終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
-    },
-    {
-      "id": "EP5-002",
-      "ep": "EP5",
-      "region": "",
-      "chapter": "EP5 第1章 月夜のウェスティリア",
-      "title": "ナイトフォーカス",
-      "exp": 282000000,
-      "rewards": "コーンサラダ×3",
-      "steps": [
-        "【開始】「未開の案内人」終了後に開始。",
-        "【会話】テルトの森(55,138)付近で会話イベント。",
-        "【移動】テルトの森(116,32) → ミオレイタ城(143,75) → 王の間。",
-        "【終了】ミオレイタ城・王の間へ移動後、会話イベント。"
-      ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-003",
@@ -2224,14 +2437,12 @@ window.IRUNA_MISSION_DATA = {
       "exp": 145000000,
       "rewards": "",
       "steps": [
-        "【開始】ミオレイタ城・王の間(74,106)付近でネリアと会話し「分かった」。",
-        "【移動】テルトの森(88,150) → ナハルト村道(103,114)で会話 → (112,167)からシュペリオ廃村。",
-        "【移動】廃村・エリア1(96,11) → エリア2(129,102) → エリア3(8,125) → 広場。",
-        "【BOSS】シュペリオ廃村・広場(52,59)付近でラスターLv350と戦闘。",
-        "【会話】ナハルト村道で会話イベント。",
-        "【報告】ミオレイタ城・王の間(69,28)付近でシュテルと会話。月の涙×3を入手。"
+        "【開始】「未開の案内人」完了後に続く。テルトの森(55,138)のイベントを進める。",
+        "【移動】テルトの森(116,32)→ミオレイタ城(143,75)→王の間。到着時の会話で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-004",
@@ -2242,13 +2453,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 273000000,
       "rewards": "月の涙×3",
       "steps": [
-        "【開始】ミオレイタ城・王の間(74,106)付近でネリアと会話。選択肢を進め「分かった」。",
-        "【会話】テルトの森(104,45)付近で会話イベント。「無事でなによりだ」を選択。",
-        "【移動】テルトの森(18,64) → ナーハベルグ山・エリア1(64,117) → エリア2(24,30) → エリア3(30,69) → 頂上。",
-        "【BOSS】ナーハベルグ山・頂上(54,70)付近でシュテルLv355と戦闘。",
-        "【終了】シュテルのステッキを入手。"
+        "【開始】王の間(74,106)のネリア。テルトの森からナハルト村道へ。",
+        "【進行】村道(103,114)のイベント後、シュペリオ廃村のエリア1→2→3→広場。",
+        "【戦闘】広場(52,59)でラスターLv350。",
+        "【報告】ナハルト村道のイベント後、王の間(69,28)のシュテル。月の涙×3を受け取る。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-005",
@@ -2259,11 +2471,31 @@ window.IRUNA_MISSION_DATA = {
       "exp": 278000000,
       "rewards": "シュテルのステッキ",
       "steps": [
-        "ミオレイタ城で開始。テルトの森からナーハベルグ山へ。",
-        "山頂でシュテルLv355と戦闘。",
-        "シュテルのステッキを入手して終了。"
+        "【開始】王の間(74,106)のネリア。テルトの森(104,45)の会話を進める。",
+        "【移動】テルトの森(18,64)→ナーハベルグ山エリア1(64,117)→2(24,30)→3(30,69)→頂上。",
+        "【戦闘】頂上(54,70)でシュテルLv355。シュテルのステッキを取得。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP5-002",
+      "ep": "EP5",
+      "region": "",
+      "chapter": "EP5 第1章 月夜のウェスティリア",
+      "title": "ナイトフォーカス",
+      "exp": 282000000,
+      "rewards": "コーンサラダ×3",
+      "steps": [
+        "【開始】王の間(74,106)のネリアからコーンサラダ×3。シュペリオ廃村広場(13,47)→ドリゾラ荒野(14,144)→ヴェッフル塔。",
+        "【仕掛け】3階のレバー：(160,159)を2回、(168,159)を1回、(168,168)を2回。失敗時は1階(94,103)でリセット。",
+        "【移動】1階(93,138)→2階(4,162)→3階(5,162)→最上階。",
+        "【戦闘】最上階(79,75)でアギラジャーマLv358。戦闘後の会話選択を終える。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-006",
@@ -2278,7 +2510,9 @@ window.IRUNA_MISSION_DATA = {
         "エリア4でウィンLv361と戦闘。",
         "戦闘後に終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-007",
@@ -2293,7 +2527,9 @@ window.IRUNA_MISSION_DATA = {
         "アマティスLv363と戦闘。",
         "フェスタンリングを入手して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-008",
@@ -2304,11 +2540,14 @@ window.IRUNA_MISSION_DATA = {
       "exp": 300000000,
       "rewards": "",
       "steps": [
-        "タクチェの小家で開始。フライガル小道からヒルハオス館へ。",
-        "ホールでフレデリコLv364と戦闘。",
-        "イルザと会話して戻り終了。"
+        "【開始】タクチェの小家(34,53)で会話。ジュベロンの大樹(56,41)のニクセから大樹の雫を入手。",
+        "【進行】小家のイルザと話して夢へ。フライガル小道→ヴァラントの街→ヒルハオス館。",
+        "【戦闘】館の1階→2階→3階→ホール(30,20)でフレデリコLv364。",
+        "【終了】フライガル小道のイルザと話し、元の場所へ戻る。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-009",
@@ -2323,7 +2562,9 @@ window.IRUNA_MISSION_DATA = {
         "ローベネ草原、キッファルト森林、マルダリーオ繁華街を経由してハゼラウの石段へ。",
         "テオLv366と戦闘し、会話後終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-010",
@@ -2338,7 +2579,9 @@ window.IRUNA_MISSION_DATA = {
         "アヒテム修練階段1～3階を進み、格技場へ。",
         "フォーカスLv367と戦闘し、ザオフクス城楼で終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-011",
@@ -2353,7 +2596,44 @@ window.IRUNA_MISSION_DATA = {
         "空洞エリア1～3を抜けローフェの大穴へ。",
         "ヴルシェムLv368と戦闘して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP5-020",
+      "ep": "EP5",
+      "region": "",
+      "chapter": "EP5 第4章 夜明けを目指す者たち",
+      "title": "夕闇の怪鳥",
+      "exp": 329000000,
+      "rewards": "",
+      "steps": [
+        "【開始】ローフェの大穴(40,64)のネリア。ミオレイタ城の王の間から月明の間モイヴァンへ行き、シンティアと話す。",
+        "【移動】キッファルト森林エリア1→2(126,77)→3→4(75,48)のイベントを進める。",
+        "【戦闘】セシリーアLv369。モイヴァンのシンティアに報告。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
+    },
+    {
+      "id": "EP5-021",
+      "ep": "EP5",
+      "region": "",
+      "chapter": "EP5 第4章 夜明けを目指す者たち",
+      "title": "民衆の乙女騎士",
+      "exp": 337000000,
+      "rewards": "",
+      "steps": [
+        "【開始】ミオレイタ城・王の間のネリア。ローベネ草原からアクルフの町へ。",
+        "【進行】町(80,18)のイベント→鍛冶屋(22,17)のミラベル→森林エリア4のオーベリ。ローヤルデューを取得する。",
+        "【報告】ミラベルへ戻り、町(80,18)のイベントを進める。",
+        "【戦闘】ラビラッヘ集会場(60,45)でガネーシャLv371。"
+      ],
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-012",
@@ -2368,7 +2648,9 @@ window.IRUNA_MISSION_DATA = {
         "頂上でロセリオLv372と戦闘。",
         "戦闘後に終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-013",
@@ -2383,7 +2665,9 @@ window.IRUNA_MISSION_DATA = {
         "パウークLv373と戦闘しエファンの花を入手。",
         "ミオレイタ城へ戻り、霊薬を受け取って終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-014",
@@ -2398,7 +2682,9 @@ window.IRUNA_MISSION_DATA = {
         "エリア2のダム5か所を処理し、ペリトーゼ泉からラムズン水源へ。",
         "グロエンラLv374と戦闘。謎の水晶と魔石結晶×5を入手して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-015",
@@ -2413,7 +2699,9 @@ window.IRUNA_MISSION_DATA = {
         "ラッツブルグ城2階で錆びついたコインを拾い、仕掛けに使用。",
         "王の間でベルンハイトLv375と戦闘して終了。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "verificationStatus": "指定記事と照合済み",
+      "sourceCheckedAt": "2026-11-15"
     },
     {
       "id": "EP5-016",
@@ -2428,7 +2716,10 @@ window.IRUNA_MISSION_DATA = {
         "エリア1～3を進み聖堂前へ。",
         "進行中に薬草×3、水中花×3が必要。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "",
+      "verificationStatus": "指定記事の掲載範囲外・未照合",
+      "sourceCheckedAt": "2026-11-15",
+      "verificationNote": "指定記事は「過剰王の玉座」まで。既存データを保持していますが、この4件の進行・EXPは今回確認できていません。"
     },
     {
       "id": "EP5-017",
@@ -2443,7 +2734,10 @@ window.IRUNA_MISSION_DATA = {
         "聖堂を進み地下へ。",
         "地下でミッションイベントを進める。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "",
+      "verificationStatus": "指定記事の掲載範囲外・未照合",
+      "sourceCheckedAt": "2026-11-15",
+      "verificationNote": "指定記事は「過剰王の玉座」まで。既存データを保持していますが、この4件の進行・EXPは今回確認できていません。"
     },
     {
       "id": "EP5-018",
@@ -2458,7 +2752,10 @@ window.IRUNA_MISSION_DATA = {
         "マルダリーオ、ハゼラウの石段を経由してザオフクス城楼へ。",
         "聖堂とザオフクス城楼でシナリオを更新。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "",
+      "verificationStatus": "指定記事の掲載範囲外・未照合",
+      "sourceCheckedAt": "2026-11-15",
+      "verificationNote": "指定記事は「過剰王の玉座」まで。既存データを保持していますが、この4件の進行・EXPは今回確認できていません。"
     },
     {
       "id": "EP5-019",
@@ -2473,7 +2770,10 @@ window.IRUNA_MISSION_DATA = {
         "ゲシュライオ廊エリア1～3、最奥を進む。",
         "リヒトナ聖域へ到達してEP5終盤を進行。"
       ],
-      "source": "https://ameblo.jp/galkyurie/entry-12244827306.html"
+      "source": "",
+      "verificationStatus": "指定記事の掲載範囲外・未照合",
+      "sourceCheckedAt": "2026-11-15",
+      "verificationNote": "指定記事は「過剰王の玉座」まで。既存データを保持していますが、この4件の進行・EXPは今回確認できていません。"
     },
     {
       "id": "EP6-001",
@@ -2964,7 +3264,7 @@ window.IRUNA_MISSION_DATA = {
       "name": "ベニトアイト",
       "qty": 2,
       "region": "",
-      "usedIn": "第9章",
+      "usedIn": "第9章 怪物畑と欲望の宮殿",
       "note": "リーリドの畑 ポール"
     },
     {
@@ -2973,7 +3273,7 @@ window.IRUNA_MISSION_DATA = {
       "name": "使い魔の羽毛",
       "qty": 5,
       "region": "",
-      "usedIn": "第9章",
+      "usedIn": "第9章 怪物畑と欲望の宮殿",
       "note": "リーリドの畑 ブローブ"
     },
     {
@@ -2982,7 +3282,7 @@ window.IRUNA_MISSION_DATA = {
       "name": "硬い爪",
       "qty": 15,
       "region": "",
-      "usedIn": "第9章",
+      "usedIn": "第9章 怪物畑と欲望の宮殿",
       "note": "リーリドの畑 トラッシ"
     },
     {
@@ -2991,7 +3291,7 @@ window.IRUNA_MISSION_DATA = {
       "name": "石英",
       "qty": 5,
       "region": "",
-      "usedIn": "第2章 友情の果て",
+      "usedIn": "第3章 慈悲の戯言と魔女の灯",
       "note": "スティオウフ火山 ブレイズコロン"
     },
     {
@@ -3000,7 +3300,7 @@ window.IRUNA_MISSION_DATA = {
       "name": "火鰐の油脂",
       "qty": 3,
       "region": "",
-      "usedIn": "第2章 友情の果て",
+      "usedIn": "第3章 慈悲の戯言と魔女の灯",
       "note": "スティオウフ火山 クロコゲイター"
     },
     {
@@ -3009,7 +3309,7 @@ window.IRUNA_MISSION_DATA = {
       "name": "消えない火の粉",
       "qty": 1,
       "region": "",
-      "usedIn": "第2章 友情の果て",
+      "usedIn": "第3章 慈悲の戯言と魔女の灯",
       "note": "スティオウフ火山 フェニーチェ"
     },
     {
@@ -3020,6 +3320,159 @@ window.IRUNA_MISSION_DATA = {
       "region": "",
       "usedIn": "第4章 沈没した街の中で",
       "note": "フォリスコ平原・西 ラウディ"
+    },
+    {
+      "id": "EP3-ITEM-R096-001",
+      "ep": "EP3",
+      "name": "柔軟性のある甲殻",
+      "qty": 2,
+      "region": "",
+      "usedIn": "神の欠片とギドの小箱",
+      "note": "ヘクセヤグの森：ジェクト"
+    },
+    {
+      "id": "EP3-ITEM-R096-002",
+      "ep": "EP3",
+      "name": "不思議な樹皮",
+      "qty": 1,
+      "region": "",
+      "usedIn": "神の欠片とギドの小箱",
+      "note": "ヘクセヤグの森：キヌシー"
+    },
+    {
+      "id": "EP3-ITEM-R096-003",
+      "ep": "EP3",
+      "name": "熊の牙",
+      "qty": 3,
+      "region": "",
+      "usedIn": "神の欠片とギドの小箱",
+      "note": "ヘクセヤグの森：パレベア"
+    },
+    {
+      "id": "EP3-ITEM-R096-004",
+      "ep": "EP3",
+      "name": "オリハルコン",
+      "qty": 1,
+      "region": "",
+      "usedIn": "神の欠片とギドの小箱",
+      "note": "ヘクセヤグの森：パレベア"
+    },
+    {
+      "id": "EP3-ITEM-R096-005",
+      "ep": "EP3",
+      "name": "ミスリル",
+      "qty": 5,
+      "region": "",
+      "usedIn": "神の欠片と竜の巫女",
+      "note": "リタへ渡す"
+    },
+    {
+      "id": "EP3-ITEM-R096-006",
+      "ep": "EP3",
+      "name": "古びた書物",
+      "qty": 2,
+      "region": "",
+      "usedIn": "使えぬ者と暴走する者",
+      "note": "エリウム地区：アルド。1個ずつ2回渡す"
+    },
+    {
+      "id": "EP3-ITEM-R096-007",
+      "ep": "EP3",
+      "name": "フローライト",
+      "qty": 1,
+      "region": "",
+      "usedIn": "地下の街と魔窟",
+      "note": "首都グーリア：ソルデス"
+    },
+    {
+      "id": "EP3-ITEM-R096-008",
+      "ep": "EP3",
+      "name": "赤い角",
+      "qty": 1,
+      "region": "",
+      "usedIn": "地下の街と魔窟",
+      "note": "首都グーリア：ソルデス"
+    },
+    {
+      "id": "EP4-ITEM-R096-009",
+      "ep": "EP4",
+      "name": "鋭い角",
+      "qty": 3,
+      "region": "",
+      "usedIn": "慈悲の戯言と魔女の灯",
+      "note": "堕落の谷スタロス：クルデーレ"
+    },
+    {
+      "id": "EP4-ITEM-R096-010",
+      "ep": "EP4",
+      "name": "霜精の霜柱",
+      "qty": 3,
+      "region": "",
+      "usedIn": "慈悲の戯言と魔女の灯",
+      "note": "堕落の谷スタロス：ジャックフロスト"
+    },
+    {
+      "id": "EP4-ITEM-R096-011",
+      "ep": "EP4",
+      "name": "細雪",
+      "qty": 20,
+      "region": "",
+      "usedIn": "慈悲の戯言と魔女の灯",
+      "note": "堕落の谷スタロス：チャポ"
+    },
+    {
+      "id": "EP4-ITEM-R096-012",
+      "ep": "EP4",
+      "name": "牛肉",
+      "qty": 10,
+      "region": "",
+      "usedIn": "こわれたつちにんぎょう",
+      "note": "フォリスコ平原・南：ラムッカ"
+    },
+    {
+      "id": "EP4-ITEM-R096-013",
+      "ep": "EP4",
+      "name": "卵",
+      "qty": 10,
+      "region": "",
+      "usedIn": "こわれたつちにんぎょう",
+      "note": "リオクトブの雑貨屋"
+    },
+    {
+      "id": "EP4-ITEM-R096-014",
+      "ep": "EP4",
+      "name": "ミルク",
+      "qty": 10,
+      "region": "",
+      "usedIn": "こわれたつちにんぎょう",
+      "note": "リオクトブの雑貨屋"
+    },
+    {
+      "id": "EP4-ITEM-R096-015",
+      "ep": "EP4",
+      "name": "キノコの柄",
+      "qty": 10,
+      "region": "",
+      "usedIn": "こわれたつちにんぎょう",
+      "note": "ルプス樹林：ルソーグ"
+    },
+    {
+      "id": "EP4-ITEM-R096-016",
+      "ep": "EP4",
+      "name": "光輝物質",
+      "qty": 10,
+      "region": "",
+      "usedIn": "こわれたつちにんぎょう",
+      "note": "ミラ深淵：グロウスパイダー"
+    },
+    {
+      "id": "EP4-ITEM-R096-017",
+      "ep": "EP4",
+      "name": "パール",
+      "qty": 5,
+      "region": "",
+      "usedIn": "崩壊する夢境",
+      "note": "フィリザ海岸：マリスク"
     }
   ]
 };

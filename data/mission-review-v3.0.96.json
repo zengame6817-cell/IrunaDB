@@ -1,0 +1,865 @@
+{
+  "version": "3.0.96",
+  "checkedAt": "2026-11-15",
+  "basis": "ユーザー指定ブログの関連記事。ゲーム内での再プレイ確認は未実施。記事本文・画像を再配布せず、訂正に必要な事実のみ要約。",
+  "reports": [
+    {
+      "ep": "EP3",
+      "sourceUrl": "https://ameblo.jp/galkyurie/entry-12244738384.html",
+      "sha256": "53e5c8d01d2c3f3e4fc9635ccb67839a0649d6c40cdd253343695948f5515682",
+      "sourceMissionCount": 29,
+      "beforeCount": 26,
+      "afterCount": 29,
+      "unverified": [],
+      "order": [
+        {
+          "id": "EP3-001",
+          "title": "包帯少女と謎の戦士団"
+        },
+        {
+          "id": "EP3-002",
+          "title": "懐かしい顔と新たな敵"
+        },
+        {
+          "id": "EP3-003",
+          "title": "アポストリアと神の欠片"
+        },
+        {
+          "id": "EP3-004",
+          "title": "神の欠片と旧き竜"
+        },
+        {
+          "id": "EP3-005",
+          "title": "神の欠片とギドの小箱"
+        },
+        {
+          "id": "EP3-006",
+          "title": "神の欠片と竜の巫女"
+        },
+        {
+          "id": "EP3-007",
+          "title": "大統領とアルクリスタ"
+        },
+        {
+          "id": "EP3-008",
+          "title": "山竜と神の欠片"
+        },
+        {
+          "id": "EP3-027",
+          "title": "使えぬ者と暴走する者"
+        },
+        {
+          "id": "EP3-009",
+          "title": "湖竜と盗賊少女"
+        },
+        {
+          "id": "EP3-010",
+          "title": "堕ちた預言者と魔の寺院"
+        },
+        {
+          "id": "EP3-011",
+          "title": "サテリアの危機と地下の激闘"
+        },
+        {
+          "id": "EP3-012",
+          "title": "三つの試練と原竜"
+        },
+        {
+          "id": "EP3-013",
+          "title": "魔法陣と暗殺の濡れ衣"
+        },
+        {
+          "id": "EP3-014",
+          "title": "重装騎兵と積み上がる謎"
+        },
+        {
+          "id": "EP3-015",
+          "title": "神の欠片と魔法陣の正体"
+        },
+        {
+          "id": "EP3-016",
+          "title": "汚名返上と連鎖する危機"
+        },
+        {
+          "id": "EP3-017",
+          "title": "聖原と亡国の危機"
+        },
+        {
+          "id": "EP3-018",
+          "title": "廃墟の街とウーベルの影"
+        },
+        {
+          "id": "EP3-019",
+          "title": "地下の街と魔窟"
+        },
+        {
+          "id": "EP3-020",
+          "title": "海竜と島に巣食う魔"
+        },
+        {
+          "id": "EP3-021",
+          "title": "竜の巫女と背信の重装騎兵"
+        },
+        {
+          "id": "EP3-022",
+          "title": "ゾルテの正体と重装騎兵壊滅"
+        },
+        {
+          "id": "EP3-023",
+          "title": "皇帝と竜魔"
+        },
+        {
+          "id": "EP3-028",
+          "title": "怪物畑と欲望の宮殿"
+        },
+        {
+          "id": "EP3-024",
+          "title": "神の欠片と魔の望み"
+        },
+        {
+          "id": "EP3-025",
+          "title": "天使の園と新竜王"
+        },
+        {
+          "id": "EP3-029",
+          "title": "矛盾と自我"
+        },
+        {
+          "id": "EP3-026",
+          "title": "？（会話イベントのみ）"
+        }
+      ],
+      "sourceLastEdited": "2017-03-02T00:33:01.000+09:00",
+      "sourceFacts": [
+        {
+          "title": "包帯少女と謎の戦士団",
+          "exp": 65000000
+        },
+        {
+          "title": "懐かしい顔と新たな敵",
+          "exp": 67000000
+        },
+        {
+          "title": "アポストリアと神の欠片",
+          "exp": 69000000
+        },
+        {
+          "title": "神の欠片と旧き竜",
+          "exp": 71500000
+        },
+        {
+          "title": "神の欠片とギドの小箱",
+          "exp": 74000000
+        },
+        {
+          "title": "神の欠片と竜の巫女",
+          "exp": 76000000
+        },
+        {
+          "title": "大統領とアルクリスタ",
+          "exp": 77000000
+        },
+        {
+          "title": "山竜と神の欠片",
+          "exp": 79700000
+        },
+        {
+          "title": "使えぬ者と暴走する者",
+          "exp": 83200000
+        },
+        {
+          "title": "湖竜と盗賊少女",
+          "exp": 86100000
+        },
+        {
+          "title": "堕ちた預言者と魔の寺院",
+          "exp": 88800000
+        },
+        {
+          "title": "サテリアの危機と地下の激闘",
+          "exp": 92800000
+        },
+        {
+          "title": "三つの試練と原竜",
+          "exp": 94000000
+        },
+        {
+          "title": "魔法陣と暗殺の濡れ衣",
+          "exp": 95500000
+        },
+        {
+          "title": "重装騎兵と積み上がる謎",
+          "exp": 98500000
+        },
+        {
+          "title": "神の欠片と魔法陣の正体",
+          "exp": 100000000
+        },
+        {
+          "title": "汚名返上と連鎖する危機",
+          "exp": 103000000
+        },
+        {
+          "title": "聖原と亡国の危機",
+          "exp": 106000000
+        },
+        {
+          "title": "廃墟の街とウーベルの影",
+          "exp": 114000000
+        },
+        {
+          "title": "地下の街と魔窟",
+          "exp": 117000000
+        },
+        {
+          "title": "海竜と島に巣食う魔",
+          "exp": 121000000
+        },
+        {
+          "title": "竜の巫女と背信の重装騎兵",
+          "exp": 124000000
+        },
+        {
+          "title": "ゾルテの正体と重装騎兵壊滅",
+          "exp": 128000000
+        },
+        {
+          "title": "皇帝と竜魔",
+          "exp": 131000000
+        },
+        {
+          "title": "怪物畑と欲望の宮殿",
+          "exp": 135000000
+        },
+        {
+          "title": "神の欠片と魔の望み",
+          "exp": 139000000
+        },
+        {
+          "title": "天使の園と新竜王",
+          "exp": 142000000
+        },
+        {
+          "title": "矛盾と自我",
+          "exp": 146000000
+        },
+        {
+          "title": "? (会話イベントのみ)",
+          "exp": 86000000
+        }
+      ]
+    },
+    {
+      "ep": "EP4",
+      "sourceUrl": "https://ameblo.jp/galkyurie/entry-12244769511.html",
+      "sha256": "64f8a393ba942e508ac63a7124ee1dc7f3762507615616525c66b36f62170411",
+      "sourceMissionCount": 16,
+      "beforeCount": 12,
+      "afterCount": 16,
+      "unverified": [],
+      "order": [
+        {
+          "id": "EP4-001",
+          "title": "行方不明者･暗黒大陸･黒い霧を追って"
+        },
+        {
+          "id": "EP4-002",
+          "title": "謎の少女と"
+        },
+        {
+          "id": "EP4-003",
+          "title": "印と歌声"
+        },
+        {
+          "id": "EP4-004",
+          "title": "盲目の竜"
+        },
+        {
+          "id": "EP4-013",
+          "title": "実りの約束"
+        },
+        {
+          "id": "EP4-005",
+          "title": "友情の果て"
+        },
+        {
+          "id": "EP4-014",
+          "title": "後悔の傷跡"
+        },
+        {
+          "id": "EP4-006",
+          "title": "慈悲の戯言と魔女の灯"
+        },
+        {
+          "id": "EP4-007",
+          "title": "灯火の先へ"
+        },
+        {
+          "id": "EP4-015",
+          "title": "ひとときの幸福を願う"
+        },
+        {
+          "id": "EP4-016",
+          "title": "こわれたつちにんぎょう"
+        },
+        {
+          "id": "EP4-008",
+          "title": "沈没した街の中で"
+        },
+        {
+          "id": "EP4-009",
+          "title": "崩壊する夢境"
+        },
+        {
+          "id": "EP4-010",
+          "title": "滅び逝く領域の淵で"
+        },
+        {
+          "id": "EP4-011",
+          "title": "憶いの果て"
+        },
+        {
+          "id": "EP4-012",
+          "title": "未来へ"
+        }
+      ],
+      "sourceLastEdited": "2017-02-27T23:30:04.000+09:00",
+      "sourceFacts": [
+        {
+          "title": "行方不明者・暗黒大陸・黒い霧を追って",
+          "exp": 87000000
+        },
+        {
+          "title": "謎の少女と",
+          "exp": 166000000
+        },
+        {
+          "title": "印と歌声",
+          "exp": 171000000
+        },
+        {
+          "title": "盲目の竜",
+          "exp": 175000000
+        },
+        {
+          "title": "実りの約束",
+          "exp": 179000000
+        },
+        {
+          "title": "友情の果て",
+          "exp": 183000000
+        },
+        {
+          "title": "後悔の傷跡",
+          "exp": 187000000
+        },
+        {
+          "title": "慈悲の戯言と魔女の灯",
+          "exp": 191000000
+        },
+        {
+          "title": "灯火の先へ",
+          "exp": 195000000
+        },
+        {
+          "title": "ひとときの幸福を願う",
+          "exp": 205000000
+        },
+        {
+          "title": "こわれたつちにんぎょう",
+          "exp": 210000000
+        },
+        {
+          "title": "沈没した街の中で",
+          "exp": 215000000
+        },
+        {
+          "title": "崩壊する夢境",
+          "exp": 220000000
+        },
+        {
+          "title": "滅び逝く領域の淵で",
+          "exp": 226000000
+        },
+        {
+          "title": "憶いの果て",
+          "exp": 232000000
+        },
+        {
+          "title": "未来へ",
+          "exp": 261000000
+        }
+      ]
+    },
+    {
+      "ep": "EP5",
+      "sourceUrl": "https://ameblo.jp/galkyurie/entry-12244827306.html",
+      "sha256": "4dcdf2109811fb1b105626cd55471cc39d105fcb0657539567ff12b7a4f93331",
+      "sourceMissionCount": 17,
+      "beforeCount": 19,
+      "afterCount": 21,
+      "unverified": [
+        "EP5-016",
+        "EP5-017",
+        "EP5-018",
+        "EP5-019"
+      ],
+      "order": [
+        {
+          "id": "EP5-001",
+          "title": "未開の案内人"
+        },
+        {
+          "id": "EP5-003",
+          "title": "夜の王"
+        },
+        {
+          "id": "EP5-004",
+          "title": "染まる獣"
+        },
+        {
+          "id": "EP5-005",
+          "title": "月夜の杖"
+        },
+        {
+          "id": "EP5-002",
+          "title": "ナイトフォーカス"
+        },
+        {
+          "id": "EP5-006",
+          "title": "閑静な獣"
+        },
+        {
+          "id": "EP5-007",
+          "title": "太陽の王"
+        },
+        {
+          "id": "EP5-008",
+          "title": "不思議な夢の紳士"
+        },
+        {
+          "id": "EP5-009",
+          "title": "因幡の番人"
+        },
+        {
+          "id": "EP5-010",
+          "title": "ウィンプケージ"
+        },
+        {
+          "id": "EP5-011",
+          "title": "思い出の丘"
+        },
+        {
+          "id": "EP5-020",
+          "title": "夕闇の怪鳥"
+        },
+        {
+          "id": "EP5-021",
+          "title": "民衆の乙女騎士"
+        },
+        {
+          "id": "EP5-012",
+          "title": "笑う道化師"
+        },
+        {
+          "id": "EP5-013",
+          "title": "償い"
+        },
+        {
+          "id": "EP5-014",
+          "title": "沼の宝玉"
+        },
+        {
+          "id": "EP5-015",
+          "title": "過剰王の玉座"
+        },
+        {
+          "id": "EP5-016",
+          "title": "混合する混沌"
+        },
+        {
+          "id": "EP5-017",
+          "title": "ヨシュカ"
+        },
+        {
+          "id": "EP5-018",
+          "title": "空の器と闇の魂"
+        },
+        {
+          "id": "EP5-019",
+          "title": "希望の扉"
+        }
+      ],
+      "sourceLastEdited": "2017-02-27T23:29:42.000+09:00",
+      "sourceFacts": [
+        {
+          "title": "未開の案内人",
+          "exp": 145000000
+        },
+        {
+          "title": "夜の王",
+          "exp": 145000000
+        },
+        {
+          "title": "染まる獣",
+          "exp": 273000000
+        },
+        {
+          "title": "月夜の杖",
+          "exp": 278000000
+        },
+        {
+          "title": "ナイトフォーカス",
+          "exp": 282000000
+        },
+        {
+          "title": "閑静な獣",
+          "exp": 287000000
+        },
+        {
+          "title": "太陽の王",
+          "exp": 293000000
+        },
+        {
+          "title": "不思議な夢の紳士",
+          "exp": 300000000
+        },
+        {
+          "title": "因幡の番人",
+          "exp": 307000000
+        },
+        {
+          "title": "ウィンプケージ",
+          "exp": 315000000
+        },
+        {
+          "title": "思い出の丘",
+          "exp": 322000000
+        },
+        {
+          "title": "夕闇の怪鳥",
+          "exp": 329000000
+        },
+        {
+          "title": "民衆の乙女騎士",
+          "exp": 337000000
+        },
+        {
+          "title": "笑う道化師",
+          "exp": 344000000
+        },
+        {
+          "title": "償い",
+          "exp": 352000000
+        },
+        {
+          "title": "沼の宝玉",
+          "exp": 360000000
+        },
+        {
+          "title": "過剰王の玉座",
+          "exp": 368000000
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "id": "EP3-006",
+      "title": "神の欠片と竜の巫女",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "神の欠片と竜の巫女",
+      "beforeExp": 76000000,
+      "afterExp": 76000000
+    },
+    {
+      "id": "EP3-027",
+      "title": "使えぬ者と暴走する者",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 83200000
+    },
+    {
+      "id": "EP3-011",
+      "title": "サテリアの危機と地下の激闘",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "サテリアの危機と地下の激闘",
+      "beforeExp": 92800000,
+      "afterExp": 92800000
+    },
+    {
+      "id": "EP3-016",
+      "title": "汚名返上と連鎖する危機",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "汚名返上と連鎖する危機",
+      "beforeExp": 103000000,
+      "afterExp": 103000000
+    },
+    {
+      "id": "EP3-019",
+      "title": "地下の街と魔窟",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "地下の街と魔窟",
+      "beforeExp": 117000000,
+      "afterExp": 117000000
+    },
+    {
+      "id": "EP3-021",
+      "title": "竜の巫女と背信の重装騎兵",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "竜の巫女と背信の重装騎兵",
+      "beforeExp": 124000000,
+      "afterExp": 124000000
+    },
+    {
+      "id": "EP3-022",
+      "title": "ゾルテの正体と重装騎兵壊滅",
+      "added": false,
+      "fields": [
+        "exp",
+        "steps"
+      ],
+      "beforeTitle": "ゾルテの正体と重装騎兵壊滅",
+      "beforeExp": 0,
+      "afterExp": 128000000
+    },
+    {
+      "id": "EP3-028",
+      "title": "怪物畑と欲望の宮殿",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 135000000
+    },
+    {
+      "id": "EP3-025",
+      "title": "天使の園と新竜王",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "天使の園と新竜王",
+      "beforeExp": 142000000,
+      "afterExp": 142000000
+    },
+    {
+      "id": "EP3-029",
+      "title": "矛盾と自我",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 146000000
+    },
+    {
+      "id": "EP4-004",
+      "title": "盲目の竜",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "盲目の竜",
+      "beforeExp": 175000000,
+      "afterExp": 175000000
+    },
+    {
+      "id": "EP4-013",
+      "title": "実りの約束",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 179000000
+    },
+    {
+      "id": "EP4-005",
+      "title": "友情の果て",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "友情の果て",
+      "beforeExp": 183000000,
+      "afterExp": 183000000
+    },
+    {
+      "id": "EP4-014",
+      "title": "後悔の傷跡",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 187000000
+    },
+    {
+      "id": "EP4-006",
+      "title": "慈悲の戯言と魔女の灯",
+      "added": false,
+      "fields": [
+        "title",
+        "exp",
+        "rewards",
+        "steps"
+      ],
+      "beforeTitle": "氷城へ続く道",
+      "beforeExp": 0,
+      "afterExp": 191000000
+    },
+    {
+      "id": "EP4-015",
+      "title": "ひとときの幸福を願う",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 205000000
+    },
+    {
+      "id": "EP4-016",
+      "title": "こわれたつちにんぎょう",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 210000000
+    },
+    {
+      "id": "EP4-009",
+      "title": "崩壊する夢境",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "崩壊する夢境",
+      "beforeExp": 220000000,
+      "afterExp": 220000000
+    },
+    {
+      "id": "EP4-010",
+      "title": "滅び逝く領域の淵で",
+      "added": false,
+      "fields": [
+        "exp"
+      ],
+      "beforeTitle": "滅び逝く領域の淵で",
+      "beforeExp": 0,
+      "afterExp": 226000000
+    },
+    {
+      "id": "EP4-011",
+      "title": "憶いの果て",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "憶いの果て",
+      "beforeExp": 232000000,
+      "afterExp": 232000000
+    },
+    {
+      "id": "EP4-012",
+      "title": "未来へ",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "未来へ",
+      "beforeExp": 261000000,
+      "afterExp": 261000000
+    },
+    {
+      "id": "EP5-003",
+      "title": "夜の王",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "夜の王",
+      "beforeExp": 145000000,
+      "afterExp": 145000000
+    },
+    {
+      "id": "EP5-004",
+      "title": "染まる獣",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "染まる獣",
+      "beforeExp": 273000000,
+      "afterExp": 273000000
+    },
+    {
+      "id": "EP5-005",
+      "title": "月夜の杖",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "月夜の杖",
+      "beforeExp": 278000000,
+      "afterExp": 278000000
+    },
+    {
+      "id": "EP5-002",
+      "title": "ナイトフォーカス",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "ナイトフォーカス",
+      "beforeExp": 282000000,
+      "afterExp": 282000000
+    },
+    {
+      "id": "EP5-008",
+      "title": "不思議な夢の紳士",
+      "added": false,
+      "fields": [
+        "steps"
+      ],
+      "beforeTitle": "不思議な夢の紳士",
+      "beforeExp": 300000000,
+      "afterExp": 300000000
+    },
+    {
+      "id": "EP5-020",
+      "title": "夕闇の怪鳥",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 329000000
+    },
+    {
+      "id": "EP5-021",
+      "title": "民衆の乙女騎士",
+      "added": true,
+      "fields": [
+        "new"
+      ],
+      "afterExp": 337000000
+    }
+  ],
+  "addedMaterials": 17,
+  "preservedMissionIds": true,
+  "preservedOtherEpisodes": true
+}

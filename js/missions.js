@@ -128,10 +128,12 @@
           <div class="mission-card-body">
             <div class="mission-detail-meta">
               <div><span>章</span><strong>${esc(m.chapter||"-")}</strong></div>
-              <div><span>EXP</span><strong>${m.exp ? m.exp.toLocaleString("ja-JP") : "-"}</strong></div>
+              <div><span>EXP${m.expNote ? '（途中報酬含む）' : ''}</span><strong>${m.exp ? m.exp.toLocaleString("ja-JP") : "-"}</strong></div>
               <div><span>報酬</span><strong>${esc(m.rewards||"-")}</strong></div>
               <div><span>進行</span><strong>${m.steps?.length||0}ステップ</strong></div>
             </div>
+            ${m.expNote ? `<p class="mission-review-note">EXP内訳：${esc(m.expNote)}</p>` : ''}
+            ${m.verificationStatus ? `<p class="mission-review-note">照合：${esc(m.verificationStatus)}（${esc(m.sourceCheckedAt)}）${m.verificationNote ? ' · '+esc(m.verificationNote) : ''}</p>` : ''}
             <div class="mission-route-label">進行詳細</div>
             ${m.steps.map((step, idx) => { const sm=stepMeta(step); return `<div class="mission-step"><i>${idx+1}</i><p><span class="mission-step-type">${esc(sm.type)}</span>${window.IrunaReferences?.step(sm.text)||esc(sm.text)}</p></div>`; }).join("")}
           </div>
@@ -150,6 +152,8 @@
   }
 
   function renderAll() {
+    const reviewNote=document.getElementById('missionReviewNote');
+    if(reviewNote)reviewNote.textContent=data.sourceNote||'';
     renderEpTabs(); renderProgress(); renderItems(); renderMissions();
   }
 
