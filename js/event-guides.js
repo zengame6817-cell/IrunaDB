@@ -2,7 +2,8 @@
 (() => {
   const data = window.IRUNA_EVENT_GUIDES, model = globalThis.IrunaEventGuidesModel;
   if (!data || !model) return;
-  const state = {family:data.families[0],query:'',hideDone:false,done:model.read(localStorage,model.DONE),owned:model.read(localStorage,model.OWNED)};
+  const loot = window.IRUNA_EVENT_LOOT || [];
+  const state = {mode:'guide',method:'',family:data.families[0],query:'',hideDone:false,done:model.read(localStorage,model.DONE),owned:model.read(localStorage,model.OWNED)};
   const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const el = id => document.getElementById(id);
   const familyRows = () => data.guides.filter(g=>state.family==='すべて'||g.family===state.family);
@@ -14,6 +15,15 @@
   }
   function render() {
     const open = new Set([...el('eventGuideList').querySelectorAll('details[open]')].map(x=>x.dataset.guide));
+    el('eventGuidePanels').hidden=state.mode!=='guide';
+    el('eventLootPanel').hidden=state.mode!=='loot';
+    el('eventHideDone').closest('label').hidden=state.mode!=='guide';
+    el('eventModeGuide').setAttribute('aria-pressed',String(state.mode==='guide'));
+    el('eventModeLoot').setAttribute('aria-pressed',String(state.mode==='loot'));
+    el('eventCoverage').textContent=`掲載：${data.families.length}種類・${data.guides.length}攻略・入手アイテム${loot.length}件`;
+    const lootRows=loot.filter(x=>(state.family==='すべて'||x.family===state.family)&&(!state.method||x.method===state.method)&&model.lootMatches(x,state.query,data.guides));
+    el('eventLootCount').textContent=`${lootRows.length}件`;
+    el('eventLootList').innerHTML=lootRows.map(x=>`<article class="event-loot-card"><div class="event-loot-heading"><h4>${esc(x.name)}</h4><span>${esc(x.method)}</span></div><p class="event-loot-family">${esc(x.family)}</p><dl class="event-guide-meta"><div><dt>場所</dt><dd>${esc(x.place)}</dd></div><div><dt>敵・NPC</dt><dd>${esc(x.target)}</dd></div><div><dt>条件・必要数</dt><dd>${esc(x.condition)}</dd></div></dl></article>`).join('')||'<p class="mission-empty">条件に合うアイテムはありません。</p>';
     const all = familyRows(), visible = rows(), done = all.filter(g=>state.done.has(g.id)).length;
     el('eventProgressText').textContent=`${done} / ${all.length}`;
     el('eventProgressBar').style.width=`${all.length?done/all.length*100:0}%`;
@@ -21,20 +31,18 @@
     el('eventFamilyTabs').innerHTML=['すべて',...data.families].map(f=>`<button type="button" class="mission-ep-tab ${f===state.family?'is-active':''}" data-family="${esc(f)}" aria-pressed="${f===state.family}">${esc(f)}</button>`).join('');
     el('eventFamilyTabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{state.family=b.dataset.family;render();}));
     el('eventGuideList').innerHTML=visible.map(g=>{
-      const url=model.sourceUrl(g.source);
       return `<details class="mission-card ${state.done.has(g.id)?'is-complete':''}" data-guide="${esc(g.id)}" ${open.has(g.id)?'open':''}>
-        <summary><div class="mission-card-title"><strong>${esc(g.title)}</strong><small>${esc(g.family)} · ${g.year}年ストーリー${state.done.has(g.id)?' · 完了済み':''}</small></div><b class="mission-chevron">＋</b></summary>
+        <summary><div class="mission-card-title"><strong>${esc(g.title)}</strong><small>${esc(g.family)} · ${g.year?g.year+'年ストーリー':'イベントガイド'}${state.done.has(g.id)?' · 完了済み':''}</small></div><b class="mission-chevron">＋</b></summary>
         <div class="mission-card-body"><label class="mission-toggle"><input type="checkbox" data-event-done="${esc(g.id)}" ${state.done.has(g.id)?'checked':''}> この攻略を完了にする</label>
         <dl class="event-guide-meta"><div><dt>入口</dt><dd>${esc(g.entry)}</dd></div><div><dt>前提・開始条件</dt><dd>${esc(g.requirement)}</dd></div><div><dt>クリア後の解放</dt><dd>${esc(g.unlock)}</dd></div></dl>
         <div class="mission-route-label">進め方</div>${g.steps.map((s,i)=>`<div class="mission-step"><i>${i+1}</i><p>${window.IrunaReferences?.step(s)||esc(s)}</p></div>`).join('')}
         ${g.note?`<p class="mission-review-note">${esc(g.note)}</p>`:''}
-        <p class="event-source">参考：${url?`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">えーへいさんの${esc(g.family)}攻略 ↗</a>`:'出典URL未確認'} · 確認日 ${esc(data.checkedAt)}</p>
         </div></details>`;
     }).join('')||'<p class="mission-empty">条件に合う攻略はありません。</p>';
     el('eventGuideList').querySelectorAll('[data-event-done]').forEach(b=>b.addEventListener('change',()=>{
       b.checked?state.done.add(b.dataset.eventDone):state.done.delete(b.dataset.eventDone);save(model.DONE,state.done);render();
     }));
-    el('eventItemList').innerHTML=visible.flatMap(g=>g.items.map((x,i)=>`<label class="mission-item ${state.owned.has(itemId(g,i))?'is-owned':''}"><input type="checkbox" data-event-owned="${esc(itemId(g,i))}" ${state.owned.has(itemId(g,i))?'checked':''}><span class="mission-item-main"><strong>${esc(x.name)} ×${x.qty}</strong><small>${esc(g.title)}</small></span></label>`)).join('')||'<p class="mission-help">表示中の攻略に、事前収集する素材の登録はありません。</p>';
+    el('eventItemList').innerHTML=visible.flatMap(g=>g.items.map((x,i)=>`<label class="mission-item ${state.owned.has(itemId(g,i))?'is-owned':''}"><input type="checkbox" data-event-owned="${esc(itemId(g,i))}" ${state.owned.has(itemId(g,i))?'checked':''}><span class="mission-item-main"><strong>${esc(x.name)} ×${x.qty}</strong><small>${esc(g.title)}</small><em>${esc(x.obtain||"入手場所は確認中。")}</em></span></label>`)).join('')||'<p class="mission-help">表示中の攻略に、事前収集する素材の登録はありません。</p>';
     el('eventItemList').querySelectorAll('[data-event-owned]').forEach(b=>b.addEventListener('change',()=>{
       b.checked?state.owned.add(b.dataset.eventOwned):state.owned.delete(b.dataset.eventOwned);save(model.OWNED,state.owned);b.closest('label').classList.toggle('is-owned',b.checked);
     }));
@@ -43,6 +51,9 @@
     if (!el('eventGuideList')) return;
     el('eventGuideSearch').addEventListener('input',e=>{state.query=e.target.value;render();});
     el('eventHideDone').addEventListener('change',e=>{state.hideDone=e.target.checked;render();});
+    el('eventModeGuide').addEventListener('click',()=>{state.mode='guide';render();});
+    el('eventModeLoot').addEventListener('click',()=>{state.mode='loot';render();});
+    el('eventLootMethod').addEventListener('change',e=>{state.method=e.target.value;render();});
     render();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();

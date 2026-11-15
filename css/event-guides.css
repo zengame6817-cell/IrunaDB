@@ -2,8 +2,20 @@
 .event-guide-meta div { display:grid; grid-template-columns:9em 1fr; gap:12px; }
 .event-guide-meta dt { font-size:.85rem; opacity:.7; }
 .event-guide-meta dd { margin:0; overflow-wrap:anywhere; }
-.event-source { font-size:.8rem; line-height:1.8; overflow-wrap:anywhere; }
-.event-source a { color:var(--accent, #55b4d9); text-decoration:underline; }
+.event-mode-tabs { display:flex; gap:8px; margin:16px 0; }
+.event-mode-tabs button { padding:12px 22px; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text); cursor:pointer; font-weight:700; }
+.event-mode-tabs button[aria-pressed="true"] { background:#337ac5; color:white; }
+.event-method-filter { display:flex; align-items:center; gap:12px; margin:16px 0; }
+.event-method-filter select { padding:10px; border-radius:8px; max-width:100%; }
+.event-loot-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr)); gap:12px; }
+.event-loot-card { border:1px solid var(--border); border-radius:14px; padding:16px; overflow-wrap:anywhere; }
+.event-loot-heading { display:flex; justify-content:space-between; align-items:start; gap:8px; }
+.event-loot-heading h4 { margin:0; }
+.event-loot-heading span { font-size:.75rem; white-space:nowrap; border-radius:6px; background:rgba(80,140,200,.12); padding:4px 8px; }
+.event-loot-family { font-size:.8rem; color:var(--muted); }
+.event-loot-card .event-guide-meta div { grid-template-columns:6em 1fr; }
+#view-events [hidden] { display:none !important; }
+#view-events .mission-ep-tabs { flex-wrap:wrap; }
 #view-events .mission-card summary { grid-template-columns:minmax(0,1fr) 26px; gap:14px; }
 #eventSaveStatus { color:#d55b45; }
 @media(max-width:600px) { .event-guide-meta div { grid-template-columns:1fr; gap:4px; } }

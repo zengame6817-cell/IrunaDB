@@ -280,7 +280,7 @@ body.light-mode .calculation-card {
 }
 </style>
   <link rel="stylesheet" href="./css/tasks.css?v=3.0.78">
-  <link rel="stylesheet" href="./css/event-guides.css?v=3.0.97">
+  <link rel="stylesheet" href="./css/event-guides.css?v=3.0.98">
 </head>
 <body>
   <div class="app-shell">
@@ -858,20 +858,24 @@ body.light-mode .calculation-card {
       <section id="view-events" class="app-view">
         <div class="mission-hero"><div><p class="section-kicker">EVENT STORY GUIDE</p><h2>イベント攻略</h2>
           <p>季節イベントの進め方・必要素材・ボス解放を確認できます。</p>
-          <p class="mission-review-note">まず3種類・13攻略を掲載。年はストーリーの実装年です。開催中のイベントは<a href="#calendar">カレンダー</a>で確認できます。</p>
-          <p class="mission-help">えーへいさんの記事を参考に整理。未掲載の年・途中の詳しい地図は各攻略の出典へ。2026年追加分の攻略は未掲載です。</p></div>
+          <p id="eventCoverage" class="mission-review-note"></p><p class="mission-help">開催中のイベントは<a href="#calendar">カレンダー</a>で確認できます。</p>
+          <p class="mission-help">年はストーリーの実装年です。掲載内容は順次追加しています。</p></div>
           <div class="mission-progress-card"><strong id="eventProgressText">0 / 0</strong><span>選択中のイベント攻略完了</span><div class="mission-progress-track"><i id="eventProgressBar"></i></div></div>
         </div>
+        <div class="event-mode-tabs" aria-label="イベントの表示"><button type="button" id="eventModeGuide" aria-pressed="true">攻略</button><button type="button" id="eventModeLoot" aria-pressed="false">入手アイテム</button></div>
         <section class="mission-toolbar"><div id="eventFamilyTabs" class="mission-ep-tabs"></div>
-          <label class="mission-search"><span>検索</span><input id="eventGuideSearch" type="search" placeholder="攻略名・年・NPC・ボス・素材"></label>
+          <label class="mission-search"><span>検索</span><input id="eventGuideSearch" type="search" placeholder="攻略名・年・アイテム・場所・敵・NPC"></label>
           <label class="mission-toggle"><input id="eventHideDone" type="checkbox"> 完了済みを隠す</label>
         </section>
         <p id="eventSaveStatus" role="status"></p>
+        <div id="eventGuidePanels">
         <section class="mission-items-panel"><div class="mission-section-head"><h3>必要素材チェック</h3></div>
           <p class="mission-help">表示中の攻略ごとに必要数を記載。同じ素材も攻略ごとに必要です。チェックはこの端末に保存されます。</p>
           <div id="eventItemList" class="mission-item-list"></div>
         </section>
         <section class="mission-list-panel"><div class="mission-section-head"><h3>攻略手順</h3><span id="eventResultCount" class="mission-result-count"></span></div><div id="eventGuideList" class="mission-list"></div></section>
+        </div>
+        <section id="eventLootPanel" class="mission-list-panel" hidden><div class="mission-section-head"><h3>入手アイテムと入手場所</h3><span id="eventLootCount" class="mission-result-count"></span></div><p class="mission-help">イベント開催中に入手できるアイテムです。ドロップ・交換・抽選・クエスト報酬を区別しています。抽選は確定入手ではありません。</p><label class="event-method-filter">入手方法 <select id="eventLootMethod"><option value="">すべて</option><option>ドロップ</option><option>交換</option><option>抽選</option><option>クエスト報酬</option></select></label><div id="eventLootList" class="event-loot-list"></div></section>
       </section>
 
       <section id="view-mission" class="app-view">
@@ -1161,7 +1165,7 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.97.js?v=3.0.97"></script>
+  <script src="./js/config-v3.0.98.js?v=3.0.98"></script>
   <script src="./js/tasks-model.js?v=3.0.78"></script>
   <script src="./js/environment.js?v=3.0.97"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
@@ -1178,9 +1182,10 @@ body.light-mode .calculation-card {
 <script src="./data/missions.js?v=3.0.96"></script>
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.96"></script>
-  <script src="./data/event-guides.js?v=3.0.97"></script>
-  <script src="./js/event-guides-model.js?v=3.0.97"></script>
-  <script src="./js/event-guides.js?v=3.0.97"></script>
+  <script src="./data/event-guides.js?v=3.0.98"></script>
+  <script src="./data/event-loot.js?v=3.0.98"></script>
+  <script src="./js/event-guides-model.js?v=3.0.98"></script>
+  <script src="./js/event-guides.js?v=3.0.98"></script>
   <script src="./js/skill-quests.js?v=3.0.86"></script>
   <script src="./data/catalog.js?v=3.0.90"></script>
   <script src="./data/locations.js?v=3.0.72"></script>
