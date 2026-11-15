@@ -280,6 +280,7 @@ body.light-mode .calculation-card {
 }
 </style>
   <link rel="stylesheet" href="./css/tasks.css?v=3.0.78">
+  <link rel="stylesheet" href="./css/event-guides.css?v=3.0.97">
 </head>
 <body>
   <div class="app-shell">
@@ -302,6 +303,7 @@ body.light-mode .calculation-card {
     <nav id="mainTabs" class="main-tabs" aria-label="メイン画面">
       <button class="main-tab is-active" data-view="build" type="button"><span>◫</span>シミュレーター</button>
       <button class="main-tab" data-view="database" type="button"><span>⌕</span>データベース</button>
+      <button class="main-tab" data-view="events" type="button"><span>催</span>イベント</button>
       <button class="main-tab" data-view="mission" type="button"><span>MS</span>ミッション</button>
       <button class="main-tab" data-view="skill" type="button"><span>SK</span>スキル</button>
       <button class="main-tab" data-view="relic" type="button"><span>RG</span>レリック<em id="rgNavNew" class="rg-nav-new">NEW</em></button>
@@ -853,6 +855,25 @@ body.light-mode .calculation-card {
       </section>
 
 
+      <section id="view-events" class="app-view">
+        <div class="mission-hero"><div><p class="section-kicker">EVENT STORY GUIDE</p><h2>イベント攻略</h2>
+          <p>季節イベントの進め方・必要素材・ボス解放を確認できます。</p>
+          <p class="mission-review-note">まず3種類・13攻略を掲載。年はストーリーの実装年です。開催中のイベントは<a href="#calendar">カレンダー</a>で確認できます。</p>
+          <p class="mission-help">えーへいさんの記事を参考に整理。未掲載の年・途中の詳しい地図は各攻略の出典へ。2026年追加分の攻略は未掲載です。</p></div>
+          <div class="mission-progress-card"><strong id="eventProgressText">0 / 0</strong><span>選択中のイベント攻略完了</span><div class="mission-progress-track"><i id="eventProgressBar"></i></div></div>
+        </div>
+        <section class="mission-toolbar"><div id="eventFamilyTabs" class="mission-ep-tabs"></div>
+          <label class="mission-search"><span>検索</span><input id="eventGuideSearch" type="search" placeholder="攻略名・年・NPC・ボス・素材"></label>
+          <label class="mission-toggle"><input id="eventHideDone" type="checkbox"> 完了済みを隠す</label>
+        </section>
+        <p id="eventSaveStatus" role="status"></p>
+        <section class="mission-items-panel"><div class="mission-section-head"><h3>必要素材チェック</h3></div>
+          <p class="mission-help">表示中の攻略ごとに必要数を記載。同じ素材も攻略ごとに必要です。チェックはこの端末に保存されます。</p>
+          <div id="eventItemList" class="mission-item-list"></div>
+        </section>
+        <section class="mission-list-panel"><div class="mission-section-head"><h3>攻略手順</h3><span id="eventResultCount" class="mission-result-count"></span></div><div id="eventGuideList" class="mission-list"></div></section>
+      </section>
+
       <section id="view-mission" class="app-view">
         <div id="missionStoryMode">
         <div class="mission-hero">
@@ -1140,9 +1161,9 @@ body.light-mode .calculation-card {
     </section>
   </div>
 
-  <script src="./js/config-v3.0.96.js?v=3.0.96"></script>
+  <script src="./js/config-v3.0.97.js?v=3.0.97"></script>
   <script src="./js/tasks-model.js?v=3.0.78"></script>
-  <script src="./js/environment.js?v=3.0.78"></script>
+  <script src="./js/environment.js?v=3.0.97"></script>
   <script src="./js/item-memo.js?v=3.0.72"></script>
   <script src="./js/utils.js?v=3.0.86"></script>
   <script src="./js/api.js?v=3.0.38"></script>
@@ -1157,6 +1178,9 @@ body.light-mode .calculation-card {
 <script src="./data/missions.js?v=3.0.96"></script>
   <script src="./data/skill-quests.js?v=3.0.37"></script>
 <script src="./js/missions.js?v=3.0.96"></script>
+  <script src="./data/event-guides.js?v=3.0.97"></script>
+  <script src="./js/event-guides-model.js?v=3.0.97"></script>
+  <script src="./js/event-guides.js?v=3.0.97"></script>
   <script src="./js/skill-quests.js?v=3.0.86"></script>
   <script src="./data/catalog.js?v=3.0.90"></script>
   <script src="./data/locations.js?v=3.0.72"></script>
@@ -1173,7 +1197,7 @@ body.light-mode .calculation-card {
   <script src="./js/monster-attributes.js?v=3.0.80"></script>
   <script src="./js/monster-browser.js?v=3.0.80"></script>
   <script src="./js/location-browser.js?v=3.0.90"></script>
-  <script src="./js/app-v3.0.55.js?v=3.0.96"></script>
+  <script src="./js/app-v3.0.55.js?v=3.0.97"></script>
   <script src="./data/forge.js?v=3.0.91"></script>
   <script src="./js/catalog.js?v=3.0.92"></script>
   <script src="./js/navigation.js?v=3.0.72"></script>

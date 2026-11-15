@@ -1,0 +1,9 @@
+.event-guide-meta { display:grid; gap:12px; margin:20px 0; }
+.event-guide-meta div { display:grid; grid-template-columns:9em 1fr; gap:12px; }
+.event-guide-meta dt { font-size:.85rem; opacity:.7; }
+.event-guide-meta dd { margin:0; overflow-wrap:anywhere; }
+.event-source { font-size:.8rem; line-height:1.8; overflow-wrap:anywhere; }
+.event-source a { color:var(--accent, #55b4d9); text-decoration:underline; }
+#view-events .mission-card summary { gap:14px; }
+#eventSaveStatus { color:#d55b45; }
+@media(max-width:600px) { .event-guide-meta div { grid-template-columns:1fr; gap:4px; } }

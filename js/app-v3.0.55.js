@@ -5179,6 +5179,8 @@ function collectTotalData() {
   setupV21Navigation();
   if (location.hash === "#monsters") setView("monsters");
   window.addEventListener("hashchange",()=>{if(location.hash==="#monsters")setView("monsters");});
+  if (location.hash === "#events") setView("events");
+  window.addEventListener("hashchange", () => { if (location.hash === "#events") setView("events"); });
   if (location.hash === "#calendar") setView("calendar");
   window.addEventListener("hashchange", () => { if (location.hash === "#calendar") setView("calendar"); });
   setupPanelCollapsibles();
