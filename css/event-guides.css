@@ -4,6 +4,6 @@
 .event-guide-meta dd { margin:0; overflow-wrap:anywhere; }
 .event-source { font-size:.8rem; line-height:1.8; overflow-wrap:anywhere; }
 .event-source a { color:var(--accent, #55b4d9); text-decoration:underline; }
-#view-events .mission-card summary { gap:14px; }
+#view-events .mission-card summary { grid-template-columns:minmax(0,1fr) 26px; gap:14px; }
 #eventSaveStatus { color:#d55b45; }
 @media(max-width:600px) { .event-guide-meta div { grid-template-columns:1fr; gap:4px; } }
