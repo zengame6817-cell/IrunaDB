@@ -404,19 +404,6 @@ window.IRUNA_EVENT_LOOT = [
     "evidence": "ken-hw2023"
   },
   {
-    "id": "event-loot-032",
-    "family": "ハロウィン",
-    "guideIds": [
-      "hw-2024"
-    ],
-    "method": "ドロップ",
-    "place": "2024ハロウィン会場",
-    "target": "ムスベラLv.410",
-    "condition": "2024年ストーリーをクリアして再戦",
-    "name": "カボチャの針立て",
-    "evidence": "daifuku-hw2024"
-  },
-  {
     "id": "event-loot-033",
     "family": "ハロウィン",
     "guideIds": [
@@ -424,10 +411,10 @@ window.IRUNA_EVENT_LOOT = [
     ],
     "method": "ドロップ",
     "place": "2024ハロウィン会場",
-    "target": "ムスベラLv.410",
-    "condition": "2024年ストーリーをクリアして再戦",
+    "target": "ムスベラ",
+    "condition": "イベントのボス戦で入手",
     "name": "◇ムスベラ",
-    "evidence": "daifuku-hw2024"
+    "evidence": "official-hw2025"
   },
   {
     "id": "event-loot-034",
@@ -437,10 +424,10 @@ window.IRUNA_EVENT_LOOT = [
     ],
     "method": "ドロップ",
     "place": "2024ハロウィン会場",
-    "target": "ドゥルチャLv.410",
-    "condition": "2024年ストーリーをクリアして再戦",
+    "target": "ドゥルチャ",
+    "condition": "イベントのボス戦で入手",
     "name": "ドゥルチャロッド",
-    "evidence": "daifuku-hw2024"
+    "evidence": "official-hw2025"
   },
   {
     "id": "event-loot-035",
@@ -450,10 +437,10 @@ window.IRUNA_EVENT_LOOT = [
     ],
     "method": "ドロップ",
     "place": "2024ハロウィン会場",
-    "target": "ドゥルチャLv.410",
-    "condition": "2024年ストーリーをクリアして再戦",
+    "target": "ドゥルチャ",
+    "condition": "イベントのボス戦で入手",
     "name": "◇ドゥルチャ",
-    "evidence": "daifuku-hw2024"
+    "evidence": "official-hw2025"
   },
   {
     "id": "event-loot-036",
@@ -1962,5 +1949,239 @@ window.IRUNA_EVENT_LOOT = [
     "condition": "マーメイドコイン99個",
     "name": "トランス「魚兵」",
     "evidence": "daifuku-mermaid9"
+  },
+  {
+    "id": "loot-xm-2014-spirit-フィオナLv.290-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2014-spirit"
+    ],
+    "method": "ドロップ",
+    "place": "淡雪の祭壇",
+    "target": "フィオナLv.290",
+    "condition": "イベントのボス戦で入手",
+    "name": "◇フィオナ",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2020-大将ピトンLv.350-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2020"
+    ],
+    "method": "ドロップ",
+    "place": "2020クリスマス会場から進入",
+    "target": "大将ピトンLv.350",
+    "condition": "イベントのボス戦で入手",
+    "name": "◇大将ピトン",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2020-星喰いLv.400-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2020"
+    ],
+    "method": "ドロップ",
+    "place": "2020クリスマス会場から進入",
+    "target": "星喰いLv.400",
+    "condition": "イベントのボス戦で入手",
+    "name": "◇星喰い",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2020-星喰いLv.400-2",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2020"
+    ],
+    "method": "ドロップ",
+    "place": "2020クリスマス会場から進入",
+    "target": "星喰いLv.400",
+    "condition": "イベントのボス戦で入手",
+    "name": "▲星喰い",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2021-チッケンLv.420-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2021"
+    ],
+    "method": "ドロップ",
+    "place": "スノースマイル工房・ベルンの案内先",
+    "target": "チッケンLv.420",
+    "condition": "イベントのボス戦で入手",
+    "name": "ディナーチキン",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2021-チッケンLv.420-2",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2021"
+    ],
+    "method": "ドロップ",
+    "place": "スノースマイル工房・ベルンの案内先",
+    "target": "チッケンLv.420",
+    "condition": "イベントのボス戦で入手",
+    "name": "ディナークローシュ",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2021-チッケンLv.420-3",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2021"
+    ],
+    "method": "ドロップ",
+    "place": "スノースマイル工房・ベルンの案内先",
+    "target": "チッケンLv.420",
+    "condition": "イベントのボス戦で入手",
+    "name": "◇チッケン",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2022-エトワールLv.430-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2022"
+    ],
+    "method": "ドロップ",
+    "place": "ムートンラファーレ",
+    "target": "エトワールLv.430",
+    "condition": "イベントのボス戦で入手",
+    "name": "大きな木の実",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2022-エトワールLv.430-2",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2022"
+    ],
+    "method": "ドロップ",
+    "place": "ムートンラファーレ",
+    "target": "エトワールLv.430",
+    "condition": "イベントのボス戦で入手",
+    "name": "大樹の贈り物",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2022-エトワールLv.430-3",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2022"
+    ],
+    "method": "ドロップ",
+    "place": "ムートンラファーレ",
+    "target": "エトワールLv.430",
+    "condition": "イベントのボス戦で入手",
+    "name": "ムートンキレーブ",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2022-エトワールLv.430-4",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2022"
+    ],
+    "method": "ドロップ",
+    "place": "ムートンラファーレ",
+    "target": "エトワールLv.430",
+    "condition": "イベントのボス戦で入手",
+    "name": "▲エトワール",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2023-フォージスLv.400-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2023"
+    ],
+    "method": "ドロップ",
+    "place": "山脈の隠れ家",
+    "target": "フォージスLv.400",
+    "condition": "イベントのボス戦で入手",
+    "name": "温石ブローチ",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2023-フォージスLv.400-2",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2023"
+    ],
+    "method": "ドロップ",
+    "place": "山脈の隠れ家",
+    "target": "フォージスLv.400",
+    "condition": "イベントのボス戦で入手",
+    "name": "ウェスタプレアー",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2023-フォージスLv.400-3",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2023"
+    ],
+    "method": "ドロップ",
+    "place": "山脈の隠れ家",
+    "target": "フォージスLv.400",
+    "condition": "イベントのボス戦で入手",
+    "name": "▲フォージス",
+    "evidence": "ehei-christmas"
+  },
+  {
+    "id": "loot-xm-2024-ウヒサディ-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2024"
+    ],
+    "method": "ドロップ",
+    "place": "クリスマスイベント会場から進入",
+    "target": "ウヒサディ",
+    "condition": "イベントのボス戦で入手",
+    "name": "ベネディジオーネ",
+    "evidence": "official-xm2024"
+  },
+  {
+    "id": "loot-xm-2024-ウヒサディ-2",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2024"
+    ],
+    "method": "ドロップ",
+    "place": "クリスマスイベント会場から進入",
+    "target": "ウヒサディ",
+    "condition": "イベントのボス戦で入手",
+    "name": "▲ウヒサディ",
+    "evidence": "official-xm2024"
+  },
+  {
+    "id": "loot-xm-2025-スリジ-1",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2025"
+    ],
+    "method": "ドロップ",
+    "place": "クリスマスイベント会場から進入",
+    "target": "イベントボス（名前確認中）",
+    "condition": "イベントのボス戦で入手",
+    "name": "スリジマチェテ",
+    "evidence": "official-xm2025"
+  },
+  {
+    "id": "loot-xm-2012-cake-hat",
+    "family": "クリスマス",
+    "guideIds": [
+      "xm-2012"
+    ],
+    "method": "クエスト報酬",
+    "place": "クリスマス会場",
+    "target": "サンタさん",
+    "condition": "指定された相手全員に正しく配達した場合の報酬候補",
+    "name": "ケーキハット",
+    "evidence": "wiki-xm2012"
   }
 ];
