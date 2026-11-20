@@ -180,7 +180,7 @@
     window.IrunaModal.close();show("forge");renderForge();$("forgeSearch").focus({preventScroll:true});
   });
   renderForge();
-  window.IrunaCatalog = {setEquipmentData(rows,attributes){locations.setEquipmentData(rows,attributes);forgeItems=new Map([...items,...rows.map(row=>[row["アイテムID"],row])]);renderForge();},decorateModal(item) {
+  window.IrunaCatalog = {setEquipmentData(rows,attributes){locations.setEquipmentData(rows,attributes);window.IrunaReferences?.setEquipmentData(rows);forgeItems=new Map([...items,...rows.map(row=>[row["アイテムID"],row])]);renderForge();},decorateModal(item) {
     const id=item["アイテムID"], uses=data.materials.filter(m => active(m) && m["素材アイテムID"]===id);
     const outputs=data.results.filter(m => active(m) && m["完成アイテムID"]===id);
     const wiki=window.IrunaWikiData?.evidence.get(id);

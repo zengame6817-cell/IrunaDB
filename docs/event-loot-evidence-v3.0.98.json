@@ -1,15 +1,15 @@
 {
-  "checkedAt": "2026-11-15",
+  "checkedAt": "2026-11-20",
   "sources": {
     "ehei-hw": "https://irnsnk.com/harowhinibento_koukanaitemu/",
     "wiki-town": "https://wikiwiki.jp/iruna-online/Android版・iOS版/モンスター/ハロトゥーンタウン",
     "ken-hw2023": "https://ameblo.jp/irunaken217/entry-12825035610.html",
-    "daifuku-hw2024": "https://ameblo.jp/pepetaisa/entry-12872120792.html",
+    "daifuku-hw2024": null,
     "official-hw2025": "https://android.iruna.jp/info?no=27463",
-    "daifuku-hw2026": "https://ameblo.jp/pepetaisa/entry-12981816174.html",
+    "daifuku-hw2026": null,
     "ehei-val": "https://irnsnk.com/valentineevent-item/",
     "ken-val2025": "https://ameblo.jp/irunaken217/entry-12886163622.html",
-    "daifuku-val2026": "https://ameblo.jp/pepetaisa/entry-12956310914.html",
+    "daifuku-val2026": null,
     "ken-val2026": "https://ameblo.jp/irunaken217/entry-12956074487.html",
     "ehei-white": "https://irnsnk.com/whitedayevent-item/",
     "wiki-white": "https://wikiwiki.jp/iruna-online/Android版・iOS版/モンスター/ホワイトデーイベント会場",
@@ -21,12 +21,16 @@
     "ehei-sword": "https://irnsnk.com/https-irnsnk-com-master-swordsman-event-item/",
     "ehei-christmas": "https://irnsnk.com/christmas-event-item/",
     "nabe-christmas": "https://ameblo.jp/nabe1173/entry-12090222823.html",
-    "daifuku-gene": "https://ameblo.jp/pepetaisa/entry-12902083162.html",
+    "daifuku-gene": null,
     "wiki-school": "https://wikiwiki.jp/iruna-online/Android版・iOS版/モンスター/イルーナ学園（グッバイ、ドリームスクール）",
     "official-anniv": "https://iphone.iruna.jp/info_app?no=10030",
     "seesaa-anniv": "https://5631ghost.seesaa.net/article/444715508.html",
-    "daifuku-mermaid": "https://ameblo.jp/pepetaisa/entry-12858593764.html",
-    "daifuku-mermaid9": "https://ameblo.jp/pepetaisa/entry-12973413704.html"
+    "daifuku-mermaid": null,
+    "daifuku-mermaid9": null,
+    "official-xm2024": "https://www.asobimo.com/ja/news/detail.html?p=29726",
+    "official-xm2025": "https://android.iruna.jp/info?no=25727",
+    "wiki-xm-forest": "https://wikiwiki.jp/iruna-online/モンスター/クリスマスの森",
+    "wiki-xm2012": "https://wikiwiki.jp/iruna-online/クリスマスクエスト(2012)"
   },
   "imageChecks": [
     {

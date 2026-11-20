@@ -4,8 +4,8 @@ const ctx={window:{},URL};vm.createContext(ctx);
 for(const p of ['data/event-guides.js','data/event-loot.js','js/event-guides-model.js'])vm.runInContext(fs.readFileSync(p,'utf8'),ctx);
 const D=ctx.window.IRUNA_EVENT_GUIDES,M=ctx.IrunaEventGuidesModel;
 test('guides carry distinct ids, real story years, material quantities and scoped sources',()=>{
- assert.equal(D.guides.length,45);assert.equal(D.families.length,10);assert.equal(new Set(D.guides.map(g=>g.id)).size,45);
- for(const g of D.guides){assert(D.families.includes(g.family));assert(g.year===null||(g.year>=2010&&g.year<=2026));assert(g.entry&&g.requirement&&g.unlock);assert(g.steps.length>=2);assert.equal(new URL(g.source).protocol,"https:");for(const x of g.items){assert(x.name);assert(Number.isInteger(x.qty)&&x.qty>0);}}
+ assert.equal(D.guides.length,59);assert.equal(D.families.length,10);assert.equal(new Set(D.guides.map(g=>g.id)).size,59);
+ for(const g of D.guides){assert(D.families.includes(g.family));assert(g.year===null||(g.year>=2010&&g.year<=2026));assert(g.entry&&g.requirement&&g.unlock);assert(g.steps.length>=2);if (g.source) assert.equal(new URL(g.source).protocol,"https:");for(const x of g.items){assert(x.name);if(!x.archived)assert(Number.isInteger(x.qty)&&x.qty>0);}}
  const g=D.guides.find(g=>g.id==='hw-2020');assert.equal(g.items.length,4);assert.equal(g.items.find(x=>x.name==='ハロウィンかぼちゃ').qty,1);
  assert(D.guides.find(g=>g.id==='val-2024').requirement.includes('2019'));assert(D.guides.find(g=>g.id==='wd-2021').requirement.includes('バレンタイン'));
 });
@@ -34,9 +34,9 @@ test('new view, deep link and offline shell are wired and controller parses',()=
 });
 
 test('loot links every item to a guide and preserves actual acquisition methods and requirements',()=>{
- const loot=ctx.window.IRUNA_EVENT_LOOT;assert.equal(loot.length,151);assert.equal(new Set(loot.map(x=>x.id)).size,loot.length);
+ const loot=ctx.window.IRUNA_EVENT_LOOT;assert.equal(loot.length,168);assert.equal(new Set(loot.map(x=>x.id)).size,loot.length);
  const sources=JSON.parse(fs.readFileSync('docs/event-loot-evidence-v3.0.98.json','utf8')).sources;
- for(const x of loot)assert(sources[x.evidence],x.evidence);
+ for(const x of loot)assert(Object.hasOwn(sources,x.evidence),x.evidence);
  for(const x of loot){assert(D.families.includes(x.family));assert(x.name&&x.place&&x.target&&x.condition&&x.evidence);assert(['ドロップ','交換','抽選','クエスト報酬'].includes(x.method));assert(x.guideIds.every(id=>D.guides.some(g=>g.id===id&&g.family===x.family)));}
  assert.equal(loot.find(x=>x.name==='恋慕の首飾り').condition.includes('ホワイトスイーツ'),true);
  assert.equal(loot.find(x=>x.name==='クッフィアロリタ').condition.includes('ホワイトジュエル'),true);
@@ -60,4 +60,21 @@ test('old check ids and material order survive expansion and latest prerequisite
  assert(D.guides.find(x=>x.id==='mermaid-2026').requirement.includes('夜空に届く歌'));
  assert(D.guides.find(x=>x.id==='wd-2023').requirement.includes('シュガー'));
  assert(D.guides.find(x=>x.id==='dg-story').requirement.includes('EP1'));
+});
+
+test('archive years and seasonal calendar links match the existing guides',()=>{
+ assert.deepEqual(Array.from(M.years(D.guides.filter(g=>g.family==='クリスマス'))),[2025,2024,2023,2022,2021,2020,2019,2018,2016,2015,2014,2013,2012,2010]);
+ assert.equal(M.seasonalFamily('新クリスマスイベント'), 'クリスマス');
+ assert.equal(M.seasonalFamily('精錬キャンペーン'), '');
+});
+test('each event displays only its own monster drops, excluding quest rewards',()=>{
+ const loot=ctx.window.IRUNA_EVENT_LOOT;
+ const groups=M.dropGroups(loot,'xm-2024');
+ assert.equal(groups.length,1);
+ assert.equal(groups[0].target,'ウヒサディ');
+ assert.deepEqual(Array.from(groups[0].drops,row=>row.name),['ベネディジオーネ','▲ウヒサディ']);
+ assert(!M.dropGroups(loot,'hw-2013').some(group=>group.drops.some(row=>row.name==='ハロウィン衣装')));
+ for (const path of ['data/event-guides.js','data/event-loot.js','docs/event-loot-evidence-v3.0.98.json']) {
+   assert(!fs.readFileSync(path,'utf8').includes('ameblo.jp/pepetaisa'));
+ }
 });
