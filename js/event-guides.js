@@ -17,8 +17,16 @@
     return '<h4>モンスターとドロップ</h4>'+groups.map(({target,place,drops})=>
       `<details class="event-monster"><summary>${esc(target)}</summary>
         <p>${window.IrunaReferences?.html(place,['map'])||esc(place)}</p>
-        <ul>${drops.map(drop=>`<li>${itemLink(drop.name)}</li>`).join('')}</ul>
+        ${dropTable(drops)}
       </details>`).join('');
+  }
+  function dropTable(drops) {
+    const {slots, unplaced} = model.dropSlots(drops);
+    const numbered = slots.map(({status,name},i) => `<div><dt>第${i+1}</dt><dd>${
+      status==='item' ? itemLink(name) : status==='empty' ? 'ドロップなし' : '未確認'
+    }</dd></div>`).join('');
+    const other = unplaced.length ? '<p>入手確認済み・枠順未確認</p><ul>'+unplaced.map(row=>`<li>${itemLink(row.name)}</li>`).join('')+'</ul>' : '';
+    return '<dl class="event-drop-slots">'+numbered+'</dl>'+other;
   }
   function itemLink(name) {
     return `<button type="button" class="reference-link" data-event-item="${esc(name)}">${esc(name)}</button>`;

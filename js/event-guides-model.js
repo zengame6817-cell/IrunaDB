@@ -24,5 +24,15 @@ globalThis.IrunaEventGuidesModel = (() => {
     }
     return [...groups.values()];
   }
-  return Object.freeze({DONE, OWNED, read, matches, lootMatches, sourceUrl, seasonalFamily, years, dropGroups});
+  function dropSlots(drops) {
+    const slots = Array.from({length:4}, () => ({status:'unknown'}));
+    const unplaced = [];
+    for (const row of drops) {
+      for (const slot of row.emptySlots || []) slots[slot-1] = {status:'empty'};
+      for (const slot of row.slots || []) slots[slot-1] = {status:'item', name:row.name};
+      if (!(row.slots || []).length) unplaced.push(row);
+    }
+    return {slots, unplaced};
+  }
+  return Object.freeze({DONE, OWNED, read, matches, lootMatches, sourceUrl, seasonalFamily, years, dropGroups, dropSlots});
 })();

@@ -34,7 +34,7 @@ test('new view, deep link and offline shell are wired and controller parses',()=
 });
 
 test('loot links every item to a guide and preserves actual acquisition methods and requirements',()=>{
- const loot=ctx.window.IRUNA_EVENT_LOOT;assert.equal(loot.length,168);assert.equal(new Set(loot.map(x=>x.id)).size,loot.length);
+ const loot=ctx.window.IRUNA_EVENT_LOOT;assert.equal(loot.length,431);assert.equal(new Set(loot.map(x=>x.id)).size,loot.length);
  const sources=JSON.parse(fs.readFileSync('docs/event-loot-evidence-v3.0.98.json','utf8')).sources;
  for(const x of loot)assert(Object.hasOwn(sources,x.evidence),x.evidence);
  for(const x of loot){assert(D.families.includes(x.family));assert(x.name&&x.place&&x.target&&x.condition&&x.evidence);assert(['ドロップ','交換','抽選','クエスト報酬'].includes(x.method));assert(x.guideIds.every(id=>D.guides.some(g=>g.id===id&&g.family===x.family)));}
@@ -72,9 +72,37 @@ test('each event displays only its own monster drops, excluding quest rewards',(
  const groups=M.dropGroups(loot,'xm-2024');
  assert.equal(groups.length,1);
  assert.equal(groups[0].target,'ウヒサディ');
- assert.deepEqual(Array.from(groups[0].drops,row=>row.name),['ベネディジオーネ','▲ウヒサディ']);
+ assert.deepEqual(Array.from(groups[0].drops,row=>row.name),['ベネディジオーネ','▲ウヒサディ','笑い袋','滑らかな布']);
  assert(!M.dropGroups(loot,'hw-2013').some(group=>group.drops.some(row=>row.name==='ハロウィン衣装')));
  for (const path of ['data/event-guides.js','data/event-loot.js','docs/event-loot-evidence-v3.0.98.json']) {
    assert(!fs.readFileSync(path,'utf8').includes('ameblo.jp/pepetaisa'));
  }
+});
+
+test('numbered slots keep repeated items, proven empty slots and unverified positions distinct',()=>{
+ const loot=ctx.window.IRUNA_EVENT_LOOT;
+ const target=(id,name)=>M.dropSlots(M.dropGroups(loot,id).find(group=>group.target===name).drops);
+ const piton=target('xm-2010','ピトンLv.100');
+ assert.deepEqual(Array.from(piton.slots,x=>x.name),['Xmasチケット','Xmasチケット','Xmasチケット','◇ピトン']);
+ const riddle=target('val-2018','リドルハッターLv.50');
+ assert.deepEqual(Array.from(riddle.slots,x=>x.status),['item','empty','empty','empty']);
+ const igniciel=target('hw-2025','イグニシエル');
+ assert.deepEqual(Array.from(igniciel.slots,s=>s.status),['item','unknown','unknown','item']);
+ assert(igniciel.unplaced.some(x=>x.name==='フラムブルアーチ'));
+});
+test('numbered drop claims have evidence and never overlap in the same encounter',()=>{
+ const loot=ctx.window.IRUNA_EVENT_LOOT;
+ const {sources}=JSON.parse(fs.readFileSync('docs/event-loot-evidence-v3.0.98.json','utf8'));
+ let checked=0;
+ for(const g of D.guides)for(const {drops} of M.dropGroups(loot,g.id)){
+   const used=new Set();
+   for(const row of drops){
+     const declared=[...(row.slots||[]),...(row.emptySlots||[])];
+     if(declared.length)assert(sources[row.slotEvidence],row.name);
+     for(const slot of declared){assert(Number.isInteger(slot)&&slot>=1&&slot<=4);assert(!used.has(slot),g.id+':'+slot);used.add(slot);}
+   }
+   if(used.size===4)checked++;
+ }
+ assert(checked>=70);
+ assert.equal(new Set(loot.filter(row=>row.method==='ドロップ').map(row=>row.family)).size,10);
 });

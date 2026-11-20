@@ -26,28 +26,7 @@
 #eventGuideYear { min-height:40px; max-width:100%; color:var(--text); background:var(--surface); }
 #eventItemStatus:empty { display:none; }
 
-#view-events,
-#view-calendar {
-  --event-link-color: #1458a5;
-}
-html[data-theme="dark"] :is(#view-events, #view-calendar),
-body[data-theme="dark"] :is(#view-events, #view-calendar) {
-  --event-link-color: #90c8ff;
-}
-#view-events :is(a[href], .reference-link, .event-monster > summary, .mission-card > summary .mission-card-title > strong),
-#view-calendar a[href] {
-  color: var(--event-link-color);
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
-}
-#view-events :is(a[href], .reference-link, .event-monster > summary):hover,
-#view-events .mission-card > summary:hover .mission-card-title > strong,
-#view-calendar a[href]:hover {
-  text-decoration-thickness: 0.15em;
-}
-#view-events :is(a[href], .reference-link, summary):focus-visible,
-#view-calendar a[href]:focus-visible {
-  outline: 2px solid var(--event-link-color);
-  outline-offset: 3px;
-}
+.event-drop-slots { margin:12px 0; }
+.event-drop-slots div { display:grid; grid-template-columns:3em minmax(0,1fr); gap:12px; padding:6px 0; border-bottom:1px solid var(--border); }
+.event-drop-slots dt { font-weight:600; }
+.event-drop-slots dd { margin:0; overflow-wrap:anywhere; }
