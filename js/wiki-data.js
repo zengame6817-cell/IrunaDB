@@ -43,7 +43,7 @@ window.IrunaWikiData = (() => {
     if(!isPlaceholder(item['説明文']))next['説明文']=item['説明文'];
     return next;
   };
-  function mergeCatalog(base){const next=window.IrunaCatalogModel.mergeLocations(base,data);next.items=[...next.items,...supplemental].map(overlayItem);next.itemAliases=data.itemAliases||[];return window.IrunaCatalogModel.validate(next);}
+  function mergeCatalog(base){const next=window.IrunaCatalogModel.mergeLocations(base,data);next.items=[...next.items,...supplemental].map(overlayItem);next.itemAliases=data.itemAliases||[];return window.IrunaCatalogModel.mergeLocations(window.IrunaCatalogModel.validate(next),window.IRUNA_NOVEMBER_LOCATIONS); }
   function mergeEffects(rows){
     const ids=new Map(rows.map(r=>[r['効果ID'],r]));
     const itemIds=new Set(data.items.map(r=>r['アイテムID']));
