@@ -5,7 +5,7 @@ window.IrunaWikiData = (() => {
   const allowed=new Set(['アイテムID','説明文','備考','入手区分','入手先','マップ']);
   const updates=new Map(),evidence=new Map();
   const catalogOnly=new Set(data.items.filter(row=>row['計算対象']===false).map(row=>row['アイテムID']));
-  const supplemental=[...(window.IRUNA_EQUIPMENT_3087||[]),...(window.IRUNA_EVENT_ITEMS_3088||[]),...(window.IRUNA_LATEST_ITEMS_3094||[])];
+  const supplemental=[...(window.IRUNA_EQUIPMENT_3087||[]),...(window.IRUNA_EVENT_ITEMS_3088||[]),...(window.IRUNA_LATEST_ITEMS_3094||[]),...(window.IRUNA_UPDATE_20261125?.items||[])];
   const isCatalogOnly=item=>!window.IrunaNovemberCalculation?.isSupported(item)&&(catalogOnly.has(item['アイテムID'])||supplemental.some(row=>row['アイテムID']===item['アイテムID']));
   const prefixes=new Map();
   for(const row of data.namePrefixes||[]){if(!row.id||prefixes.has(row.id)||!['◇','◆'].includes(row.prefix)||!row.url)throw new Error('クリスタ記号の照合が不正です');prefixes.set(row.id,row.prefix);}
@@ -43,7 +43,7 @@ window.IrunaWikiData = (() => {
     if(!isPlaceholder(item['説明文']))next['説明文']=item['説明文'];
     return next;
   };
-  function mergeCatalog(base){const next=window.IrunaCatalogModel.mergeLocations(base,data);next.items=[...next.items,...supplemental].map(overlayItem);next.itemAliases=data.itemAliases||[];return window.IrunaCatalogModel.mergeLocations(window.IrunaCatalogModel.validate(next),window.IRUNA_NOVEMBER_LOCATIONS); }
+  function mergeCatalog(base){const next=window.IrunaCatalogModel.mergeLocations(base,data);next.items=[...next.items,...supplemental].map(overlayItem);next.itemAliases=data.itemAliases||[];const located=window.IrunaCatalogModel.mergeLocations(window.IrunaCatalogModel.validate(next),window.IRUNA_NOVEMBER_LOCATIONS); return window.IRUNA_UPDATE_20261125?window.IrunaCatalogModel.mergeLocations(located,{...window.IRUNA_UPDATE_20261125,items:[]}):located; }
   function mergeEffects(rows){
     const ids=new Map(rows.map(r=>[r['効果ID'],r]));
     const itemIds=new Set(data.items.map(r=>r['アイテムID']));
