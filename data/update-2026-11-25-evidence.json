@@ -7,50 +7,8 @@
       "publishedAt": "2026-11-25T14:53:00+09:00"
     },
     {
-      "url": "https://ameblo.jp/pepetaisa/entry-12985634527.html",
-      "role": "装備画面の画像を優先"
-    },
-    {
       "url": "https://ameblo.jp/wkhr1/entry-12985608192.html",
       "role": "性能・材料数・費用を鍛冶屋画面で照合"
-    },
-    {
-      "url": "https://ameblo.jp/pepetaisa/entry-12889629148.html",
-      "role": "サンゴの甲羅の入手先"
-    },
-    {
-      "url": "https://ameblo.jp/pepetaisa/entry-12960173505.html",
-      "role": "ヘルムバイザーの入手先"
-    }
-  ],
-  "images": [
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/a5/63/j/o1080048515845518954.jpg?caw=800",
-      "sha256": "d99dca7d730e8b390df7ab10ae656640d516115ad99a48560a7373483431bfc0"
-    },
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/a9/6d/j/o1080046215845518955.jpg?caw=800",
-      "sha256": "1edc4cc67e6ffcda2c4204625e0b1ea741a23739093274622fd6ad3e9b473453"
-    },
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/10/0d/j/o1080046215845518956.jpg?caw=800",
-      "sha256": "b6ac7383efc71a1061463db4969caa2767fd4eef42854643263c9db26f9a16e0"
-    },
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/eb/39/j/o1080046315845518958.jpg?caw=800",
-      "sha256": "804d6777d30df3d51280de73cb75ba8ad2dd3b0046da1a25af9f5488f5d48b8b"
-    },
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/78/20/j/o1080046315845518959.jpg?caw=800",
-      "sha256": "91f39e02ebd768c64249906cd3f8a00133420c8cdcfdbd05b8a449511e29ffb2"
-    },
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/81/44/j/o1080048715845528355.jpg?caw=800",
-      "sha256": "b2db9966b4e757b733d4f6835fcfb4414d55fc5654dc79a104ed580622cdf33c"
-    },
-    {
-      "url": "https://stat.ameba.jp/user_images/20261125/20/pepetaisa/69/60/j/o1080063315845528358.jpg?caw=800",
-      "sha256": "989543831fa6356aa010fef77bc09c44a2da5369313ef999f94a002d6c3e13e7"
     }
   ],
   "corrections": [
@@ -66,5 +24,5 @@
     "プーギン私兵のLvに資料間不一致",
     "確率効果や条件付き効果の数式は未検証。新装備は閲覧用、計算対象外"
   ],
-  "policy": "ブログ本文・ゲーム画像の転載なし。UIへの出典リンク追加なし。既存素材IDを再利用。"
+  "policy": "転載禁止ブログの本文・画像・記事URLは公開データに保持しない。参照可能な公式資料と独立に照合し、未検証情報はそのまま明示する。"
 }
