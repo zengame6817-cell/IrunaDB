@@ -5,7 +5,6 @@
 追加: モンスター4体、マップ2件、出現4件、ドロップ16件。既存素材・消費品はIDを再利用。収集品1件の誤った湖表記を水林道へ訂正。
 
 出典:
-- https://ameblo.jp/pepetaisa/entry-12984190854.html
 - https://ameblo.jp/irunaken217/entry-12983985485.html
 - https://ameblo.jp/wkhr1/entry-12984227025.html
 - https://android.iruna.jp/information_app?page=6 （11月18日14:06、11月23日直接取得）
