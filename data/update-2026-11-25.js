@@ -235,7 +235,7 @@ window.IRUNA_UPDATE_20261125 = {
       "イベントID": "",
       "対象版": "日本Android・iOS",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12985634527.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true
@@ -250,7 +250,7 @@ window.IRUNA_UPDATE_20261125 = {
       "イベントID": "",
       "対象版": "日本Android・iOS",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12889629148.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true
@@ -265,7 +265,7 @@ window.IRUNA_UPDATE_20261125 = {
       "イベントID": "",
       "対象版": "日本Android・iOS",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12960173505.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true
@@ -282,7 +282,7 @@ window.IRUNA_UPDATE_20261125 = {
       "難易度": "ウィークリーレイド",
       "対象版": "日本Android・iOS",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12985634527.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true,
@@ -298,7 +298,7 @@ window.IRUNA_UPDATE_20261125 = {
       "難易度": "",
       "対象版": "日本Android・iOS",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12889629148.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true,
@@ -314,7 +314,7 @@ window.IRUNA_UPDATE_20261125 = {
       "難易度": "",
       "対象版": "日本Android・iOS",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12960173505.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true,
@@ -329,7 +329,7 @@ window.IRUNA_UPDATE_20261125 = {
       "出現条件": "2026-11-26以降の火・木・土・日。11月中はLv500ボス一覧から選択。",
       "イベントID": "",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12985634527.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true
@@ -341,7 +341,7 @@ window.IRUNA_UPDATE_20261125 = {
       "出現条件": "",
       "イベントID": "",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12889629148.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true
@@ -353,7 +353,7 @@ window.IRUNA_UPDATE_20261125 = {
       "出現条件": "",
       "イベントID": "",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12960173505.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true
@@ -370,7 +370,7 @@ window.IRUNA_UPDATE_20261125 = {
       "条件": "2026年11月26日0:00以降の開催時。実際のドロップは未検証。",
       "イベントID": "",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12985634527.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true,
@@ -386,7 +386,7 @@ window.IRUNA_UPDATE_20261125 = {
       "条件": "",
       "イベントID": "",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12889629148.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true,
@@ -402,7 +402,7 @@ window.IRUNA_UPDATE_20261125 = {
       "条件": "",
       "イベントID": "",
       "出典ID": "SRC20261125",
-      "出典URL": "https://ameblo.jp/pepetaisa/entry-12960173505.html",
+      "出典URL": "",
       "確認日": "2026-11-25",
       "確認状態": "資料照合済（ゲーム内未検証）",
       "有効": true,
@@ -438,7 +438,7 @@ window.IRUNA_UPDATE_20261125 = {
           "MAT000541"
         ]
       ],
-      "source": "https://ameblo.jp/pepetaisa/entry-12985634527.html"
+      "source": ""
     },
     {
       "from": "BW000259",
@@ -463,7 +463,7 @@ window.IRUNA_UPDATE_20261125 = {
           "MAT000417"
         ]
       ],
-      "source": "https://ameblo.jp/pepetaisa/entry-12985634527.html"
+      "source": ""
     },
     {
       "from": "ST000305",
@@ -488,7 +488,7 @@ window.IRUNA_UPDATE_20261125 = {
           "MAT000804"
         ]
       ],
-      "source": "https://ameblo.jp/pepetaisa/entry-12985634527.html"
+      "source": ""
     },
     {
       "from": "AD000182",
@@ -513,7 +513,7 @@ window.IRUNA_UPDATE_20261125 = {
           "MAT000142"
         ]
       ],
-      "source": "https://ameblo.jp/pepetaisa/entry-12985634527.html"
+      "source": ""
     },
     {
       "from": "JP000056",
@@ -538,7 +538,7 @@ window.IRUNA_UPDATE_20261125 = {
           "JP000058"
         ]
       ],
-      "source": "https://ameblo.jp/pepetaisa/entry-12985634527.html"
+      "source": ""
     }
   ]
 };
